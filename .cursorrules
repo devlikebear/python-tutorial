@@ -34,6 +34,12 @@ This is a Python tutorial creation project designed to provide comprehensive lea
 - Develop a quiz application that uses the generated JSON quiz files as input
 - Application should be interactive and provide feedback to learners
 
+### 5. Version Control and Documentation
+- **Git Commits**: Create a git commit after completing each chapter
+- **Commit Messages**: Use English with clear, descriptive messages (e.g., "Add Chapter 1: Python Introduction and Environment Setup")
+- **Changelog Management**: Update `changelogs.md` file after each chapter completion
+- **Progress Tracking**: Record tutorial creation progress, completion dates, and any notable changes
+
 ## File Organization
 ```
 project-root/
@@ -49,7 +55,8 @@ project-root/
 │   ├── beginner/
 │   ├── intermediate/
 │   └── advanced/
-└── quiz_app/
+├── quiz_app/
+└── changelogs.md
 ```
 
 ## Content Guidelines
@@ -62,4 +69,11 @@ project-root/
 - Jupyter notebooks for tutorial content (.ipynb)
 - JSON format for quiz data
 - Interactive quiz application (web-based or CLI)
-- Clear documentation and README files 
+- Clear documentation and README files
+
+## Workflow Protocol
+1. **Chapter Creation**: Write tutorial content following curriculum guidelines
+2. **Quiz Development**: Create corresponding quiz after chapter completion
+3. **Git Commit**: Commit changes with descriptive English message
+4. **Changelog Update**: Record progress in `changelogs.md`
+5. **Quality Check**: Review content for clarity and completeness before proceeding 

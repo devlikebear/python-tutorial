@@ -18,7 +18,7 @@ This is a Python tutorial creation project designed to provide comprehensive lea
 
 ### 2. Tutorial Creation
 - Generate tutorials following the established curriculum
-- Create chapter-based content using Jupyter notebooks (.ipynb files)
+- Create chapter-based content using Markdown files (.md files)
 - Ensure progressive difficulty and comprehensive coverage of topics
 - Include practical examples and hands-on exercises
 
@@ -66,7 +66,7 @@ project-root/
 - Maintain consistency in teaching methodology across all materials
 
 ## Technical Requirements
-- Jupyter notebooks for tutorial content (.ipynb)
+- Markdown files for tutorial content (.md)
 - JSON format for quiz data
 - Interactive quiz application (web-based or CLI)
 - Clear documentation and README files

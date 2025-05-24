@@ -1,0 +1,445 @@
+{
+    "quiz_info": {
+        "title": "Chapter 8: 예외 처리 고급",
+        "description": "예외 계층 구조, 커스텀 예외, 고급 예외 처리 패턴, assert 문, 로깅 시스템, 실용적 예외 처리 패턴에 대한 퀴즈입니다.",
+        "total_questions": 40,
+        "passing_score": 70,
+        "time_limit_minutes": 50
+    },
+    "questions": [
+        {
+            "id": 1,
+            "type": "multiple_choice",
+            "difficulty": "easy",
+            "question": "파이썬 예외 계층의 최상위 클래스는?",
+            "options": [
+                "Exception",
+                "BaseException",
+                "Error",
+                "RuntimeError"
+            ],
+            "correct": 1,
+            "explanation": "BaseException이 파이썬 예외 계층의 최상위 클래스이며, Exception은 BaseException의 하위 클래스입니다."
+        },
+        {
+            "id": 2,
+            "type": "multiple_choice",
+            "difficulty": "easy",
+            "question": "FileNotFoundError는 어떤 예외의 하위 클래스인가?",
+            "options": [
+                "ValueError",
+                "TypeError",
+                "OSError",
+                "RuntimeError"
+            ],
+            "correct": 2,
+            "explanation": "FileNotFoundError는 OSError의 하위 클래스입니다."
+        },
+        {
+            "id": 3,
+            "type": "true_false",
+            "difficulty": "easy",
+            "question": "Exception 클래스를 상속받아 커스텀 예외를 만들 수 있다.",
+            "correct": true,
+            "explanation": "Exception 클래스를 상속받아 커스텀 예외 클래스를 만들 수 있습니다."
+        },
+        {
+            "id": 4,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "다음 중 가장 구체적인 예외 처리 방식은?",
+            "options": [
+                "except Exception:",
+                "except BaseException:",
+                "except ValueError:",
+                "except:"
+            ],
+            "correct": 2,
+            "explanation": "ValueError는 가장 구체적인 예외 타입으로, 명확한 오류 처리가 가능합니다."
+        },
+        {
+            "id": 5,
+            "type": "coding",
+            "difficulty": "medium",
+            "question": "ValidationError라는 커스텀 예외 클래스를 생성하고, 메시지와 함께 에러 코드를 저장할 수 있도록 구현하세요.",
+            "answer": "class ValidationError(Exception):\n    def __init__(self, message, error_code=None):\n        super().__init__(message)\n        self.error_code = error_code",
+            "explanation": "Exception을 상속받고 __init__ 메서드에서 추가 속성을 설정하여 커스텀 예외를 만들 수 있습니다."
+        },
+        {
+            "id": 6,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "try-except-else-finally 구조에서 else 절이 실행되는 조건은?",
+            "options": [
+                "예외가 발생했을 때",
+                "예외가 발생하지 않았을 때",
+                "finally 절 이후에",
+                "항상 실행됨"
+            ],
+            "correct": 1,
+            "explanation": "else 절은 try 블록에서 예외가 발생하지 않았을 때만 실행됩니다."
+        },
+        {
+            "id": 7,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "finally 절의 특징은?",
+            "options": [
+                "예외가 발생했을 때만 실행",
+                "예외가 발생하지 않았을 때만 실행",
+                "항상 실행됨",
+                "else 절과 함께 사용할 수 없음"
+            ],
+            "correct": 2,
+            "explanation": "finally 절은 예외 발생 여부와 관계없이 항상 실행되어 리소스 정리 등에 사용됩니다."
+        },
+        {
+            "id": 8,
+            "type": "code_analysis",
+            "difficulty": "hard",
+            "question": "다음 코드의 실행 순서를 설명하세요.\n\ntry:\n    print('A')\n    raise ValueError()\nexcept ValueError:\n    print('B')\nelse:\n    print('C')\nfinally:\n    print('D')",
+            "answer": "실행 순서: A → B → D\n예외가 발생했으므로 else 절(C)은 실행되지 않고, finally 절(D)은 항상 실행됩니다.",
+            "explanation": "try에서 예외가 발생하면 해당 except 절이 실행되고, else는 건너뛰며, finally는 항상 실행됩니다."
+        },
+        {
+            "id": 9,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "예외 체이닝에서 'raise ... from ...' 구문의 목적은?",
+            "options": [
+                "예외를 무시하기 위해",
+                "원본 예외 정보를 보존하기 위해",
+                "예외 메시지를 변경하기 위해",
+                "예외 타입을 변경하기 위해"
+            ],
+            "correct": 1,
+            "explanation": "'raise ... from ...'는 원본 예외의 정보를 보존하면서 새로운 예외를 발생시키는 예외 체이닝입니다."
+        },
+        {
+            "id": 10,
+            "type": "coding",
+            "difficulty": "hard",
+            "question": "예외 체이닝을 사용하여 ValueError를 받아 CustomError로 변환하는 코드를 작성하세요.",
+            "answer": "class CustomError(Exception):\n    pass\n\ntry:\n    raise ValueError('원본 오류')\nexcept ValueError as e:\n    raise CustomError('커스텀 오류') from e",
+            "explanation": "'from' 키워드를 사용하여 원본 예외를 체이닝하면서 새로운 예외를 발생시킵니다."
+        },
+        {
+            "id": 11,
+            "type": "multiple_choice",
+            "difficulty": "easy",
+            "question": "assert 문의 주요 용도는?",
+            "options": [
+                "프로덕션 환경에서의 예외 처리",
+                "개발 시 조건 검증과 디버깅",
+                "사용자 입력 검증",
+                "네트워크 오류 처리"
+            ],
+            "correct": 1,
+            "explanation": "assert 문은 주로 개발 시 조건 검증과 디버깅 목적으로 사용됩니다."
+        },
+        {
+            "id": 12,
+            "type": "true_false",
+            "difficulty": "medium",
+            "question": "assert 문은 Python의 -O 옵션으로 실행할 때 무시된다.",
+            "correct": true,
+            "explanation": "Python의 최적화 모드(-O 옵션)에서는 assert 문이 무시되므로 프로덕션에서는 사용하지 않아야 합니다."
+        },
+        {
+            "id": 13,
+            "type": "code_completion",
+            "difficulty": "medium",
+            "question": "다음 assert 문을 완성하세요. 나이가 0 이상 150 이하인지 확인합니다.\n\nassert _____, f'나이는 0-150 사이여야 합니다: {age}'",
+            "answer": "0 <= age <= 150",
+            "explanation": "범위 검사는 비교 연산자를 연쇄적으로 사용하여 표현할 수 있습니다."
+        },
+        {
+            "id": 14,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "assert와 if-raise의 차이점은?",
+            "options": [
+                "assert는 더 빠르다",
+                "assert는 개발용, if-raise는 프로덕션용",
+                "기능상 완전히 동일하다",
+                "assert는 예외를 발생시키지 않는다"
+            ],
+            "correct": 1,
+            "explanation": "assert는 개발 시 디버깅용이고, if-raise는 프로덕션에서 예외 처리용입니다."
+        },
+        {
+            "id": 15,
+            "type": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Python의 logging 모듈에서 가장 심각한 로그 레벨은?",
+            "options": [
+                "ERROR",
+                "WARNING",
+                "CRITICAL",
+                "FATAL"
+            ],
+            "correct": 2,
+            "explanation": "CRITICAL이 가장 심각한 로그 레벨로, 프로그램이 중단될 수 있는 치명적 오류를 나타냅니다."
+        },
+        {
+            "id": 16,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "로그 레벨의 올바른 순서는? (낮음 → 높음)",
+            "options": [
+                "DEBUG, INFO, WARNING, ERROR, CRITICAL",
+                "INFO, DEBUG, WARNING, ERROR, CRITICAL",
+                "DEBUG, WARNING, INFO, ERROR, CRITICAL",
+                "CRITICAL, ERROR, WARNING, INFO, DEBUG"
+            ],
+            "correct": 0,
+            "explanation": "로그 레벨 순서: DEBUG(10) < INFO(20) < WARNING(30) < ERROR(40) < CRITICAL(50)"
+        },
+        {
+            "id": 17,
+            "type": "coding",
+            "difficulty": "medium",
+            "question": "logger.exception()을 사용하여 예외와 함께 로그를 기록하는 코드를 작성하세요.",
+            "answer": "import logging\nlogger = logging.getLogger(__name__)\n\ntry:\n    # 위험한 작업\n    pass\nexcept Exception as e:\n    logger.exception('예외가 발생했습니다')",
+            "explanation": "logger.exception()은 자동으로 스택 트레이스를 포함하여 ERROR 레벨로 로그를 기록합니다."
+        },
+        {
+            "id": 18,
+            "type": "multiple_choice",
+            "difficulty": "hard",
+            "question": "logger.exception()과 logger.error(exc_info=True)의 차이점은?",
+            "options": [
+                "기능상 완전히 동일하다",
+                "exception()은 ERROR 레벨, error()는 EXCEPTION 레벨",
+                "exception()은 스택 트레이스 포함, error()는 포함하지 않음",
+                "exception()만 except 블록에서 사용 가능"
+            ],
+            "correct": 0,
+            "explanation": "logger.exception()과 logger.error(exc_info=True)는 기능상 완전히 동일합니다."
+        },
+        {
+            "id": 19,
+            "type": "design_pattern",
+            "difficulty": "expert",
+            "question": "재시도 패턴을 구현하는 데코레이터를 작성하세요. 최대 3번 시도하고, 각 시도 사이에 1초씩 대기해야 합니다.",
+            "answer": "import time\n\ndef retry(max_attempts=3, delay=1):\n    def decorator(func):\n        def wrapper(*args, **kwargs):\n            for attempt in range(max_attempts):\n                try:\n                    return func(*args, **kwargs)\n                except Exception as e:\n                    if attempt == max_attempts - 1:\n                        raise\n                    time.sleep(delay)\n            return wrapper\n        return decorator",
+            "explanation": "재시도 패턴은 일시적인 오류에 대해 여러 번 시도하여 성공률을 높이는 패턴입니다."
+        },
+        {
+            "id": 20,
+            "type": "multiple_choice",
+            "difficulty": "hard",
+            "question": "회로 차단기(Circuit Breaker) 패턴의 목적은?",
+            "options": [
+                "메모리 사용량 최적화",
+                "연쇄 실패 방지와 시스템 보호",
+                "코드 가독성 향상",
+                "성능 향상"
+            ],
+            "correct": 1,
+            "explanation": "회로 차단기 패턴은 외부 서비스 장애 시 연쇄 실패를 방지하고 시스템을 보호하는 패턴입니다."
+        },
+        {
+            "id": 21,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "with 문을 사용한 컨텍스트 매니저의 장점은?",
+            "options": [
+                "실행 속도가 빠름",
+                "자동 리소스 관리",
+                "메모리 사용량 감소",
+                "코드가 짧아짐"
+            ],
+            "correct": 1,
+            "explanation": "컨텍스트 매니저는 자동으로 리소스를 획득하고 해제하여 안전한 리소스 관리를 제공합니다."
+        },
+        {
+            "id": 22,
+            "type": "coding",
+            "difficulty": "hard",
+            "question": "컨텍스트 매니저를 구현하는 클래스를 작성하세요. 리소스 획득/해제를 시뮬레이션해야 합니다.",
+            "answer": "class ResourceManager:\n    def __init__(self, resource_name):\n        self.resource_name = resource_name\n        self.resource = None\n    \n    def __enter__(self):\n        print(f'리소스 {self.resource_name} 획득')\n        self.resource = f'resource_{self.resource_name}'\n        return self.resource\n    \n    def __exit__(self, exc_type, exc_val, exc_tb):\n        print(f'리소스 {self.resource_name} 해제')\n        self.resource = None\n        return False",
+            "explanation": "__enter__와 __exit__ 메서드를 구현하여 컨텍스트 매니저를 만들 수 있습니다."
+        },
+        {
+            "id": 23,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "예외 계층 구조 설계 시 고려사항이 아닌 것은?",
+            "options": [
+                "도메인별 예외 분류",
+                "적절한 상속 관계",
+                "예외 메시지의 길이",
+                "계층적 예외 처리 가능성"
+            ],
+            "correct": 2,
+            "explanation": "예외 메시지의 길이는 설계 시 주요 고려사항이 아닙니다. 도메인 분류, 상속 관계, 계층적 처리가 중요합니다."
+        },
+        {
+            "id": 24,
+            "type": "code_analysis",
+            "difficulty": "hard",
+            "question": "다음 예외 계층에서 DatabaseError를 처리하는 except 절이 ValidationError도 처리할 수 있는가?\n\nclass AppError(Exception): pass\nclass DataError(AppError): pass\nclass DatabaseError(DataError): pass\nclass ValidationError(DataError): pass",
+            "answer": "아니오. DatabaseError와 ValidationError는 형제 관계로, DatabaseError를 처리하는 except 절은 ValidationError를 처리할 수 없습니다. 둘 다 처리하려면 공통 부모인 DataError를 처리해야 합니다.",
+            "explanation": "예외 처리는 상속 관계에 따라 동작하므로, 형제 관계의 예외는 서로 처리할 수 없습니다."
+        },
+        {
+            "id": 25,
+            "type": "true_false",
+            "difficulty": "medium",
+            "question": "예외 체이닝을 사용하면 원본 예외의 스택 트레이스 정보가 보존된다.",
+            "correct": true,
+            "explanation": "'raise ... from ...' 구문을 사용한 예외 체이닝은 원본 예외의 스택 트레이스와 컨텍스트를 보존합니다."
+        },
+        {
+            "id": 26,
+            "type": "multiple_choice",
+            "difficulty": "expert",
+            "question": "로깅에서 구조화된 로깅의 장점은?",
+            "options": [
+                "로그 파일 크기 감소",
+                "검색과 분석이 용이함",
+                "실행 속도 향상",
+                "메모리 사용량 감소"
+            ],
+            "correct": 1,
+            "explanation": "구조화된 로깅은 일관된 형식으로 로그를 기록하여 검색, 필터링, 분석이 용이합니다."
+        },
+        {
+            "id": 27,
+            "type": "coding",
+            "difficulty": "expert",
+            "question": "예외 정보를 수집하고 분석하는 클래스를 작성하세요. 예외 타입별 카운트와 최근 예외 목록을 제공해야 합니다.",
+            "answer": "class ExceptionCollector:\n    def __init__(self):\n        self.exceptions = []\n        self.exception_counts = {}\n    \n    def collect(self, exception):\n        exc_type = type(exception).__name__\n        self.exceptions.append({\n            'type': exc_type,\n            'message': str(exception),\n            'timestamp': time.time()\n        })\n        self.exception_counts[exc_type] = self.exception_counts.get(exc_type, 0) + 1\n    \n    def get_stats(self):\n        return {\n            'total': len(self.exceptions),\n            'counts': self.exception_counts,\n            'recent': self.exceptions[-5:]\n        }",
+            "explanation": "예외 정보를 체계적으로 수집하고 분석하여 시스템의 안정성을 모니터링할 수 있습니다."
+        },
+        {
+            "id": 28,
+            "type": "multiple_choice",
+            "difficulty": "hard",
+            "question": "다음 중 예외 처리의 안티패턴은?",
+            "options": [
+                "구체적인 예외 타입 처리",
+                "예외 체이닝 사용",
+                "except: pass (빈 except 블록)",
+                "finally 절에서 리소스 정리"
+            ],
+            "correct": 2,
+            "explanation": "'except: pass'는 모든 예외를 무시하는 안티패턴으로, 문제를 숨기고 디버깅을 어렵게 만듭니다."
+        },
+        {
+            "id": 29,
+            "type": "debugging",
+            "difficulty": "hard",
+            "question": "다음 코드의 문제점을 찾아 수정하세요.\n\ndef process_data(data):\n    try:\n        result = data / 0\n    except:\n        pass\n    return result",
+            "answer": "문제점: 1) 모든 예외를 무시함 2) result가 정의되지 않을 수 있음\n수정:\ndef process_data(data):\n    try:\n        result = data / 2  # 0으로 나누지 않도록 수정\n        return result\n    except ZeroDivisionError:\n        print('0으로 나눌 수 없습니다')\n        return None\n    except Exception as e:\n        print(f'예상치 못한 오류: {e}')\n        return None",
+            "explanation": "구체적인 예외를 처리하고, 적절한 반환값을 제공해야 합니다."
+        },
+        {
+            "id": 30,
+            "type": "design_pattern",
+            "difficulty": "expert",
+            "question": "함수 호출을 로깅하는 데코레이터를 구현하세요. 함수 이름, 인수, 반환값, 예외를 모두 로깅해야 합니다.",
+            "answer": "import logging\nfrom functools import wraps\n\ndef log_calls(logger_name=None):\n    def decorator(func):\n        logger = logging.getLogger(logger_name or func.__module__)\n        \n        @wraps(func)\n        def wrapper(*args, **kwargs):\n            # 함수 호출 로깅\n            args_repr = [repr(a) for a in args]\n            kwargs_repr = [f'{k}={v!r}' for k, v in kwargs.items()]\n            signature = ', '.join(args_repr + kwargs_repr)\n            logger.info(f'호출: {func.__name__}({signature})')\n            \n            try:\n                result = func(*args, **kwargs)\n                logger.info(f'반환: {func.__name__} -> {result!r}')\n                return result\n            except Exception as e:\n                logger.error(f'예외: {func.__name__} -> {type(e).__name__}: {e}')\n                raise\n        \n        return wrapper\n    return decorator",
+            "explanation": "데코레이터를 사용하여 함수 호출의 모든 정보를 자동으로 로깅할 수 있습니다."
+        },
+        {
+            "id": 31,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "예외 발생 시 스택 트레이스를 프로그래밍적으로 가져오는 모듈은?",
+            "options": [
+                "traceback",
+                "stacktrace",
+                "exception",
+                "debug"
+            ],
+            "correct": 0,
+            "explanation": "traceback 모듈을 사용하여 예외의 스택 트레이스 정보를 프로그래밍적으로 처리할 수 있습니다."
+        },
+        {
+            "id": 32,
+            "type": "code_completion",
+            "difficulty": "medium",
+            "question": "traceback 모듈을 사용하여 예외의 스택 트레이스를 문자열로 가져오는 코드를 완성하세요.\n\nimport traceback\ntry:\n    # 위험한 작업\n    pass\nexcept Exception:\n    trace_str = traceback._______()",
+            "answer": "format_exc",
+            "explanation": "traceback.format_exc()는 현재 예외의 전체 스택 트레이스를 문자열로 반환합니다."
+        },
+        {
+            "id": 33,
+            "type": "comprehensive",
+            "difficulty": "expert",
+            "question": "견고한 API 클라이언트를 구현하세요. 네트워크 오류 재시도, 타임아웃 처리, 응답 검증, 로깅을 모두 포함해야 합니다.",
+            "answer": "import requests\nimport logging\nimport time\nfrom functools import wraps\n\nclass APIError(Exception):\n    def __init__(self, message, status_code=None):\n        super().__init__(message)\n        self.status_code = status_code\n\nclass APIClient:\n    def __init__(self, base_url, timeout=30):\n        self.base_url = base_url\n        self.timeout = timeout\n        self.logger = logging.getLogger(__name__)\n    \n    def retry(self, max_attempts=3, delay=1):\n        def decorator(func):\n            @wraps(func)\n            def wrapper(*args, **kwargs):\n                for attempt in range(max_attempts):\n                    try:\n                        return func(*args, **kwargs)\n                    except (requests.ConnectionError, requests.Timeout) as e:\n                        if attempt == max_attempts - 1:\n                            self.logger.error(f'모든 재시도 실패: {e}')\n                            raise APIError(f'연결 실패: {e}') from e\n                        self.logger.warning(f'시도 {attempt + 1} 실패, 재시도...')\n                        time.sleep(delay)\n                return wrapper\n            return decorator\n    \n    @retry()\n    def get(self, endpoint):\n        url = f'{self.base_url}/{endpoint}'\n        self.logger.info(f'API 호출: GET {url}')\n        \n        try:\n            response = requests.get(url, timeout=self.timeout)\n            \n            if response.status_code >= 400:\n                raise APIError(f'HTTP {response.status_code}: {response.text}', response.status_code)\n            \n            self.logger.info(f'API 성공: {response.status_code}')\n            return response.json()\n            \n        except requests.exceptions.RequestException as e:\n            self.logger.error(f'요청 오류: {e}')\n            raise APIError(f'요청 실패: {e}') from e",
+            "explanation": "재시도, 타임아웃, 커스텀 예외, 로깅을 모두 포함한 견고한 API 클라이언트 구현입니다."
+        },
+        {
+            "id": 34,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "예외 처리에서 성능을 고려할 때 주의사항은?",
+            "options": [
+                "예외는 항상 성능에 악영향을 줌",
+                "예외 처리는 정상 흐름 제어용으로 사용해야 함",
+                "예외는 예외적인 상황에서만 사용해야 함",
+                "try-except 블록은 피해야 함"
+            ],
+            "correct": 2,
+            "explanation": "예외는 예외적인 상황에서만 사용해야 하며, 정상적인 프로그램 흐름 제어용으로 사용하면 성능상 좋지 않습니다."
+        },
+        {
+            "id": 35,
+            "type": "true_false",
+            "difficulty": "hard",
+            "question": "Python에서 예외가 발생하면 항상 프로그램이 중단된다.",
+            "correct": false,
+            "explanation": "예외가 적절히 처리(try-except)되면 프로그램은 계속 실행됩니다. 처리되지 않은 예외만 프로그램을 중단시킵니다."
+        },
+        {
+            "id": 36,
+            "type": "code_analysis",
+            "difficulty": "expert",
+            "question": "다음 코드에서 메모리 누수가 발생할 수 있는 상황과 해결 방법을 설명하세요.\n\ndef process_file(filename):\n    file = open(filename, 'r')\n    try:\n        data = file.read()\n        return process_data(data)\n    except Exception as e:\n        print(f'오류: {e}')\n        return None",
+            "answer": "문제: 예외 발생 시 파일이 닫히지 않아 메모리 누수 발생\n해결: with 문 사용 또는 finally 절에서 파일 닫기\n\n해결 방법 1 (권장):\ndef process_file(filename):\n    try:\n        with open(filename, 'r') as file:\n            data = file.read()\n            return process_data(data)\n    except Exception as e:\n        print(f'오류: {e}')\n        return None\n\n해결 방법 2:\ndef process_file(filename):\n    file = None\n    try:\n        file = open(filename, 'r')\n        data = file.read()\n        return process_data(data)\n    except Exception as e:\n        print(f'오류: {e}')\n        return None\n    finally:\n        if file:\n            file.close()",
+            "explanation": "리소스 관리에서는 예외 발생 시에도 반드시 리소스를 해제해야 합니다."
+        },
+        {
+            "id": 37,
+            "type": "design_pattern",
+            "difficulty": "expert",
+            "question": "회로 차단기 패턴을 구현하세요. CLOSED, OPEN, HALF_OPEN 상태를 관리하고, 실패 임계값과 타임아웃을 지원해야 합니다.",
+            "answer": "import time\nfrom enum import Enum\n\nclass CircuitState(Enum):\n    CLOSED = 'CLOSED'\n    OPEN = 'OPEN'\n    HALF_OPEN = 'HALF_OPEN'\n\nclass CircuitBreaker:\n    def __init__(self, failure_threshold=5, timeout=60):\n        self.failure_threshold = failure_threshold\n        self.timeout = timeout\n        self.failure_count = 0\n        self.last_failure_time = None\n        self.state = CircuitState.CLOSED\n    \n    def __call__(self, func):\n        def wrapper(*args, **kwargs):\n            if self.state == CircuitState.OPEN:\n                if time.time() - self.last_failure_time > self.timeout:\n                    self.state = CircuitState.HALF_OPEN\n                else:\n                    raise Exception('Circuit breaker is OPEN')\n            \n            try:\n                result = func(*args, **kwargs)\n                self._on_success()\n                return result\n            except Exception as e:\n                self._on_failure()\n                raise\n        \n        return wrapper\n    \n    def _on_success(self):\n        self.failure_count = 0\n        if self.state == CircuitState.HALF_OPEN:\n            self.state = CircuitState.CLOSED\n    \n    def _on_failure(self):\n        self.failure_count += 1\n        self.last_failure_time = time.time()\n        \n        if self.failure_count >= self.failure_threshold:\n            self.state = CircuitState.OPEN",
+            "explanation": "회로 차단기는 연쇄 실패를 방지하고 시스템 복구 시간을 제공하는 중요한 안정성 패턴입니다."
+        },
+        {
+            "id": 38,
+            "type": "multiple_choice",
+            "difficulty": "hard",
+            "question": "다음 중 예외 처리의 모범 사례가 아닌 것은?",
+            "options": [
+                "구체적인 예외 타입을 처리한다",
+                "예외 정보를 로깅한다",
+                "모든 함수에서 try-except를 사용한다",
+                "리소스를 finally나 with문으로 정리한다"
+            ],
+            "correct": 2,
+            "explanation": "모든 함수에서 try-except를 사용할 필요는 없으며, 필요한 곳에서만 적절히 사용해야 합니다."
+        },
+        {
+            "id": 39,
+            "type": "comprehensive",
+            "difficulty": "expert",
+            "question": "데이터 검증 프레임워크를 구현하세요. 여러 검증 규칙을 지원하고, 검증 실패 시 모든 오류를 수집하여 상세한 오류 보고서를 제공해야 합니다.",
+            "answer": "class ValidationError(Exception):\n    def __init__(self, errors):\n        self.errors = errors\n        super().__init__(f'{len(errors)} validation errors occurred')\n\nclass ValidationRule:\n    def __init__(self, field, message, validator):\n        self.field = field\n        self.message = message\n        self.validator = validator\n    \n    def validate(self, data):\n        value = data.get(self.field)\n        if not self.validator(value):\n            return {'field': self.field, 'message': self.message, 'value': value}\n        return None\n\nclass Validator:\n    def __init__(self):\n        self.rules = []\n    \n    def add_rule(self, field, message, validator):\n        self.rules.append(ValidationRule(field, message, validator))\n        return self\n    \n    def validate(self, data):\n        errors = []\n        \n        for rule in self.rules:\n            error = rule.validate(data)\n            if error:\n                errors.append(error)\n        \n        if errors:\n            raise ValidationError(errors)\n        \n        return True\n\n# 사용 예시\nvalidator = Validator()\nvalidator.add_rule('email', '유효한 이메일이 필요합니다', lambda x: x and '@' in x)\nvalidator.add_rule('age', '나이는 0-150 사이여야 합니다', lambda x: isinstance(x, int) and 0 <= x <= 150)\n\ntry:\n    validator.validate({'email': 'invalid', 'age': -5})\nexcept ValidationError as e:\n    for error in e.errors:\n        print(f'{error[\"field\"]}: {error[\"message\"]}')",
+            "explanation": "포괄적인 검증 시스템으로 모든 오류를 수집하고 상세한 피드백을 제공합니다."
+        },
+        {
+            "id": 40,
+            "type": "reflection",
+            "difficulty": "expert",
+            "question": "예외 처리 설계에서 가장 중요한 원칙 3가지를 설명하고, 각각에 대한 실제 예시를 제시하세요.",
+            "answer": "1. **구체성의 원칙**: 가능한 한 구체적인 예외를 처리한다\n   예시: except Exception: 대신 except ValueError, TypeError: 사용\n\n2. **정보 보존의 원칙**: 예외 체이닝으로 원본 정보를 보존한다\n   예시: raise CustomError('변환 실패') from original_error\n\n3. **책임 분리의 원칙**: 예외 처리와 비즈니스 로직을 분리한다\n   예시: 저수준에서는 기술적 예외를, 고수준에서는 도메인 예외를 처리\n\n이 원칙들을 통해 유지보수 가능하고 디버깅이 용이한 견고한 예외 처리 시스템을 구축할 수 있습니다.",
+            "explanation": "좋은 예외 처리 설계는 구체성, 정보 보존, 책임 분리의 원칙을 따라야 합니다."
+        }
+    ]
+}

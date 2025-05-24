@@ -1,0 +1,296 @@
+{
+    "chapter": "Chapter 4: 연산자와 표현식",
+    "quiz_info": {
+        "title": "연산자 활용 및 표현식 계산 능력 체크",
+        "description": "산술, 비교, 논리, 할당, 비트 연산자와 연산자 우선순위, 표현식 계산에 대한 이해도를 확인하는 퀴즈입니다.",
+        "total_questions": 25,
+        "passing_score": 70
+    },
+    "questions": [
+        {
+            "id": 1,
+            "type": "multiple_choice",
+            "question": "17 // 5와 17 % 5의 결과는?",
+            "options": [
+                "A) 3, 2",
+                "B) 3.4, 2",
+                "C) 3, 2.0",
+                "D) 4, 1"
+            ],
+            "correct_answer": "A",
+            "explanation": "17 // 5는 정수 나눗셈으로 3이고, 17 % 5는 나머지 연산으로 2입니다."
+        },
+        {
+            "id": 2,
+            "type": "fill_in_blank",
+            "question": "2 ** 3 ** 2의 결과는 ______입니다. (거듭제곱은 우결합성)",
+            "correct_answer": "512",
+            "explanation": "거듭제곱 연산자는 우결합성이므로 2 ** (3 ** 2) = 2 ** 9 = 512입니다."
+        },
+        {
+            "id": 3,
+            "type": "multiple_choice",
+            "question": "10 < 15 < 20의 결과는?",
+            "options": [
+                "A) True",
+                "B) False",
+                "C) 오류 발생",
+                "D) None"
+            ],
+            "correct_answer": "A",
+            "explanation": "Python의 연쇄 비교 기능으로 10 < 15 < 20은 (10 < 15) and (15 < 20)과 같으며, 둘 다 True이므로 결과는 True입니다."
+        },
+        {
+            "id": 4,
+            "type": "true_false",
+            "question": "0.1 + 0.2 == 0.3의 결과는 False입니다.",
+            "correct_answer": true,
+            "explanation": "부동소수점 정밀도 문제로 인해 0.1 + 0.2는 정확히 0.3이 아니므로 False입니다."
+        },
+        {
+            "id": 5,
+            "type": "multiple_choice",
+            "question": "True and False or True의 결과는? (연산자 우선순위 고려)",
+            "options": [
+                "A) True",
+                "B) False",
+                "C) 오류 발생",
+                "D) None"
+            ],
+            "correct_answer": "A",
+            "explanation": "and가 or보다 우선순위가 높으므로 (True and False) or True = False or True = True입니다."
+        },
+        {
+            "id": 6,
+            "type": "fill_in_blank",
+            "question": "x = 10일 때, x += 5; x *= 2; x //= 3 순서로 실행한 후 x의 값은 ______입니다.",
+            "correct_answer": "10",
+            "explanation": "x = 10 → x += 5 (15) → x *= 2 (30) → x //= 3 (10)"
+        },
+        {
+            "id": 7,
+            "type": "multiple_choice",
+            "question": "12 & 10의 결과는? (12는 이진수 1100, 10은 이진수 1010)",
+            "options": [
+                "A) 8",
+                "B) 14",
+                "C) 6",
+                "D) 22"
+            ],
+            "correct_answer": "A",
+            "explanation": "비트 AND 연산: 1100 & 1010 = 1000 (이진수) = 8 (십진수)"
+        },
+        {
+            "id": 8,
+            "type": "true_false",
+            "question": "5 << 2의 결과는 20입니다.",
+            "correct_answer": true,
+            "explanation": "왼쪽 시프트 연산은 2의 거듭제곱을 곱하는 것과 같습니다. 5 << 2 = 5 * (2^2) = 5 * 4 = 20"
+        },
+        {
+            "id": 9,
+            "type": "multiple_choice",
+            "question": "not (True and False) or False의 결과는?",
+            "options": [
+                "A) True",
+                "B) False",
+                "C) 오류 발생",
+                "D) None"
+            ],
+            "correct_answer": "A",
+            "explanation": "not (True and False) or False = not False or False = True or False = True"
+        },
+        {
+            "id": 10,
+            "type": "fill_in_blank",
+            "question": "문자열에서 'Hello' += ' World'의 결과는 ______입니다.",
+            "correct_answer": "Hello World",
+            "explanation": "문자열의 += 연산자는 문자열 연결(concatenation)을 수행합니다."
+        },
+        {
+            "id": 11,
+            "type": "multiple_choice",
+            "question": "False or (5 > 3 and 10 < 20)의 결과는?",
+            "options": [
+                "A) True",
+                "B) False",
+                "C) 5",
+                "D) 10"
+            ],
+            "correct_answer": "A",
+            "explanation": "False or (True and True) = False or True = True"
+        },
+        {
+            "id": 12,
+            "type": "true_false",
+            "question": "2 + 3 * 4의 결과는 20입니다.",
+            "correct_answer": false,
+            "explanation": "연산자 우선순위에 의해 곱셈이 덧셈보다 먼저 실행되므로 2 + (3 * 4) = 2 + 12 = 14입니다."
+        },
+        {
+            "id": 13,
+            "type": "multiple_choice",
+            "question": "15 ^ 10의 결과는? (XOR 연산)",
+            "options": [
+                "A) 5",
+                "B) 25",
+                "C) 150",
+                "D) 1"
+            ],
+            "correct_answer": "A",
+            "explanation": "XOR 연산: 1111 ^ 1010 = 0101 (이진수) = 5 (십진수)"
+        },
+        {
+            "id": 14,
+            "type": "fill_in_blank",
+            "question": "100 - 50 - 20의 결과는 ______입니다. (좌결합성)",
+            "correct_answer": "30",
+            "explanation": "좌결합성에 의해 (100 - 50) - 20 = 50 - 20 = 30"
+        },
+        {
+            "id": 15,
+            "type": "multiple_choice",
+            "question": "number & 1 == 0은 무엇을 확인하는 조건입니까?",
+            "options": [
+                "A) 짝수인지 확인",
+                "B) 홀수인지 확인",
+                "C) 양수인지 확인",
+                "D) 0인지 확인"
+            ],
+            "correct_answer": "A",
+            "explanation": "마지막 비트가 0이면 짝수이므로, number & 1 == 0은 짝수를 확인하는 조건입니다."
+        },
+        {
+            "id": 16,
+            "type": "true_false",
+            "question": "'Alice' < 'Bob'은 True입니다.",
+            "correct_answer": true,
+            "explanation": "문자열은 사전순(알파벳순)으로 비교되며, 'Alice'가 'Bob'보다 사전순으로 앞서므로 True입니다."
+        },
+        {
+            "id": 17,
+            "type": "multiple_choice",
+            "question": "x = [1, 2]; x *= 3의 결과는?",
+            "options": [
+                "A) [1, 2, 1, 2, 1, 2]",
+                "B) [3, 6]",
+                "C) [1, 2, 3]",
+                "D) 오류 발생"
+            ],
+            "correct_answer": "A",
+            "explanation": "리스트의 *= 연산자는 리스트를 반복하므로 [1, 2] * 3 = [1, 2, 1, 2, 1, 2]입니다."
+        },
+        {
+            "id": 18,
+            "type": "fill_in_blank",
+            "question": "8 >> 2의 결과는 ______입니다.",
+            "correct_answer": "2",
+            "explanation": "오른쪽 시프트 연산: 8 (1000) >> 2 = 2 (0010)"
+        },
+        {
+            "id": 19,
+            "type": "multiple_choice",
+            "question": "월리스 연산자(:=)는 Python 몇 버전부터 사용 가능합니까?",
+            "options": [
+                "A) Python 3.6",
+                "B) Python 3.7",
+                "C) Python 3.8",
+                "D) Python 3.9"
+            ],
+            "correct_answer": "C",
+            "explanation": "월리스 연산자(:=)는 Python 3.8부터 도입되었습니다."
+        },
+        {
+            "id": 20,
+            "type": "true_false",
+            "question": "드모르간 법칙에 의하면 not (A and B) == (not A) or (not B)입니다.",
+            "correct_answer": true,
+            "explanation": "드모르간 법칙: not (A and B) = (not A) or (not B), not (A or B) = (not A) and (not B)"
+        },
+        {
+            "id": 21,
+            "type": "multiple_choice",
+            "question": "단축 평가(Short-circuit evaluation)에서 False and func()가 실행될 때 func()는?",
+            "options": [
+                "A) 실행됨",
+                "B) 실행되지 않음",
+                "C) 오류 발생",
+                "D) 조건에 따라 다름"
+            ],
+            "correct_answer": "B",
+            "explanation": "False and 뒤의 표현식은 결과가 이미 False로 결정되므로 실행되지 않습니다."
+        },
+        {
+            "id": 22,
+            "type": "fill_in_blank",
+            "question": "~5의 결과는 ______입니다. (비트 NOT 연산)",
+            "correct_answer": "-6",
+            "explanation": "비트 NOT 연산은 2의 보수를 구하므로 ~5 = -(5+1) = -6"
+        },
+        {
+            "id": 23,
+            "type": "multiple_choice",
+            "question": "리스트에서 list1 += [4, 5]와 list1.append([4, 5])의 차이점은?",
+            "options": [
+                "A) 결과가 동일함",
+                "B) +=는 요소들을 추가, append는 리스트 전체를 하나의 요소로 추가",
+                "C) append가 더 빠름",
+                "D) 차이 없음"
+            ],
+            "correct_answer": "B",
+            "explanation": "+=는 각 요소를 개별적으로 추가하고, append는 인수 전체를 하나의 요소로 추가합니다."
+        },
+        {
+            "id": 24,
+            "type": "true_false",
+            "question": "비트 연산자를 사용하여 권한 시스템을 효율적으로 구현할 수 있습니다.",
+            "correct_answer": true,
+            "explanation": "각 권한을 비트 플래그로 표현하고 비트 연산자로 권한을 설정, 확인, 제거할 수 있습니다."
+        },
+        {
+            "id": 25,
+            "type": "multiple_choice",
+            "question": "연산자 우선순위에서 가장 높은 것은?",
+            "options": [
+                "A) **",
+                "B) ()",
+                "C) *",
+                "D) and"
+            ],
+            "correct_answer": "B",
+            "explanation": "괄호(())가 가장 높은 우선순위를 가집니다."
+        }
+    ],
+    "practical_exercises": [
+        {
+            "id": 1,
+            "title": "복리 계산기",
+            "description": "원금 1,000,000원, 연 이율 5%, 3년간 월복리로 계산했을 때의 최종 금액과 이자를 계산하는 프로그램을 작성하세요.",
+            "expected_output": "최종 금액: 1,161,617원, 이자: 161,617원 (대략)"
+        },
+        {
+            "id": 2,
+            "title": "비트 권한 시스템",
+            "description": "읽기(1), 쓰기(2), 실행(4) 권한을 비트 플래그로 구현하고, 사용자에게 읽기+쓰기 권한을 주고 실행 권한을 추가하는 프로그램을 작성하세요.",
+            "expected_output": "초기 권한: 3 (읽기+쓰기), 실행 권한 추가 후: 7 (읽기+쓰기+실행)"
+        },
+        {
+            "id": 3,
+            "title": "연산자 우선순위 계산기",
+            "description": "수식 '2 + 3 * 4 ** 2 - 10 // 3'을 단계별로 계산 과정을 보여주는 프로그램을 작성하세요.",
+            "expected_output": "단계별 계산: 4**2=16 → 3*16=48 → 10//3=3 → 2+48=50 → 50-3=47"
+        },
+        {
+            "id": 4,
+            "title": "학점 계산기",
+            "description": "중간고사 85점, 기말고사 92점, 과제 88점의 가중평균(30%, 40%, 30%)을 계산하고 A~F 등급을 판정하는 프로그램을 작성하세요.",
+            "expected_output": "가중평균: 88.1점, 등급: B+"
+        },
+        {
+            "id": 5,
+            "title": "시간 계산기",
+            "description": "두 시간 '2시간 30분'과 '1시간 45분'을 더하고 빼는 계산기를 작성하세요. 결과를 '시:분' 형태로 출력하세요.",
+            "expected_output": "더하기: 4:15, 빼기: 0:45"
+        }
+    ]
+}

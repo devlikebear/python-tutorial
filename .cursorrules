@@ -71,6 +71,12 @@ project-root/
 - Interactive quiz application (web-based or CLI)
 - Clear documentation and README files
 
+## Time and Date Management
+- **Current Time Retrieval**: Always use MCP time server to get current time
+- **Default Timezone**: Use 'Asia/Seoul' as the local timezone for all time operations
+- **Time Display Format**: Use consistent time format throughout the project
+- **Changelog Timestamps**: Include accurate timestamps in changelog entries using MCP time server
+
 ## Workflow Protocol
 1. **Chapter Creation**: Write tutorial content following curriculum guidelines
 2. **Quiz Development**: Create corresponding quiz after chapter completion

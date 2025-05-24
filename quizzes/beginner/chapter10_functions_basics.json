@@ -1,0 +1,276 @@
+{
+    "chapter": "Chapter 10: 함수 기초 (Functions Basics)",
+    "total_questions": 30,
+    "questions": [
+        {
+            "id": 1,
+            "type": "multiple_choice",
+            "question": "함수의 주요 장점이 아닌 것은?",
+            "choices": [
+                "코드의 재사용성",
+                "코드의 가독성",
+                "메모리 사용량 감소",
+                "모듈화와 추상화"
+            ],
+            "correct_answer": 2,
+            "explanation": "함수는 코드 재사용성, 가독성, 모듈화 등의 장점이 있지만, 함수 호출 자체는 메모리를 더 사용할 수 있습니다."
+        },
+        {
+            "id": 2,
+            "type": "code_output",
+            "question": "다음 코드의 출력 결과는?\ndef greet(name):\n    return f'Hello, {name}!'\n\nresult = greet('Python')\nprint(result)",
+            "correct_answer": "Hello, Python!",
+            "explanation": "함수가 반환하는 문자열이 result 변수에 저장되고 출력됩니다."
+        },
+        {
+            "id": 3,
+            "type": "multiple_choice",
+            "question": "함수 정의에 사용되는 키워드는?",
+            "choices": [
+                "function",
+                "def",
+                "func",
+                "define"
+            ],
+            "correct_answer": 1,
+            "explanation": "Python에서 함수를 정의할 때는 'def' 키워드를 사용합니다."
+        },
+        {
+            "id": 4,
+            "type": "code_completion",
+            "question": "두 수를 더하여 반환하는 함수를 작성하세요.",
+            "correct_answer": "def add_numbers(a, b):\n    \"\"\"두 수를 더하는 함수\"\"\"\n    return a + b\n\n# 사용 예제\nresult = add_numbers(5, 3)\nprint(result)  # 8",
+            "explanation": "함수는 def 키워드로 정의하고, return으로 결과를 반환합니다."
+        },
+        {
+            "id": 5,
+            "type": "true_false",
+            "question": "함수는 여러 개의 값을 동시에 반환할 수 있다.",
+            "correct_answer": true,
+            "explanation": "Python에서는 return문에 콤마로 구분된 여러 값을 써서 튜플 형태로 반환할 수 있습니다."
+        },
+        {
+            "id": 6,
+            "type": "code_output",
+            "question": "다음 코드의 출력 결과는?\ndef calculate():\n    return 10, 20, 30\n\na, b, c = calculate()\nprint(f'{a} {b} {c}')",
+            "correct_answer": "10 20 30",
+            "explanation": "함수가 여러 값을 반환하면 튜플 언패킹을 통해 각각의 변수에 할당할 수 있습니다."
+        },
+        {
+            "id": 7,
+            "type": "multiple_choice",
+            "question": "매개변수(Parameter)와 인수(Argument)의 차이점은?",
+            "choices": [
+                "차이점이 없다",
+                "매개변수는 함수 정의에서, 인수는 함수 호출에서 사용",
+                "매개변수는 숫자만, 인수는 문자열만 가능",
+                "매개변수는 선택적이고 인수는 필수적"
+            ],
+            "correct_answer": 1,
+            "explanation": "매개변수는 함수를 정의할 때 사용하는 변수이고, 인수는 함수를 호출할 때 전달하는 실제 값입니다."
+        },
+        {
+            "id": 8,
+            "type": "code_debugging",
+            "question": "다음 코드의 오류를 수정하세요:\ndef greet(name='Unknown', age):\n    return f'Name: {name}, Age: {age}'",
+            "correct_answer": "def greet(age, name='Unknown'):\n    return f'Name: {name}, Age: {age}'\n\n# 또는\ndef greet(name='Unknown', age=0):\n    return f'Name: {name}, Age: {age}'",
+            "explanation": "기본값이 있는 매개변수는 기본값이 없는 매개변수 뒤에 와야 합니다."
+        },
+        {
+            "id": 9,
+            "type": "multiple_choice",
+            "question": "*args를 사용하는 이유는?",
+            "choices": [
+                "함수 실행 속도를 높이기 위해",
+                "가변 개수의 위치 인수를 받기 위해",
+                "키워드 인수만 받기 위해",
+                "함수를 필수적으로 만들기 위해"
+            ],
+            "correct_answer": 1,
+            "explanation": "*args는 가변 개수의 위치 인수를 받을 때 사용하며, 함수 내에서 튜플로 처리됩니다."
+        },
+        {
+            "id": 10,
+            "type": "code_output",
+            "question": "다음 코드의 출력 결과는?\ndef sum_all(*numbers):\n    return sum(numbers)\n\nresult = sum_all(1, 2, 3, 4, 5)\nprint(result)",
+            "correct_answer": "15",
+            "explanation": "*args를 사용하면 여러 개의 인수를 튜플로 받아서 처리할 수 있습니다."
+        },
+        {
+            "id": 11,
+            "type": "practical",
+            "question": "**kwargs를 사용하여 사용자 정보를 받아 딕셔너리로 반환하는 함수를 작성하세요.",
+            "correct_answer": "def create_user(**user_info):\n    \"\"\"사용자 정보를 딕셔너리로 생성\"\"\"\n    return user_info\n\n# 사용 예제\nuser = create_user(name='김철수', age=25, city='서울', job='개발자')\nprint(user)",
+            "explanation": "**kwargs를 사용하면 키워드 인수들을 딕셔너리로 받을 수 있습니다."
+        },
+        {
+            "id": 12,
+            "type": "code_analysis",
+            "question": "지역변수와 전역변수의 차이점을 설명하고, 다음 코드의 출력을 예측하세요:\nx = 10\ndef test():\n    x = 20\n    print(f'함수 내부: {x}')\ntest()\nprint(f'함수 외부: {x}')",
+            "correct_answer": "함수 내부: 20\n함수 외부: 10\n\n지역변수는 함수 내부에서만 유효하고, 전역변수는 프로그램 전체에서 접근 가능합니다. 함수 내의 x는 지역변수로 전역변수를 가리지만 전역변수 값은 변경되지 않습니다.",
+            "explanation": "함수 내부의 변수는 지역변수가 되어 전역변수와 별개로 동작합니다."
+        },
+        {
+            "id": 13,
+            "type": "multiple_choice",
+            "question": "global 키워드의 역할은?",
+            "choices": [
+                "새로운 전역변수를 생성",
+                "함수 내에서 전역변수를 수정 가능하게 함",
+                "변수를 삭제함",
+                "변수의 타입을 변경함"
+            ],
+            "correct_answer": 1,
+            "explanation": "global 키워드는 함수 내에서 전역변수를 수정할 수 있도록 선언할 때 사용합니다."
+        },
+        {
+            "id": 14,
+            "type": "code_completion",
+            "question": "다음 중첩 함수에서 nonlocal을 사용하여 외부 함수의 변수를 수정하는 코드를 완성하세요:\ndef outer():\n    count = 0\n    def inner():\n        # 여기에 코드 작성\n        count += 1\n        return count\n    return inner",
+            "correct_answer": "def outer():\n    count = 0\n    def inner():\n        nonlocal count  # nonlocal 키워드 사용\n        count += 1\n        return count\n    return inner\n\n# 사용 예제\ncounter = outer()\nprint(counter())  # 1\nprint(counter())  # 2",
+            "explanation": "nonlocal 키워드는 중첩 함수에서 외부 함수의 지역변수를 수정할 때 사용합니다."
+        },
+        {
+            "id": 15,
+            "type": "multiple_choice",
+            "question": "람다 함수의 특징으로 옳지 않은 것은?",
+            "choices": [
+                "한 줄로 작성할 수 있다",
+                "익명 함수이다",
+                "복잡한 로직을 구현하기 적합하다",
+                "함수형 프로그래밍에 유용하다"
+            ],
+            "correct_answer": 2,
+            "explanation": "람다 함수는 간단한 로직에 적합하며, 복잡한 로직은 일반 함수로 작성하는 것이 좋습니다."
+        },
+        {
+            "id": 16,
+            "type": "code_output",
+            "question": "다음 코드의 출력 결과는?\nsquare = lambda x: x ** 2\nnumbers = [1, 2, 3, 4, 5]\nresult = list(map(square, numbers))\nprint(result)",
+            "correct_answer": "[1, 4, 9, 16, 25]",
+            "explanation": "map 함수와 람다 함수를 사용하여 각 숫자를 제곱한 결과를 리스트로 반환합니다."
+        },
+        {
+            "id": 17,
+            "type": "practical",
+            "question": "filter와 람다 함수를 사용하여 리스트에서 짝수만 필터링하는 코드를 작성하세요.\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+            "correct_answer": "numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\neven_numbers = list(filter(lambda x: x % 2 == 0, numbers))\nprint(even_numbers)  # [2, 4, 6, 8, 10]",
+            "explanation": "filter 함수와 람다 함수를 조합하여 조건에 맞는 요소만 필터링할 수 있습니다."
+        },
+        {
+            "id": 18,
+            "type": "code_completion",
+            "question": "리스트의 딕셔너리를 나이순으로 정렬하는 코드를 람다 함수를 사용하여 작성하세요.\npeople = [{'name': '김철수', 'age': 25}, {'name': '이영희', 'age': 30}, {'name': '박민수', 'age': 20}]",
+            "correct_answer": "people = [{'name': '김철수', 'age': 25}, {'name': '이영희', 'age': 30}, {'name': '박민수', 'age': 20}]\nsorted_people = sorted(people, key=lambda person: person['age'])\nprint(sorted_people)",
+            "explanation": "sorted 함수의 key 매개변수에 람다 함수를 사용하여 정렬 기준을 지정할 수 있습니다."
+        },
+        {
+            "id": 19,
+            "type": "multiple_choice",
+            "question": "다음 중 함수의 docstring을 올바르게 작성한 것은?",
+            "choices": [
+                "def func(): # 함수 설명",
+                "def func(): \"함수 설명\"",
+                "def func(): \"\"\"함수 설명\"\"\"",
+                "def func(): /* 함수 설명 */"
+            ],
+            "correct_answer": 2,
+            "explanation": "Python에서는 삼중 따옴표(\"\"\")를 사용하여 docstring을 작성합니다."
+        },
+        {
+            "id": 20,
+            "type": "code_debugging",
+            "question": "다음 코드에서 기본값 매개변수의 잘못된 사용을 수정하세요:\ndef add_item(item, my_list=[]):\n    my_list.append(item)\n    return my_list",
+            "correct_answer": "def add_item(item, my_list=None):\n    if my_list is None:\n        my_list = []\n    my_list.append(item)\n    return my_list\n\n# 또는\ndef add_item(item, my_list=None):\n    my_list = my_list or []\n    my_list.append(item)\n    return my_list",
+            "explanation": "가변 객체를 기본값으로 사용하면 함수 호출 간에 상태가 공유되므로, None을 사용하고 함수 내에서 새 객체를 생성해야 합니다."
+        },
+        {
+            "id": 21,
+            "type": "practical",
+            "question": "팩토리얼을 계산하는 재귀 함수를 작성하세요.",
+            "correct_answer": "def factorial(n):\n    \"\"\"팩토리얼을 계산하는 재귀 함수\"\"\"\n    if n == 0 or n == 1:\n        return 1\n    else:\n        return n * factorial(n - 1)\n\n# 사용 예제\nprint(factorial(5))  # 120\nprint(factorial(0))  # 1",
+            "explanation": "재귀 함수는 자기 자신을 호출하는 함수로, 기저 조건과 재귀 호출로 구성됩니다."
+        },
+        {
+            "id": 22,
+            "type": "code_analysis",
+            "question": "다음 두 함수의 차이점을 설명하세요:\ndef func1(x, y=10):\n    return x + y\n\ndef func2(x=5, y=10):\n    return x + y",
+            "correct_answer": "func1은 x가 필수 매개변수이고 y는 기본값이 있는 선택적 매개변수입니다. func2는 x와 y 모두 기본값이 있어서 인수 없이도 호출 가능합니다.\n\nfunc1(5) # 가능, x=5, y=10\nfunc1() # 오류, x가 필수\nfunc2() # 가능, x=5, y=10\nfunc2(3) # 가능, x=3, y=10",
+            "explanation": "기본값이 있는 매개변수는 선택적으로 사용할 수 있습니다."
+        },
+        {
+            "id": 23,
+            "type": "code_output",
+            "question": "다음 코드의 출력 결과는?\ndef outer(x):\n    def inner(y):\n        return x + y\n    return inner\n\nadd_5 = outer(5)\nresult = add_5(3)\nprint(result)",
+            "correct_answer": "8",
+            "explanation": "클로저(closure)를 사용한 예제로, inner 함수가 outer 함수의 변수 x에 접근할 수 있습니다."
+        },
+        {
+            "id": 24,
+            "type": "practical",
+            "question": "가변 인수를 사용하여 여러 개의 숫자 중 최댓값을 반환하는 함수를 작성하세요.",
+            "correct_answer": "def find_max(*numbers):\n    \"\"\"여러 숫자 중 최댓값을 반환하는 함수\"\"\"\n    if not numbers:\n        return None\n    return max(numbers)\n\n# 사용 예제\nprint(find_max(1, 5, 3, 9, 2))  # 9\nprint(find_max(10))  # 10\nprint(find_max())  # None",
+            "explanation": "*args를 사용하면 가변 개수의 인수를 받을 수 있습니다."
+        },
+        {
+            "id": 25,
+            "type": "multiple_choice",
+            "question": "함수에서 return문이 없으면 반환되는 값은?",
+            "choices": [
+                "0",
+                "None",
+                "False",
+                "빈 문자열"
+            ],
+            "correct_answer": 1,
+            "explanation": "Python에서 return문이 없는 함수는 None을 반환합니다."
+        },
+        {
+            "id": 26,
+            "type": "code_completion",
+            "question": "문자열이 회문(palindrome)인지 확인하는 함수를 작성하세요.",
+            "correct_answer": "def is_palindrome(text):\n    \"\"\"문자열이 회문인지 확인하는 함수\"\"\"\n    # 공백과 대소문자 무시\n    cleaned = text.replace(' ', '').lower()\n    return cleaned == cleaned[::-1]\n\n# 사용 예제\nprint(is_palindrome('level'))  # True\nprint(is_palindrome('A man a plan a canal Panama'))  # True\nprint(is_palindrome('hello'))  # False",
+            "explanation": "문자열을 정리한 후 원본과 뒤집은 것을 비교하여 회문인지 확인합니다."
+        },
+        {
+            "id": 27,
+            "type": "code_analysis",
+            "question": "다음 코드에서 함수의 스코프 문제를 분석하세요:\ncount = 0\ndef increment():\n    count += 1\n    return count\nprint(increment())",
+            "correct_answer": "이 코드는 UnboundLocalError를 발생시킵니다. 함수 내에서 count에 값을 할당하려고 하면 Python은 이를 지역변수로 인식하는데, 할당 전에 참조하려고 해서 오류가 발생합니다.\n\n해결방법:\ndef increment():\n    global count\n    count += 1\n    return count",
+            "explanation": "함수 내에서 전역변수를 수정하려면 global 키워드를 사용해야 합니다."
+        },
+        {
+            "id": 28,
+            "type": "practical",
+            "question": "리스트의 요소들을 조건에 따라 필터링하고 변환하는 함수를 작성하세요. (짝수만 선택하여 제곱)",
+            "correct_answer": "def filter_and_transform(numbers):\n    \"\"\"짝수만 선택하여 제곱하는 함수\"\"\"\n    result = []\n    for num in numbers:\n        if num % 2 == 0:  # 짝수인지 확인\n            result.append(num ** 2)  # 제곱하여 추가\n    return result\n\n# 리스트 컴프리헨션 버전\ndef filter_and_transform_v2(numbers):\n    return [num ** 2 for num in numbers if num % 2 == 0]\n\n# 사용 예제\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nresult = filter_and_transform(numbers)\nprint(result)  # [4, 16, 36, 64, 100]",
+            "explanation": "조건문과 반복문을 사용하여 필터링과 변환을 동시에 수행할 수 있습니다."
+        },
+        {
+            "id": 29,
+            "type": "code_output",
+            "question": "다음 코드의 출력 결과는?\ndef make_multiplier(n):\n    return lambda x: x * n\n\ndouble = make_multiplier(2)\ntriple = make_multiplier(3)\n\nprint(double(5))\nprint(triple(4))",
+            "correct_answer": "10\n12",
+            "explanation": "클로저와 람다 함수를 조합한 예제로, 각 함수는 서로 다른 n 값을 기억합니다."
+        },
+        {
+            "id": 30,
+            "type": "practical",
+            "question": "온도 변환 함수들을 작성하세요. (섭씨 ↔ 화씨, 섭씨 ↔ 켈빈)",
+            "correct_answer": "def celsius_to_fahrenheit(celsius):\n    \"\"\"섭씨를 화씨로 변환\"\"\"\n    return (celsius * 9/5) + 32\n\ndef fahrenheit_to_celsius(fahrenheit):\n    \"\"\"화씨를 섭씨로 변환\"\"\"\n    return (fahrenheit - 32) * 5/9\n\ndef celsius_to_kelvin(celsius):\n    \"\"\"섭씨를 켈빈으로 변환\"\"\"\n    return celsius + 273.15\n\ndef kelvin_to_celsius(kelvin):\n    \"\"\"켈빈을 섭씨로 변환\"\"\"\n    return kelvin - 273.15\n\n# 사용 예제\nprint(f\"25°C = {celsius_to_fahrenheit(25):.1f}°F\")\nprint(f\"77°F = {fahrenheit_to_celsius(77):.1f}°C\")\nprint(f\"0°C = {celsius_to_kelvin(0):.1f}K\")\nprint(f\"300K = {kelvin_to_celsius(300):.1f}°C\")",
+            "explanation": "온도 변환 공식을 함수로 구현하여 재사용성을 높일 수 있습니다."
+        }
+    ],
+    "difficulty_level": "beginner",
+    "estimated_time": "45 minutes",
+    "learning_objectives": [
+        "함수의 기본 개념과 필요성 완전 이해",
+        "함수 정의와 호출 방법 숙달",
+        "다양한 매개변수 타입 활용 능력",
+        "변수 스코프와 생명주기 이해",
+        "람다 함수의 적절한 활용",
+        "재귀 함수의 기본 개념",
+        "클로저와 중첩 함수 이해",
+        "실용적인 함수 설계 능력"
+    ]
+}

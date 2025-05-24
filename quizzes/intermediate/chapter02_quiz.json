@@ -1,0 +1,430 @@
+{
+    "chapter": "Chapter 2: File Processing and Data Formats",
+    "total_questions": 40,
+    "questions": [
+        {
+            "id": 1,
+            "type": "multiple_choice",
+            "question": "JSON에서 파이썬의 datetime 객체를 직렬화하기 위해 사용하는 매개변수는?",
+            "choices": [
+                "cls",
+                "default",
+                "indent",
+                "ensure_ascii"
+            ],
+            "correct_answer": 1,
+            "explanation": "default 매개변수를 사용하여 커스텀 직렬화 함수를 지정할 수 있습니다."
+        },
+        {
+            "id": 2,
+            "type": "multiple_choice",
+            "question": "CSV 파일에서 헤더가 있는 경우 사용하기 좋은 csv 모듈의 클래스는?",
+            "choices": [
+                "csv.reader",
+                "csv.writer",
+                "csv.DictReader",
+                "csv.DictWriter"
+            ],
+            "correct_answer": 2,
+            "explanation": "csv.DictReader는 첫 번째 행을 헤더로 사용하여 딕셔너리 형태로 데이터를 읽습니다."
+        },
+        {
+            "id": 3,
+            "type": "true_false",
+            "question": "JSON은 주석을 지원합니다.",
+            "correct_answer": false,
+            "explanation": "JSON 표준은 주석을 지원하지 않습니다. 주석이 필요한 경우 JSONC나 다른 형식을 사용해야 합니다."
+        },
+        {
+            "id": 4,
+            "type": "multiple_choice",
+            "question": "XML에서 네임스페이스를 처리할 때 사용하는 ElementTree의 메서드는?",
+            "choices": [
+                "find()",
+                "findall()",
+                "findtext()",
+                "모든 메서드에서 {namespace}tag 형식 사용"
+            ],
+            "correct_answer": 3,
+            "explanation": "XML 네임스페이스 처리 시 모든 검색 메서드에서 {namespace}tag 형식을 사용합니다."
+        },
+        {
+            "id": 5,
+            "type": "multiple_choice",
+            "question": "바이너리 파일에서 구조화된 데이터를 읽기 위해 주로 사용하는 모듈은?",
+            "choices": [
+                "json",
+                "csv",
+                "struct",
+                "xml"
+            ],
+            "correct_answer": 2,
+            "explanation": "struct 모듈은 바이너리 데이터를 파이썬 값으로 변환하거나 그 반대로 변환할 때 사용합니다."
+        },
+        {
+            "id": 6,
+            "type": "fill_in_blank",
+            "question": "JSON 스키마 검증을 위해 사용하는 파이썬 라이브러리는 ______입니다.",
+            "correct_answer": "jsonschema",
+            "explanation": "jsonschema는 JSON 데이터를 스키마에 대해 검증하는 데 사용되는 표준 라이브러리입니다."
+        },
+        {
+            "id": 7,
+            "type": "multiple_choice",
+            "question": "CSV 파일에서 구분자가 탭(tab)인 경우 사용하는 delimiter 값은?",
+            "choices": [
+                "'\\n'",
+                "'\\t'",
+                "'\\r'",
+                "','[기본값]"
+            ],
+            "correct_answer": 1,
+            "explanation": "탭으로 구분된 파일의 경우 delimiter='\\t'를 사용합니다."
+        },
+        {
+            "id": 8,
+            "type": "true_false",
+            "question": "XML 파일에서 CDATA 섹션은 파싱되지 않는 문자 데이터를 포함합니다.",
+            "correct_answer": true,
+            "explanation": "CDATA 섹션은 문자 그대로 처리되며 XML 파서가 해석하지 않습니다."
+        },
+        {
+            "id": 9,
+            "type": "multiple_choice",
+            "question": "ZIP 파일을 생성할 때 압축 수준을 지정하는 매개변수는?",
+            "choices": [
+                "compression",
+                "compresslevel",
+                "level",
+                "compress_type"
+            ],
+            "correct_answer": 1,
+            "explanation": "zipfile.ZipFile에서 compresslevel 매개변수로 압축 수준을 0-9 범위에서 지정합니다."
+        },
+        {
+            "id": 10,
+            "type": "multiple_choice",
+            "question": "ConfigParser에서 섹션 내의 키-값 쌍을 딕셔너리로 가져오는 메서드는?",
+            "choices": [
+                "get_section()",
+                "items()",
+                "to_dict()",
+                "as_dict()"
+            ],
+            "correct_answer": 1,
+            "explanation": "items() 메서드는 지정된 섹션의 모든 키-값 쌍을 튜플 리스트로 반환합니다."
+        },
+        {
+            "id": 11,
+            "type": "fill_in_blank",
+            "question": "JSON에서 들여쓰기를 적용하여 가독성을 높이려면 ______ 매개변수를 사용합니다.",
+            "correct_answer": "indent",
+            "explanation": "json.dump()나 json.dumps()에서 indent 매개변수로 들여쓰기 레벨을 지정할 수 있습니다."
+        },
+        {
+            "id": 12,
+            "type": "multiple_choice",
+            "question": "CSV 파일에서 따옴표로 둘러싸인 필드 내의 따옴표를 처리하는 방식을 지정하는 속성은?",
+            "choices": [
+                "delimiter",
+                "quotechar",
+                "quoting",
+                "escapechar"
+            ],
+            "correct_answer": 2,
+            "explanation": "quoting 속성은 csv.QUOTE_MINIMAL, csv.QUOTE_ALL 등으로 따옴표 처리 방식을 제어합니다."
+        },
+        {
+            "id": 13,
+            "type": "true_false",
+            "question": "XML ElementTree에서 요소의 텍스트는 .text 속성으로 접근할 수 있습니다.",
+            "correct_answer": true,
+            "explanation": "XML 요소의 텍스트 내용은 .text 속성을 통해 직접 접근 가능합니다."
+        },
+        {
+            "id": 14,
+            "type": "multiple_choice",
+            "question": "바이너리 파일에서 빅엔디안 형식의 4바이트 정수를 읽는 struct 포맷은?",
+            "choices": [
+                "'>i'",
+                "'<i'",
+                "'=i'",
+                "'@i'"
+            ],
+            "correct_answer": 0,
+            "explanation": "'>i'는 빅엔디안 형식의 4바이트 부호 있는 정수를 나타냅니다."
+        },
+        {
+            "id": 15,
+            "type": "multiple_choice",
+            "question": "TAR 아카이브에서 파일의 압축 형식을 지정하는 mode 값은?",
+            "choices": [
+                "'r'",
+                "'w'",
+                "'w:gz'",
+                "'a'"
+            ],
+            "correct_answer": 2,
+            "explanation": "'w:gz'는 gzip으로 압축된 TAR 아카이브를 생성하는 모드입니다."
+        },
+        {
+            "id": 16,
+            "type": "fill_in_blank",
+            "question": "JSON에서 비ASCII 문자를 이스케이프하지 않으려면 ______ 매개변수를 False로 설정합니다.",
+            "correct_answer": "ensure_ascii",
+            "explanation": "ensure_ascii=False로 설정하면 유니코드 문자가 그대로 출력됩니다."
+        },
+        {
+            "id": 17,
+            "type": "multiple_choice",
+            "question": "CSV 파일에서 빈 줄을 무시하려면 어떤 매개변수를 사용해야 하나요?",
+            "choices": [
+                "skip_blank_lines=True",
+                "skipinitialspace=True",
+                "DictReader의 기본 동작",
+                "별도 처리 필요"
+            ],
+            "correct_answer": 3,
+            "explanation": "CSV 모듈은 빈 줄 무시 기능을 직접 제공하지 않으므로 별도로 필터링해야 합니다."
+        },
+        {
+            "id": 18,
+            "type": "true_false",
+            "question": "XML에서 속성값은 항상 문자열로 처리됩니다.",
+            "correct_answer": true,
+            "explanation": "XML 속성값은 항상 문자열로 저장되므로 필요에 따라 형변환을 해야 합니다."
+        },
+        {
+            "id": 19,
+            "type": "multiple_choice",
+            "question": "이미지 파일의 EXIF 데이터를 읽기 위해 사용할 수 있는 라이브러리는?",
+            "choices": [
+                "struct",
+                "PIL (Pillow)",
+                "json",
+                "csv"
+            ],
+            "correct_answer": 1,
+            "explanation": "PIL/Pillow 라이브러리의 Image 모듈을 사용하여 EXIF 데이터를 읽을 수 있습니다."
+        },
+        {
+            "id": 20,
+            "type": "multiple_choice",
+            "question": "ZIP 파일에서 특정 파일을 메모리로 읽는 메서드는?",
+            "choices": [
+                "read()",
+                "extract()",
+                "open()",
+                "extractall()"
+            ],
+            "correct_answer": 0,
+            "explanation": "ZipFile.read() 메서드는 아카이브 내 파일을 바이트로 읽어 메모리에 반환합니다."
+        },
+        {
+            "id": 21,
+            "type": "fill_in_blank",
+            "question": "ConfigParser에서 불린 값을 가져올 때 사용하는 메서드는 ______입니다.",
+            "correct_answer": "getboolean",
+            "explanation": "getboolean() 메서드는 'true', 'false', '1', '0' 등을 불린 값으로 변환합니다."
+        },
+        {
+            "id": 22,
+            "type": "multiple_choice",
+            "question": "JSON에서 순환 참조를 감지했을 때 발생하는 예외는?",
+            "choices": [
+                "ValueError",
+                "TypeError",
+                "RecursionError",
+                "JSONDecodeError"
+            ],
+            "correct_answer": 0,
+            "explanation": "JSON 직렬화 시 순환 참조가 감지되면 ValueError가 발생합니다."
+        },
+        {
+            "id": 23,
+            "type": "true_false",
+            "question": "CSV의 DictWriter는 fieldnames를 생성자에서 반드시 지정해야 합니다.",
+            "correct_answer": true,
+            "explanation": "DictWriter 생성 시 fieldnames 매개변수는 필수이며, 이는 열의 순서를 결정합니다."
+        },
+        {
+            "id": 24,
+            "type": "multiple_choice",
+            "question": "XML에서 새로운 하위 요소를 추가하는 메서드는?",
+            "choices": [
+                "add()",
+                "append()",
+                "insert()",
+                "extend()"
+            ],
+            "correct_answer": 1,
+            "explanation": "append() 메서드로 XML 요소에 새로운 하위 요소를 추가할 수 있습니다."
+        },
+        {
+            "id": 25,
+            "type": "multiple_choice",
+            "question": "바이너리 파일에서 파일 포인터의 현재 위치를 확인하는 메서드는?",
+            "choices": [
+                "position()",
+                "tell()",
+                "where()",
+                "location()"
+            ],
+            "correct_answer": 1,
+            "explanation": "tell() 메서드는 파일 내에서 현재 읽기/쓰기 위치를 바이트 단위로 반환합니다."
+        },
+        {
+            "id": 26,
+            "type": "fill_in_blank",
+            "question": "ZIP 파일에서 압축률을 확인하려면 ZipInfo 객체의 ______ 속성을 사용합니다.",
+            "correct_answer": "compress_size",
+            "explanation": "compress_size는 압축된 크기, file_size는 원본 크기를 나타냅니다."
+        },
+        {
+            "id": 27,
+            "type": "multiple_choice",
+            "question": "ConfigParser에서 섹션이 존재하는지 확인하는 메서드는?",
+            "choices": [
+                "exists()",
+                "has_section()",
+                "contains()",
+                "section_exists()"
+            ],
+            "correct_answer": 1,
+            "explanation": "has_section() 메서드로 특정 섹션의 존재 여부를 확인할 수 있습니다."
+        },
+        {
+            "id": 28,
+            "type": "true_false",
+            "question": "JSON 모듈의 load() 함수는 파일 경로를 직접 받을 수 있습니다.",
+            "correct_answer": false,
+            "explanation": "json.load()는 파일 객체를 받으며, 파일 경로를 직접 받으려면 먼저 open()으로 파일을 열어야 합니다."
+        },
+        {
+            "id": 29,
+            "type": "multiple_choice",
+            "question": "CSV 파일에서 Excel 호환 형식으로 저장하려면 어떤 dialect를 사용해야 하나요?",
+            "choices": [
+                "csv.unix_dialect",
+                "csv.excel",
+                "csv.excel_tab",
+                "csv.windows_dialect"
+            ],
+            "correct_answer": 1,
+            "explanation": "csv.excel dialect는 Microsoft Excel과 호환되는 형식으로 CSV를 처리합니다."
+        },
+        {
+            "id": 30,
+            "type": "multiple_choice",
+            "question": "XML에서 요소를 제거하는 메서드는?",
+            "choices": [
+                "delete()",
+                "remove()",
+                "erase()",
+                "clear()"
+            ],
+            "correct_answer": 1,
+            "explanation": "remove() 메서드로 XML 요소에서 하위 요소를 제거할 수 있습니다."
+        },
+        {
+            "id": 31,
+            "type": "fill_in_blank",
+            "question": "바이너리 파일에서 리틀엔디안 형식을 나타내는 struct 바이트 순서 문자는 ______입니다.",
+            "correct_answer": "<",
+            "explanation": "'<'는 리틀엔디안, '>'는 빅엔디안, '='는 네이티브 바이트 순서를 나타냅니다."
+        },
+        {
+            "id": 32,
+            "type": "multiple_choice",
+            "question": "TAR 아카이브에서 파일 정보를 가져오는 메서드는?",
+            "choices": [
+                "fileinfo()",
+                "getinfo()",
+                "info()",
+                "getmember()"
+            ],
+            "correct_answer": 3,
+            "explanation": "getmember() 메서드는 TAR 아카이브 내 특정 파일의 TarInfo 객체를 반환합니다."
+        },
+        {
+            "id": 33,
+            "type": "true_false",
+            "question": "ConfigParser는 대소문자를 구분하지 않는 키를 사용합니다.",
+            "correct_answer": false,
+            "explanation": "기본적으로 ConfigParser는 대소문자를 구분하지 않지만, optionxform 메서드를 오버라이드하여 변경할 수 있습니다."
+        },
+        {
+            "id": 34,
+            "type": "multiple_choice",
+            "question": "JSON에서 NaN과 Infinity 값을 허용하지 않으려면 어떤 매개변수를 사용해야 하나요?",
+            "choices": [
+                "strict=True",
+                "allow_nan=False",
+                "parse_float=None",
+                "check_circular=True"
+            ],
+            "correct_answer": 1,
+            "explanation": "allow_nan=False로 설정하면 NaN, Infinity, -Infinity 값에 대해 ValueError가 발생합니다."
+        },
+        {
+            "id": 35,
+            "type": "multiple_choice",
+            "question": "CSV 파일에서 첫 번째 행을 헤더로 건너뛰려면?",
+            "choices": [
+                "skip_header=True",
+                "header=True",
+                "next(reader)",
+                "reader.skip(1)"
+            ],
+            "correct_answer": 2,
+            "explanation": "next(reader)를 호출하여 첫 번째 행(헤더)을 건너뛸 수 있습니다."
+        },
+        {
+            "id": 36,
+            "type": "fill_in_blank",
+            "question": "XML에서 모든 하위 요소와 텍스트를 제거하려면 ______ 메서드를 사용합니다.",
+            "correct_answer": "clear",
+            "explanation": "clear() 메서드는 요소의 모든 하위 요소, 텍스트, 꼬리 텍스트를 제거합니다."
+        },
+        {
+            "id": 37,
+            "type": "multiple_choice",
+            "question": "바이너리 파일에서 8바이트 부동소수점을 나타내는 struct 형식 문자는?",
+            "choices": [
+                "'f'",
+                "'d'",
+                "'q'",
+                "'l'"
+            ],
+            "correct_answer": 1,
+            "explanation": "'d'는 8바이트 배정밀도 부동소수점(double), 'f'는 4바이트 단정밀도를 나타냅니다."
+        },
+        {
+            "id": 38,
+            "type": "true_false",
+            "question": "ZIP 파일은 디렉토리 구조를 보존할 수 있습니다.",
+            "correct_answer": true,
+            "explanation": "ZIP 형식은 파일의 전체 경로를 저장하여 디렉토리 구조를 보존합니다."
+        },
+        {
+            "id": 39,
+            "type": "multiple_choice",
+            "question": "ConfigParser에서 기본값이 있는 옵션을 가져올 때 사용하는 메서드는?",
+            "choices": [
+                "get_default()",
+                "get(section, option, fallback=default)",
+                "getdefault()",
+                "option_default()"
+            ],
+            "correct_answer": 1,
+            "explanation": "get() 메서드의 fallback 매개변수로 기본값을 지정할 수 있습니다."
+        },
+        {
+            "id": 40,
+            "type": "fill_in_blank",
+            "question": "JSON 스키마에서 객체의 필수 속성을 지정하는 키워드는 ______입니다.",
+            "correct_answer": "required",
+            "explanation": "JSON 스키마에서 'required' 배열에 필수 속성들의 이름을 나열합니다."
+        }
+    ]
+}

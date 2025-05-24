@@ -4,14 +4,36 @@
 
 ### 🎯 전체 진행 상황
 - **프로젝트 시작일**: 2025년 05월
-- **현재 상태**: 중급 튜토리얼 작성 진행 중 (Chapter 12 완료)
-- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-12 완료 (78.6%)
+- **현재 상태**: 중급 튜토리얼 작성 진행 중 (Chapter 13 완료)
+- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-13 완료 (85.7%)
 
 ---
 
 ## 📝 작업 로그
 
 ### 2025-05-25
+
+#### ✅ Chapter 13: 웹 스크래핑과 API 활용 (중급 과정) 완료 (2025-05-25 00:45)
+- **작업 내용**:
+  - 중급 Chapter 13 마크다운 튜토리얼 작성 완료
+    - HTTP 기초와 requests 라이브러리 (프로토콜 이해, HTTPClient 클래스, 세션과 쿠키 관리)
+    - 웹 스크래핑 기초 BeautifulSoup (HTML 파싱, 요소 선택, 고급 스크래핑 기법)
+    - 동적 콘텐츠 처리 (JavaScript 렌더링, SPA 스크래핑, 페이지네이션 처리)
+    - REST API 활용 (API 호출과 응답 처리, 인증과 보안, OAuth2/API Key 인증)
+    - 비동기 HTTP 요청 (aiohttp 시뮬레이션, 동기-비동기 하이브리드 접근)
+    - 웹 크롤링 에티켓과 모범 사례 (윤리적 스크래핑, robots.txt 준수, 에러 처리와 복구 전략)
+    - 7개 주요 섹션과 실무 중심 고급 패턴 제공
+    - 4개 연습 문제 (뉴스 사이트 스크래퍼, API 데이터 수집기, 전자상거래 가격 모니터링, 소셜 미디어 분석 도구)
+    - HTTPClient, WebScraper, DynamicContentScraper, APIClient, EthicalScraper, RobustScraper 등 실전 클래스 예제
+  - Chapter 13 퀴즈 JSON 파일 생성 (45문제 - 기본부터 전문가 수준까지 포괄)
+    - 다양한 문제 유형 (객관식, 코딩, 참/거짓, 빈칸 채우기, 디자인 패턴, 성능, 디버깅, 아키텍처, 보안, 종합, 통합, 성찰)
+    - HTTP 기초, requests, BeautifulSoup, 동적 콘텐츠, REST API, 인증, 비동기 요청, 크롤링 에티켓 등 전체 내용 포괄
+    - 합격점 70%, 제한시간 60분
+    - expert 난이도 문제로 Anti-bot 우회 기법, 클라우드 스크래핑 플랫폼, AI/ML 지능형 시스템, 미래 트렌드 등 포함
+
+- **파일 생성/수정**:
+  - `tutorials/intermediate/chapter13_web_scraping_api.md` (새로 생성)
+  - `quizzes/intermediate/chapter13_quiz.json` (새로 생성)
 
 #### ✅ Chapter 12: 데이터베이스 연동 (중급 과정) 완료 (2025-05-25 00:40)
 - **작업 내용**:
@@ -273,7 +295,7 @@
 - [ ] Chapter 11: 에러 처리와 디버깅
 - [ ] Chapter 12: 파일 입출력
 
-### 🟡 중급 (Intermediate) - 11/14 완료
+### 🟡 중급 (Intermediate) - 12/14 완료
 - [x] Chapter 1: 고급 함수 기법 ✅ 2024-05-24 완료
 - [x] Chapter 2: 파일 처리와 데이터 형식 ✅ 2025-05-24 완료
 - [x] Chapter 3: 정규표현식 (Regular Expressions) ✅ 2025-05-24 완료
@@ -286,7 +308,7 @@
 - [x] Chapter 10: 멀티스레딩과 비동기 처리 기초 ✅ 2025-05-24 완료
 - [x] Chapter 11: 테스팅과 디버깅 ✅ 2025-05-25 완료
 - [x] Chapter 12: 데이터베이스 연동 ✅ 2025-05-25 완료
-- [ ] Chapter 13: 웹 스크래핑과 API 활용
+- [x] Chapter 13: 웹 스크래핑과 API 활용 ✅ 2025-05-25 완료
 - [ ] Chapter 14: GUI 프로그래밍 기초
 
 ### 🔴 고급 (Advanced) - 0/15 완료

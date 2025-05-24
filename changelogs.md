@@ -4,14 +4,33 @@
 
 ### 🎯 전체 진행 상황
 - **프로젝트 시작일**: 2025년 05월
-- **현재 상태**: 중급 튜토리얼 작성 진행 중 (Chapter 4 완료)
-- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-4 완료 (28.6%)
+- **현재 상태**: 중급 튜토리얼 작성 진행 중 (Chapter 5 완료)
+- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-5 완료 (35.7%)
 
 ---
 
 ## 📝 작업 로그
 
 ### 2025-05-24
+
+#### ✅ Chapter 5: 상속과 다형성 (중급 과정) 완료 (2025-05-24 21:40)
+- **작업 내용**:
+  - 중급 Chapter 5 마크다운 튜토리얼 작성 완료
+    - 상속의 기본 개념과 필요성 (코드 재사용성, 계층적 구조)
+    - super() 함수 활용법과 부모 클래스 메서드 호출
+    - 메서드 오버라이딩을 통한 기능 확장과 특화
+    - 다형성의 개념과 동일한 인터페이스로 다양한 객체 처리
+    - 추상 클래스(ABC)와 @abstractmethod 데코레이터 활용
+    - 인터페이스 패턴 구현과 다중 인터페이스 상속
+    - 다중 상속과 MRO(Method Resolution Order) 이해
+    - 다이아몬드 문제 해결과 C3 선형화 알고리즘
+    - 6개 주요 섹션과 실무 중심 예제 제공
+    - Animal, Vehicle, Shape, Employee, PaymentProcessor 등 다양한 실습 클래스 포함
+  - Chapter 5 퀴즈 JSON 파일 생성 (32문제 - 기본 개념부터 전문가 수준까지 포괄)
+
+- **파일 생성/수정**:
+  - `tutorials/intermediate/chapter05_inheritance_polymorphism.md` (새로 생성)
+  - `quizzes/intermediate/chapter05_quiz.json` (새로 생성)
 
 #### ✅ Chapter 4: 객체지향 프로그래밍 기초 (중급 과정) 완료 (2025-05-24 21:29)
 - **작업 내용**:
@@ -307,11 +326,12 @@
 - [ ] Chapter 11: 에러 처리와 디버깅
 - [ ] Chapter 12: 파일 입출력
 
-### 🟡 중급 (Intermediate) - 4/14 완료
+### 🟡 중급 (Intermediate) - 5/14 완료
 - [x] Chapter 1: 고급 함수 기법 ✅ 2024-05-24 완료
 - [x] Chapter 2: 파일 처리와 데이터 형식 ✅ 2025-05-24 완료
 - [x] Chapter 3: 정규표현식 (Regular Expressions) ✅ 2025-05-24 완료
 - [x] Chapter 4: 객체지향 프로그래밍 기초 ✅ 2025-05-24 완료
+- [x] Chapter 5: 상속과 다형성 ✅ 2025-05-24 완료
 - [ ] Chapter 5: 상속과 다형성
 - [ ] Chapter 6: 특수 메서드 (Magic Methods)
 - [ ] Chapter 7: 모듈과 패키지

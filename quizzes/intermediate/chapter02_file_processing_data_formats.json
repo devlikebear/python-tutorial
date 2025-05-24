@@ -1,0 +1,490 @@
+{
+    "quiz_info": {
+        "title": "Chapter 2: 파일 처리와 데이터 형식",
+        "chapter": 2,
+        "level": "intermediate",
+        "total_questions": 40,
+        "estimated_time": "80분",
+        "passing_score": 28,
+        "description": "JSON, CSV, XML, 바이너리 파일, 압축 파일, 설정 파일 처리 등의 고급 파일 처리 기법에 대한 종합 평가"
+    },
+    "learning_objectives": [
+        "JSON 데이터의 직렬화/역직렬화 기법 습득",
+        "CSV 파일의 고급 처리 및 데이터 분석 능력",
+        "XML 문서의 파싱과 조작 기술",
+        "바이너리 파일 처리 및 구조 이해",
+        "압축 파일의 생성과 관리",
+        "다양한 형식의 설정 파일 관리"
+    ],
+    "questions": [
+        {
+            "id": 1,
+            "type": "multiple_choice",
+            "question": "JSON 데이터를 파이썬 객체로 변환하는 함수는?",
+            "options": [
+                "json.dumps()",
+                "json.loads()",
+                "json.encode()",
+                "json.decode()"
+            ],
+            "correct_answer": 1,
+            "explanation": "json.loads()는 JSON 문자열을 파이썬 객체로 변환하며, json.dumps()는 파이썬 객체를 JSON 문자열로 변환합니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 2,
+            "type": "multiple_choice",
+            "question": "JSON 직렬화 시 한글이 올바르게 표시되도록 하는 옵션은?",
+            "options": [
+                "ascii=False",
+                "ensure_ascii=False",
+                "unicode=True",
+                "korean=True"
+            ],
+            "correct_answer": 1,
+            "explanation": "ensure_ascii=False 옵션을 사용하면 한글 등의 유니코드 문자가 올바르게 표시됩니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 3,
+            "type": "code_output",
+            "question": "다음 코드의 실행 결과는?\n\n```python\nimport json\ndata = {'name': '김철수', 'age': 30}\njson_str = json.dumps(data, ensure_ascii=False)\nloaded = json.loads(json_str)\nprint(type(loaded), loaded['name'])\n```",
+            "options": [
+                "<class 'dict'> 김철수",
+                "<class 'str'> 김철수",
+                "<class 'dict'> '김철수'",
+                "<class 'json'> 김철수"
+            ],
+            "correct_answer": 0,
+            "explanation": "json.loads()는 딕셔너리를 반환하며, 딕셔너리의 값은 문자열로 저장되지만 따옴표 없이 출력됩니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 4,
+            "type": "multiple_choice",
+            "question": "JSON에서 지원하지 않는 파이썬 데이터 타입은?",
+            "options": [
+                "list",
+                "dict",
+                "tuple",
+                "str"
+            ],
+            "correct_answer": 2,
+            "explanation": "JSON은 tuple을 직접 지원하지 않습니다. tuple은 list로 변환되어 저장됩니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 5,
+            "type": "practical_coding",
+            "question": "다음 JSON 데이터에서 'programming' 과목을 수강하는 모든 학생의 이름을 찾는 코드를 작성하세요.\n\n```json\n{\n  \"students\": [\n    {\"name\": \"김철수\", \"courses\": [\"programming\", \"math\"]},\n    {\"name\": \"이영희\", \"courses\": [\"english\", \"science\"]},\n    {\"name\": \"박민수\", \"courses\": [\"programming\", \"art\"]}\n  ]\n}\n```",
+            "sample_answer": "```python\nimport json\n\ndata = {\n    \"students\": [\n        {\"name\": \"김철수\", \"courses\": [\"programming\", \"math\"]},\n        {\"name\": \"이영희\", \"courses\": [\"english\", \"science\"]},\n        {\"name\": \"박민수\", \"courses\": [\"programming\", \"art\"]}\n    ]\n}\n\nstudents_in_programming = []\nfor student in data['students']:\n    if 'programming' in student['courses']:\n        students_in_programming.append(student['name'])\n\nprint(students_in_programming)  # ['김철수', '박민수']\n```",
+            "difficulty": "medium"
+        },
+        {
+            "id": 6,
+            "type": "multiple_choice",
+            "question": "CSV 파일을 딕셔너리 형태로 읽을 때 사용하는 클래스는?",
+            "options": [
+                "csv.reader",
+                "csv.DictReader",
+                "csv.dictreader",
+                "csv.Reader"
+            ],
+            "correct_answer": 1,
+            "explanation": "csv.DictReader는 첫 번째 행을 헤더로 사용하여 각 행을 딕셔너리로 읽습니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 7,
+            "type": "multiple_choice",
+            "question": "CSV 파일 쓰기 시 newline='' 옵션을 사용하는 이유는?",
+            "options": [
+                "파일 크기를 줄이기 위해",
+                "인코딩 문제 방지",
+                "빈 줄 추가 방지",
+                "속도 향상"
+            ],
+            "correct_answer": 2,
+            "explanation": "Windows에서 CSV 파일 쓰기 시 newline=''을 지정하지 않으면 빈 줄이 추가될 수 있습니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 8,
+            "type": "code_analysis",
+            "question": "다음 코드에서 문제점을 찾으세요.\n\n```python\nimport csv\nwith open('data.csv', 'w') as csvfile:\n    writer = csv.writer(csvfile)\n    writer.writerow(['name', 'age'])\n    writer.writerow(['김철수', 25])\n```",
+            "options": [
+                "인코딩 문제",
+                "newline 매개변수 누락",
+                "헤더 작성 방법 오류",
+                "문제없음"
+            ],
+            "correct_answer": 1,
+            "explanation": "CSV 파일 쓰기 시 newline='' 매개변수를 지정해야 빈 줄이 추가되지 않습니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 9,
+            "type": "practical_coding",
+            "question": "다음 CSV 데이터에서 급여가 3500000 이상인 직원들만 필터링하여 새 CSV 파일로 저장하는 코드를 작성하세요.\n\n원본 CSV: name,department,salary\n김철수,IT,4000000\n이영희,HR,3000000\n박민수,IT,3800000",
+            "sample_answer": "```python\nimport csv\n\n# 원본 파일 읽기\nfiltered_employees = []\nwith open('employees.csv', 'r', encoding='utf-8') as csvfile:\n    reader = csv.DictReader(csvfile)\n    for row in reader:\n        if int(row['salary']) >= 3500000:\n            filtered_employees.append(row)\n\n# 필터링된 데이터 저장\nwith open('high_salary.csv', 'w', newline='', encoding='utf-8') as csvfile:\n    if filtered_employees:\n        fieldnames = filtered_employees[0].keys()\n        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)\n        writer.writeheader()\n        writer.writerows(filtered_employees)\n```",
+            "difficulty": "medium"
+        },
+        {
+            "id": 10,
+            "type": "multiple_choice",
+            "question": "CSV의 구분자를 자동으로 감지하는 클래스는?",
+            "options": [
+                "csv.Detector",
+                "csv.Sniffer",
+                "csv.AutoDetect",
+                "csv.Delimiter"
+            ],
+            "correct_answer": 1,
+            "explanation": "csv.Sniffer 클래스는 CSV 파일의 구분자를 자동으로 감지할 수 있습니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 11,
+            "type": "multiple_choice",
+            "question": "XML 문서를 파싱할 때 사용하는 표준 라이브러리는?",
+            "options": [
+                "xml.dom",
+                "xml.etree.ElementTree",
+                "xml.parser",
+                "xml.reader"
+            ],
+            "correct_answer": 1,
+            "explanation": "xml.etree.ElementTree는 파이썬 표준 라이브러리의 XML 처리 모듈입니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 12,
+            "type": "multiple_choice",
+            "question": "XML에서 새로운 하위 엘리먼트를 생성하는 함수는?",
+            "options": [
+                "ET.Element()",
+                "ET.SubElement()",
+                "ET.createElement()",
+                "ET.addChild()"
+            ],
+            "correct_answer": 1,
+            "explanation": "ET.SubElement()는 기존 엘리먼트의 하위 엘리먼트를 생성합니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 13,
+            "type": "code_output",
+            "question": "다음 XML 조작 코드의 결과는?\n\n```python\nimport xml.etree.ElementTree as ET\nroot = ET.Element('books')\nbook = ET.SubElement(root, 'book', id='1')\nET.SubElement(book, 'title').text = 'Python Guide'\nprint(book.get('id'), book.find('title').text)\n```",
+            "options": [
+                "1 Python Guide",
+                "'1' 'Python Guide'",
+                "id=1 Python Guide",
+                "None Python Guide"
+            ],
+            "correct_answer": 0,
+            "explanation": "get() 메서드는 속성값을 문자열로 반환하고, find()는 텍스트 내용을 반환합니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 14,
+            "type": "practical_coding",
+            "question": "XML에서 특정 속성값을 가진 모든 엘리먼트를 찾는 코드를 작성하세요. (예: category='programming'인 모든 book 엘리먼트)",
+            "sample_answer": "```python\nimport xml.etree.ElementTree as ET\n\n# XML 파일 로드\ntree = ET.parse('library.xml')\nroot = tree.getroot()\n\n# XPath 또는 반복문으로 찾기\nprogramming_books = []\nfor book in root.findall('book'):\n    if book.get('category') == 'programming':\n        programming_books.append(book)\n\n# 또는 XPath 사용\nprogramming_books = root.findall(\".//book[@category='programming']\")\n\nfor book in programming_books:\n    title = book.find('title').text\n    print(f\"프로그래밍 책: {title}\")\n```",
+            "difficulty": "medium"
+        },
+        {
+            "id": 15,
+            "type": "multiple_choice",
+            "question": "XML 네임스페이스를 사용할 때 올바른 엘리먼트 접근 방법은?",
+            "options": [
+                "root.find('book')",
+                "root.find('ns:book')",
+                "root.find('book', namespaces)",
+                "root.find('{namespace}book')"
+            ],
+            "correct_answer": 3,
+            "explanation": "XML 네임스페이스 사용 시 {namespace}tagname 형식으로 접근하거나 namespaces 딕셔너리를 사용합니다.",
+            "difficulty": "hard"
+        },
+        {
+            "id": 16,
+            "type": "multiple_choice",
+            "question": "struct 모듈에서 4바이트 부호 없는 정수를 나타내는 포맷 문자는?",
+            "options": [
+                "i",
+                "I",
+                "l",
+                "L"
+            ],
+            "correct_answer": 1,
+            "explanation": "'I'는 4바이트 부호 없는 정수를 나타내며, 'i'는 부호 있는 정수입니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 17,
+            "type": "multiple_choice",
+            "question": "바이너리 파일에서 구조체 크기를 계산하는 함수는?",
+            "options": [
+                "struct.size()",
+                "struct.calcsize()",
+                "struct.length()",
+                "struct.sizeof()"
+            ],
+            "correct_answer": 1,
+            "explanation": "struct.calcsize()는 주어진 포맷 문자열에 해당하는 구조체의 크기를 바이트 단위로 반환합니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 18,
+            "type": "code_analysis",
+            "question": "다음 바이너리 파일 처리 코드에서 문제점은?\n\n```python\nimport struct\nwith open('data.bin', 'wb') as f:\n    data = struct.pack('if', 100, 3.14)\n    f.write(data)\n```",
+            "options": [
+                "pack 포맷 오류",
+                "파일 모드 오류",
+                "문제없음",
+                "데이터 타입 오류"
+            ],
+            "correct_answer": 2,
+            "explanation": "이 코드는 정상적으로 작동합니다. 'i'는 정수, 'f'는 float을 나타내며 올바른 값들이 전달되었습니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 19,
+            "type": "practical_coding",
+            "question": "바이너리 파일에서 특정 위치의 레코드를 업데이트하는 코드를 작성하세요. (각 레코드는 id(4바이트), name(20바이트), age(1바이트)로 구성)",
+            "sample_answer": "```python\nimport struct\n\ndef update_record(filename, record_index, new_age):\n    record_format = 'I20sB'  # id(4), name(20), age(1)\n    record_size = struct.calcsize(record_format)\n    \n    with open(filename, 'r+b') as f:\n        # 해당 레코드 위치로 이동\n        f.seek(record_index * record_size)\n        \n        # 기존 데이터 읽기\n        data = f.read(record_size)\n        if data:\n            user_id, name_bytes, old_age = struct.unpack(record_format, data)\n            \n            # 나이만 업데이트하여 다시 패킹\n            new_data = struct.pack(record_format, user_id, name_bytes, new_age)\n            \n            # 파일 포인터를 다시 해당 위치로 이동하여 쓰기\n            f.seek(record_index * record_size)\n            f.write(new_data)\n            \n            print(f\"레코드 {record_index} 업데이트 완료: 나이 {old_age} -> {new_age}\")\n\n# 사용 예\nupdate_record('users.bin', 0, 30)  # 첫 번째 레코드의 나이를 30으로 변경\n```",
+            "difficulty": "hard"
+        },
+        {
+            "id": 20,
+            "type": "multiple_choice",
+            "question": "ZIP 파일 생성 시 압축 알고리즘을 지정하는 매개변수는?",
+            "options": [
+                "compression",
+                "compress_type",
+                "algorithm",
+                "method"
+            ],
+            "correct_answer": 0,
+            "explanation": "zipfile.ZipFile()에서 compression 매개변수로 압축 알고리즘을 지정합니다 (예: zipfile.ZIP_DEFLATED).",
+            "difficulty": "easy"
+        },
+        {
+            "id": 21,
+            "type": "multiple_choice",
+            "question": "ZIP 파일에서 압축률이 가장 높은 압축 방식은?",
+            "options": [
+                "ZIP_STORED",
+                "ZIP_DEFLATED",
+                "ZIP_BZIP2",
+                "ZIP_LZMA"
+            ],
+            "correct_answer": 3,
+            "explanation": "ZIP_LZMA가 가장 높은 압축률을 제공하지만, 압축/해제 시간이 더 오래 걸립니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 22,
+            "type": "code_output",
+            "question": "다음 코드의 실행 결과는?\n\n```python\nimport zipfile\nwith zipfile.ZipFile('test.zip', 'w') as zf:\n    zf.writestr('hello.txt', 'Hello, World!')\nwith zipfile.ZipFile('test.zip', 'r') as zf:\n    print(len(zf.namelist()), zf.read('hello.txt').decode())\n```",
+            "options": [
+                "1 Hello, World!",
+                "0 Hello, World!",
+                "1 b'Hello, World!'",
+                "에러 발생"
+            ],
+            "correct_answer": 0,
+            "explanation": "namelist()는 ZIP 파일 내 파일 목록을 반환하고, read()는 바이트를 반환하므로 decode()로 문자열로 변환합니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 23,
+            "type": "multiple_choice",
+            "question": "TAR 파일을 GZIP으로 압축하여 생성하는 모드는?",
+            "options": [
+                "'w:gz'",
+                "'w:gzip'",
+                "'wgz'",
+                "'w+gz'"
+            ],
+            "correct_answer": 0,
+            "explanation": "tarfile.open()에서 'w:gz' 모드는 GZIP으로 압축된 TAR 파일을 생성합니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 24,
+            "type": "practical_coding",
+            "question": "특정 확장자의 파일들만 ZIP으로 압축하는 함수를 작성하세요.",
+            "sample_answer": "```python\nimport zipfile\nimport os\n\ndef compress_files_by_extension(source_dir, zip_filename, extensions):\n    \"\"\"\n    특정 확장자의 파일들만 ZIP으로 압축\n    \n    Args:\n        source_dir: 원본 디렉토리\n        zip_filename: 생성할 ZIP 파일명\n        extensions: 압축할 확장자 리스트 (예: ['.py', '.txt'])\n    \"\"\"\n    with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:\n        for root, dirs, files in os.walk(source_dir):\n            for file in files:\n                file_path = os.path.join(root, file)\n                _, ext = os.path.splitext(file)\n                \n                if ext.lower() in extensions:\n                    # 상대 경로로 아카이브에 추가\n                    archive_path = os.path.relpath(file_path, source_dir)\n                    zipf.write(file_path, archive_path)\n                    print(f\"압축됨: {archive_path}\")\n\n# 사용 예\ncompress_files_by_extension('.', 'python_files.zip', ['.py', '.md'])\n```",
+            "difficulty": "medium"
+        },
+        {
+            "id": 25,
+            "type": "multiple_choice",
+            "question": "ConfigParser에서 기본값을 제공하는 섹션은?",
+            "options": [
+                "COMMON",
+                "DEFAULT",
+                "GLOBAL",
+                "BASE"
+            ],
+            "correct_answer": 1,
+            "explanation": "ConfigParser에서 DEFAULT 섹션의 값들은 다른 모든 섹션에서 기본값으로 사용됩니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 26,
+            "type": "multiple_choice",
+            "question": "ConfigParser에서 불린 값을 읽는 메서드는?",
+            "options": [
+                "getbool()",
+                "getboolean()",
+                "readbool()",
+                "boolean()"
+            ],
+            "correct_answer": 1,
+            "explanation": "getboolean() 메서드는 설정값을 불린 타입으로 변환하여 반환합니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 27,
+            "type": "code_analysis",
+            "question": "다음 ConfigParser 코드에서 실행 결과는?\n\n```python\nimport configparser\nconfig = configparser.ConfigParser()\nconfig['DEFAULT'] = {'debug': 'False'}\nconfig['app'] = {'name': 'MyApp'}\nprint(config.getboolean('app', 'debug'))\n```",
+            "options": [
+                "True",
+                "False",
+                "에러 발생",
+                "None"
+            ],
+            "correct_answer": 1,
+            "explanation": "app 섹션에 debug 설정이 없지만 DEFAULT 섹션에서 상속받아 False를 반환합니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 28,
+            "type": "practical_coding",
+            "question": "JSON과 INI 설정 파일 간 변환 함수를 작성하세요.",
+            "sample_answer": "```python\nimport json\nimport configparser\n\ndef json_to_ini(json_file, ini_file):\n    \"\"\"JSON 설정 파일을 INI 형식으로 변환\"\"\"\n    with open(json_file, 'r', encoding='utf-8') as f:\n        data = json.load(f)\n    \n    config = configparser.ConfigParser()\n    \n    for section_name, section_data in data.items():\n        if isinstance(section_data, dict):\n            config[section_name] = {}\n            for key, value in section_data.items():\n                config[section_name][key] = str(value)\n    \n    with open(ini_file, 'w', encoding='utf-8') as f:\n        config.write(f)\n\ndef ini_to_json(ini_file, json_file):\n    \"\"\"INI 설정 파일을 JSON 형식으로 변환\"\"\"\n    config = configparser.ConfigParser()\n    config.read(ini_file, encoding='utf-8')\n    \n    data = {}\n    for section_name in config.sections():\n        data[section_name] = dict(config[section_name])\n    \n    with open(json_file, 'w', encoding='utf-8') as f:\n        json.dump(data, f, ensure_ascii=False, indent=2)\n\n# 사용 예\njson_to_ini('config.json', 'config.ini')\nini_to_json('config.ini', 'converted.json')\n```",
+            "difficulty": "hard"
+        },
+        {
+            "id": 29,
+            "type": "multiple_choice",
+            "question": "대용량 CSV 파일을 메모리 효율적으로 처리하는 방법은?",
+            "options": [
+                "전체 파일을 메모리에 로드",
+                "청크 단위로 처리",
+                "압축 후 처리",
+                "임시 파일 사용"
+            ],
+            "correct_answer": 1,
+            "explanation": "대용량 파일은 청크(chunk) 단위로 나누어 처리하면 메모리 사용량을 줄일 수 있습니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 30,
+            "type": "debugging",
+            "question": "다음 코드에서 발생할 수 있는 문제점과 해결방법을 설명하세요.\n\n```python\nimport json\nwith open('data.json', 'r') as f:\n    data = json.load(f)\ndata['new_key'] = 'new_value'\nwith open('data.json', 'w') as f:\n    json.dump(data, f)\n```",
+            "sample_answer": "**문제점들:**\n1. **인코딩 문제**: 파일을 열 때 encoding='utf-8'을 지정하지 않으면 한글 등이 깨질 수 있음\n2. **JSON 형식 문제**: ensure_ascii=False와 indent 옵션 누락으로 가독성이 떨어짐\n3. **예외 처리 없음**: 파일이 없거나 JSON 형식이 잘못된 경우 에러 발생\n\n**해결된 코드:**\n```python\nimport json\ntry:\n    with open('data.json', 'r', encoding='utf-8') as f:\n        data = json.load(f)\nexcept (FileNotFoundError, json.JSONDecodeError) as e:\n    print(f\"파일 읽기 오류: {e}\")\n    data = {}\n\ndata['new_key'] = 'new_value'\n\ntry:\n    with open('data.json', 'w', encoding='utf-8') as f:\n        json.dump(data, f, ensure_ascii=False, indent=2)\nexcept Exception as e:\n    print(f\"파일 쓰기 오류: {e}\")\n```",
+            "difficulty": "hard"
+        },
+        {
+            "id": 31,
+            "type": "comprehensive",
+            "question": "다음 요구사항을 만족하는 로그 파일 분석기를 설계하세요:\n1. CSV 형태의 웹 서버 로그 분석\n2. JSON 형태로 분석 결과 저장\n3. ZIP으로 결과 파일들 압축\n4. 설정 파일로 분석 옵션 관리",
+            "sample_answer": "```python\nimport csv\nimport json\nimport zipfile\nimport configparser\nfrom collections import defaultdict, Counter\nfrom datetime import datetime\n\nclass LogAnalyzer:\n    def __init__(self, config_file='analyzer_config.ini'):\n        self.config = self.load_config(config_file)\n        self.stats = {\n            'total_requests': 0,\n            'status_codes': Counter(),\n            'ip_addresses': Counter(),\n            'popular_pages': Counter(),\n            'hourly_traffic': defaultdict(int)\n        }\n    \n    def load_config(self, config_file):\n        config = configparser.ConfigParser()\n        config.read(config_file, encoding='utf-8')\n        return config\n    \n    def analyze_log(self, log_file):\n        \"\"\"CSV 로그 파일 분석\"\"\"\n        with open(log_file, 'r', encoding='utf-8') as f:\n            reader = csv.DictReader(f)\n            \n            for row in reader:\n                self.stats['total_requests'] += 1\n                \n                # 상태 코드 통계\n                status = row.get('status_code', '000')\n                self.stats['status_codes'][status] += 1\n                \n                # IP 주소 통계\n                ip = row.get('ip_address', 'unknown')\n                self.stats['ip_addresses'][ip] += 1\n                \n                # 페이지 통계\n                page = row.get('page', 'unknown')\n                self.stats['popular_pages'][page] += 1\n                \n                # 시간별 트래픽\n                timestamp = row.get('timestamp', '')\n                if timestamp:\n                    hour = timestamp.split(':')[0]\n                    self.stats['hourly_traffic'][hour] += 1\n    \n    def generate_report(self):\n        \"\"\"분석 결과 리포트 생성\"\"\"\n        report = {\n            'analysis_time': datetime.now().isoformat(),\n            'total_requests': self.stats['total_requests'],\n            'top_status_codes': dict(self.stats['status_codes'].most_common(10)),\n            'top_ip_addresses': dict(self.stats['ip_addresses'].most_common(10)),\n            'popular_pages': dict(self.stats['popular_pages'].most_common(10)),\n            'hourly_traffic': dict(self.stats['hourly_traffic'])\n        }\n        return report\n    \n    def save_results(self, report, output_dir='results'):\n        \"\"\"결과를 JSON과 ZIP으로 저장\"\"\"\n        import os\n        os.makedirs(output_dir, exist_ok=True)\n        \n        # JSON 리포트 저장\n        json_file = f\"{output_dir}/analysis_report.json\"\n        with open(json_file, 'w', encoding='utf-8') as f:\n            json.dump(report, f, ensure_ascii=False, indent=2)\n        \n        # 상세 통계 CSV 저장\n        csv_file = f\"{output_dir}/detailed_stats.csv\"\n        with open(csv_file, 'w', newline='', encoding='utf-8') as f:\n            writer = csv.writer(f)\n            writer.writerow(['Metric', 'Value', 'Count'])\n            \n            for status, count in self.stats['status_codes'].items():\n                writer.writerow(['Status Code', status, count])\n        \n        # ZIP으로 압축\n        zip_file = f\"{output_dir}/analysis_results.zip\"\n        with zipfile.ZipFile(zip_file, 'w', zipfile.ZIP_DEFLATED) as zf:\n            zf.write(json_file, 'analysis_report.json')\n            zf.write(csv_file, 'detailed_stats.csv')\n        \n        print(f\"분석 완료. 결과: {zip_file}\")\n\n# 사용 예\nanalyzer = LogAnalyzer()\nanalyzer.analyze_log('web_server.log')\nreport = analyzer.generate_report()\nanalyzer.save_results(report)\n```",
+            "difficulty": "hard"
+        },
+        {
+            "id": 32,
+            "type": "multiple_choice",
+            "question": "XML에서 CDATA 섹션의 목적은?",
+            "options": [
+                "데이터 압축",
+                "특수 문자 이스케이프 방지",
+                "속도 향상",
+                "크기 축소"
+            ],
+            "correct_answer": 1,
+            "explanation": "CDATA 섹션은 XML 파서가 내용을 해석하지 않고 그대로 텍스트로 처리하도록 하여 특수 문자를 이스케이프할 필요가 없게 합니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 33,
+            "type": "multiple_choice",
+            "question": "바이너리 파일에서 엔디안(Endian)을 지정하는 struct 포맷 문자는?",
+            "options": [
+                "< (리틀 엔디안), > (빅 엔디안)",
+                "l (리틀 엔디안), b (빅 엔디안)",
+                "LE, BE",
+                "0, 1"
+            ],
+            "correct_answer": 0,
+            "explanation": "struct 모듈에서 '<'는 리틀 엔디안, '>'는 빅 엔디안을 나타냅니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 34,
+            "type": "performance",
+            "question": "대용량 JSON 파일을 처리할 때 메모리 효율을 높이는 방법은?",
+            "options": [
+                "ijson 라이브러리 사용 (스트리밍)",
+                "압축 후 처리",
+                "멀티스레딩 사용",
+                "캐싱 활용"
+            ],
+            "correct_answer": 0,
+            "explanation": "ijson 라이브러리는 JSON을 스트리밍 방식으로 처리하여 전체 파일을 메모리에 로드하지 않고도 처리할 수 있습니다.",
+            "difficulty": "hard"
+        },
+        {
+            "id": 35,
+            "type": "security",
+            "question": "사용자로부터 받은 XML 데이터를 처리할 때 보안상 주의해야 할 점은?",
+            "options": [
+                "파일 크기 제한",
+                "XML 폭탄 공격 방지",
+                "인코딩 검증",
+                "모든 것"
+            ],
+            "correct_answer": 3,
+            "explanation": "XML 처리 시 XML 폭탄, XXE 공격, 파일 크기 제한, 인코딩 검증 등 모든 보안 요소를 고려해야 합니다.",
+            "difficulty": "hard"
+        },
+        {
+            "id": 36,
+            "type": "practical_coding",
+            "question": "CSV 파일의 데이터 품질을 검증하는 함수를 작성하세요. (누락값, 데이터 타입, 범위 검증 포함)",
+            "sample_answer": "```python\nimport csv\nimport re\nfrom datetime import datetime\n\nclass CSVValidator:\n    def __init__(self):\n        self.errors = []\n    \n    def validate_csv(self, filename, schema):\n        \"\"\"\n        CSV 파일 데이터 품질 검증\n        \n        schema 예시:\n        {\n            'name': {'required': True, 'type': 'str', 'max_length': 50},\n            'age': {'required': True, 'type': 'int', 'range': (0, 120)},\n            'email': {'required': True, 'type': 'email'},\n            'salary': {'required': False, 'type': 'float', 'range': (0, 1000000)}\n        }\n        \"\"\"\n        self.errors = []\n        \n        with open(filename, 'r', encoding='utf-8') as f:\n            reader = csv.DictReader(f)\n            \n            for row_num, row in enumerate(reader, 1):\n                self._validate_row(row, schema, row_num)\n        \n        return self.errors\n    \n    def _validate_row(self, row, schema, row_num):\n        \"\"\"개별 행 검증\"\"\"\n        for field, rules in schema.items():\n            value = row.get(field, '').strip()\n            \n            # 필수 필드 검증\n            if rules.get('required', False) and not value:\n                self.errors.append(f\"행 {row_num}: '{field}' 필드가 비어있습니다.\")\n                continue\n            \n            if not value:  # 선택적 필드가 비어있으면 스킵\n                continue\n            \n            # 타입 검증\n            field_type = rules.get('type')\n            if field_type == 'int':\n                if not self._is_valid_int(value):\n                    self.errors.append(f\"행 {row_num}: '{field}'는 정수여야 합니다. (현재: {value})\")\n                    continue\n                value = int(value)\n            \n            elif field_type == 'float':\n                if not self._is_valid_float(value):\n                    self.errors.append(f\"행 {row_num}: '{field}'는 숫자여야 합니다. (현재: {value})\")\n                    continue\n                value = float(value)\n            \n            elif field_type == 'email':\n                if not self._is_valid_email(value):\n                    self.errors.append(f\"행 {row_num}: '{field}'는 유효한 이메일이어야 합니다. (현재: {value})\")\n                    continue\n            \n            # 범위 검증\n            if 'range' in rules and isinstance(value, (int, float)):\n                min_val, max_val = rules['range']\n                if not (min_val <= value <= max_val):\n                    self.errors.append(f\"행 {row_num}: '{field}'는 {min_val}~{max_val} 범위여야 합니다. (현재: {value})\")\n            \n            # 길이 검증\n            if 'max_length' in rules and isinstance(value, str):\n                if len(value) > rules['max_length']:\n                    self.errors.append(f\"행 {row_num}: '{field}'는 {rules['max_length']}자 이하여야 합니다. (현재: {len(value)}자)\")\n    \n    def _is_valid_int(self, value):\n        try:\n            int(value)\n            return True\n        except ValueError:\n            return False\n    \n    def _is_valid_float(self, value):\n        try:\n            float(value)\n            return True\n        except ValueError:\n            return False\n    \n    def _is_valid_email(self, value):\n        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'\n        return re.match(pattern, value) is not None\n\n# 사용 예\nvalidator = CSVValidator()\nschema = {\n    'name': {'required': True, 'type': 'str', 'max_length': 30},\n    'age': {'required': True, 'type': 'int', 'range': (18, 65)},\n    'email': {'required': True, 'type': 'email'},\n    'salary': {'required': True, 'type': 'int', 'range': (2000000, 10000000)}\n}\n\nerrors = validator.validate_csv('employees.csv', schema)\nif errors:\n    print(\"데이터 검증 오류:\")\n    for error in errors:\n        print(f\"  • {error}\")\nelse:\n    print(\"✓ 모든 데이터가 유효합니다.\")\n```",
+            "difficulty": "hard"
+        },
+        {
+            "id": 37,
+            "type": "integration",
+            "question": "JSON, XML, CSV 형식을 자동으로 감지하여 통합 처리하는 파일 리더 클래스를 설계하세요.",
+            "sample_answer": "```python\nimport json\nimport csv\nimport xml.etree.ElementTree as ET\nimport os\nfrom pathlib import Path\n\nclass UniversalFileReader:\n    def __init__(self):\n        self.supported_formats = {'.json', '.csv', '.xml'}\n    \n    def read_file(self, filename):\n        \"\"\"\n        파일 형식을 자동 감지하여 읽기\n        \n        Returns:\n            dict: 통합된 데이터 구조\n        \"\"\"\n        if not os.path.exists(filename):\n            raise FileNotFoundError(f\"파일을 찾을 수 없습니다: {filename}\")\n        \n        file_format = self._detect_format(filename)\n        \n        if file_format == 'json':\n            return self._read_json(filename)\n        elif file_format == 'csv':\n            return self._read_csv(filename)\n        elif file_format == 'xml':\n            return self._read_xml(filename)\n        else:\n            raise ValueError(f\"지원하지 않는 파일 형식: {file_format}\")\n    \n    def _detect_format(self, filename):\n        \"\"\"파일 형식 감지\"\"\"\n        # 확장자로 1차 판단\n        ext = Path(filename).suffix.lower()\n        \n        if ext == '.json':\n            return 'json'\n        elif ext == '.csv':\n            return 'csv'\n        elif ext == '.xml':\n            return 'xml'\n        \n        # 내용으로 2차 판단\n        with open(filename, 'r', encoding='utf-8') as f:\n            first_line = f.readline().strip()\n            \n            if first_line.startswith('{') or first_line.startswith('['):\n                return 'json'\n            elif first_line.startswith('<?xml') or first_line.startswith('<'):\n                return 'xml'\n            elif ',' in first_line:  # 간단한 CSV 판단\n                return 'csv'\n        \n        raise ValueError(\"파일 형식을 감지할 수 없습니다\")\n    \n    def _read_json(self, filename):\n        \"\"\"JSON 파일 읽기\"\"\"\n        with open(filename, 'r', encoding='utf-8') as f:\n            data = json.load(f)\n            return {\n                'format': 'json',\n                'data': data,\n                'metadata': {\n                    'total_records': len(data) if isinstance(data, list) else 1,\n                    'keys': list(data.keys()) if isinstance(data, dict) else None\n                }\n            }\n    \n    def _read_csv(self, filename):\n        \"\"\"CSV 파일 읽기\"\"\"\n        records = []\n        with open(filename, 'r', encoding='utf-8') as f:\n            # 구분자 자동 감지\n            sample = f.read(1024)\n            f.seek(0)\n            \n            sniffer = csv.Sniffer()\n            dialect = sniffer.sniff(sample)\n            \n            reader = csv.DictReader(f, dialect=dialect)\n            headers = reader.fieldnames\n            \n            for row in reader:\n                records.append(row)\n        \n        return {\n            'format': 'csv',\n            'data': records,\n            'metadata': {\n                'total_records': len(records),\n                'headers': headers,\n                'delimiter': dialect.delimiter\n            }\n        }\n    \n    def _read_xml(self, filename):\n        \"\"\"XML 파일 읽기\"\"\"\n        tree = ET.parse(filename)\n        root = tree.getroot()\n        \n        # XML을 딕셔너리로 변환\n        def xml_to_dict(element):\n            result = {}\n            \n            # 속성 추가\n            if element.attrib:\n                result['@attributes'] = element.attrib\n            \n            # 텍스트 내용\n            if element.text and element.text.strip():\n                if len(element) == 0:  # 자식이 없으면 텍스트만\n                    return element.text.strip()\n                else:\n                    result['#text'] = element.text.strip()\n            \n            # 자식 엘리먼트들\n            for child in element:\n                child_data = xml_to_dict(child)\n                \n                if child.tag in result:\n                    # 같은 태그가 여러 개면 리스트로\n                    if not isinstance(result[child.tag], list):\n                        result[child.tag] = [result[child.tag]]\n                    result[child.tag].append(child_data)\n                else:\n                    result[child.tag] = child_data\n            \n            return result if result else None\n        \n        data = xml_to_dict(root)\n        \n        return {\n            'format': 'xml',\n            'data': {root.tag: data},\n            'metadata': {\n                'root_tag': root.tag,\n                'total_elements': len(list(root.iter())),\n                'namespaces': dict(root.nsmap) if hasattr(root, 'nsmap') else {}\n            }\n        }\n    \n    def convert_format(self, input_file, output_file, target_format):\n        \"\"\"파일 형식 변환\"\"\"\n        data = self.read_file(input_file)\n        \n        if target_format == 'json':\n            with open(output_file, 'w', encoding='utf-8') as f:\n                json.dump(data['data'], f, ensure_ascii=False, indent=2)\n        \n        elif target_format == 'csv':\n            if isinstance(data['data'], list) and data['data']:\n                with open(output_file, 'w', newline='', encoding='utf-8') as f:\n                    writer = csv.DictWriter(f, fieldnames=data['data'][0].keys())\n                    writer.writeheader()\n                    writer.writerows(data['data'])\n        \n        elif target_format == 'xml':\n            # 간단한 XML 변환 (복잡한 구조는 추가 로직 필요)\n            root = ET.Element('data')\n            \n            if isinstance(data['data'], list):\n                for item in data['data']:\n                    item_elem = ET.SubElement(root, 'item')\n                    for key, value in item.items():\n                        child = ET.SubElement(item_elem, key)\n                        child.text = str(value)\n            \n            tree = ET.ElementTree(root)\n            tree.write(output_file, encoding='utf-8', xml_declaration=True)\n        \n        print(f\"파일이 {target_format} 형식으로 변환되었습니다: {output_file}\")\n\n# 사용 예\nreader = UniversalFileReader()\n\n# 파일 읽기 (형식 자동 감지)\ndata = reader.read_file('data.json')\nprint(f\"형식: {data['format']}\")\nprint(f\"레코드 수: {data['metadata']['total_records']}\")\n\n# 형식 변환\nreader.convert_format('data.json', 'data.csv', 'csv')\nreader.convert_format('data.csv', 'data.xml', 'xml')\n```",
+            "difficulty": "expert"
+        },
+        {
+            "id": 38,
+            "type": "optimization",
+            "question": "여러 개의 대용량 CSV 파일을 병렬로 처리하여 결과를 집계하는 최적화된 솔루션을 제시하세요.",
+            "sample_answer": "```python\nimport csv\nimport multiprocessing as mp\nfrom concurrent.futures import ProcessPoolExecutor, as_completed\nfrom collections import defaultdict, Counter\nimport os\nimport time\nfrom functools import partial\n\ndef process_csv_chunk(args):\n    \"\"\"\n    CSV 파일의 특정 청크를 처리\n    \n    Args:\n        args: (filename, start_row, end_row, processing_func)\n    \"\"\"\n    filename, start_row, end_row, columns_to_analyze = args\n    \n    local_stats = {\n        'row_count': 0,\n        'column_stats': defaultdict(Counter)\n    }\n    \n    with open(filename, 'r', encoding='utf-8') as f:\n        reader = csv.DictReader(f)\n        \n        # 시작 위치까지 스킵\n        for _ in range(start_row):\n            try:\n                next(reader)\n            except StopIteration:\n                break\n        \n        # 지정된 범위 처리\n        for i, row in enumerate(reader):\n            if i >= (end_row - start_row):\n                break\n            \n            local_stats['row_count'] += 1\n            \n            # 지정된 컬럼들 분석\n            for column in columns_to_analyze:\n                if column in row:\n                    value = row[column].strip()\n                    local_stats['column_stats'][column][value] += 1\n    \n    return local_stats\n\ndef get_file_chunks(filename, chunk_size=10000):\n    \"\"\"\n    파일을 청크로 분할\n    \"\"\"\n    with open(filename, 'r', encoding='utf-8') as f:\n        reader = csv.reader(f)\n        next(reader)  # 헤더 스킵\n        \n        total_rows = sum(1 for _ in reader)\n    \n    chunks = []\n    for start in range(0, total_rows, chunk_size):\n        end = min(start + chunk_size, total_rows)\n        chunks.append((start, end))\n    \n    return chunks\n\nclass ParallelCSVProcessor:\n    def __init__(self, max_workers=None):\n        self.max_workers = max_workers or mp.cpu_count()\n        self.global_stats = {\n            'total_rows': 0,\n            'file_count': 0,\n            'column_stats': defaultdict(Counter)\n        }\n    \n    def process_files(self, file_list, columns_to_analyze, chunk_size=10000):\n        \"\"\"\n        여러 CSV 파일을 병렬로 처리\n        \n        Args:\n            file_list: 처리할 CSV 파일 목록\n            columns_to_analyze: 분석할 컬럼 목록\n            chunk_size: 청크 크기\n        \"\"\"\n        start_time = time.time()\n        \n        # 모든 파일의 청크 정보 수집\n        all_tasks = []\n        for filename in file_list:\n            if not os.path.exists(filename):\n                print(f\"⚠ 파일을 찾을 수 없습니다: {filename}\")\n                continue\n            \n            chunks = get_file_chunks(filename, chunk_size)\n            for start_row, end_row in chunks:\n                task = (filename, start_row, end_row, columns_to_analyze)\n                all_tasks.append(task)\n        \n        print(f\"총 {len(all_tasks)}개의 청크를 {self.max_workers}개의 프로세스로 처리합니다.\")\n        \n        # 병렬 처리\n        with ProcessPoolExecutor(max_workers=self.max_workers) as executor:\n            future_to_task = {executor.submit(process_csv_chunk, task): task for task in all_tasks}\n            \n            for future in as_completed(future_to_task):\n                try:\n                    result = future.result()\n                    self._merge_stats(result)\n                except Exception as e:\n                    task = future_to_task[future]\n                    print(f\"⚠ 청크 처리 오류 {task[0]}[{task[1]}:{task[2]}]: {e}\")\n        \n        self.global_stats['file_count'] = len(file_list)\n        \n        end_time = time.time()\n        print(f\"\\n처리 완료! 소요 시간: {end_time - start_time:.2f}초\")\n        \n        return self.global_stats\n    \n    def _merge_stats(self, local_stats):\n        \"\"\"로컬 통계를 글로벌 통계에 병합\"\"\"\n        self.global_stats['total_rows'] += local_stats['row_count']\n        \n        for column, counter in local_stats['column_stats'].items():\n            self.global_stats['column_stats'][column].update(counter)\n    \n    def get_top_values(self, column, top_n=10):\n        \"\"\"특정 컬럼의 상위 값들 반환\"\"\"\n        if column in self.global_stats['column_stats']:\n            return self.global_stats['column_stats'][column].most_common(top_n)\n        return []\n    \n    def save_results(self, output_file):\n        \"\"\"결과를 JSON 파일로 저장\"\"\"\n        import json\n        \n        # Counter 객체를 일반 딕셔너리로 변환\n        serializable_stats = {\n            'total_rows': self.global_stats['total_rows'],\n            'file_count': self.global_stats['file_count'],\n            'column_stats': {\n                column: dict(counter) \n                for column, counter in self.global_stats['column_stats'].items()\n            }\n        }\n        \n        with open(output_file, 'w', encoding='utf-8') as f:\n            json.dump(serializable_stats, f, ensure_ascii=False, indent=2)\n        \n        print(f\"결과가 저장되었습니다: {output_file}\")\n\n# 사용 예\nif __name__ == \"__main__\":\n    # 테스트용 CSV 파일들 생성\n    def create_test_files():\n        import random\n        \n        for i in range(3):\n            filename = f\"test_data_{i}.csv\"\n            with open(filename, 'w', newline='', encoding='utf-8') as f:\n                writer = csv.writer(f)\n                writer.writerow(['id', 'category', 'status', 'value'])\n                \n                for j in range(50000):  # 5만 행\n                    writer.writerow([\n                        j,\n                        random.choice(['A', 'B', 'C', 'D']),\n                        random.choice(['active', 'inactive', 'pending']),\n                        random.randint(1, 1000)\n                    ])\n    \n    # 테스트 실행\n    create_test_files()\n    \n    processor = ParallelCSVProcessor(max_workers=4)\n    \n    file_list = ['test_data_0.csv', 'test_data_1.csv', 'test_data_2.csv']\n    columns_to_analyze = ['category', 'status']\n    \n    stats = processor.process_files(file_list, columns_to_analyze)\n    \n    print(f\"\\n=== 처리 결과 ===\\n\")\n    print(f\"총 처리된 행 수: {stats['total_rows']:,}\")\n    print(f\"처리된 파일 수: {stats['file_count']}\")\n    \n    for column in columns_to_analyze:\n        print(f\"\\n{column} 상위 값들:\")\n        for value, count in processor.get_top_values(column, 5):\n            print(f\"  {value}: {count:,}회\")\n    \n    processor.save_results('processing_results.json')\n    \n    # 테스트 파일 정리\n    for filename in file_list:\n        os.remove(filename)\n```",
+            "difficulty": "expert"
+        },
+        {
+            "id": 39,
+            "type": "comprehensive",
+            "question": "ETL(Extract, Transform, Load) 파이프라인을 구현하세요. 다양한 소스(JSON, CSV, XML)에서 데이터를 추출하고, 변환 후 데이터베이스에 저장하는 시스템입니다.",
+            "sample_answer": "```python\nimport json\nimport csv\nimport xml.etree.ElementTree as ET\nimport sqlite3\nimport logging\nfrom datetime import datetime\nfrom typing import Dict, List, Any, Optional\nfrom dataclasses import dataclass\nfrom abc import ABC, abstractmethod\n\n# 로깅 설정\nlogging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')\nlogger = logging.getLogger(__name__)\n\n@dataclass\nclass ETLConfig:\n    \"\"\"ETL 파이프라인 설정\"\"\"\n    source_files: List[str]\n    target_db: str\n    target_table: str\n    schema: Dict[str, str]\n    transformations: List[Dict[str, Any]]\n    batch_size: int = 1000\n\nclass DataExtractor(ABC):\n    \"\"\"데이터 추출 인터페이스\"\"\"\n    \n    @abstractmethod\n    def extract(self, source: str) -> List[Dict[str, Any]]:\n        pass\n\nclass JSONExtractor(DataExtractor):\n    \"\"\"JSON 파일에서 데이터 추출\"\"\"\n    \n    def extract(self, source: str) -> List[Dict[str, Any]]:\n        try:\n            with open(source, 'r', encoding='utf-8') as f:\n                data = json.load(f)\n                \n            # 데이터가 리스트가 아니면 리스트로 감싸기\n            if not isinstance(data, list):\n                if isinstance(data, dict) and 'data' in data:\n                    data = data['data']\n                else:\n                    data = [data]\n            \n            logger.info(f\"JSON에서 {len(data)}개 레코드 추출: {source}\")\n            return data\n            \n        except Exception as e:\n            logger.error(f\"JSON 추출 오류 {source}: {e}\")\n            return []\n\nclass CSVExtractor(DataExtractor):\n    \"\"\"CSV 파일에서 데이터 추출\"\"\"\n    \n    def extract(self, source: str) -> List[Dict[str, Any]]:\n        try:\n            data = []\n            with open(source, 'r', encoding='utf-8') as f:\n                reader = csv.DictReader(f)\n                for row in reader:\n                    data.append(row)\n            \n            logger.info(f\"CSV에서 {len(data)}개 레코드 추출: {source}\")\n            return data\n            \n        except Exception as e:\n            logger.error(f\"CSV 추출 오류 {source}: {e}\")\n            return []\n\nclass XMLExtractor(DataExtractor):\n    \"\"\"XML 파일에서 데이터 추출\"\"\"\n    \n    def extract(self, source: str) -> List[Dict[str, Any]]:\n        try:\n            tree = ET.parse(source)\n            root = tree.getroot()\n            \n            data = []\n            # 루트의 직접 자식들을 레코드로 처리\n            for child in root:\n                record = self._xml_to_dict(child)\n                data.append(record)\n            \n            logger.info(f\"XML에서 {len(data)}개 레코드 추출: {source}\")\n            return data\n            \n        except Exception as e:\n            logger.error(f\"XML 추출 오류 {source}: {e}\")\n            return []\n    \n    def _xml_to_dict(self, element) -> Dict[str, Any]:\n        \"\"\"XML 엘리먼트를 딕셔너리로 변환\"\"\"\n        result = {}\n        \n        # 속성들 추가\n        result.update(element.attrib)\n        \n        # 자식 엘리먼트들 처리\n        for child in element:\n            if len(child) == 0 and not child.attrib:\n                # 단순 텍스트 노드\n                result[child.tag] = child.text\n            else:\n                # 복잡한 노드는 재귀 처리\n                result[child.tag] = self._xml_to_dict(child)\n        \n        # 텍스트 내용이 있으면 추가\n        if element.text and element.text.strip():\n            if not result:  # 자식이 없으면 텍스트만 반환\n                return element.text.strip()\n            result['_text'] = element.text.strip()\n        \n        return result\n\nclass DataTransformer:\n    \"\"\"데이터 변환기\"\"\"\n    \n    def __init__(self, transformations: List[Dict[str, Any]]):\n        self.transformations = transformations\n    \n    def transform(self, data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:\n        \"\"\"데이터 변환 적용\"\"\"\n        transformed_data = []\n        \n        for record in data:\n            try:\n                transformed_record = self._transform_record(record)\n                if transformed_record:  # None이 아닌 경우만 추가\n                    transformed_data.append(transformed_record)\n            except Exception as e:\n                logger.warning(f\"레코드 변환 오류: {e}, 레코드: {record}\")\n        \n        logger.info(f\"{len(data)}개 -> {len(transformed_data)}개 레코드 변환 완료\")\n        return transformed_data\n    \n    def _transform_record(self, record: Dict[str, Any]) -> Optional[Dict[str, Any]]:\n        \"\"\"개별 레코드 변환\"\"\"\n        result = record.copy()\n        \n        for transformation in self.transformations:\n            transform_type = transformation['type']\n            \n            if transform_type == 'rename':\n                # 컬럼명 변경\n                old_name = transformation['from']\n                new_name = transformation['to']\n                if old_name in result:\n                    result[new_name] = result.pop(old_name)\n            \n            elif transform_type == 'cast':\n                # 타입 변환\n                column = transformation['column']\n                target_type = transformation['target_type']\n                if column in result:\n                    result[column] = self._cast_value(result[column], target_type)\n            \n            elif transform_type == 'filter':\n                # 필터링\n                column = transformation['column']\n                operator = transformation['operator']\n                value = transformation['value']\n                \n                if not self._apply_filter(result.get(column), operator, value):\n                    return None  # 필터 조건에 맞지 않으면 제외\n            \n            elif transform_type == 'default':\n                # 기본값 설정\n                column = transformation['column']\n                default_value = transformation['value']\n                if column not in result or not result[column]:\n                    result[column] = default_value\n            \n            elif transform_type == 'calculate':\n                # 계산된 컬럼 추가\n                new_column = transformation['column']\n                expression = transformation['expression']\n                result[new_column] = self._evaluate_expression(expression, result)\n        \n        return result\n    \n    def _cast_value(self, value: Any, target_type: str) -> Any:\n        \"\"\"값의 타입 변환\"\"\"\n        if value is None or value == '':\n            return None\n        \n        try:\n            if target_type == 'int':\n                return int(float(str(value)))  # 소수점이 있을 수 있으므로\n            elif target_type == 'float':\n                return float(value)\n            elif target_type == 'str':\n                return str(value)\n            elif target_type == 'bool':\n                return str(value).lower() in ('true', '1', 'yes', 'on')\n            elif target_type == 'datetime':\n                return datetime.fromisoformat(str(value))\n        except (ValueError, TypeError):\n            logger.warning(f\"타입 변환 실패: {value} -> {target_type}\")\n        \n        return value\n    \n    def _apply_filter(self, value: Any, operator: str, filter_value: Any) -> bool:\n        \"\"\"필터 조건 적용\"\"\"\n        if value is None:\n            return operator == 'is_null'\n        \n        if operator == 'eq':\n            return value == filter_value\n        elif operator == 'neq':\n            return value != filter_value\n        elif operator == 'gt':\n            return float(value) > float(filter_value)\n        elif operator == 'gte':\n            return float(value) >= float(filter_value)\n        elif operator == 'lt':\n            return float(value) < float(filter_value)\n        elif operator == 'lte':\n            return float(value) <= float(filter_value)\n        elif operator == 'contains':\n            return str(filter_value) in str(value)\n        elif operator == 'is_null':\n            return False  # 이미 None 체크를 위에서 함\n        \n        return True\n    \n    def _evaluate_expression(self, expression: str, record: Dict[str, Any]) -> Any:\n        \"\"\"표현식 평가 (간단한 계산만 지원)\"\"\"\n        # 보안상 eval 대신 제한적인 표현식만 처리\n        try:\n            # {column_name} 형태를 실제 값으로 치환\n            import re\n            \n            def replace_column(match):\n                column_name = match.group(1)\n                return str(record.get(column_name, 0))\n            \n            resolved_expression = re.sub(r'\\{([^}]+)\\}', replace_column, expression)\n            \n            # 간단한 수학 연산만 허용\n            allowed_chars = set('0123456789+-*/.() ')\n            if all(c in allowed_chars for c in resolved_expression):\n                return eval(resolved_expression)\n            \n        except Exception as e:\n            logger.warning(f\"표현식 평가 실패: {expression}, 오류: {e}\")\n        \n        return None\n\nclass DataLoader:\n    \"\"\"데이터 로더\"\"\"\n    \n    def __init__(self, db_path: str):\n        self.db_path = db_path\n    \n    def load(self, data: List[Dict[str, Any]], table_name: str, \n             schema: Dict[str, str], batch_size: int = 1000):\n        \"\"\"데이터를 데이터베이스에 로드\"\"\"\n        if not data:\n            logger.warning(\"로드할 데이터가 없습니다.\")\n            return\n        \n        conn = sqlite3.connect(self.db_path)\n        try:\n            # 테이블 생성\n            self._create_table(conn, table_name, schema)\n            \n            # 배치 단위로 데이터 삽입\n            total_inserted = 0\n            for i in range(0, len(data), batch_size):\n                batch = data[i:i + batch_size]\n                inserted = self._insert_batch(conn, table_name, batch, schema)\n                total_inserted += inserted\n                \n                if (i // batch_size + 1) % 10 == 0:\n                    logger.info(f\"{total_inserted}/{len(data)} 레코드 로드 완료\")\n            \n            conn.commit()\n            logger.info(f\"총 {total_inserted}개 레코드 로드 완료\")\n            \n        except Exception as e:\n            conn.rollback()\n            logger.error(f\"데이터 로드 오류: {e}\")\n            raise\n        finally:\n            conn.close()\n    \n    def _create_table(self, conn: sqlite3.Connection, table_name: str, \n                     schema: Dict[str, str]):\n        \"\"\"테이블 생성\"\"\"\n        columns = []\n        for column_name, column_type in schema.items():\n            sql_type = self._map_type_to_sql(column_type)\n            columns.append(f\"{column_name} {sql_type}\")\n        \n        create_sql = f\"CREATE TABLE IF NOT EXISTS {table_name} ({', '.join(columns)})\"\n        conn.execute(create_sql)\n    \n    def _map_type_to_sql(self, python_type: str) -> str:\n        \"\"\"Python 타입을 SQL 타입으로 매핑\"\"\"\n        mapping = {\n            'int': 'INTEGER',\n            'float': 'REAL',\n            'str': 'TEXT',\n            'bool': 'INTEGER',\n            'datetime': 'TEXT'\n        }\n        return mapping.get(python_type, 'TEXT')\n    \n    def _insert_batch(self, conn: sqlite3.Connection, table_name: str,\n                     batch: List[Dict[str, Any]], schema: Dict[str, str]) -> int:\n        \"\"\"배치 데이터 삽입\"\"\"\n        if not batch:\n            return 0\n        \n        # 컬럼 순서 정의\n        columns = list(schema.keys())\n        placeholders = ', '.join(['?'] * len(columns))\n        \n        insert_sql = f\"INSERT INTO {table_name} ({', '.join(columns)}) VALUES ({placeholders})\"\n        \n        # 데이터 준비\n        rows = []\n        for record in batch:\n            row = []\n            for column in columns:\n                value = record.get(column)\n                # 데이터 타입에 따른 변환\n                if schema[column] == 'datetime' and value:\n                    value = str(value)\n                elif schema[column] == 'bool' and value is not None:\n                    value = 1 if value else 0\n                row.append(value)\n            rows.append(row)\n        \n        cursor = conn.executemany(insert_sql, rows)\n        return cursor.rowcount\n\nclass ETLPipeline:\n    \"\"\"ETL 파이프라인 메인 클래스\"\"\"\n    \n    def __init__(self, config: ETLConfig):\n        self.config = config\n        \n        # 추출기 매핑\n        self.extractors = {\n            '.json': JSONExtractor(),\n            '.csv': CSVExtractor(),\n            '.xml': XMLExtractor()\n        }\n        \n        self.transformer = DataTransformer(config.transformations)\n        self.loader = DataLoader(config.target_db)\n    \n    def run(self):\n        \"\"\"ETL 파이프라인 실행\"\"\"\n        logger.info(\"ETL 파이프라인 시작\")\n        start_time = datetime.now()\n        \n        try:\n            # 1. Extract (추출)\n            all_data = []\n            for source_file in self.config.source_files:\n                extractor = self._get_extractor(source_file)\n                if extractor:\n                    data = extractor.extract(source_file)\n                    all_data.extend(data)\n            \n            logger.info(f\"총 {len(all_data)}개 레코드 추출 완료\")\n            \n            # 2. Transform (변환)\n            transformed_data = self.transformer.transform(all_data)\n            \n            # 3. Load (로드)\n            self.loader.load(\n                transformed_data, \n                self.config.target_table, \n                self.config.schema, \n                self.config.batch_size\n            )\n            \n            end_time = datetime.now()\n            duration = (end_time - start_time).total_seconds()\n            \n            logger.info(f\"ETL 파이프라인 완료! 소요 시간: {duration:.2f}초\")\n            \n            # 결과 통계\n            self._print_statistics(len(all_data), len(transformed_data))\n            \n        except Exception as e:\n            logger.error(f\"ETL 파이프라인 오류: {e}\")\n            raise\n    \n    def _get_extractor(self, filename: str) -> Optional[DataExtractor]:\n        \"\"\"파일 확장자에 따른 추출기 반환\"\"\"\n        import os\n        ext = os.path.splitext(filename)[1].lower()\n        return self.extractors.get(ext)\n    \n    def _print_statistics(self, extracted_count: int, loaded_count: int):\n        \"\"\"처리 통계 출력\"\"\"\n        print(\"\\n=== ETL 처리 통계 ===\")\n        print(f\"추출된 레코드: {extracted_count:,}개\")\n        print(f\"로드된 레코드: {loaded_count:,}개\")\n        print(f\"필터링된 레코드: {extracted_count - loaded_count:,}개\")\n        \n        if extracted_count > 0:\n            success_rate = (loaded_count / extracted_count) * 100\n            print(f\"성공률: {success_rate:.1f}%\")\n\n# 사용 예\nif __name__ == \"__main__\":\n    # ETL 설정\n    config = ETLConfig(\n        source_files=['users.json', 'products.csv', 'orders.xml'],\n        target_db='warehouse.db',\n        target_table='integrated_data',\n        schema={\n            'id': 'int',\n            'name': 'str',\n            'email': 'str',\n            'age': 'int',\n            'salary': 'float',\n            'status': 'str',\n            'created_at': 'datetime'\n        },\n        transformations=[\n            {'type': 'filter', 'column': 'age', 'operator': 'gte', 'value': 18},\n            {'type': 'cast', 'column': 'salary', 'target_type': 'float'},\n            {'type': 'default', 'column': 'status', 'value': 'active'},\n            {'type': 'rename', 'from': 'user_name', 'to': 'name'},\n            {'type': 'calculate', 'column': 'annual_salary', 'expression': '{salary} * 12'}\n        ],\n        batch_size=500\n    )\n    \n    # 파이프라인 실행\n    pipeline = ETLPipeline(config)\n    pipeline.run()\n```",
+            "difficulty": "expert"
+        },
+        {
+            "id": 40,
+            "type": "real_world_application",
+            "question": "실제 프로덕션 환경에서 파일 처리 시스템을 구축할 때 고려해야 할 핵심 사항들과 모니터링 전략을 제시하세요.",
+            "sample_answer": "# 프로덕션 파일 처리 시스템 설계\n\n## 1. 핵심 고려사항\n\n### 📊 **성능 및 확장성**\n- **스트리밍 처리**: 대용량 파일은 청크 단위로 처리\n- **병렬 처리**: 멀티프로세싱/멀티스레딩 활용\n- **캐싱 전략**: 자주 사용되는 데이터 메모리 캐싱\n- **인덱싱**: 검색 성능 향상을 위한 적절한 인덱스\n\n### 🔒 **보안**\n- **입력 검증**: 모든 외부 입력 데이터 검증\n- **권한 관리**: 파일 접근 권한 엄격한 제어\n- **암호화**: 민감 데이터 암호화 저장/전송\n- **감사 로그**: 모든 파일 처리 활동 기록\n\n### ⚡ **안정성 및 복구**\n- **트랜잭션**: 원자성 보장으로 데이터 일관성 유지\n- **백업**: 정기적인 데이터 백업 및 복구 테스트\n- **체크포인트**: 대용량 처리 시 중간 저장점\n- **재시도 로직**: 일시적 오류에 대한 자동 재시도\n\n### 📈 **모니터링 및 관찰가능성**\n- **메트릭 수집**: 처리량, 오류율, 응답시간 등\n- **로깅**: 구조화된 로그 및 적절한 로그 레벨\n- **알림**: 임계치 초과 시 자동 알림\n- **대시보드**: 실시간 상태 모니터링\n\n```python\nimport logging\nimport time\nimport json\nfrom datetime import datetime\nfrom contextlib import contextmanager\nfrom typing import Dict, Any, Optional\nfrom dataclasses import dataclass, asdict\nfrom prometheus_client import Counter, Histogram, Gauge, start_http_server\n\n# 메트릭 정의\nfile_processing_counter = Counter('files_processed_total', 'Total processed files', ['status', 'file_type'])\nfile_processing_duration = Histogram('file_processing_duration_seconds', 'File processing duration')\nactive_processing_gauge = Gauge('active_file_processing', 'Currently processing files')\n\n@dataclass\nclass ProcessingMetrics:\n    \"\"\"처리 메트릭\"\"\"\n    start_time: datetime\n    end_time: Optional[datetime] = None\n    file_path: str = \"\"\n    file_size: int = 0\n    records_processed: int = 0\n    errors_count: int = 0\n    status: str = \"processing\"\n    \n    def to_dict(self) -> Dict[str, Any]:\n        return asdict(self)\n\nclass ProductionFileProcessor:\n    \"\"\"프로덕션용 파일 처리기\"\"\"\n    \n    def __init__(self, config: Dict[str, Any]):\n        self.config = config\n        self.setup_logging()\n        self.setup_monitoring()\n    \n    def setup_logging(self):\n        \"\"\"구조화된 로깅 설정\"\"\"\n        logging.basicConfig(\n            level=getattr(logging, self.config.get('log_level', 'INFO')),\n            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',\n            handlers=[\n                logging.FileHandler('file_processor.log'),\n                logging.StreamHandler()\n            ]\n        )\n        self.logger = logging.getLogger(__name__)\n    \n    def setup_monitoring(self):\n        \"\"\"모니터링 설정\"\"\"\n        # Prometheus 메트릭 서버 시작\n        if self.config.get('enable_metrics', False):\n            start_http_server(self.config.get('metrics_port', 8000))\n    \n    @contextmanager\n    def processing_context(self, file_path: str):\n        \"\"\"처리 컨텍스트 관리\"\"\"\n        metrics = ProcessingMetrics(\n            start_time=datetime.now(),\n            file_path=file_path,\n            file_size=self._get_file_size(file_path)\n        )\n        \n        # 메트릭 시작\n        active_processing_gauge.inc()\n        timer = file_processing_duration.time()\n        \n        try:\n            self.logger.info(\"파일 처리 시작\", extra={\n                \"file_path\": file_path,\n                \"file_size\": metrics.file_size,\n                \"processing_id\": id(metrics)\n            })\n            \n            yield metrics\n            \n            # 성공 처리\n            metrics.status = \"success\"\n            file_processing_counter.labels(status='success', \n                                         file_type=self._get_file_type(file_path)).inc()\n            \n        except Exception as e:\n            # 오류 처리\n            metrics.status = \"error\"\n            metrics.errors_count += 1\n            \n            file_processing_counter.labels(status='error', \n                                         file_type=self._get_file_type(file_path)).inc()\n            \n            self.logger.error(\"파일 처리 오류\", extra={\n                \"file_path\": file_path,\n                \"error\": str(e),\n                \"processing_id\": id(metrics)\n            })\n            raise\n            \n        finally:\n            # 마무리\n            metrics.end_time = datetime.now()\n            duration = (metrics.end_time - metrics.start_time).total_seconds()\n            \n            active_processing_gauge.dec()\n            timer.observe(duration)\n            \n            self.logger.info(\"파일 처리 완료\", extra={\n                \"file_path\": file_path,\n                \"duration\": duration,\n                \"records_processed\": metrics.records_processed,\n                \"status\": metrics.status,\n                \"processing_id\": id(metrics)\n            })\n            \n            # 메트릭 저장\n            self._save_metrics(metrics)\n    \n    def _get_file_size(self, file_path: str) -> int:\n        \"\"\"파일 크기 조회\"\"\"\n        import os\n        try:\n            return os.path.getsize(file_path)\n        except OSError:\n            return 0\n    \n    def _get_file_type(self, file_path: str) -> str:\n        \"\"\"파일 타입 추출\"\"\"\n        import os\n        return os.path.splitext(file_path)[1].lower()\n    \n    def _save_metrics(self, metrics: ProcessingMetrics):\n        \"\"\"메트릭 저장\"\"\"\n        if self.config.get('save_metrics', False):\n            metrics_file = self.config.get('metrics_file', 'processing_metrics.jsonl')\n            \n            with open(metrics_file, 'a', encoding='utf-8') as f:\n                json.dump(metrics.to_dict(), f, default=str, ensure_ascii=False)\n                f.write('\\n')\n\n# 헬스체크 엔드포인트\nclass HealthChecker:\n    \"\"\"헬스체크 및 상태 모니터링\"\"\"\n    \n    def __init__(self, processor: ProductionFileProcessor):\n        self.processor = processor\n        self.last_check = datetime.now()\n        self.status = \"healthy\"\n    \n    def check_health(self) -> Dict[str, Any]:\n        \"\"\"시스템 헬스체크\"\"\"\n        health_status = {\n            \"status\": \"healthy\",\n            \"timestamp\": datetime.now().isoformat(),\n            \"checks\": {}\n        }\n        \n        # 디스크 공간 체크\n        disk_status = self._check_disk_space()\n        health_status[\"checks\"][\"disk_space\"] = disk_status\n        \n        # 메모리 사용량 체크\n        memory_status = self._check_memory_usage()\n        health_status[\"checks\"][\"memory\"] = memory_status\n        \n        # 처리 큐 체크\n        queue_status = self._check_processing_queue()\n        health_status[\"checks\"][\"processing_queue\"] = queue_status\n        \n        # 전체 상태 결정\n        if any(check[\"status\"] == \"unhealthy\" for check in health_status[\"checks\"].values()):\n            health_status[\"status\"] = \"unhealthy\"\n        elif any(check[\"status\"] == \"warning\" for check in health_status[\"checks\"].values()):\n            health_status[\"status\"] = \"warning\"\n        \n        self.last_check = datetime.now()\n        self.status = health_status[\"status\"]\n        \n        return health_status\n    \n    def _check_disk_space(self) -> Dict[str, Any]:\n        \"\"\"디스크 공간 체크\"\"\"\n        import shutil\n        \n        try:\n            total, used, free = shutil.disk_usage(\"/\")\n            free_percent = (free / total) * 100\n            \n            if free_percent < 5:\n                return {\"status\": \"unhealthy\", \"message\": f\"디스크 공간 부족: {free_percent:.1f}%\"}\n            elif free_percent < 15:\n                return {\"status\": \"warning\", \"message\": f\"디스크 공간 부족 경고: {free_percent:.1f}%\"}\n            else:\n                return {\"status\": \"healthy\", \"free_space_percent\": free_percent}\n        except Exception as e:\n            return {\"status\": \"unhealthy\", \"message\": f\"디스크 체크 실패: {e}\"}\n    \n    def _check_memory_usage(self) -> Dict[str, Any]:\n        \"\"\"메모리 사용량 체크\"\"\"\n        import psutil\n        \n        try:\n            memory = psutil.virtual_memory()\n            used_percent = memory.percent\n            \n            if used_percent > 90:\n                return {\"status\": \"unhealthy\", \"message\": f\"메모리 사용량 높음: {used_percent:.1f}%\"}\n            elif used_percent > 80:\n                return {\"status\": \"warning\", \"message\": f\"메모리 사용량 경고: {used_percent:.1f}%\"}\n            else:\n                return {\"status\": \"healthy\", \"memory_usage_percent\": used_percent}\n        except Exception as e:\n            return {\"status\": \"unknown\", \"message\": f\"메모리 체크 실패: {e}\"}\n    \n    def _check_processing_queue(self) -> Dict[str, Any]:\n        \"\"\"처리 큐 상태 체크\"\"\"\n        try:\n            # 현재 처리 중인 파일 수 확인 (실제 구현에서는 큐 시스템 연동)\n            active_count = active_processing_gauge._value._value\n            \n            if active_count > 100:\n                return {\"status\": \"warning\", \"message\": f\"처리 큐 적체: {active_count}개\"}\n            else:\n                return {\"status\": \"healthy\", \"active_processing_count\": active_count}\n        except Exception as e:\n            return {\"status\": \"unknown\", \"message\": f\"큐 체크 실패: {e}\"}\n\n# 알림 시스템\nclass AlertManager:\n    \"\"\"알림 관리자\"\"\"\n    \n    def __init__(self, config: Dict[str, Any]):\n        self.config = config\n        self.alert_history = []\n    \n    def send_alert(self, alert_type: str, message: str, severity: str = \"warning\"):\n        \"\"\"알림 발송\"\"\"\n        alert = {\n            \"timestamp\": datetime.now().isoformat(),\n            \"type\": alert_type,\n            \"message\": message,\n            \"severity\": severity\n        }\n        \n        self.alert_history.append(alert)\n        \n        # 이메일/슬랙 등으로 실제 알림 발송 (구현 필요)\n        if self.config.get('enable_email_alerts', False):\n            self._send_email_alert(alert)\n        \n        if self.config.get('enable_slack_alerts', False):\n            self._send_slack_alert(alert)\n        \n        print(f\"🚨 알림: [{severity.upper()}] {alert_type} - {message}\")\n    \n    def _send_email_alert(self, alert: Dict[str, Any]):\n        \"\"\"이메일 알림 (구현 예시)\"\"\"\n        # 실제로는 SMTP 라이브러리 사용\n        pass\n    \n    def _send_slack_alert(self, alert: Dict[str, Any]):\n        \"\"\"슬랙 알림 (구현 예시)\"\"\"\n        # 실제로는 슬랙 API 사용\n        pass\n\n# 통합 모니터링 시스템\nclass FileProcessingMonitor:\n    \"\"\"파일 처리 모니터링 시스템\"\"\"\n    \n    def __init__(self, config: Dict[str, Any]):\n        self.config = config\n        self.processor = ProductionFileProcessor(config)\n        self.health_checker = HealthChecker(self.processor)\n        self.alert_manager = AlertManager(config)\n        \n    def start_monitoring(self):\n        \"\"\"모니터링 시작\"\"\"\n        import threading\n        import time\n        \n        def monitor_loop():\n            while True:\n                try:\n                    health = self.health_checker.check_health()\n                    \n                    if health[\"status\"] == \"unhealthy\":\n                        self.alert_manager.send_alert(\n                            \"system_health\",\n                            f\"시스템 상태 불량: {health}\",\n                            \"critical\"\n                        )\n                    elif health[\"status\"] == \"warning\":\n                        self.alert_manager.send_alert(\n                            \"system_health\",\n                            f\"시스템 경고: {health}\",\n                            \"warning\"\n                        )\n                    \n                    time.sleep(self.config.get('health_check_interval', 60))\n                    \n                except Exception as e:\n                    self.alert_manager.send_alert(\n                        \"monitoring_error\",\n                        f\"모니터링 오류: {e}\",\n                        \"error\"\n                    )\n                    time.sleep(10)  # 오류 시 짧은 대기\n        \n        monitor_thread = threading.Thread(target=monitor_loop, daemon=True)\n        monitor_thread.start()\n        \n        print(\"📊 파일 처리 모니터링 시작\")\n\n# 사용 예\nif __name__ == \"__main__\":\n    config = {\n        'log_level': 'INFO',\n        'enable_metrics': True,\n        'metrics_port': 8000,\n        'save_metrics': True,\n        'health_check_interval': 30,\n        'enable_email_alerts': False,\n        'enable_slack_alerts': False\n    }\n    \n    # 모니터링 시스템 시작\n    monitor = FileProcessingMonitor(config)\n    monitor.start_monitoring()\n    \n    # 파일 처리 예시\n    with monitor.processor.processing_context('example.csv') as metrics:\n        # 실제 파일 처리 로직\n        time.sleep(2)  # 처리 시뮬레이션\n        metrics.records_processed = 1000\n    \n    # 헬스체크 실행\n    health_status = monitor.health_checker.check_health()\n    print(f\"시스템 상태: {health_status['status']}\")\n```\n\n## 2. 운영 체크리스트\n\n### 🔧 **배포 전 점검**\n- [ ] 부하 테스트 완료\n- [ ] 보안 취약점 점검\n- [ ] 백업/복구 프로세스 테스트\n- [ ] 모니터링 대시보드 구성\n- [ ] 알림 규칙 설정\n- [ ] 문서화 완료\n\n### 📋 **운영 중 점검**\n- [ ] 일일 처리량 모니터링\n- [ ] 오류율 추적\n- [ ] 시스템 리소스 사용량 점검\n- [ ] 로그 분석\n- [ ] 성능 트렌드 분석\n\n### 🚨 **장애 대응**\n- [ ] 장애 감지 자동화\n- [ ] 에스컬레이션 프로세스\n- [ ] 롤백 계획\n- [ ] 사후 분석 (Post-mortem)\n\n이러한 종합적인 접근을 통해 안정적이고 확장 가능한 프로덕션 파일 처리 시스템을 구축할 수 있습니다.",
+            "difficulty": "expert"
+        }
+    ]
+}

@@ -4,18 +4,70 @@
 
 ### 🎯 전체 진행 상황
 - **프로젝트 시작일**: 2025년 05월
-- **현재 상태**: 중급 튜토리얼 작성 진행 중 (Chapter 10 완료)
-- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-10 완료 (71.4%)
+- **현재 상태**: 중급 튜토리얼 작성 진행 중 (Chapter 12 완료)
+- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-12 완료 (78.6%)
 
 ---
 
 ## 📝 작업 로그
 
+### 2025-05-25
+
+#### ✅ Chapter 12: 데이터베이스 연동 (중급 과정) 완료 (2025-05-25 00:40)
+- **작업 내용**:
+  - 중급 Chapter 12 마크다운 튜토리얼 작성 완료
+    - SQLite3 기본 사용법 (데이터베이스 기초 개념, 테이블 생성, 샘플 데이터 삽입)
+    - 기본 CRUD 연산 (EmployeeDatabase 클래스, 직원 관리 시스템)
+    - 고급 쿼리와 집계 함수 (부서별 통계, 프로젝트 진행 현황, 예산 분석)
+    - 데이터베이스 트랜잭션과 에러 처리 (TransactionManager, 연결 풀링, 성능 최적화)
+    - ORM과 SQLAlchemy 기초 (개념 설명, 모델 정의 시뮬레이션, 간단한 ORM 패턴 구현)
+    - NoSQL 데이터베이스 기초 (MongoDB 스타일 DocumentDatabase 구현, NoSQL vs SQL 비교)
+    - 데이터베이스 설계 패턴과 모범 사례 (계층 구조, 이력 관리, 태그 시스템, 설정 관리)
+    - 성능 최적화와 모니터링 (쿼리 성능 분석, 리소스 모니터링)
+    - 6개 주요 섹션과 실무 중심 포괄적 내용으로 SQLite3부터 NoSQL까지 전체 데이터베이스 생태계 다룸
+    - 4개 연습 문제 (도서관 관리 시스템, ORM 패턴 구현, NoSQL 문서 데이터베이스, 성능 모니터링 시스템)
+    - 실무에서 사용되는 다양한 패턴과 최적화 기법 제공
+  - Chapter 12 퀴즈 JSON 파일 생성 (42문제 - 기본부터 전문가 수준까지 포괄)
+    - 다양한 문제 유형 (객관식, 코딩, 참/거짓, 빈칸 채우기, 디자인 패턴, 성능, 디버깅, 아키텍처, 종합, 성찰, 통합)
+    - SQLite3 기초, CRUD 연산, 트랜잭션, ORM, NoSQL, 설계 패턴, 성능 최적화 등 전체 내용 포괄
+    - 합격점 70%, 제한시간 55분
+    - expert 난이도 문제로 데이터베이스 샤딩, 이커머스 아키텍처, 미래 트렌드, 레거시 마이그레이션 등 포함
+
+- **파일 생성/수정**:
+  - `tutorials/intermediate/chapter12_database_integration.md` (새로 생성)
+  - `quizzes/intermediate/chapter12_quiz.json` (새로 생성)
+
 ### 2025-05-24
 
-#### ✅ Chapter 10: 멀티스레딩과 비동기 처리 기초 (중급 과정) 완료 (2025-05-24 22:35)
+#### ✅ Chapter 11: 테스팅과 디버깅 (중급 과정) 완료 (2025-05-24 22:35)
+- **작업 내용**:
+  - 중급 Chapter 11 마크다운 튜토리얼 작성 완료
+    - 중급 Chapter 11 마크다운 튜토리얼 작성 완료
+    - 테스팅 기본 개념 (중요성, 종류, 원칙, 모범 사례, AAA 패턴, FIRST 원칙)
+    - unittest 모듈 활용 (기본 사용법, setUp/tearDown, assertion 메서드, 모킹과 패치)
+    - pytest 프레임워크 (장점, 픽스처 시스템, 매개변수화, 플러그인 생태계)
+    - 디버깅 기법과 도구 (print/logging/assertion/traceback, 프로파일링, 컨텍스트 매니저)
+    - 테스트 주도 개발 TDD (Red-Green-Refactor 사이클, 실습 예제, WordCounter 개발)
+    - 코드 커버리지와 품질 측정 (Line/Branch Coverage, 순환 복잡도, 리팩토링)
+    - 지속적 통합과 자동화 (CI/CD 파이프라인, 자동화 도구, 품질 게이트)
+    - 실용적인 활용 예제 (계산기 TDD 개발, 배송비 리팩토링, CI 파이프라인 시뮬레이션)
+    - 8개 주요 섹션과 실무 중심 고급 패턴 제공
+    - 4개 연습 문제 (테스트 스위트, TDD 개발, 성능 최적화, 통합 테스트)
+    - BankAccount, WordCounter, CalculatorTDD, ShippingCalculator 등 실전 클래스 예제
+  - Chapter 11 퀴즈 JSON 파일 생성 (40문제 - 기본부터 전문가 수준까지 포괄)
+    - 다양한 문제 유형 (객관식, 코딩, 참/거짓, 빈칸 채우기, 디자인 패턴, 성능, 디버깅, 종합, 성찰)
+    - 테스팅 개념, unittest/pytest, TDD, 디버깅, 커버리지, CI/CD, 품질 관리 등 전체 내용 포괄
+    - 합격점 70%, 제한시간 50분
+    - expert 난이도 문제로 마이크로서비스 테스트, Legacy 코드 개선, AI/ML 도구 활용 등 포함
+
+- **파일 생성/수정**:
+  - `tutorials/intermediate/chapter11_testing_debugging.md` (새로 생성)
+  - `quizzes/intermediate/chapter11_quiz.json` (새로 생성)
+
+#### ✅ Chapter 10: 멀티스레딩과 비동기 처리 기초 (중급 과정) 완료 (2025-05-24 22:28)
 - **작업 내용**:
   - 중급 Chapter 10 마크다운 튜토리얼 작성 완료
+    - 중급 Chapter 10 마크다운 튜토리얼 작성 완료
     - 동시성과 병렬성 기초 (개념 이해, Python의 선택 기준, 순차 실행 비교)
     - Python의 GIL (Global Interpreter Lock) 영향과 특성 이해
     - 스레딩 기초 (기본 스레딩, 커스텀 스레드 클래스, 스레드 풀 활용)
@@ -188,194 +240,6 @@
   - `tutorials/intermediate/chapter01_advanced_functions.md` (새로 생성)
   - `quizzes/intermediate/chapter01_advanced_functions.json` (새로 생성)
 
-#### ✅ Chapter 11: 에러 처리와 디버깅 완료 (2025-05-24 14:55)
-#### ✅ Chapter 11: 에러 처리와 디버깅 완료 (2025-05-24 14:55)
-- **작업 내용**:
-  - Chapter 11 마크다운 튜토리얼 작성 완료
-    - 에러와 예외의 기본 개념 (문법 에러 vs 런타임 에러, 예외 처리 필요성)
-    - try-except 문 기본 사용법 (기본 구조, 구체적 예외 처리, 여러 예외 처리)
-    - else와 finally 절 활용법 (조건부 실행, 리소스 정리)
-    - 사용자 정의 예외 (커스텀 예외 클래스, 예외 체인과 컨텍스트)
-    - 디버깅 기법 (print, assert, 로깅을 활용한 디버깅)
-    - 실용적인 에러 처리 패턴 (입력 검증, 파일 처리, 네트워크 요청)
-    - 실용적인 예제 6개 (안전한 계산기, 리소스 관리, 네트워크 요청, API 클라이언트 등)
-    - 연습 문제 4개 (입력 처리기, 로그 분석기, API 클라이언트, 데이터 검증 시스템)
-  - Chapter 11 퀴즈 JSON 파일 생성 (32문제 - 기본부터 고급까지 포괄)
-
-- **파일 생성/수정**:
-  - `tutorials/beginner/chapter11_error_handling_debugging.md` (새로 생성)
-  - `quizzes/beginner/chapter11_error_handling_debugging.json` (새로 생성)
-
-#### ✅ Chapter 10: 함수 기초 완료
-- **작업 내용**:
-  - Chapter 10 마크다운 튜토리얼 작성 완료
-    - 함수의 기본 개념과 필요성 (코드 재사용성, 가독성, 모듈화, 추상화)
-    - 함수 정의와 호출 방법 (def 키워드, docstring, 매개변수, 반환값)
-    - 매개변수와 인수의 차이점과 활용법 (위치/키워드 인수, 기본값 매개변수)
-    - 가변 인수 활용 (*args, **kwargs, 언패킹)
-    - 변수의 스코프 이해 (지역변수, 전역변수, global, nonlocal 키워드)
-    - 람다 함수 기본 개념과 활용 (정렬, 필터링, map 함수와 조합)
-    - 실용적인 함수 예제 3개 (계산기 함수들, 문자열 처리 함수들, 데이터 분석 함수들)
-    - 연습 문제 4개 (온도 변환기, 비밀번호 검증기, 피보나치 생성기, 텍스트 암호화기)
-  - Chapter 10 퀴즈 JSON 파일 생성 (30문제 - 기본부터 고급까지 포괄)
-
-- **파일 생성/수정**:
-  - `tutorials/beginner/chapter10_functions_basics.md` (새로 생성)
-  - `quizzes/beginner/chapter10_functions_basics.json` (새로 생성)
-
-#### ✅ Chapter 9: 딕셔너리와 집합 완료
-- **작업 내용**:
-  - Chapter 9 마크다운 튜토리얼 작성 완료
-    - 딕셔너리의 기본 개념과 특징 (키-값 쌍, 변경 가능, Python 3.7+ 순서 보장)
-    - 딕셔너리 접근과 수정 (안전한 접근, 업데이트, 병합)
-    - 딕셔너리 메서드 총정리 (keys(), values(), items(), get(), pop(), setdefault() 등)
-    - 집합의 기본 개념과 특징 (중복 없음, 순서 없음, 해시 가능 객체만)
-    - 집합 연산 (교집합, 합집합, 차집합, 대칭차집합, 부분집합 관계)
-    - 딕셔너리와 집합 컴프리헨션 (조건부, 변환 활용)
-    - 실용적인 예제 3개 (단어 빈도 분석기, 학생 성적 관리 시스템, 재고 관리 시스템)
-    - 연습 문제 4개 (전화번호부, 중복 단어 찾기, 투표 시스템, 친구 관계 분석)
-  - Chapter 9 퀴즈 JSON 파일 생성 (28문제 - 기본부터 고급까지 포괄)
-
-- **파일 생성/수정**:
-  - `tutorials/beginner/chapter09_dictionaries_sets.md` (새로 생성)
-  - `quizzes/beginner/chapter09_dictionaries_sets.json` (새로 생성)
-
-#### ✅ Chapter 8: 리스트와 튜플 완료
-- **작업 내용**:
-  - Chapter 8 마크다운 튜토리얼 작성 완료
-    - 리스트의 기본 개념과 특징 (변경 가능, 순서 있음, 중복 허용)
-    - 리스트 인덱싱과 슬라이싱 (양수/음수 인덱스, step 활용)
-    - 리스트 메서드 총정리 (추가, 제거, 검색, 정렬 관련)
-    - 튜플의 기본 개념과 특징 (변경 불가능, 빠른 접근 속도)
-    - 리스트 vs 튜플 비교 및 사용 시나리오
-    - 중첩 리스트와 튜플 (2차원 구조, 복합 데이터)
-    - 고급 활용: 언패킹, 리스트 컴프리헨션, 얕은/깊은 복사
-    - 실용적인 예제 3개 (성적 관리 시스템, 장바구니 시스템, 텍스트 분석기)
-    - 연습 문제 4개 (통계 계산기, 행렬 연산기, 할일 관리자, 중복 제거기)
-  - Chapter 8 퀴즈 JSON 파일 생성 (25문제 - 기본부터 고급까지 포괄)
-
-- **파일 생성/수정**:
-  - `tutorials/beginner/chapter08_lists_tuples.md` (새로 생성)
-  - `quizzes/beginner/chapter08_lists_tuples.json` (새로 생성)
-
-#### ✅ Chapter 7: 반복문 완료
-- **작업 내용**:
-  - Chapter 7 마크다운 튜토리얼 작성 완료
-    - 반복문의 기본 개념과 종류 (for문, while문)
-    - range() 함수를 활용한 다양한 반복 패턴
-    - 리스트, 문자열, 딕셔너리 등 다양한 객체 순회
-    - break와 continue를 사용한 반복문 제어
-    - 중첩 반복문을 활용한 2차원 데이터 처리와 패턴 생성
-    - for문과 while문 선택 기준과 활용 패턴
-    - 실용적인 예제 3개 (텍스트 분석기, 소수 찾기, 학생 성적 관리 시스템)
-    - 고급 기법 (for-else, 리스트 컴프리헨션)
-    - 연습 문제 4개 (피보나치, 다이아몬드 패턴, 계산기, 단어 빈도 분석)
-  - Chapter 7 퀴즈 JSON 파일 생성 (22문제 - 객관식, 코딩, 실습, 분석 포함)
-
-- **파일 생성/수정**:
-  - `tutorials/beginner/chapter07_loops.md` (새로 생성)
-  - `quizzes/beginner/chapter07_loops.json` (새로 생성)
-
-#### ✅ Chapter 6: 조건문 완료
-- **작업 내용**:
-  - Chapter 6 마크다운 튜토리얼 작성 완료
-    - 조건문의 기본 개념과 구조 (if, elif, else)
-    - 다양한 조건 표현식과 활용법
-    - 중첩 조건문과 복잡한 로직 구현
-    - 논리 연산자와 조건문의 결합 (and, or, not)
-    - 조건문 활용 패턴 (범위 확인, 타입 확인, 유효성 검사)
-    - 삼항 연산자 사용법과 주의사항
-    - 실용적인 예제 3개 (숫자 맞추기 게임, ATM 시스템, 학점 계산기)
-    - 연습 문제 3개 (윤년 판별기, 주차 요금 계산기, 쇼핑몰 할인 시스템)
-  - Chapter 6 퀴즈 JSON 파일 생성 (20문제 - 객관식, 코딩, 실습, 분석 포함)
-
-- **파일 생성/수정**:
-  - `tutorials/beginner/chapter06_conditional_statements.md` (새로 생성)
-  - `quizzes/beginner/chapter06_conditional_statements.json` (새로 생성)
-#### ✅ Chapter 5: 입력과 출력 완료
-- **작업 내용**:
-  - Chapter 5 마크다운 튜토리얼 작성 완료
-    - print() 함수 활용법 (기본 출력, 여러 값 출력, sep/end 매개변수, 특수 문자)
-    - input() 함수 사용법 (기본 입력, 타입 변환, 주의사항)
-    - 출력 포맷팅 (f-string, format() 메서드, % 포맷팅, 문자열 연결)
-    - 실용적인 예제 4개 (간단한 계산기, 사용자 정보 수집, 온도 변환기, 쇼핑 목록)
-    - 팁과 주의사항 (사용자 친화적 프로그램, 입력 검증, 여러 줄 입력)
-    - 연습 문제 3개 (개인 정보 카드, BMI 계산기, 영수증 만들기)
-  - Chapter 5 퀴즈 JSON 파일 생성 (15문제 - 객관식, 코딩, 실습 포함)
-
-- **파일 생성/수정**:
-  - `tutorials/beginner/chapter05_input_output.md` (새로 생성)
-  - `quizzes/beginner/chapter05_input_output.json` (새로 생성)
-#### ✅ Chapter 4: 연산자와 표현식 완료
-- **작업 내용**:
-  - Chapter 4 마크다운 튜토리얼 작성 완료
-    - 산술 연산자 (기본 연산, 나눗셈 연산자 차이, 거듭제곱과 루트)
-    - 비교 연산자 (기본 비교, 연쇄 비교, 특수 상황, 활용 예제)
-    - 논리 연산자 (기본 개념, 단축 평가, 복합 논리 표현식, 드모르간 법칙)
-    - 할당 연산자 (기본/복합 할당, 리스트 활용, 월리스 연산자, 활용 패턴)
-    - 연산자 우선순위와 결합성 (우선순위 표, 헷갈리기 쉬운 예제, 결합성)
-    - 비트 연산자 (기본 연산, 실용적 활용, 비트 마스크)
-    - 실습 예제 3개 (계산기, 점수 등급 시스템, 시간 계산기)
-    - 실습 과제 3개 (학점 계산기, 단위 변환기, 비트 플래그 권한 시스템)
-  - Chapter 4 퀴즈 JSON 파일 생성 (25문제 + 실습 과제 5개)
-
-- **파일 생성/수정**:
-  - `tutorials/beginner/chapter04_operators_expressions.md` (새로 생성)
-  - `quizzes/beginner/chapter04_quiz.json` (새로 생성)
-
-#### ✅ Chapter 3: 문자열 다루기 완료
-- **작업 내용**:
-  - Chapter 3 마크다운 튜토리얼 작성 완료
-    - 문자열 인덱싱과 슬라이싱 (양수/음수 인덱스, step 활용)
-    - 문자열 메서드 총정리 (대소문자, 공백처리, 검색, 분할/결합, 치환)
-    - 문자열 포맷팅 (f-string, format(), % 포맷팅)
-    - 이스케이프 문자와 Raw 문자열
-    - 문자열 검증 메서드 (isdigit, isalpha, isalnum 등)
-    - 실용적인 예제 (문자열 분석기, 텍스트 에디터 기능)
-    - 실습 과제 3개 포함 (단어 게임, 이름 포맷터, 시저 암호)
-  - Chapter 3 퀴즈 JSON 파일 생성 (22문제 + 실습 과제 4개)
-
-- **파일 생성/수정**:
-  - `tutorials/beginner/chapter03_string_handling.md` (새로 생성)
-  - `quizzes/beginner/chapter03_quiz.json` (새로 생성)
-
-#### ✅ Chapter 2: 변수와 기본 데이터 타입 완료
-- **작업 내용**:
-  - Chapter 2 마크다운 튜토리얼 작성 완료
-    - 변수의 개념과 할당 방법
-    - Python 기본 데이터 타입 (int, float, str, bool)
-    - 타입 확인과 변환 (type, isinstance, int, float, str)
-    - 변수 명명 규칙과 PEP 8 스타일 가이드
-    - 동적 타이핑의 개념과 장단점
-    - 상수와 None 타입
-    - 일반적인 오류와 해결법
-    - 실습 예제 2개 및 과제 3개 포함
-  - Chapter 2 퀴즈 JSON 파일 생성 (18문제 + 실습 과제 3개)
-
-- **파일 생성/수정**:
-  - `tutorials/beginner/chapter02_variables_and_datatypes.md` (새로 생성)
-  - `quizzes/beginner/chapter02_quiz.json` (새로 생성)
-
-#### ✅ Chapter 1: Python 소개와 개발 환경 설정 완료
-- **작업 내용**:
-  - Jupyter 노트북에서 마크다운 형태로 튜토리얼 형식 변경
-  - `.cursorrules` 및 `README.md` 파일 업데이트 (Markdown 기반으로 수정)
-  - Chapter 1 마크다운 튜토리얼 작성 완료
-    - Python 역사와 특징 설명
-    - 설치 방법 및 환경 설정 가이드
-    - 대화형 모드와 스크립트 실행 방법
-    - 개발 환경 설정 (VS Code 권장)
-    - 첫 번째 프로그램 작성 실습
-    - 일반적인 오류와 해결법
-    - 실습 과제 2개 포함
-  - Chapter 1 퀴즈 JSON 파일 생성 (15문제 + 실습 과제 2개)
-
-- **파일 생성/수정**:
-  - `tutorials/beginner/chapter01_python_introduction.md` (새로 생성)
-  - `quizzes/beginner/chapter01_quiz.json` (새로 생성)
-  - `.cursorrules` (Jupyter → Markdown으로 수정)
-  - `README.md` (설명 업데이트)
-
 #### ✅ 프로젝트 초기 설정 완료
 - **작업 내용**: 
   - 프로젝트 기본 구조 생성
@@ -409,20 +273,19 @@
 - [ ] Chapter 11: 에러 처리와 디버깅
 - [ ] Chapter 12: 파일 입출력
 
-### 🟡 중급 (Intermediate) - 5/14 완료
+### 🟡 중급 (Intermediate) - 11/14 완료
 - [x] Chapter 1: 고급 함수 기법 ✅ 2024-05-24 완료
 - [x] Chapter 2: 파일 처리와 데이터 형식 ✅ 2025-05-24 완료
 - [x] Chapter 3: 정규표현식 (Regular Expressions) ✅ 2025-05-24 완료
 - [x] Chapter 4: 객체지향 프로그래밍 기초 ✅ 2025-05-24 완료
 - [x] Chapter 5: 상속과 다형성 ✅ 2025-05-24 완료
-- [ ] Chapter 5: 상속과 다형성
-- [ ] Chapter 6: 특수 메서드 (Magic Methods)
-- [ ] Chapter 7: 모듈과 패키지
+- [x] Chapter 6: 특수 메서드 (Magic Methods) ✅ 2025-05-24 완료
+- [x] Chapter 7: 모듈과 패키지 ✅ 2025-05-24 완료
 - [ ] Chapter 8: 예외 처리 고급
-- [ ] Chapter 9: 이터레이터와 제너레이터
-- [ ] Chapter 10: 멀티스레딩과 비동기 처리 기초
-- [ ] Chapter 11: 테스팅과 디버깅
-- [ ] Chapter 12: 데이터베이스 연동
+- [x] Chapter 9: 이터레이터와 제너레이터 ✅ 2025-05-24 완료
+- [x] Chapter 10: 멀티스레딩과 비동기 처리 기초 ✅ 2025-05-24 완료
+- [x] Chapter 11: 테스팅과 디버깅 ✅ 2025-05-25 완료
+- [x] Chapter 12: 데이터베이스 연동 ✅ 2025-05-25 완료
 - [ ] Chapter 13: 웹 스크래핑과 API 활용
 - [ ] Chapter 14: GUI 프로그래밍 기초
 

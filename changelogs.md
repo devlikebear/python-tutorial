@@ -4,14 +4,33 @@
 
 ### 🎯 전체 진행 상황
 - **프로젝트 시작일**: 2025년 05월
-- **현재 상태**: 중급 튜토리얼 작성 진행 중 (Chapter 5 완료)
-- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-5 완료 (35.7%)
+- **현재 상태**: 중급 튜토리얼 작성 진행 중 (Chapter 6 완료)
+- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-6 완료 (42.9%)
 
 ---
 
 ## 📝 작업 로그
 
 ### 2025-05-24
+
+#### ✅ Chapter 6: 특수 메서드 (Magic Methods) (중급 과정) 완료 (2025-05-24 21:59)
+- **작업 내용**:
+  - 중급 Chapter 6 마크다운 튜토리얼 작성 완료
+    - 특수 메서드 개요와 분류 (객체 표현, 연산자, 컨테이너, 반복자 등)
+    - 객체 표현 메서드 (__str__, __repr__, __format__)와 사용자 친화적 출력
+    - 산술 연산자 오버로딩 (__add__, __sub__, __mul__, __truediv__ 등)
+    - 비교 연산자 오버로딩 (__eq__, __lt__, __le__, __gt__ 등)
+    - 컨테이너 프로토콜 구현 (__getitem__, __setitem__, __contains__, __len__ 등)
+    - 컨텍스트 매니저 구현 (__enter__, __exit__)과 리소스 관리
+    - 반복자 프로토콜 (__iter__, __next__)과 커스텀 반복 가능 객체
+    - Vector, Person, Book, Student, CustomList, Timer, NumberRange, FibonacciIterator 클래스 예제
+    - 7개 종합 연습 문제 (복소수 클래스, 온도 클래스, 매트릭스 클래스 등)
+    - 실무에서 자주 사용되는 패턴과 모범 사례 제공
+  - Chapter 6 퀴즈 JSON 파일 생성 (30문제 - 다양한 문제 유형으로 전체 내용 포괄)
+
+- **파일 생성/수정**:
+  - `tutorials/intermediate/chapter06_magic_methods.md` (새로 생성)
+  - `quizzes/intermediate/chapter06_quiz.json` (새로 생성)
 
 #### ✅ Chapter 5: 상속과 다형성 (중급 과정) 완료 (2025-05-24 21:40)
 - **작업 내용**:

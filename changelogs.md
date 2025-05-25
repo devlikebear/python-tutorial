@@ -4,14 +4,38 @@
 
 ### 🎯 전체 진행 상황
 - **프로젝트 시작일**: 2025년 05월
-- **현재 상태**: 고급 튜토리얼 시작 (6.7%)
-- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-14 완료 (100%), 고급 Chapter 1 완료 (6.7%)
+- **현재 상태**: 고급 튜토리얼 진행 중 (13.3%)
+- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-14 완료 (100%), 고급 Chapter 1-2 완료 (13.3%)
 
 ---
 
 ## 📝 작업 로그
 
 ### 2025-05-25
+
+#### ✅ Chapter 2: 메타클래스와 디스크립터 (고급 과정) 완료 (2025-05-25 12:12)
+- **작업 내용**:
+  - 고급 Chapter 2 마크다운 튜토리얼 작성 완료
+    - 메타클래스 기초와 Python의 객체 모델 (클래스는 객체라는 개념, 커스텀 메타클래스 구현)
+    - 디스크립터 프로토콜과 속성 접근 제어 (기본 디스크립터, 고급 패턴, 성능 최적화)  
+    - property와 고급 속성 관리 (property 심화, 동적 프로퍼티, 계산된 프로퍼티)
+    - __new__ vs __init__ 메서드 심화 (객체 생성 과정, 팩토리 패턴, 싱글톤, 객체 풀링)
+    - 동적 클래스 생성과 수정 (런타임 클래스 생성, 클래스 수정, 플러그인 시스템)
+    - 6개 주요 섹션과 전문가급 메타프로그래밍 기법 제공
+    - 4개 연습 문제 (ORM 메타클래스, 스마트 프로퍼티, 동적 API, 프레임워크 설계)
+    - ClassInspector, SingletonMeta, ValidatedMeta, TypedDescriptor, SmartProperty, ClassBuilder 등 실전 클래스 예제
+  - Chapter 2 퀴즈 JSON 파일 생성 (20문제 - 기본부터 전문가 수준까지 포괄)
+    - 다양한 문제 유형 (객관식, 참/거짓, 빈칸 채우기, 코드 분석)
+    - 메타클래스 기초, 디스크립터 프로토콜, property 고급 활용, 동적 클래스 생성 등 전체 내용 포괄
+    - 합격점 70%, 제한시간 35분
+    - 전문가 난이도 문제로 플러그인 시스템 설계, 고급 프레임워크 패턴 등 포함
+
+- **파일 생성/수정**:
+  - `tutorials/advanced/chapter02_metaclasses_descriptors.md` (새로 생성)
+  - `quizzes/advanced/chapter02_quiz.json` (새로 생성)
+
+- **Git 커밋**: "Add Chapter 2: Metaclasses and Descriptors"
+- **고급 과정 진행**: 2/15 챕터 완료 (13.3%)
 
 #### ✅ Chapter 1: 파이썬 내부 구조와 메모리 관리 (고급 과정) 완료 (2025-05-25 11:47)
 - **작업 내용**:
@@ -434,3 +458,38 @@
 - 마크다운 형태로 상호작용 가능한 학습 환경 제공
 - 실무 중심의 예제와 프로젝트 포함
 - 단계별 난이도 조절과 연결성 유지 
+
+## 2025-05-25 12:52:45 (Asia/Seoul) - 고급 Chapter 3 완료
+### 추가
+- **고급 Chapter 3: 고급 데코레이터와 컨텍스트 매니저** (`tutorials/advanced/chapter03_advanced_decorators_context_managers.md`)
+  - 클래스 기반 데코레이터 (CallCounter, TimingDecorator, RetryDecorator)
+  - 매개변수가 있는 클래스 데코레이터 (CacheDecorator, ValidationDecorator, RateLimitDecorator)
+  - functools.wraps와 메타데이터 보존 기법
+  - 고급 메타데이터 조작 (시그니처 수정, 독스트링 수정, 속성 주입)
+  - 커스텀 컨텍스트 매니저 (DatabaseTransaction, ResourceManager, TimingContext)
+  - contextlib 모듈 고급 활용 (@contextmanager, ExitStack, suppress, redirect)
+  - 중첩 컨텍스트 매니저 패턴 (CompositeContextManager)
+  - 비동기 컨텍스트 매니저 (AsyncResourceManager, AsyncCompositeManager)
+  - 실무 성능 최적화 패턴 (PerformanceDecorator, 배치 처리, 리소스 풀링)
+  - 8개 학습 목표, 6개 주요 섹션, 4개 연습 문제 포함
+
+- **고급 Chapter 3 퀴즈** (`quizzes/advanced/chapter03_quiz.json`)
+  - 25문제 (기본 6문제, 중급 7문제, 고급 6문제, 전문가 6문제)
+  - 클래스 기반 데코레이터, functools.wraps, 컨텍스트 매니저 심화
+  - 비동기 컨텍스트 매니저, 성능 최적화 패턴
+  - 코드 분석, 빈칸 채우기, 참/거짓 문제 포함
+  - 상세한 해설과 실무 중심 문제
+
+### 기술적 세부 사항
+- 고급 캐싱 시스템 (LRU, TTL 지원)
+- 분산 락과 트랜잭션 매니저 패턴
+- 메타데이터 완전 보존 기법
+- 동적 시그니처 수정 기술
+- 스레드 안전성 고려 설계
+- 메모리 효율적 배치 처리
+- 비동기 리소스 관리 패턴
+
+### 프로젝트 진행 상황
+- **고급 과정**: 3/15 챕터 완료 (20.0%)
+- **총 진행률**: 32/45 챕터 완료 (71.1%)
+- Git 커밋: `4775485` - "Add Chapter 3: Advanced Decorators and Context Managers" 

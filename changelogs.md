@@ -4,8 +4,8 @@
 
 ### 🎯 전체 진행 상황
 - **프로젝트 시작일**: 2025년 05월
-- **현재 상태**: 중급 튜토리얼 작성 진행 중 (Chapter 8 완료)
-- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-13 + Chapter 8 완료 (92.9%)
+- **현재 상태**: 중급 튜토리얼 완료 (100%)
+- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-14 완료 (100%)
 
 ---
 
@@ -13,9 +13,35 @@
 
 ### 2025-05-25
 
+#### ✅ Chapter 14: GUI 프로그래밍 기초 (중급 과정) 완료 (2025-05-25 11:42)
+- **작업 내용**:
+  - 중급 Chapter 14 마크다운 튜토리얼 작성 완료
+    - tkinter를 활용한 GUI 프로그래밍의 기초부터 고급 기능까지 포괄적 내용
+    - GUI 프로그래밍 기초 (BasicGUIExample, 메인 윈도우 설정, 기본 위젯 생성, 이벤트 처리)
+    - 다양한 위젯 활용 (WidgetShowcase, 입력/표시/선택/컨테이너 위젯, 탭 기반 쇼케이스)
+    - 이벤트 처리와 콜백 (EventHandlingDemo, 마우스/키보드 이벤트, 고급 콜백 패턴, CallbackManager)
+    - 레이아웃 관리 (LayoutDemo, Pack/Grid/Place 매니저, 혼합 레이아웃, 실무 중심 예제)
+    - 고급 GUI 기능 (AdvancedGUIFeatures, 메뉴바/툴바, 대화상자, 상태바, 컨텍스트 메뉴, 키보드 단축키)
+    - 5개 주요 섹션과 전문가급 GUI 애플리케이션 구조 제공
+    - 4개 연습 문제 (계산기, 이미지 뷰어, 텍스트 에디터, 데이터베이스 GUI 클라이언트)
+    - 실무에서 사용되는 MVC 패턴, 사용자 친화적 인터페이스 설계 원칙 적용
+  - Chapter 14 퀴즈 JSON 파일 생성 (42문제 - 기본부터 전문가 수준까지 포괄)
+    - 다양한 문제 유형 (객관식, 코딩, 참/거짓, 빈칸 채우기, 이벤트 처리, 레이아웃, 위젯 속성, 성능, 접근성)
+    - tkinter 기초, 위젯 시스템, 이벤트 기반 프로그래밍, 레이아웃 매니저, 고급 기능 등 전체 내용 포괄
+    - 합격점 70%, 제한시간 55분
+    - 전문가 난이도 문제로 현대적 GUI 프레임워크 대안, 미래 트렌드, 접근성 등 포함
+
+- **파일 생성/수정**:
+  - `tutorials/intermediate/chapter14_gui_programming_basics.md` (새로 생성)
+  - `quizzes/intermediate/chapter14_quiz.json` (새로 생성)
+
+- **Git 커밋**: "Complete Chapter 14: GUI Programming Basics with comprehensive tutorial and quiz"
+- **중급 과정 완료**: 14/14 챕터 완료 (100%)
+
 #### ✅ Chapter 8: 예외 처리 고급 (중급 과정) 완료 (2025-05-25 11:32)
 - **작업 내용**:
   - 중급 Chapter 8 마크다운 튜토리얼 작성 완료
+    - 중급 Chapter 8 마크다운 튜토리얼 작성 완료
     - Python 예외 계층 구조 이해와 예외 분석 시스템 (BaseException, Exception 계층, 예외 타입별 특성)
     - 커스텀 예외 클래스 설계 (ApplicationError, ValidationError, BusinessLogicError, DataAccessError)
     - 예외 체이닝과 원인 추적 (명시적/암시적 체이닝, raise...from 구문, 다계층 예외 처리)
@@ -318,7 +344,7 @@
 - [ ] Chapter 11: 에러 처리와 디버깅
 - [ ] Chapter 12: 파일 입출력
 
-### 🟡 중급 (Intermediate) - 12/14 완료
+### 🟡 중급 (Intermediate) - 14/14 완료
 - [x] Chapter 1: 고급 함수 기법 ✅ 2024-05-24 완료
 - [x] Chapter 2: 파일 처리와 데이터 형식 ✅ 2025-05-24 완료
 - [x] Chapter 3: 정규표현식 (Regular Expressions) ✅ 2025-05-24 완료
@@ -327,12 +353,12 @@
 - [x] Chapter 6: 특수 메서드 (Magic Methods) ✅ 2025-05-24 완료
 - [x] Chapter 7: 모듈과 패키지 ✅ 2025-05-24 완료
 - [x] Chapter 8: 예외 처리 고급 ✅ 2025-05-25 완료
-- [ ] Chapter 9: 이터레이터와 제너레이터
+- [x] Chapter 9: 이터레이터와 제너레이터 ✅ 2025-05-24 완료
 - [x] Chapter 10: 멀티스레딩과 비동기 처리 기초 ✅ 2025-05-24 완료
 - [x] Chapter 11: 테스팅과 디버깅 ✅ 2025-05-25 완료
 - [x] Chapter 12: 데이터베이스 연동 ✅ 2025-05-25 완료
 - [x] Chapter 13: 웹 스크래핑과 API 활용 ✅ 2025-05-25 완료
-- [ ] Chapter 14: GUI 프로그래밍 기초
+- [x] Chapter 14: GUI 프로그래밍 기초 ✅ 2025-05-25 완료
 
 ### 🔴 고급 (Advanced) - 0/15 완료
 - [ ] Chapter 1: 파이썬 내부 구조와 메모리 관리

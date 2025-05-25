@@ -4,14 +4,93 @@
 
 ### 🎯 전체 진행 상황
 - **프로젝트 시작일**: 2025년 05월
-- **현재 상태**: 고급 튜토리얼 진행 중 (13.3%)
-- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-14 완료 (100%), 고급 Chapter 1-2 완료 (13.3%)
+- **현재 상태**: 고급 튜토리얼 진행 중 (33.3%)
+- **완료된 단계**: 초급 Chapter 1-10 완료 (83.3%), 중급 Chapter 1-14 완료 (100%), 고급 Chapter 1-5 완료 (33.3%)
 
 ---
 
 ## 📝 작업 로그
 
 ### 2025-05-25
+
+#### ✅ Chapter 5: 네트워킹과 소켓 프로그래밍 (고급 과정) 완료 (2025-05-25 13:12)
+- **작업 내용**:
+  - 고급 Chapter 5 마크다운 튜토리얼 작성 완료
+    - 소켓 프로그래밍 기초와 고급 패턴 (AdvancedSocket, SocketPool, NetworkMessage, 콜백 시스템)
+    - TCP/UDP 서버-클라이언트 구현 (TCPServer, UDPServer, ThreadPoolExecutor 활용, 멀티스레드 처리)
+    - 비동기 네트워킹과 이벤트 루프 (AsyncTCPServer, AsyncClient, 미들웨어 패턴, correlation_id 기반 요청-응답 매칭)
+    - HTTP 서버와 웹 프로토콜 구현 (HTTPRequest/HTTPResponse, HTTPRouter, AdvancedHTTPServer, 정적 파일 서빙)
+    - 고급 네트워크 패턴 (소켓 풀링, 연결 관리, 에러 처리, 성능 최적화)
+    - 웹 서버 아키텍처 (라우팅 시스템, 미들웨어, CORS, 쿠키 관리, MIME 타입 자동 감지)
+    - 보안 고려사항 (디렉토리 트래버설 방지, 입력 검증, 안전한 헤더 처리)
+    - 4개 주요 섹션과 전문가급 네트워킹 아키텍처 제공
+    - 4개 연습 문제 (고성능 채팅 서버, 분산 메시지 큐, 마이크로서비스 게이트웨이, 네트워크 모니터링 도구)
+    - AdvancedSocket, SocketPool, AsyncTCPServer, HTTPRequest/HTTPResponse 등 실전 클래스 예제
+  - Chapter 5 퀴즈 JSON 파일 생성 (25문제 - 기본부터 전문가 수준까지 포괄)
+    - 다양한 문제 유형 (객관식, 코드 분석, 설계, 성능 분석, 문제 해결, 보안, 아키텍처)
+    - 소켓 프로그래밍, TCP/UDP, 비동기 네트워킹, HTTP 프로토콜, 보안, 분산 시스템 등 전체 내용 포괄
+    - 합격점 70%, 제한시간 35분
+    - 전문가 난이도 문제로 마이크로서비스 통신, 대규모 트래픽 처리, 네트워크 분할 대응, 보안 전략 등 포함
+
+- **파일 생성/수정**:
+  - `tutorials/advanced/chapter05_networking_socket_programming.md` (새로 생성)
+  - `quizzes/advanced/chapter05_quiz.json` (새로 생성)
+
+- **Git 커밋**: "Add Chapter 5: Networking and Socket Programming"
+- **고급 과정 진행**: 5/15 챕터 완료 (33.3%)
+
+#### ✅ Chapter 4: 동시성과 병렬성 심화 (고급 과정) 완료 (2025-05-25 13:08)
+- **작업 내용**:
+  - 고급 Chapter 4 마크다운 튜토리얼 작성 완료
+    - 고급 Chapter 4 마크다운 튜토리얼 작성 완료
+    - 고급 스레딩 패턴과 동기화 프리미티브 (ReadWriteLock, Barrier, CountDownLatch, 고급 동기화 메커니즘)
+    - 스레드 풀 고급 패턴 (PriorityThreadPool, AdaptiveThreadPool, 동적 스케일링, 작업 우선순위 관리)
+    - AsyncIO 심화와 고급 비동기 패턴 (AsyncResourcePool, AsyncCircuitBreaker, AsyncBatcher, 백프레셔 처리)
+    - 비동기 데이터 스트리밍 시스템 (AsyncStreamProcessor, AsyncDataPipeline, 스트림 처리 패턴)
+    - 멀티프로세싱 고급 기법 (고급 프로세스 간 통신, 분산 데이터 처리, 공유 메모리 최적화)
+    - 분산 작업 처리와 워커 풀 (DistributedTaskQueue, DistributedWorker, TaskHandler 패턴)
+    - 성능 분석과 최적화 (ConcurrencyProfiler, MemoryMonitor, 병목 지점 분석, 최적화 전략)
+    - 6개 주요 섹션과 전문가급 동시성 프로그래밍 아키텍처 제공
+    - 4개 연습 문제 (고급 스레드 풀 관리자, 비동기 데이터 스트리밍, 분산 작업 스케줄러, 성능 최적화 프레임워크)
+    - TaskQueue, SharedCounter, DistributedDataProcessor, ParallelProcessingFramework 등 실전 클래스 예제
+  - Chapter 4 퀴즈 JSON 파일 생성 (25문제 - 기본부터 전문가 수준까지 포괄)
+    - 다양한 문제 유형 (객관식, 코드 분석, 설계, 성능 분석, 최적화, 문제 해결, 아키텍처)
+    - 고급 동기화, 스레드 풀, AsyncIO, 멀티프로세싱, 분산 처리, 성능 최적화 등 전체 내용 포괄
+    - 합격점 70%, 제한시간 35분
+    - 전문가 난이도 문제로 분산 시스템 설계, 마이크로서비스 동시성, 부분 실패 처리 등 포함
+
+- **파일 생성/수정**:
+  - `tutorials/advanced/chapter04_advanced_concurrency_parallelism.md` (새로 생성)
+  - `quizzes/advanced/chapter04_quiz.json` (새로 생성)
+
+- **Git 커밋**: "Add Chapter 4: Advanced Concurrency and Parallelism"
+- **고급 과정 진행**: 4/15 챕터 완료 (26.7%)
+
+#### ✅ Chapter 3: 고급 데코레이터와 컨텍스트 매니저 (고급 과정) 완료 (2025-05-25 12:52)
+- **작업 내용**:
+  - 고급 Chapter 3 마크다운 튜토리얼 작성 완료
+    - 클래스 기반 데코레이터 설계 (CallCounter, TimingDecorator, RetryDecorator, 상태 유지 패턴)
+    - 매개변수를 받는 클래스 데코레이터 (CacheDecorator, ValidationDecorator, RateLimitDecorator)
+    - functools.wraps와 메타데이터 보존 (완전한 메타데이터 보존, 동적 시그니처 수정)
+    - 컨텍스트 매니저 고급 활용 (비동기 컨텍스트 매니저, 재진입 가능 매니저, 조건부 매니저)
+    - contextlib 모듈 마스터 (contextmanager, ExitStack, nullcontext, closing, suppress)
+    - 중첩 컨텍스트 매니저와 복합 패턴 (여러 리소스 관리, 의존성 체인 처리)
+    - 실무 활용 패턴과 성능 최적화 (메모리 효율성, 성능 모니터링, 에러 복구)
+    - 7개 주요 섹션과 전문가급 데코레이터/컨텍스트 매니저 아키텍처 제공
+    - 4개 연습 문제 (실무 로깅 데코레이터, 트랜잭션 매니저, API 클라이언트 데코레이터, 모니터링 프레임워크)
+    - 실무에서 바로 사용할 수 있는 고급 패턴과 최적화 기법 제공
+  - Chapter 3 퀴즈 JSON 파일 생성 (25문제 - 기본부터 전문가 수준까지 포괄)
+    - 다양한 문제 유형 (객관식, 코드 분석, 설계, 성능, 디버깅, 아키텍처)
+    - 클래스 데코레이터, 메타데이터 보존, 컨텍스트 매니저, contextlib, 실무 패턴 등 전체 내용 포괄
+    - 합격점 70%, 제한시간 35분
+    - 전문가 난이도 문제로 프레임워크 설계, 메타프로그래밍, 성능 최적화 등 포함
+
+- **파일 생성/수정**:
+  - `tutorials/advanced/chapter03_advanced_decorators_context_managers.md` (새로 생성)
+  - `quizzes/advanced/chapter03_quiz.json` (새로 생성)
+
+- **Git 커밋**: "Add Chapter 3: Advanced Decorators and Context Managers"
+- **고급 과정 진행**: 3/15 챕터 완료 (20.0%)
 
 #### ✅ Chapter 2: 메타클래스와 디스크립터 (고급 과정) 완료 (2025-05-25 12:12)
 - **작업 내용**:
@@ -464,14 +543,14 @@
 - **고급 Chapter 3: 고급 데코레이터와 컨텍스트 매니저** (`tutorials/advanced/chapter03_advanced_decorators_context_managers.md`)
   - 클래스 기반 데코레이터 (CallCounter, TimingDecorator, RetryDecorator)
   - 매개변수가 있는 클래스 데코레이터 (CacheDecorator, ValidationDecorator, RateLimitDecorator)
-  - functools.wraps와 메타데이터 보존 기법
-  - 고급 메타데이터 조작 (시그니처 수정, 독스트링 수정, 속성 주입)
-  - 커스텀 컨텍스트 매니저 (DatabaseTransaction, ResourceManager, TimingContext)
-  - contextlib 모듈 고급 활용 (@contextmanager, ExitStack, suppress, redirect)
-  - 중첩 컨텍스트 매니저 패턴 (CompositeContextManager)
-  - 비동기 컨텍스트 매니저 (AsyncResourceManager, AsyncCompositeManager)
-  - 실무 성능 최적화 패턴 (PerformanceDecorator, 배치 처리, 리소스 풀링)
-  - 8개 학습 목표, 6개 주요 섹션, 4개 연습 문제 포함
+  - functools.wraps와 메타데이터 보존 (완전한 메타데이터 보존, 동적 시그니처 수정)
+  - 컨텍스트 매니저 고급 활용 (비동기 컨텍스트 매니저, 재진입 가능 매니저, 조건부 매니저)
+  - contextlib 모듈 고급 활용 (contextmanager, ExitStack, nullcontext, closing, suppress)
+  - 중첩 컨텍스트 매니저와 복합 패턴 (여러 리소스 관리, 의존성 체인 처리)
+  - 실무 활용 패턴과 성능 최적화 (메모리 효율성, 성능 모니터링, 에러 복구)
+  - 7개 주요 섹션과 전문가급 데코레이터/컨텍스트 매니저 아키텍처 제공
+  - 4개 연습 문제 (실무 로깅 데코레이터, 트랜잭션 매니저, API 클라이언트 데코레이터, 모니터링 프레임워크)
+  - 실무에서 바로 사용할 수 있는 고급 패턴과 최적화 기법 제공
 
 - **고급 Chapter 3 퀴즈** (`quizzes/advanced/chapter03_quiz.json`)
   - 25문제 (기본 6문제, 중급 7문제, 고급 6문제, 전문가 6문제)

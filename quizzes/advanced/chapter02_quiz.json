@@ -1,0 +1,267 @@
+{
+    "quiz_metadata": {
+        "chapter": "Chapter 2: 메타클래스와 디스크립터",
+        "level": "advanced",
+        "total_questions": 20,
+        "time_limit_minutes": 35,
+        "passing_score_percentage": 70,
+        "difficulty_distribution": {
+            "basic": 8,
+            "intermediate": 8,
+            "advanced": 3,
+            "expert": 1
+        }
+    },
+    "questions": [
+        {
+            "id": 1,
+            "type": "multiple_choice",
+            "difficulty": "basic",
+            "question": "파이썬에서 클래스의 메타클래스를 확인하는 올바른 방법은 무엇입니까?",
+            "options": [
+                "type(MyClass)",
+                "MyClass.__metaclass__",
+                "MyClass.metaclass",
+                "metaclass(MyClass)"
+            ],
+            "correct_answer": 0,
+            "explanation": "type(MyClass)는 클래스의 메타클래스(타입)를 반환합니다. 클래스는 객체이므로 type()으로 그 타입을 확인할 수 있습니다."
+        },
+        {
+            "id": 2,
+            "type": "true_false",
+            "difficulty": "basic",
+            "question": "모든 파이썬 클래스는 기본적으로 type 메타클래스를 사용합니다.",
+            "correct_answer": true,
+            "explanation": "파이썬에서 명시적으로 다른 메타클래스를 지정하지 않으면 모든 클래스는 type 메타클래스를 사용합니다."
+        },
+        {
+            "id": 3,
+            "type": "multiple_choice",
+            "difficulty": "basic",
+            "question": "디스크립터 프로토콜의 핵심 메서드가 아닌 것은?",
+            "options": [
+                "__get__",
+                "__set__",
+                "__delete__",
+                "__call__"
+            ],
+            "correct_answer": 3,
+            "explanation": "__call__은 디스크립터 프로토콜의 메서드가 아닙니다. 디스크립터 프로토콜은 __get__, __set__, __delete__ 메서드로 구성됩니다."
+        },
+        {
+            "id": 4,
+            "type": "multiple_choice",
+            "difficulty": "basic",
+            "question": "다음 중 property 데코레이터로 읽기 전용 속성을 만드는 올바른 방법은?",
+            "options": [
+                "@property만 정의",
+                "@property와 @setter 모두 정의",
+                "@readonly 데코레이터 사용",
+                "@property.readonly 사용"
+            ],
+            "correct_answer": 0,
+            "explanation": "@property 데코레이터만 정의하고 setter를 정의하지 않으면 읽기 전용 속성이 됩니다."
+        },
+        {
+            "id": 5,
+            "type": "fill_in_blank",
+            "difficulty": "basic",
+            "question": "클래스를 동적으로 생성할 때 사용하는 내장 함수는 ____입니다.",
+            "correct_answer": "type",
+            "explanation": "type(name, bases, dict) 형태로 클래스를 동적으로 생성할 수 있습니다."
+        },
+        {
+            "id": 6,
+            "type": "multiple_choice",
+            "difficulty": "basic",
+            "question": "__new__ 메서드와 __init__ 메서드의 차이점으로 올바른 것은?",
+            "options": [
+                "__new__는 초기화, __init__는 생성 담당",
+                "__new__는 생성, __init__는 초기화 담당",
+                "둘 다 동일한 역할",
+                "__new__는 클래스 메서드, __init__는 인스턴스 메서드"
+            ],
+            "correct_answer": 1,
+            "explanation": "__new__는 인스턴스 생성을 담당하고, __init__는 생성된 인스턴스의 초기화를 담당합니다."
+        },
+        {
+            "id": 7,
+            "type": "true_false",
+            "difficulty": "basic",
+            "question": "메타클래스는 클래스의 생성 과정을 제어할 수 있습니다.",
+            "correct_answer": true,
+            "explanation": "메타클래스는 클래스가 어떻게 생성되고 동작하는지를 제어할 수 있는 강력한 기능입니다."
+        },
+        {
+            "id": 8,
+            "type": "multiple_choice",
+            "difficulty": "basic",
+            "question": "Python 3.6부터 디스크립터에 추가된 메서드는?",
+            "options": [
+                "__init_subclass__",
+                "__set_name__",
+                "__prepare__",
+                "__class_getitem__"
+            ],
+            "correct_answer": 1,
+            "explanation": "__set_name__은 Python 3.6부터 추가된 메서드로, 디스크립터가 클래스에 할당될 때 자동으로 호출됩니다."
+        },
+        {
+            "id": 9,
+            "type": "code_analysis",
+            "difficulty": "intermediate",
+            "question": "다음 코드의 출력 결과는 무엇입니까?\n\nclass Meta(type):\n    def __new__(mcs, name, bases, namespace):\n        namespace['created_by'] = 'Meta'\n        return super().__new__(mcs, name, bases, namespace)\n\nclass MyClass(metaclass=Meta):\n    pass\n\nprint(MyClass.created_by)",
+            "options": [
+                "Meta",
+                "MyClass",
+                "AttributeError",
+                "None"
+            ],
+            "correct_answer": 0,
+            "explanation": "메타클래스의 __new__ 메서드가 클래스 생성 시 namespace에 'created_by' 속성을 추가하므로 'Meta'가 출력됩니다."
+        },
+        {
+            "id": 10,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "디스크립터의 __get__ 메서드에서 obj가 None인 경우는 언제입니까?",
+            "options": [
+                "인스턴스에서 접근할 때",
+                "클래스에서 접근할 때",
+                "에러가 발생했을 때",
+                "디스크립터가 삭제될 때"
+            ],
+            "correct_answer": 1,
+            "explanation": "클래스에서 디스크립터에 접근할 때 obj 매개변수가 None이 됩니다."
+        },
+        {
+            "id": 11,
+            "type": "code_analysis",
+            "difficulty": "intermediate",
+            "question": "다음 디스크립터의 동작을 분석하세요:\n\nclass Descriptor:\n    def __get__(self, obj, objtype=None):\n        if obj is None:\n            return self\n        return 42\n    def __set__(self, obj, value):\n        pass\n\nclass TestClass:\n    attr = Descriptor()\n\nobj = TestClass()\nprint(type(TestClass.attr))\nprint(obj.attr)",
+            "options": [
+                "<class '__main__.Descriptor'> 42",
+                "42 42",
+                "<class '__main__.Descriptor'> <class '__main__.Descriptor'>",
+                "Error"
+            ],
+            "correct_answer": 0,
+            "explanation": "클래스에서 접근할 때는 디스크립터 자체가 반환되고, 인스턴스에서 접근할 때는 42가 반환됩니다."
+        },
+        {
+            "id": 12,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "메타클래스에서 클래스 생성을 완전히 차단하려면 어느 메서드에서 예외를 발생시켜야 합니까?",
+            "options": [
+                "__init__",
+                "__new__",
+                "__call__",
+                "__prepare__"
+            ],
+            "correct_answer": 1,
+            "explanation": "__new__ 메서드에서 예외를 발생시키면 클래스 생성 자체를 차단할 수 있습니다."
+        },
+        {
+            "id": 13,
+            "type": "fill_in_blank",
+            "difficulty": "intermediate",
+            "question": "property의 삭제자(deleter)를 정의하는 데코레이터는 @property_name.____입니다.",
+            "correct_answer": "deleter",
+            "explanation": "property의 삭제자는 @property_name.deleter 데코레이터로 정의합니다."
+        },
+        {
+            "id": 14,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "__new__ 메서드가 None을 반환하면 어떻게 됩니까?",
+            "options": [
+                "__init__가 호출됨",
+                "__init__가 호출되지 않음",
+                "에러 발생",
+                "기본 인스턴스 생성"
+            ],
+            "correct_answer": 1,
+            "explanation": "__new__가 None을 반환하면 __init__ 메서드가 호출되지 않습니다."
+        },
+        {
+            "id": 15,
+            "type": "code_analysis",
+            "difficulty": "intermediate",
+            "question": "다음 코드에서 메타클래스의 __call__ 메서드가 호출되는 횟수는?\n\nclass Meta(type):\n    def __call__(cls, *args):\n        print('Meta.__call__')\n        return super().__call__(*args)\n\nclass MyClass(metaclass=Meta):\n    pass\n\nobj1 = MyClass()\nobj2 = MyClass()",
+            "options": [
+                "0번",
+                "1번",
+                "2번",
+                "3번"
+            ],
+            "correct_answer": 2,
+            "explanation": "인스턴스 생성 시마다 메타클래스의 __call__ 메서드가 호출되므로 2번 호출됩니다."
+        },
+        {
+            "id": 16,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "데이터 디스크립터와 인스턴스 딕셔너리의 우선순위는?",
+            "options": [
+                "인스턴스 딕셔너리가 우선",
+                "데이터 디스크립터가 우선",
+                "정의 순서에 따라",
+                "동일한 우선순위"
+            ],
+            "correct_answer": 1,
+            "explanation": "데이터 디스크립터는 인스턴스 딕셔너리보다 높은 우선순위를 가집니다."
+        },
+        {
+            "id": 17,
+            "type": "code_analysis",
+            "difficulty": "advanced",
+            "question": "다음 고급 메타클래스 패턴의 실행 결과를 분석하세요:\n\nclass SingletonMeta(type):\n    _instances = {}\n    def __call__(cls, *args, **kwargs):\n        if cls not in cls._instances:\n            cls._instances[cls] = super().__call__(*args, **kwargs)\n        return cls._instances[cls]\n\nclass Database(metaclass=SingletonMeta):\n    def __init__(self, name):\n        self.name = name\n\ndb1 = Database('db1')\ndb2 = Database('db2')\nprint(db1.name, db2.name, db1 is db2)",
+            "options": [
+                "db1 db1 True",
+                "db1 db2 True",
+                "db1 db2 False",
+                "에러 발생"
+            ],
+            "correct_answer": 0,
+            "explanation": "싱글톤 패턴으로 인해 두 번째 인스턴스 생성 시 첫 번째 인스턴스가 반환되므로 db1.name이 그대로 유지됩니다."
+        },
+        {
+            "id": 18,
+            "type": "multiple_choice",
+            "difficulty": "advanced",
+            "question": "메타클래스에서 ABC(Abstract Base Class) 기능을 구현할 때 핵심적으로 활용하는 메서드는?",
+            "options": [
+                "__subclasshook__",
+                "__instancecheck__",
+                "__new__",
+                "__init_subclass__"
+            ],
+            "correct_answer": 2,
+            "explanation": "__new__ 메서드에서 추상 메서드의 구현 여부를 검사하여 ABC 기능을 구현할 수 있습니다."
+        },
+        {
+            "id": 19,
+            "type": "fill_in_blank",
+            "difficulty": "advanced",
+            "question": "메타클래스에서 클래스 생성 시 네임스페이스의 순서를 보장하려면 __prepare__에서 ____를 반환해야 합니다.",
+            "correct_answer": "OrderedDict",
+            "explanation": "__prepare__ 메서드에서 OrderedDict를 반환하면 클래스 정의 순서를 보장할 수 있습니다."
+        },
+        {
+            "id": 20,
+            "type": "code_analysis",
+            "difficulty": "expert",
+            "question": "다음 메타클래스 기반 플러그인 시스템의 동작을 분석하세요:\n\nclass PluginMeta(type):\n    plugins = {}\n    \n    def __new__(mcs, name, bases, namespace):\n        cls = super().__new__(mcs, name, bases, namespace)\n        if hasattr(cls, 'plugin_name'):\n            mcs.plugins[cls.plugin_name] = cls\n        return cls\n\nclass BasePlugin(metaclass=PluginMeta):\n    pass\n\nclass EmailPlugin(BasePlugin):\n    plugin_name = 'email'\n    \nclass SMSPlugin(BasePlugin):\n    plugin_name = 'sms'\n\nclass NotificationPlugin(BasePlugin):\n    pass\n\nprint(len(PluginMeta.plugins))\nprint('email' in PluginMeta.plugins)",
+            "options": [
+                "2 True",
+                "3 True",
+                "2 False",
+                "3 False"
+            ],
+            "correct_answer": 0,
+            "explanation": "plugin_name이 있는 EmailPlugin과 SMSPlugin만 등록되므로 2개, 'email'은 등록되어 있으므로 True입니다."
+        }
+    ]
+}

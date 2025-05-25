@@ -1,0 +1,331 @@
+{
+    "quiz_info": {
+        "title": "Chapter 3: 고급 데코레이터와 컨텍스트 매니저",
+        "description": "클래스 기반 데코레이터, functools.wraps, 고급 컨텍스트 매니저, contextlib 모듈, 중첩/비동기 컨텍스트 매니저, 성능 최적화 패턴에 대한 전문가급 평가",
+        "difficulty": "전문가",
+        "estimated_time": 45,
+        "passing_score": 70,
+        "total_questions": 25
+    },
+    "questions": [
+        {
+            "id": 1,
+            "type": "multiple_choice",
+            "difficulty": "기본",
+            "question": "클래스 기반 데코레이터에서 __call__ 메서드의 역할은 무엇입니까?",
+            "options": [
+                "클래스가 인스턴스화될 때 호출됩니다",
+                "데코레이터가 적용될 때 호출됩니다",
+                "데코레이터가 적용된 함수가 호출될 때 실행됩니다",
+                "클래스가 소멸될 때 호출됩니다"
+            ],
+            "correct_answer": 2,
+            "explanation": "__call__ 메서드는 클래스 인스턴스를 함수처럼 호출할 수 있게 해주며, 데코레이터가 적용된 함수가 실제로 호출될 때 실행됩니다."
+        },
+        {
+            "id": 2,
+            "type": "multiple_choice",
+            "difficulty": "기본",
+            "question": "functools.wraps 데코레이터의 주요 목적은 무엇입니까?",
+            "options": [
+                "함수의 실행 속도를 향상시킵니다",
+                "함수의 메모리 사용량을 줄입니다",
+                "원본 함수의 메타데이터를 보존합니다",
+                "함수의 반환값을 캐싱합니다"
+            ],
+            "correct_answer": 2,
+            "explanation": "functools.wraps는 데코레이터가 적용된 함수가 원본 함수의 __name__, __doc__, __annotations__ 등의 메타데이터를 유지하도록 합니다."
+        },
+        {
+            "id": 3,
+            "type": "true_false",
+            "difficulty": "기본",
+            "question": "컨텍스트 매니저의 __exit__ 메서드에서 True를 반환하면 발생한 예외가 억제됩니다.",
+            "correct_answer": true,
+            "explanation": "__exit__ 메서드에서 True를 반환하면 컨텍스트 내에서 발생한 예외가 억제되어 바깥으로 전파되지 않습니다."
+        },
+        {
+            "id": 4,
+            "type": "multiple_choice",
+            "difficulty": "기본",
+            "question": "contextlib.suppress 컨텍스트 매니저의 기능은 무엇입니까?",
+            "options": [
+                "지정된 예외들을 로깅합니다",
+                "지정된 예외들을 다른 예외로 변환합니다",
+                "지정된 예외들을 억제합니다",
+                "지정된 예외들의 스택 트레이스를 개선합니다"
+            ],
+            "correct_answer": 2,
+            "explanation": "contextlib.suppress는 지정된 예외 타입들이 발생했을 때 이를 조용히 억제하여 프로그램이 계속 실행되도록 합니다."
+        },
+        {
+            "id": 5,
+            "type": "fill_blank",
+            "difficulty": "기본",
+            "question": "비동기 컨텍스트 매니저를 정의할 때 사용하는 두 개의 특별한 메서드는 ______과 ______입니다.",
+            "correct_answer": [
+                "__aenter__",
+                "__aexit__"
+            ],
+            "explanation": "비동기 컨텍스트 매니저는 __aenter__와 __aexit__ 메서드를 구현해야 하며, 이들은 await 키워드와 함께 사용됩니다."
+        },
+        {
+            "id": 6,
+            "type": "multiple_choice",
+            "difficulty": "기본",
+            "question": "ExitStack의 주요 용도는 무엇입니까?",
+            "options": [
+                "예외 스택을 관리합니다",
+                "함수 호출 스택을 추적합니다",
+                "여러 컨텍스트 매니저를 동적으로 관리합니다",
+                "메모리 스택을 최적화합니다"
+            ],
+            "correct_answer": 2,
+            "explanation": "ExitStack은 여러 컨텍스트 매니저를 런타임에 동적으로 추가하고 올바른 순서로 정리할 수 있게 해줍니다."
+        },
+        {
+            "id": 7,
+            "type": "code_analysis",
+            "difficulty": "중급",
+            "question": "다음 코드의 출력 결과는 무엇입니까?\n\n```python\nclass Counter:\n    def __init__(self, func):\n        self.func = func\n        self.count = 0\n    \n    def __call__(self, *args, **kwargs):\n        self.count += 1\n        return self.func(*args, **kwargs)\n\n@Counter\ndef greet(name):\n    return f\"Hello, {name}!\"\n\nprint(greet.count)\nresult = greet(\"World\")\nprint(greet.count)\nprint(result)\n```",
+            "options": [
+                "0\\n1\\nHello, World!",
+                "1\\n1\\nHello, World!",
+                "0\\n2\\nHello, World!",
+                "에러 발생"
+            ],
+            "correct_answer": 0,
+            "explanation": "Counter 클래스 데코레이터는 초기에 count가 0이고, greet 함수가 호출될 때마다 count가 증가합니다."
+        },
+        {
+            "id": 8,
+            "type": "multiple_choice",
+            "difficulty": "중급",
+            "question": "매개변수가 있는 클래스 데코레이터를 구현할 때, __init__ 메서드는 무엇을 받아야 합니까?",
+            "options": [
+                "데코레이터가 적용될 함수",
+                "데코레이터의 매개변수들",
+                "함수의 인수들",
+                "반환값"
+            ],
+            "correct_answer": 1,
+            "explanation": "매개변수가 있는 클래스 데코레이터에서 __init__은 데코레이터의 매개변수들을 받고, __call__에서 실제 함수를 받습니다."
+        },
+        {
+            "id": 9,
+            "type": "code_analysis",
+            "difficulty": "중급",
+            "question": "다음 코드에서 실제로 보존되지 않는 메타데이터는 무엇입니까?\n\n```python\nimport functools\n\ndef my_decorator(func):\n    def wrapper(*args, **kwargs):\n        return func(*args, **kwargs)\n    return wrapper\n\n@my_decorator\ndef example_func():\n    \"\"\"This is an example function.\"\"\"\n    pass\n\nprint(example_func.__name__)\nprint(example_func.__doc__)\n```",
+            "options": [
+                "__name__과 __doc__ 모두 보존됩니다",
+                "__name__만 보존됩니다",
+                "__doc__만 보존됩니다",
+                "__name__과 __doc__ 모두 보존되지 않습니다"
+            ],
+            "correct_answer": 3,
+            "explanation": "functools.wraps를 사용하지 않으면 wrapper 함수의 메타데이터(__name__='wrapper', __doc__=None)가 반환됩니다."
+        },
+        {
+            "id": 10,
+            "type": "multiple_choice",
+            "difficulty": "중급",
+            "question": "inspect.signature()를 사용하여 함수 시그니처를 보존하는 주된 이유는 무엇입니까?",
+            "options": [
+                "함수 실행 속도 향상",
+                "IDE의 자동 완성 및 타입 힌팅 지원",
+                "메모리 사용량 감소",
+                "예외 처리 개선"
+            ],
+            "correct_answer": 1,
+            "explanation": "함수 시그니처를 보존하면 IDE가 올바른 자동 완성, 타입 힌팅, 매개변수 정보를 제공할 수 있습니다."
+        },
+        {
+            "id": 11,
+            "type": "true_false",
+            "difficulty": "중급",
+            "question": "contextlib.redirect_stdout은 영구적으로 stdout을 변경합니다.",
+            "correct_answer": false,
+            "explanation": "contextlib.redirect_stdout은 컨텍스트 내에서만 일시적으로 stdout을 리다이렉션하고, 컨텍스트가 끝나면 원래대로 복원됩니다."
+        },
+        {
+            "id": 12,
+            "type": "code_analysis",
+            "difficulty": "중급",
+            "question": "다음 컨텍스트 매니저 코드에서 어떤 순서로 출력됩니까?\n\n```python\nclass TestCM:\n    def __init__(self, name):\n        self.name = name\n    \n    def __enter__(self):\n        print(f\"Enter {self.name}\")\n        return self\n    \n    def __exit__(self, exc_type, exc_val, exc_tb):\n        print(f\"Exit {self.name}\")\n\nwith TestCM(\"A\"):\n    with TestCM(\"B\"):\n        print(\"Inside\")\n```",
+            "options": [
+                "Enter A\\nEnter B\\nInside\\nExit A\\nExit B",
+                "Enter A\\nEnter B\\nInside\\nExit B\\nExit A",
+                "Enter B\\nEnter A\\nInside\\nExit A\\nExit B",
+                "Enter B\\nEnter A\\nInside\\nExit B\\nExit A"
+            ],
+            "correct_answer": 1,
+            "explanation": "중첩된 컨텍스트 매니저는 LIFO(후입선출) 순서로 정리됩니다. 가장 나중에 진입한 것이 가장 먼저 종료됩니다."
+        },
+        {
+            "id": 13,
+            "type": "multiple_choice",
+            "difficulty": "중급",
+            "question": "LRU(Least Recently Used) 캐시 구현에서 가장 적합한 자료구조 조합은 무엇입니까?",
+            "options": [
+                "딕셔너리 + 리스트",
+                "딕셔너리 + 연결 리스트",
+                "리스트 + 집합",
+                "딕셔너리 + 힙"
+            ],
+            "correct_answer": 1,
+            "explanation": "딕셔너리와 연결 리스트의 조합은 O(1) 시간에 접근, 삽입, 삭제 연산을 수행할 수 있어 LRU 캐시에 이상적입니다."
+        },
+        {
+            "id": 14,
+            "type": "fill_blank",
+            "difficulty": "고급",
+            "question": "비동기 컨텍스트 매니저를 함수로 만들 때 사용하는 contextlib의 데코레이터는 ______입니다.",
+            "correct_answer": [
+                "@asynccontextmanager"
+            ],
+            "explanation": "@asynccontextmanager 데코레이터를 사용하면 yield를 포함한 비동기 제너레이터 함수를 비동기 컨텍스트 매니저로 변환할 수 있습니다."
+        },
+        {
+            "id": 15,
+            "type": "code_analysis",
+            "difficulty": "고급",
+            "question": "다음 메타클래스 기반 데코레이터의 문제점은 무엇입니까?\n\n```python\nclass DecoratorMeta(type):\n    def __call__(cls, func):\n        def wrapper(*args, **kwargs):\n            print(f\"Calling {func.__name__}\")\n            return func(*args, **kwargs)\n        return wrapper\n\nclass MyDecorator(metaclass=DecoratorMeta):\n    pass\n\n@MyDecorator\ndef test_func():\n    return \"Hello\"\n\nprint(test_func.__name__)\n```",
+            "options": [
+                "메타데이터가 보존되지 않습니다",
+                "성능이 너무 느립니다",
+                "메모리 누수가 발생합니다",
+                "스레드 안전하지 않습니다"
+            ],
+            "correct_answer": 0,
+            "explanation": "이 메타클래스 기반 데코레이터는 functools.wraps를 사용하지 않아서 원본 함수의 __name__, __doc__ 등의 메타데이터가 보존되지 않습니다."
+        },
+        {
+            "id": 16,
+            "type": "multiple_choice",
+            "difficulty": "고급",
+            "question": "분산 환경에서 컨텍스트 매니저를 사용한 락 구현 시 가장 중요한 고려사항은 무엇입니까?",
+            "options": [
+                "락의 성능 최적화",
+                "메모리 효율성",
+                "락의 만료 시간과 자동 갱신",
+                "UI 응답성"
+            ],
+            "correct_answer": 2,
+            "explanation": "분산 락에서는 네트워크 장애나 프로세스 크래시 시 데드락을 방지하기 위해 락의 만료 시간 설정과 자동 갱신 메커니즘이 필수적입니다."
+        },
+        {
+            "id": 17,
+            "type": "code_analysis",
+            "difficulty": "고급",
+            "question": "다음 코드에서 발생할 수 있는 문제는 무엇입니까?\n\n```python\nclass ResourcePool:\n    def __init__(self, factory, size):\n        self.resources = [factory() for _ in range(size)]\n        self.available = list(self.resources)\n    \n    def __enter__(self):\n        if not self.available:\n            raise RuntimeError(\"No resources available\")\n        return self.available.pop()\n    \n    def __exit__(self, exc_type, exc_val, exc_tb):\n        # 리소스 반환 로직 없음\n        pass\n```",
+            "options": [
+                "리소스 누수 - 사용된 리소스가 반환되지 않습니다",
+                "메모리 누수가 발생합니다",
+                "스레드 안전하지 않습니다",
+                "위의 모든 문제들"
+            ],
+            "correct_answer": 3,
+            "explanation": "이 코드는 리소스 반환 로직이 없어 리소스 누수가 발생하고, 동시 접근 시 스레드 안전성 문제도 있습니다."
+        },
+        {
+            "id": 18,
+            "type": "multiple_choice",
+            "difficulty": "고급",
+            "question": "고성능 데코레이터 구현에서 threading.RLock을 사용하는 이유는 무엇입니까?",
+            "options": [
+                "성능이 threading.Lock보다 빠르기 때문",
+                "같은 스레드에서 여러 번 획득할 수 있기 때문",
+                "메모리 사용량이 적기 때문",
+                "데드락을 완전히 방지하기 때문"
+            ],
+            "correct_answer": 1,
+            "explanation": "RLock(재진입 가능 락)은 같은 스레드에서 여러 번 획득할 수 있어, 중첩된 호출이나 재귀 상황에서 유용합니다."
+        },
+        {
+            "id": 19,
+            "type": "true_false",
+            "difficulty": "고급",
+            "question": "비동기 컨텍스트 매니저에서 __aexit__ 메서드는 항상 await 키워드 없이 호출됩니다.",
+            "correct_answer": false,
+            "explanation": "__aexit__ 메서드는 코루틴이므로 반드시 await 키워드와 함께 호출되어야 합니다."
+        },
+        {
+            "id": 20,
+            "type": "code_analysis",
+            "difficulty": "전문가",
+            "question": "다음 고급 캐싱 데코레이터에서 잠재적인 메모리 누수 원인은 무엇입니까?\n\n```python\nclass AdvancedCache:\n    def __init__(self, maxsize=128):\n        self.cache = {}\n        self.maxsize = maxsize\n        self.access_order = []\n    \n    def __call__(self, func):\n        def wrapper(*args, **kwargs):\n            key = str(args) + str(kwargs)\n            if key in self.cache:\n                self.access_order.remove(key)\n                self.access_order.append(key)\n                return self.cache[key]\n            \n            result = func(*args, **kwargs)\n            if len(self.cache) >= self.maxsize:\n                oldest = self.access_order.pop(0)\n                del self.cache[oldest]\n            \n            self.cache[key] = result\n            self.access_order.append(key)\n            return result\n        return wrapper\n```",
+            "options": [
+                "해시 불가능한 인수들로 인한 키 생성 실패",
+                "access_order 리스트에서 remove() 연산의 O(n) 복잡도",
+                "캐시된 객체들이 순환 참조를 가질 때",
+                "위의 모든 문제들"
+            ],
+            "correct_answer": 3,
+            "explanation": "이 구현은 여러 문제가 있습니다: 해시 불가능한 객체의 문자열 변환, O(n) remove 연산, 순환 참조 객체 캐싱 시 메모리 누수 등입니다."
+        },
+        {
+            "id": 21,
+            "type": "multiple_choice",
+            "difficulty": "전문가",
+            "question": "분산 시스템에서 2단계 커밋 프로토콜을 컨텍스트 매니저로 구현할 때 가장 중요한 요소는 무엇입니까?",
+            "options": [
+                "모든 참여자의 prepare 단계 동기화",
+                "코디네이터의 단일 장애점 해결",
+                "네트워크 지연 최소화",
+                "위의 모든 요소들이 동등하게 중요"
+            ],
+            "correct_answer": 3,
+            "explanation": "2PC 구현에서는 모든 참여자의 동기화, 코디네이터 장애 처리, 네트워크 최적화가 모두 중요한 설계 요소입니다."
+        },
+        {
+            "id": 22,
+            "type": "code_analysis",
+            "difficulty": "전문가",
+            "question": "다음 비동기 복합 컨텍스트 매니저에서 예외 처리의 문제점은 무엇입니까?\n\n```python\nclass AsyncComposite:\n    def __init__(self, *managers):\n        self.managers = managers\n        self.entered = []\n    \n    async def __aenter__(self):\n        for mgr in self.managers:\n            result = await mgr.__aenter__()\n            self.entered.append((mgr, result))\n        return [r for m, r in self.entered]\n    \n    async def __aexit__(self, exc_type, exc_val, exc_tb):\n        for mgr, _ in reversed(self.entered):\n            await mgr.__aexit__(exc_type, exc_val, exc_tb)\n```",
+            "options": [
+                "__aenter__ 중 예외 발생 시 이미 진입한 매니저들이 정리되지 않습니다",
+                "__aexit__ 중 예외 발생 시 나머지 매니저들이 정리되지 않습니다",
+                "예외 억제 처리가 없습니다",
+                "위의 모든 문제들"
+            ],
+            "correct_answer": 3,
+            "explanation": "이 구현은 __aenter__ 실패 시 정리 부족, __aexit__ 중 예외 전파 부족, 예외 억제 미처리 등 여러 예외 처리 문제가 있습니다."
+        },
+        {
+            "id": 23,
+            "type": "multiple_choice",
+            "difficulty": "전문가",
+            "question": "함수 시그니처를 동적으로 수정하는 데코레이터에서 inspect.Parameter.KEYWORD_ONLY의 용도는 무엇입니까?",
+            "options": [
+                "성능 최적화를 위해",
+                "매개변수가 반드시 키워드로만 전달되도록 강제하기 위해",
+                "타입 힌팅을 개선하기 위해",
+                "메모리 사용량을 줄이기 위해"
+            ],
+            "correct_answer": 1,
+            "explanation": "KEYWORD_ONLY는 매개변수가 반드시 키워드 인수로만 전달되어야 함을 지정하여, API의 명확성과 안전성을 향상시킵니다."
+        },
+        {
+            "id": 24,
+            "type": "true_false",
+            "difficulty": "전문가",
+            "question": "고성능 배치 처리 데코레이터에서 request_id로 id((args, kwargs))를 사용하는 것은 항상 안전합니다.",
+            "correct_answer": false,
+            "explanation": "id()는 객체의 메모리 주소를 반환하므로 동일한 내용의 다른 객체들이 다른 ID를 가질 수 있어, 내용 기반 해싱이 필요한 경우에는 적절하지 않습니다."
+        },
+        {
+            "id": 25,
+            "type": "code_analysis",
+            "difficulty": "전문가",
+            "question": "다음 성능 최적화 패턴에서 가장 큰 개선점은 무엇입니까?\n\n```python\n# Before\nclass SimpleCache:\n    def __init__(self):\n        self.cache = {}\n    \n    def get_or_compute(self, key, compute_func):\n        if key not in self.cache:\n            self.cache[key] = compute_func()\n        return self.cache[key]\n\n# After  \nclass OptimizedCache:\n    def __init__(self):\n        self.cache = {}\n        self.computing = set()\n        self.lock = threading.Lock()\n    \n    def get_or_compute(self, key, compute_func):\n        with self.lock:\n            if key in self.cache:\n                return self.cache[key]\n            if key in self.computing:\n                # Wait or return placeholder\n                pass\n            self.computing.add(key)\n        \n        try:\n            result = compute_func()\n            with self.lock:\n                self.cache[key] = result\n                self.computing.remove(key)\n            return result\n        except:\n            with self.lock:\n                self.computing.remove(key)\n            raise\n```",
+            "options": [
+                "스레드 안전성 확보",
+                "동일한 키에 대한 중복 계산 방지",
+                "예외 상황에서의 안전한 정리",
+                "위의 모든 개선점들"
+            ],
+            "correct_answer": 3,
+            "explanation": "최적화된 버전은 스레드 안전성, 중복 계산 방지, 예외 안전성을 모두 개선하여 동시성 환경에서 안정적이고 효율적인 캐싱을 제공합니다."
+        }
+    ]
+}

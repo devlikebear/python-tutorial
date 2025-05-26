@@ -17,30 +17,40 @@
 - **작업 내용**:
   - 중복된 `tutorials/` 디렉토리 삭제 (모든 내용이 `docs/tutorials/`로 이동 완료)
   - 중복된 `quizzes/` 디렉토리 삭제 (모든 내용이 `docs/quizzes/`로 이동 완료)
+  - 중복된 `curricula/` 디렉토리 삭제 (모든 내용이 `docs/curricula/`로 이동 완료)
+  - 빈 `quiz_app/` 디렉토리 삭제
   - MkDocs 웹사이트 구조로 완전 통합
   - 프로젝트 루트 디렉토리 정리
 
 - **삭제된 파일들**:
   - `tutorials/` 전체 디렉토리 (64개 파일)
   - `quizzes/` 전체 디렉토리 (32개 퀴즈 파일)
-  - 총 96개 중복 파일 제거
+  - `curricula/` 전체 디렉토리 (3개 커리큘럼 파일)
+  - `quiz_app/` 디렉토리 (1개 .gitkeep 파일)
+  - 총 100개 중복/불필요 파일 제거
 
-- **현재 프로젝트 구조**:
+- **최종 프로젝트 구조**:
   ```
   python-tutorial/
   ├── docs/                    # MkDocs 웹사이트 소스
   │   ├── tutorials/          # 모든 튜토리얼 (30개 챕터)
   │   ├── quizzes/            # 모든 퀴즈 (383개 문제)
-  │   ├── curricula/          # 커리큘럼 가이드
+  │   ├── curricula/          # 커리큘럼 가이드 (3개 과정)
+  │   ├── stylesheets/        # 커스텀 CSS
+  │   ├── javascripts/        # 커스텀 JS
   │   └── index.md            # 홈페이지
   ├── site/                   # 빌드된 정적 사이트
   ├── mkdocs.yml              # MkDocs 설정
   ├── requirements.txt        # Python 의존성
   ├── vercel.json             # Vercel 배포 설정
-  └── README.md               # 프로젝트 설명
+  ├── changelogs.md           # 프로젝트 진행 로그
+  ├── README.md               # 프로젝트 설명
+  └── LICENSE                 # 라이선스
   ```
 
-- **Git 커밋**: "Clean up project structure: remove duplicate tutorials and quizzes directories"
+- **Git 커밋**: 
+  - "Clean up project structure: remove duplicate tutorials and quizzes directories"
+  - "Remove remaining duplicate directories: curricula and quiz_app"
 - **웹사이트 상태**: 정상 작동 (https://python-tutorial-devlikebear.vercel.app)
 
 ### 2025-05-25

@@ -11,11 +11,44 @@
 
 ## 📝 작업 로그
 
+### 2025-05-26
+
+#### ✅ 프로젝트 구조 정리 완료 (2025-05-26 21:00)
+- **작업 내용**:
+  - 중복된 `tutorials/` 디렉토리 삭제 (모든 내용이 `docs/tutorials/`로 이동 완료)
+  - 중복된 `quizzes/` 디렉토리 삭제 (모든 내용이 `docs/quizzes/`로 이동 완료)
+  - MkDocs 웹사이트 구조로 완전 통합
+  - 프로젝트 루트 디렉토리 정리
+
+- **삭제된 파일들**:
+  - `tutorials/` 전체 디렉토리 (64개 파일)
+  - `quizzes/` 전체 디렉토리 (32개 퀴즈 파일)
+  - 총 96개 중복 파일 제거
+
+- **현재 프로젝트 구조**:
+  ```
+  python-tutorial/
+  ├── docs/                    # MkDocs 웹사이트 소스
+  │   ├── tutorials/          # 모든 튜토리얼 (30개 챕터)
+  │   ├── quizzes/            # 모든 퀴즈 (383개 문제)
+  │   ├── curricula/          # 커리큘럼 가이드
+  │   └── index.md            # 홈페이지
+  ├── site/                   # 빌드된 정적 사이트
+  ├── mkdocs.yml              # MkDocs 설정
+  ├── requirements.txt        # Python 의존성
+  ├── vercel.json             # Vercel 배포 설정
+  └── README.md               # 프로젝트 설명
+  ```
+
+- **Git 커밋**: "Clean up project structure: remove duplicate tutorials and quizzes directories"
+- **웹사이트 상태**: 정상 작동 (https://python-tutorial-devlikebear.vercel.app)
+
 ### 2025-05-25
 
 #### ✅ Chapter 5: 네트워킹과 소켓 프로그래밍 (고급 과정) 완료 (2025-05-25 13:12)
 - **작업 내용**:
   - 고급 Chapter 5 마크다운 튜토리얼 작성 완료
+    - 고급 Chapter 5 마크다운 튜토리얼 작성 완료
     - 소켓 프로그래밍 기초와 고급 패턴 (AdvancedSocket, SocketPool, NetworkMessage, 콜백 시스템)
     - TCP/UDP 서버-클라이언트 구현 (TCPServer, UDPServer, ThreadPoolExecutor 활용, 멀티스레드 처리)
     - 비동기 네트워킹과 이벤트 루프 (AsyncTCPServer, AsyncClient, 미들웨어 패턴, correlation_id 기반 요청-응답 매칭)
@@ -554,10 +587,9 @@
 
 - **고급 Chapter 3 퀴즈** (`quizzes/advanced/chapter03_quiz.json`)
   - 25문제 (기본 6문제, 중급 7문제, 고급 6문제, 전문가 6문제)
-  - 클래스 기반 데코레이터, functools.wraps, 컨텍스트 매니저 심화
-  - 비동기 컨텍스트 매니저, 성능 최적화 패턴
-  - 코드 분석, 빈칸 채우기, 참/거짓 문제 포함
-  - 상세한 해설과 실무 중심 문제
+  - 클래스 기반 데코레이터, 메타데이터 보존, 컨텍스트 매니저, contextlib, 실무 패턴 등 전체 내용 포괄
+  - 합격점 70%, 제한시간 35분
+  - 전문가 난이도 문제로 프레임워크 설계, 메타프로그래밍, 성능 최적화 등 포함
 
 ### 기술적 세부 사항
 - 고급 캐싱 시스템 (LRU, TTL 지원)

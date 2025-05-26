@@ -53,6 +53,34 @@
   - "Remove remaining duplicate directories: curricula and quiz_app"
 - **웹사이트 상태**: 정상 작동 (https://python-tutorial-devlikebear.vercel.app)
 
+#### ✅ Netlify 배포 설정 추가 (2025-05-26 21:15)
+- **작업 내용**:
+  - Netlify 배포를 위한 설정 파일들 생성
+  - 다중 플랫폼 배포 지원 (Vercel + Netlify)
+  - README.md에 상세한 배포 가이드 추가
+
+- **생성된 파일들**:
+  - `netlify.toml`: Netlify 배포 설정 (빌드 명령어, 환경변수, 헤더, 캐싱 규칙)
+  - `runtime.txt`: Python 런타임 버전 명시 (python-3.11)
+  - `_redirects`: Netlify 리다이렉트 규칙 (SPA 지원)
+  - README.md 업데이트: 배포 가이드 섹션 추가
+
+- **배포 플랫폼 지원**:
+  - ✅ **Vercel**: 기존 설정 유지 (vercel.json)
+  - ✅ **Netlify**: 새로 추가 (netlify.toml, runtime.txt, _redirects)
+  - ✅ **로컬 개발**: mkdocs serve 지원
+  - ✅ **수동 빌드**: mkdocs build 지원
+
+- **Netlify 설정 특징**:
+  - Python 3.11 환경
+  - 자동 빌드: `pip install -r requirements.txt && mkdocs build`
+  - 퍼블리시 디렉토리: `site/`
+  - 보안 헤더 설정 (XSS, CSRF, Content-Type 보호)
+  - 정적 파일 캐싱 최적화 (CSS/JS: 1년, HTML: 1시간)
+  - SPA 리다이렉트 지원
+
+- **Git 커밋**: "Add Netlify deployment configuration and update README"
+
 ### 2025-05-25
 
 #### ✅ Chapter 5: 네트워킹과 소켓 프로그래밍 (고급 과정) 완료 (2025-05-25 13:12)

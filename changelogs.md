@@ -53,6 +53,33 @@
   - "Remove remaining duplicate directories: curricula and quiz_app"
 - **웹사이트 상태**: 정상 작동 (https://python-tutorial-devlikebear.vercel.app)
 
+#### ✅ Netlify 빌드 에러 수정 (2025-05-26 21:20)
+- **문제점**:
+  - `mise` 도구가 Python 환경을 제대로 활성화하지 못함
+  - `.python-version` 파일로 인한 버전 충돌
+  - `runtime.txt` 파일 형식 문제
+
+- **해결 방법**:
+  - `.python-version` 파일 삭제 (mise 간섭 방지)
+  - `runtime.txt` 파일 삭제 (불필요한 버전 파일 제거)
+  - 전용 빌드 스크립트 `build.sh` 생성
+  - `netlify.toml`에서 빌드 스크립트 사용하도록 수정
+
+- **생성된 파일**:
+  - `build.sh`: 안정적인 빌드 프로세스를 위한 스크립트
+    - Python/pip 버전 확인
+    - pip 업그레이드
+    - 의존성 설치
+    - MkDocs 빌드
+    - 에러 처리 및 로깅
+
+- **수정된 설정**:
+  - `netlify.toml`: 빌드 명령어를 `./build.sh`로 변경
+  - 시스템 기본 Python 사용으로 안정성 향상
+  - 환경 변수로만 Python 버전 힌트 제공
+
+- **Git 커밋**: "Fix Netlify build: remove version files and add build script"
+
 #### ✅ Netlify 배포 설정 추가 (2025-05-26 21:15)
 - **작업 내용**:
   - Netlify 배포를 위한 설정 파일들 생성

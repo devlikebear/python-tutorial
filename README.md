@@ -27,21 +27,30 @@
 
 ```
 python-tutorial/
-├── .cursorrules              # 프로젝트 규칙과 가이드라인
-├── README.md                 # 프로젝트 개요 (이 파일)
-├── curricula/               # 커리큘럼 문서
-│   ├── beginner_curriculum.md
-│   ├── intermediate_curriculum.md
-│   └── advanced_curriculum.md
-├── tutorials/               # 마크다운 튜토리얼 문서
-│   ├── beginner/
-│   ├── intermediate/
-│   └── advanced/
-├── quizzes/                 # JSON 형태의 퀴즈 파일
-│   ├── beginner/
-│   ├── intermediate/
-│   └── advanced/
-└── quiz_app/                # 퀴즈 애플리케이션
+├── docs/                    # MkDocs 웹사이트 소스
+│   ├── tutorials/          # 마크다운 튜토리얼 문서
+│   │   ├── beginner/
+│   │   ├── intermediate/
+│   │   └── advanced/
+│   ├── quizzes/            # JSON 형태의 퀴즈 파일
+│   │   ├── beginner/
+│   │   ├── intermediate/
+│   │   └── advanced/
+│   ├── curricula/          # 커리큘럼 문서
+│   ├── stylesheets/        # 커스텀 CSS
+│   ├── javascripts/        # 커스텀 JS
+│   └── index.md            # 홈페이지
+├── site/                   # 빌드된 정적 사이트
+├── mkdocs.yml              # MkDocs 설정
+├── requirements.txt        # Python 의존성
+├── vercel.json             # Vercel 배포 설정
+├── netlify.toml            # Netlify 배포 설정
+├── runtime.txt             # Python 런타임 버전
+├── _redirects              # Netlify 리다이렉트 규칙
+├── changelogs.md           # 프로젝트 진행 로그
+├── .cursorrules            # 프로젝트 규칙과 가이드라인
+├── README.md               # 프로젝트 개요 (이 파일)
+└── LICENSE                 # 라이센스
 ```
 
 ## 학습 방법
@@ -103,4 +112,61 @@ pip install -r requirements.txt
 
 ---
 
-**Happy Python Learning! 🐍✨** 
+**Happy Python Learning! 🐍✨**
+
+## 웹사이트 배포
+
+이 프로젝트는 MkDocs로 구축된 정적 웹사이트로, 다양한 플랫폼에 배포할 수 있습니다.
+
+### 🚀 Netlify 배포
+
+#### 자동 배포 (권장)
+1. [Netlify](https://netlify.com)에 로그인
+2. "New site from Git" 선택
+3. GitHub 저장소 연결: `devlikebear/python-tutorial`
+4. 빌드 설정 (자동 감지됨):
+   - **Build command**: `pip install -r requirements.txt && mkdocs build`
+   - **Publish directory**: `site`
+   - **Python version**: `3.11` (runtime.txt에서 자동 설정)
+5. "Deploy site" 클릭
+
+#### 수동 배포
+```bash
+# 로컬에서 빌드
+pip install -r requirements.txt
+mkdocs build
+
+# site/ 폴더를 Netlify에 드래그 앤 드롭
+```
+
+### ⚡ Vercel 배포
+
+1. [Vercel](https://vercel.com)에 로그인
+2. "New Project" 선택
+3. GitHub 저장소 가져오기: `devlikebear/python-tutorial`
+4. 프레임워크: "Other" 선택
+5. 빌드 설정:
+   - **Build Command**: `pip install -r requirements.txt && mkdocs build`
+   - **Output Directory**: `site`
+6. "Deploy" 클릭
+
+### 🔧 로컬 개발 서버
+
+```bash
+# 의존성 설치
+pip install -r requirements.txt
+
+# 개발 서버 실행
+mkdocs serve
+
+# 브라우저에서 http://127.0.0.1:8000 접속
+```
+
+### 📦 정적 빌드
+
+```bash
+# 정적 사이트 빌드
+mkdocs build
+
+# site/ 폴더에 빌드 결과물 생성
+``` 

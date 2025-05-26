@@ -1,0 +1,8 @@
+# Netlify redirects file
+# 모든 요청을 index.html로 리다이렉트 (SPA 지원)
+/*    /index.html   200
+
+# 특정 경로 리다이렉트 (필요시 추가)
+/tutorials/*  /tutorials/:splat  200
+/quizzes/*    /quizzes/:splat    200
+/curricula/*  /curricula/:splat  200 

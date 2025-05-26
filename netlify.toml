@@ -1,0 +1,55 @@
+[build]
+# 빌드 명령어
+command = "pip install -r requirements.txt && mkdocs build"
+
+# 빌드 결과물 디렉토리
+publish = "site"
+
+# Python 버전 설정
+[build.environment]
+PYTHON_VERSION = "3.11"
+
+# 리다이렉트 설정 (SPA 지원)
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+force = false
+
+# 헤더 설정 (보안 및 성능)
+[[headers]]
+for = "/*"
+[headers.values]
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://polyfill.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';"
+
+# 정적 파일 캐싱
+[[headers]]
+for = "/assets/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.css"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.js"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# 폰트 파일 캐싱
+[[headers]]
+for = "/*.woff2"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML 파일 캐싱 (짧은 시간)
+[[headers]]
+for = "/*.html"
+[headers.values]
+Cache-Control = "public, max-age=3600"

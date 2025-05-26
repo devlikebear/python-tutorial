@@ -1,0 +1,18 @@
+{
+    "build": {
+        "env": {
+            "PYTHON_VERSION": "3.11"
+        }
+    },
+    "buildCommand": "pip install -r requirements.txt && mkdocs build",
+    "outputDirectory": "site",
+    "installCommand": "pip install -r requirements.txt",
+    "framework": null,
+    "functions": {},
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/$1"
+        }
+    ]
+}

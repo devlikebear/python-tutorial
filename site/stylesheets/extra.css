@@ -1,0 +1,208 @@
+/* Custom styles for Python Tutorial website */
+
+/* Korean font optimization */
+:root {
+  --md-text-font: "Noto Sans KR", "Roboto", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --md-code-font: "JetBrains Mono", "Fira Code", "Monaco", "Consolas", monospace;
+}
+
+/* Import Google Fonts for Korean */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+/* Enhanced code blocks */
+.highlight {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.highlight pre {
+  padding: 1rem 1.2rem;
+  line-height: 1.5;
+}
+
+/* Custom admonition styles for learning materials */
+.md-typeset .admonition.tip {
+  border-left-color: #00c853;
+}
+
+.md-typeset .admonition.tip > .admonition-title {
+  background-color: rgba(0, 200, 83, 0.1);
+  border-left-color: #00c853;
+}
+
+.md-typeset .admonition.exercise {
+  border-left-color: #ff9800;
+}
+
+.md-typeset .admonition.exercise > .admonition-title {
+  background-color: rgba(255, 152, 0, 0.1);
+  border-left-color: #ff9800;
+}
+
+.md-typeset .admonition.exercise > .admonition-title::before {
+  content: "🏋️";
+}
+
+/* Progress indicators for chapters */
+.chapter-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  background: var(--md-default-bg-color);
+  border-radius: 6px;
+  border-left: 4px solid var(--md-primary-fg-color);
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--md-default-fg-color--lighter);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--md-primary-fg-color),
+    var(--md-accent-fg-color)
+  );
+  transition: width 0.3s ease;
+}
+
+/* Difficulty badges */
+.difficulty-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.difficulty-beginner {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.difficulty-intermediate {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.difficulty-advanced {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+/* Enhanced navigation */
+.md-nav__title {
+  font-weight: 500;
+}
+
+.md-nav__link--active {
+  font-weight: 600;
+}
+
+/* Chapter cards */
+.chapter-card {
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: all 0.2s ease;
+}
+
+.chapter-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.chapter-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.chapter-description {
+  color: var(--md-default-fg-color--light);
+  margin: 0 0 1rem 0;
+}
+
+.chapter-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--md-default-fg-color--light);
+}
+
+/* Learning path visualization */
+.learning-path {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: linear-gradient(
+    135deg,
+    var(--md-primary-fg-color--light),
+    var(--md-accent-fg-color--light)
+  );
+  border-radius: 8px;
+  color: white;
+}
+
+.path-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.path-arrow {
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+/* Responsive improvements */
+@media screen and (max-width: 768px) {
+  .chapter-card {
+    padding: 1rem;
+  }
+
+  .learning-path {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .path-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* Print styles */
+@media print {
+  .md-header,
+  .md-footer,
+  .md-sidebar {
+    display: none !important;
+  }
+
+  .md-main__inner {
+    margin: 0 !important;
+  }
+
+  .md-content {
+    max-width: none !important;
+  }
+}

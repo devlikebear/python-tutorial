@@ -1,0 +1,274 @@
+{
+    "chapter": "Chapter 9: 딕셔너리와 집합 (Dictionaries and Sets)",
+    "total_questions": 28,
+    "questions": [
+        {
+            "id": 1,
+            "type": "multiple_choice",
+            "question": "딕셔너리의 키로 사용할 수 없는 데이터 타입은?",
+            "choices": [
+                "문자열 (str)",
+                "정수 (int)",
+                "리스트 (list)",
+                "튜플 (tuple)"
+            ],
+            "correct_answer": 2,
+            "explanation": "딕셔너리의 키는 해시 가능한(hashable) 불변 객체여야 합니다. 리스트는 가변 객체이므로 키로 사용할 수 없습니다."
+        },
+        {
+            "id": 2,
+            "type": "code_output",
+            "question": "다음 코드의 출력 결과는?\nstudent = {'name': '김철수', 'age': 20}\nprint(student.get('grade', 'A'))",
+            "correct_answer": "A",
+            "explanation": "get() 메서드는 키가 존재하지 않을 때 지정된 기본값을 반환합니다. 'grade' 키가 없으므로 'A'가 출력됩니다."
+        },
+        {
+            "id": 3,
+            "type": "multiple_choice",
+            "question": "빈 집합을 올바르게 생성하는 방법은?",
+            "choices": [
+                "{}",
+                "set()",
+                "[]",
+                "new set()"
+            ],
+            "correct_answer": 1,
+            "explanation": "{}는 빈 딕셔너리를 생성하므로, 빈 집합을 만들려면 set() 함수를 사용해야 합니다."
+        },
+        {
+            "id": 4,
+            "type": "code_completion",
+            "question": "딕셔너리에서 모든 키와 값을 순회하는 코드를 작성하세요.\ndata = {'a': 1, 'b': 2, 'c': 3}",
+            "correct_answer": "data = {'a': 1, 'b': 2, 'c': 3}\nfor key, value in data.items():\n    print(f'{key}: {value}')",
+            "explanation": "items() 메서드는 키-값 쌍을 튜플로 반환하므로 for문에서 언패킹하여 사용할 수 있습니다."
+        },
+        {
+            "id": 5,
+            "type": "multiple_choice",
+            "question": "두 집합 A = {1, 2, 3}와 B = {2, 3, 4}의 교집합은?",
+            "choices": [
+                "{1, 2, 3, 4}",
+                "{2, 3}",
+                "{1, 4}",
+                "{1}"
+            ],
+            "correct_answer": 1,
+            "explanation": "교집합은 두 집합 모두에 포함된 요소들입니다. A & B 또는 A.intersection(B)로 구할 수 있습니다."
+        },
+        {
+            "id": 6,
+            "type": "code_output",
+            "question": "다음 코드의 출력 결과는?\nmy_set = {1, 2, 2, 3, 3, 3}\nprint(len(my_set))",
+            "correct_answer": "3",
+            "explanation": "집합은 중복을 허용하지 않으므로 {1, 2, 3}이 되고, 길이는 3입니다."
+        },
+        {
+            "id": 7,
+            "type": "true_false",
+            "question": "딕셔너리는 Python 3.7부터 삽입 순서를 보장한다.",
+            "correct_answer": true,
+            "explanation": "Python 3.7부터 딕셔너리는 삽입 순서를 보장하도록 언어 사양이 변경되었습니다."
+        },
+        {
+            "id": 8,
+            "type": "code_completion",
+            "question": "딕셔너리 컴프리헨션을 사용하여 1부터 5까지 숫자의 제곱을 딕셔너리로 만드는 코드를 작성하세요.",
+            "correct_answer": "squares = {x: x**2 for x in range(1, 6)}\nprint(squares)",
+            "explanation": "딕셔너리 컴프리헨션은 {key: value for item in iterable} 형태로 작성합니다."
+        },
+        {
+            "id": 9,
+            "type": "multiple_choice",
+            "question": "딕셔너리의 setdefault() 메서드의 역할은?",
+            "choices": [
+                "키가 있으면 값을 변경, 없으면 추가",
+                "키가 있으면 기존 값 반환, 없으면 기본값 설정 후 반환",
+                "모든 키에 동일한 기본값 설정",
+                "딕셔너리 초기화"
+            ],
+            "correct_answer": 1,
+            "explanation": "setdefault()는 키가 존재하면 기존 값을 반환하고, 없으면 지정된 기본값으로 키를 설정한 후 그 값을 반환합니다."
+        },
+        {
+            "id": 10,
+            "type": "code_debugging",
+            "question": "다음 코드의 오류를 수정하세요:\nmy_dict = {'a': 1, 'b': 2}\nprint(my_dict['c'])",
+            "correct_answer": "my_dict = {'a': 1, 'b': 2}\nprint(my_dict.get('c', 'Not found'))\n# 또는\nif 'c' in my_dict:\n    print(my_dict['c'])\nelse:\n    print('Key not found')",
+            "explanation": "존재하지 않는 키에 접근하면 KeyError가 발생합니다. get() 메서드나 in 연산자로 안전하게 접근해야 합니다."
+        },
+        {
+            "id": 11,
+            "type": "multiple_choice",
+            "question": "두 집합의 대칭 차집합을 구하는 연산자는?",
+            "choices": [
+                "&",
+                "|",
+                "-",
+                "^"
+            ],
+            "correct_answer": 3,
+            "explanation": "대칭 차집합(symmetric difference)은 ^ 연산자 또는 symmetric_difference() 메서드로 구할 수 있습니다."
+        },
+        {
+            "id": 12,
+            "type": "code_output",
+            "question": "다음 코드의 출력 결과는?\ndata = {'x': 10, 'y': 20}\ndata.update({'y': 30, 'z': 40})\nprint(data)",
+            "correct_answer": "{'x': 10, 'y': 30, 'z': 40}",
+            "explanation": "update() 메서드는 기존 키의 값을 업데이트하고 새로운 키-값 쌍을 추가합니다."
+        },
+        {
+            "id": 13,
+            "type": "practical",
+            "question": "문자열에서 각 문자의 출현 빈도를 계산하는 함수를 딕셔너리를 사용하여 작성하세요.\ntext = 'hello world'",
+            "correct_answer": "def count_characters(text):\n    char_count = {}\n    for char in text:\n        if char != ' ':  # 공백 제외\n            char_count[char] = char_count.get(char, 0) + 1\n    return char_count\n\ntext = 'hello world'\nresult = count_characters(text)\nprint(result)",
+            "explanation": "딕셔너리의 get() 메서드를 사용하여 키가 없을 때 0을 기본값으로 설정하고 카운트를 증가시킵니다."
+        },
+        {
+            "id": 14,
+            "type": "multiple_choice",
+            "question": "집합에서 remove()와 discard()의 차이점은?",
+            "choices": [
+                "remove()는 첫 번째 요소만, discard()는 모든 요소 제거",
+                "remove()는 요소가 없으면 오류, discard()는 오류 없음",
+                "remove()는 리스트용, discard()는 집합용",
+                "차이점이 없음"
+            ],
+            "correct_answer": 1,
+            "explanation": "remove()는 요소가 없으면 KeyError를 발생시키지만, discard()는 요소가 없어도 오류를 발생시키지 않습니다."
+        },
+        {
+            "id": 15,
+            "type": "code_completion",
+            "question": "두 집합의 공통 요소가 있는지 확인하는 코드를 작성하세요.\nset1 = {1, 2, 3}\nset2 = {4, 5, 6}",
+            "correct_answer": "set1 = {1, 2, 3}\nset2 = {4, 5, 6}\n\n# 방법 1: 교집합 확인\nhas_common = bool(set1 & set2)\nprint(f'공통 요소 있음: {has_common}')\n\n# 방법 2: isdisjoint() 사용\nare_disjoint = set1.isdisjoint(set2)\nprint(f'서로소 관계: {are_disjoint}')",
+            "explanation": "교집합이 비어있으면 공통 요소가 없고, isdisjoint()는 공통 요소가 없을 때 True를 반환합니다."
+        },
+        {
+            "id": 16,
+            "type": "multiple_choice",
+            "question": "다음 중 딕셔너리의 모든 값들만 가져오는 메서드는?",
+            "choices": [
+                "keys()",
+                "values()",
+                "items()",
+                "get_values()"
+            ],
+            "correct_answer": 1,
+            "explanation": "values() 메서드는 딕셔너리의 모든 값들을 dict_values 객체로 반환합니다."
+        },
+        {
+            "id": 17,
+            "type": "code_analysis",
+            "question": "다음 두 코드의 차이점을 설명하세요:\n코드1: dict.fromkeys(['a', 'b', 'c'], [])\n코드2: {key: [] for key in ['a', 'b', 'c']}",
+            "correct_answer": "코드1은 모든 키가 같은 리스트 객체를 참조하므로 하나의 리스트를 수정하면 모든 키의 값이 변경됩니다. 코드2는 각 키마다 새로운 리스트 객체를 생성하므로 독립적입니다.",
+            "explanation": "fromkeys()는 모든 키에 대해 같은 객체 참조를 공유하므로 가변 객체를 기본값으로 사용할 때 주의해야 합니다."
+        },
+        {
+            "id": 18,
+            "type": "code_output",
+            "question": "다음 코드의 출력 결과는?\nA = {1, 2, 3, 4}\nB = {2, 3}\nprint(B <= A)",
+            "correct_answer": "True",
+            "explanation": "<= 연산자는 부분집합 관계를 확인합니다. B의 모든 요소가 A에 포함되므로 True입니다."
+        },
+        {
+            "id": 19,
+            "type": "practical",
+            "question": "두 개의 리스트를 딕셔너리로 결합하는 함수를 작성하세요.\nkeys = ['name', 'age', 'city']\nvalues = ['김철수', 25, '서울']",
+            "correct_answer": "def combine_lists_to_dict(keys, values):\n    if len(keys) != len(values):\n        raise ValueError('Keys and values must have same length')\n    return dict(zip(keys, values))\n\nkeys = ['name', 'age', 'city']\nvalues = ['김철수', 25, '서울']\nresult = combine_lists_to_dict(keys, values)\nprint(result)",
+            "explanation": "zip() 함수로 두 리스트를 쌍으로 묶고 dict()로 딕셔너리를 생성합니다."
+        },
+        {
+            "id": 20,
+            "type": "multiple_choice",
+            "question": "집합 컴프리헨션의 올바른 문법은?",
+            "choices": [
+                "[x for x in range(5)]",
+                "{x for x in range(5)}",
+                "(x for x in range(5))",
+                "<x for x in range(5)>"
+            ],
+            "correct_answer": 1,
+            "explanation": "집합 컴프리헨션은 중괄호 {}를 사용합니다. 대괄호는 리스트, 소괄호는 제너레이터 표현식입니다."
+        },
+        {
+            "id": 21,
+            "type": "code_completion",
+            "question": "딕셔너리에서 값이 가장 큰 키를 찾는 코드를 작성하세요.\nscores = {'Alice': 85, 'Bob': 92, 'Charlie': 78, 'David': 95}",
+            "correct_answer": "scores = {'Alice': 85, 'Bob': 92, 'Charlie': 78, 'David': 95}\n\n# 방법 1: max() 함수 사용\ntop_student = max(scores, key=scores.get)\nprint(f'최고 점수 학생: {top_student} ({scores[top_student]}점)')\n\n# 방법 2: max()와 items() 사용\ntop_student, top_score = max(scores.items(), key=lambda x: x[1])\nprint(f'최고 점수: {top_student} ({top_score}점)')",
+            "explanation": "max() 함수에 key 매개변수를 사용하여 비교 기준을 지정할 수 있습니다."
+        },
+        {
+            "id": 22,
+            "type": "multiple_choice",
+            "question": "딕셔너리에서 popitem() 메서드의 특징은?",
+            "choices": [
+                "첫 번째 키-값 쌍을 제거",
+                "마지막 키-값 쌍을 제거 (Python 3.7+)",
+                "임의의 키-값 쌍을 제거",
+                "가장 큰 키의 키-값 쌍을 제거"
+            ],
+            "correct_answer": 1,
+            "explanation": "Python 3.7부터 딕셔너리가 순서를 보장하므로 popitem()은 마지막에 삽입된 키-값 쌍을 제거합니다."
+        },
+        {
+            "id": 23,
+            "type": "practical",
+            "question": "집합을 사용하여 리스트에서 중복을 제거하되 원래 순서를 유지하는 함수를 작성하세요.",
+            "correct_answer": "def remove_duplicates_preserve_order(lst):\n    seen = set()\n    result = []\n    for item in lst:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result\n\n# 사용 예제\noriginal = [1, 2, 3, 2, 4, 1, 5, 3]\nunique = remove_duplicates_preserve_order(original)\nprint(f'원본: {original}')\nprint(f'중복 제거: {unique}')",
+            "explanation": "집합으로 이미 본 요소를 추적하면서 순서대로 처리하여 원래 순서를 유지합니다."
+        },
+        {
+            "id": 24,
+            "type": "code_output",
+            "question": "다음 코드의 출력 결과는?\ndict1 = {'a': 1, 'b': 2}\ndict2 = {'b': 3, 'c': 4}\nresult = dict1 | dict2  # Python 3.9+\nprint(result)",
+            "correct_answer": "{'a': 1, 'b': 3, 'c': 4}",
+            "explanation": "| 연산자는 딕셔너리를 병합하며, 중복된 키의 경우 오른쪽 딕셔너리의 값이 사용됩니다."
+        },
+        {
+            "id": 25,
+            "type": "multiple_choice",
+            "question": "다음 중 해시 가능한(hashable) 객체는?",
+            "choices": [
+                "리스트 [1, 2, 3]",
+                "딕셔너리 {'a': 1}",
+                "집합 {1, 2, 3}",
+                "튜플 (1, 2, 3)"
+            ],
+            "correct_answer": 3,
+            "explanation": "해시 가능한 객체는 불변 객체여야 합니다. 튜플은 불변이므로 해시 가능하고 딕셔너리 키나 집합 요소로 사용할 수 있습니다."
+        },
+        {
+            "id": 26,
+            "type": "practical",
+            "question": "두 딕셔너리의 공통 키를 찾고, 그 키들의 값을 비교하는 함수를 작성하세요.",
+            "correct_answer": "def compare_common_keys(dict1, dict2):\n    common_keys = set(dict1.keys()) & set(dict2.keys())\n    result = {}\n    \n    for key in common_keys:\n        result[key] = {\n            'dict1_value': dict1[key],\n            'dict2_value': dict2[key],\n            'equal': dict1[key] == dict2[key]\n        }\n    \n    return result\n\n# 사용 예제\ndict1 = {'a': 1, 'b': 2, 'c': 3}\ndict2 = {'b': 2, 'c': 4, 'd': 5}\ncomparison = compare_common_keys(dict1, dict2)\nprint(comparison)",
+            "explanation": "집합의 교집합 연산으로 공통 키를 찾고, 각 키의 값들을 비교합니다."
+        },
+        {
+            "id": 27,
+            "type": "code_analysis",
+            "question": "다음 코드에서 성능상 더 좋은 방법은 무엇이고 그 이유는?\n방법1: key in dictionary\n방법2: key in dictionary.keys()",
+            "correct_answer": "방법1이 더 좋습니다. 딕셔너리에서 'in' 연산자는 키를 직접 해시 테이블에서 찾으므로 O(1) 시간이 걸립니다. 방법2는 불필요하게 keys() 메서드를 호출하여 추가 오버헤드가 발생합니다.",
+            "explanation": "딕셔너리는 해시 테이블로 구현되어 키 검색이 매우 빠르므로 직접 in 연산자를 사용하는 것이 효율적입니다."
+        },
+        {
+            "id": 28,
+            "type": "practical",
+            "question": "학생들의 과목별 점수 데이터에서 각 학생의 평균 점수를 계산하는 코드를 작성하세요.\nstudents = {\n    'Alice': {'math': 85, 'english': 90, 'science': 78},\n    'Bob': {'math': 92, 'english': 88, 'science': 95},\n    'Charlie': {'math': 76, 'english': 82, 'science': 89}\n}",
+            "correct_answer": "students = {\n    'Alice': {'math': 85, 'english': 90, 'science': 78},\n    'Bob': {'math': 92, 'english': 88, 'science': 95},\n    'Charlie': {'math': 76, 'english': 82, 'science': 89}\n}\n\n# 각 학생의 평균 계산\naverages = {}\nfor name, scores in students.items():\n    avg = sum(scores.values()) / len(scores)\n    averages[name] = round(avg, 1)\n\nprint('학생별 평균 점수:')\nfor name, avg in averages.items():\n    print(f'{name}: {avg}점')\n\n# 딕셔너리 컴프리헨션 버전\naverages = {name: round(sum(scores.values()) / len(scores), 1) \n           for name, scores in students.items()}\nprint(averages)",
+            "explanation": "중첩된 딕셔너리를 순회하며 각 학생의 점수들의 평균을 계산합니다."
+        }
+    ],
+    "difficulty_level": "beginner",
+    "estimated_time": "40 minutes",
+    "learning_objectives": [
+        "딕셔너리의 기본 개념과 특징 완전 이해",
+        "딕셔너리 메서드들의 올바른 사용법",
+        "집합의 기본 개념과 집합 연산 이해",
+        "딕셔너리와 집합 컴프리헨션 활용",
+        "해시 가능성과 가변성의 차이점 이해",
+        "실용적인 데이터 관리 및 분석 능력",
+        "효율적인 집합 연산 활용 능력",
+        "중첩된 딕셔너리 구조 처리 능력"
+    ]
+}

@@ -1,0 +1,467 @@
+{
+    "quiz_info": {
+        "title": "Chapter 12: 데이터베이스 연동 퀴즈",
+        "description": "SQLite3, CRUD 연산, 트랜잭션, ORM, NoSQL, 데이터베이스 설계 패턴, 성능 최적화에 대한 종합 평가",
+        "total_questions": 42,
+        "time_limit_minutes": 55,
+        "passing_score": 70,
+        "difficulty_distribution": {
+            "beginner": 12,
+            "intermediate": 18,
+            "advanced": 8,
+            "expert": 4
+        }
+    },
+    "questions": [
+        {
+            "id": 1,
+            "type": "multiple_choice",
+            "difficulty": "beginner",
+            "question": "SQLite의 주요 특징이 아닌 것은?",
+            "options": [
+                "서버가 필요 없는 경량 데이터베이스",
+                "단일 파일로 데이터베이스 저장",
+                "분산 처리를 위한 클러스터링 지원",
+                "Python 표준 라이브러리에 포함"
+            ],
+            "correct_answer": 2,
+            "explanation": "SQLite는 경량 데이터베이스로 클러스터링을 지원하지 않습니다. 단일 파일 기반의 임베디드 데이터베이스입니다."
+        },
+        {
+            "id": 2,
+            "type": "multiple_choice",
+            "difficulty": "beginner",
+            "question": "CRUD에서 'U'는 무엇을 의미하나요?",
+            "options": [
+                "Upload",
+                "Update",
+                "Unique",
+                "Union"
+            ],
+            "correct_answer": 1,
+            "explanation": "CRUD는 Create, Read, Update, Delete의 줄임말로, 'U'는 Update(수정)를 의미합니다."
+        },
+        {
+            "id": 3,
+            "type": "true_false",
+            "difficulty": "beginner",
+            "question": "SQLite에서 테이블 생성 시 PRIMARY KEY는 자동으로 AUTOINCREMENT가 됩니다.",
+            "correct_answer": false,
+            "explanation": "SQLite에서 INTEGER PRIMARY KEY는 자동으로 AUTOINCREMENT가 되지만, 명시적으로 AUTOINCREMENT를 지정해야 합니다."
+        },
+        {
+            "id": 4,
+            "type": "multiple_choice",
+            "difficulty": "beginner",
+            "question": "SQL에서 모든 레코드를 조회하는 명령어는?",
+            "options": [
+                "GET * FROM table",
+                "SELECT * FROM table",
+                "FETCH * FROM table",
+                "RETRIEVE * FROM table"
+            ],
+            "correct_answer": 1,
+            "explanation": "SQL에서 데이터를 조회할 때는 SELECT 문을 사용합니다."
+        },
+        {
+            "id": 5,
+            "type": "fill_in_blank",
+            "difficulty": "beginner",
+            "question": "Python에서 SQLite 데이터베이스에 연결하기 위해 사용하는 모듈은 ______입니다.",
+            "correct_answer": "sqlite3",
+            "explanation": "Python에서는 표준 라이브러리인 sqlite3 모듈을 사용하여 SQLite 데이터베이스에 연결합니다."
+        },
+        {
+            "id": 6,
+            "type": "multiple_choice",
+            "difficulty": "beginner",
+            "question": "데이터베이스 트랜잭션의 ACID 속성에 포함되지 않는 것은?",
+            "options": [
+                "원자성 (Atomicity)",
+                "일관성 (Consistency)",
+                "격리성 (Isolation)",
+                "효율성 (Efficiency)"
+            ],
+            "correct_answer": 3,
+            "explanation": "ACID는 Atomicity(원자성), Consistency(일관성), Isolation(격리성), Durability(지속성)를 의미합니다."
+        },
+        {
+            "id": 7,
+            "type": "true_false",
+            "difficulty": "beginner",
+            "question": "SQL에서 WHERE 절은 필수입니다.",
+            "correct_answer": false,
+            "explanation": "WHERE 절은 선택사항으로, 조건 없이 모든 레코드를 대상으로 할 수 있습니다."
+        },
+        {
+            "id": 8,
+            "type": "multiple_choice",
+            "difficulty": "beginner",
+            "question": "다음 중 DDL(Data Definition Language) 명령어는?",
+            "options": [
+                "SELECT",
+                "INSERT",
+                "CREATE",
+                "UPDATE"
+            ],
+            "correct_answer": 2,
+            "explanation": "CREATE는 테이블 구조를 정의하는 DDL 명령어입니다. SELECT, INSERT, UPDATE는 DML입니다."
+        },
+        {
+            "id": 9,
+            "type": "multiple_choice",
+            "difficulty": "beginner",
+            "question": "ORM의 정의로 올바른 것은?",
+            "options": [
+                "Object Relational Mapping",
+                "Online Resource Management",
+                "Operational Risk Management",
+                "Organized Record Model"
+            ],
+            "correct_answer": 0,
+            "explanation": "ORM은 Object Relational Mapping으로, 객체와 관계형 데이터베이스 간의 매핑을 의미합니다."
+        },
+        {
+            "id": 10,
+            "type": "true_false",
+            "difficulty": "beginner",
+            "question": "NoSQL 데이터베이스는 스키마가 고정되어 있습니다.",
+            "correct_answer": false,
+            "explanation": "NoSQL 데이터베이스의 주요 특징 중 하나는 유연한 스키마를 가진다는 것입니다."
+        },
+        {
+            "id": 11,
+            "type": "multiple_choice",
+            "difficulty": "beginner",
+            "question": "인덱스의 주요 목적은?",
+            "options": [
+                "데이터 백업",
+                "쿼리 성능 향상",
+                "데이터 압축",
+                "보안 강화"
+            ],
+            "correct_answer": 1,
+            "explanation": "인덱스는 데이터 검색 속도를 향상시키기 위해 사용됩니다."
+        },
+        {
+            "id": 12,
+            "type": "fill_in_blank",
+            "difficulty": "beginner",
+            "question": "SQL에서 중복 제거를 위해 사용하는 키워드는 ______입니다.",
+            "correct_answer": "DISTINCT",
+            "explanation": "DISTINCT 키워드를 사용하여 중복된 레코드를 제거할 수 있습니다."
+        },
+        {
+            "id": 13,
+            "type": "coding",
+            "difficulty": "intermediate",
+            "question": "SQLite에서 employees 테이블에 새로운 직원을 추가하는 Python 코드를 작성하세요. (name, email, salary 필드)",
+            "correct_answer": "conn = sqlite3.connect('database.db')\ncursor = conn.cursor()\ncursor.execute('''\n    INSERT INTO employees (name, email, salary)\n    VALUES (?, ?, ?)\n''', (name, email, salary))\nconn.commit()\nconn.close()",
+            "explanation": "매개변수화된 쿼리를 사용하여 SQL 인젝션을 방지하고 안전하게 데이터를 삽입합니다."
+        },
+        {
+            "id": 14,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "다음 중 트랜잭션을 롤백하는 상황은?",
+            "options": [
+                "모든 연산이 성공적으로 완료된 경우",
+                "예외가 발생한 경우",
+                "commit()을 호출한 경우",
+                "연결을 정상적으로 종료한 경우"
+            ],
+            "correct_answer": 1,
+            "explanation": "트랜잭션 중 예외가 발생하면 데이터 일관성을 위해 롤백해야 합니다."
+        },
+        {
+            "id": 15,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "JOIN의 종류가 아닌 것은?",
+            "options": [
+                "INNER JOIN",
+                "LEFT JOIN",
+                "CROSS JOIN",
+                "MERGE JOIN"
+            ],
+            "correct_answer": 3,
+            "explanation": "MERGE JOIN은 실행 계획의 일종이지 SQL JOIN 종류가 아닙니다. 기본 JOIN 종류는 INNER, LEFT, RIGHT, FULL OUTER, CROSS JOIN입니다."
+        },
+        {
+            "id": 16,
+            "type": "true_false",
+            "difficulty": "intermediate",
+            "question": "SQLite에서 외래 키 제약 조건은 기본적으로 활성화되어 있습니다.",
+            "correct_answer": false,
+            "explanation": "SQLite에서 외래 키 제약 조건은 기본적으로 비활성화되어 있으며, PRAGMA foreign_keys = ON으로 활성화해야 합니다."
+        },
+        {
+            "id": 17,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "연결 풀링(Connection Pooling)의 주요 이점은?",
+            "options": [
+                "메모리 사용량 증가",
+                "연결 생성/해제 오버헤드 감소",
+                "보안 강화",
+                "데이터 압축"
+            ],
+            "correct_answer": 1,
+            "explanation": "연결 풀링은 연결을 재사용하여 연결 생성/해제 오버헤드를 줄여 성능을 향상시킵니다."
+        },
+        {
+            "id": 18,
+            "type": "fill_in_blank",
+            "difficulty": "intermediate",
+            "question": "SQLite에서 WAL 모드를 활성화하는 PRAGMA 명령어는 ______입니다.",
+            "correct_answer": "PRAGMA journal_mode=WAL",
+            "explanation": "WAL(Write-Ahead Logging) 모드는 동시성과 성능을 향상시키는 SQLite의 저널링 모드입니다."
+        },
+        {
+            "id": 19,
+            "type": "coding",
+            "difficulty": "intermediate",
+            "question": "트랜잭션을 사용하여 여러 테이블을 안전하게 업데이트하는 Python 코드의 기본 구조를 작성하세요.",
+            "correct_answer": "conn = sqlite3.connect('database.db')\ntry:\n    cursor = conn.cursor()\n    cursor.execute('BEGIN')\n    \n    # 여러 쿼리 실행\n    cursor.execute('UPDATE table1 SET ...')\n    cursor.execute('UPDATE table2 SET ...')\n    \n    conn.commit()\nexcept Exception as e:\n    conn.rollback()\n    raise e\nfinally:\n    conn.close()",
+            "explanation": "try-except-finally 구조로 예외 발생 시 롤백하고 정상 완료 시 커밋하는 안전한 트랜잭션 패턴입니다."
+        },
+        {
+            "id": 20,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "SQLAlchemy에서 모델 클래스의 기본 클래스는?",
+            "options": [
+                "BaseModel",
+                "declarative_base()",
+                "Model",
+                "SQLModel"
+            ],
+            "correct_answer": 1,
+            "explanation": "SQLAlchemy에서는 declarative_base()로 생성한 Base 클래스를 상속받아 모델을 정의합니다."
+        },
+        {
+            "id": 21,
+            "type": "true_false",
+            "difficulty": "intermediate",
+            "question": "MongoDB는 관계형 데이터베이스입니다.",
+            "correct_answer": false,
+            "explanation": "MongoDB는 문서 기반의 NoSQL 데이터베이스입니다."
+        },
+        {
+            "id": 22,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "NoSQL 데이터베이스의 종류가 아닌 것은?",
+            "options": [
+                "문서형 (Document)",
+                "키-값 (Key-Value)",
+                "컬럼형 (Column-Family)",
+                "관계형 (Relational)"
+            ],
+            "correct_answer": 3,
+            "explanation": "관계형 데이터베이스는 전통적인 SQL 데이터베이스로 NoSQL 종류가 아닙니다."
+        },
+        {
+            "id": 23,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "데이터베이스 정규화의 주요 목적은?",
+            "options": [
+                "성능 향상",
+                "데이터 중복 최소화",
+                "저장 공간 증가",
+                "쿼리 복잡도 증가"
+            ],
+            "correct_answer": 1,
+            "explanation": "정규화의 주요 목적은 데이터 중복을 최소화하고 일관성을 보장하는 것입니다."
+        },
+        {
+            "id": 24,
+            "type": "fill_in_blank",
+            "difficulty": "intermediate",
+            "question": "SQL에서 그룹별 집계를 수행할 때 사용하는 절은 ______입니다.",
+            "correct_answer": "GROUP BY",
+            "explanation": "GROUP BY 절을 사용하여 특정 컬럼을 기준으로 그룹화하고 집계 함수를 적용할 수 있습니다."
+        },
+        {
+            "id": 25,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "SQLite의 데이터 타입이 아닌 것은?",
+            "options": [
+                "INTEGER",
+                "TEXT",
+                "BLOB",
+                "DECIMAL"
+            ],
+            "correct_answer": 3,
+            "explanation": "SQLite는 INTEGER, REAL, TEXT, BLOB의 4가지 기본 데이터 타입을 지원합니다. DECIMAL은 REAL로 처리됩니다."
+        },
+        {
+            "id": 26,
+            "type": "coding",
+            "difficulty": "intermediate",
+            "question": "부서별 평균 급여를 조회하는 SQL 쿼리를 작성하세요.",
+            "correct_answer": "SELECT department, AVG(salary) as avg_salary\nFROM employees\nGROUP BY department\nORDER BY avg_salary DESC",
+            "explanation": "GROUP BY로 부서별로 그룹화하고 AVG 함수로 평균을 계산합니다."
+        },
+        {
+            "id": 27,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "데이터베이스 인덱스의 단점은?",
+            "options": [
+                "검색 속도 향상",
+                "정렬 성능 개선",
+                "쓰기 성능 저하",
+                "메모리 사용량 감소"
+            ],
+            "correct_answer": 2,
+            "explanation": "인덱스는 검색 성능을 향상시키지만, 데이터 삽입/수정/삭제 시 인덱스도 함께 업데이트해야 하므로 쓰기 성능이 저하됩니다."
+        },
+        {
+            "id": 28,
+            "type": "true_false",
+            "difficulty": "intermediate",
+            "question": "SQL 인젝션은 매개변수화된 쿼리로 방지할 수 있습니다.",
+            "correct_answer": true,
+            "explanation": "매개변수화된 쿼리(준비된 문장)를 사용하면 SQL 인젝션 공격을 효과적으로 방지할 수 있습니다."
+        },
+        {
+            "id": 29,
+            "type": "multiple_choice",
+            "difficulty": "intermediate",
+            "question": "컨텍스트 매니저를 사용한 데이터베이스 연결의 이점은?",
+            "options": [
+                "성능 향상",
+                "자동 리소스 해제",
+                "보안 강화",
+                "메모리 증가"
+            ],
+            "correct_answer": 1,
+            "explanation": "컨텍스트 매니저(with 문)를 사용하면 예외 발생 시에도 자동으로 연결이 해제되어 리소스 누수를 방지합니다."
+        },
+        {
+            "id": 30,
+            "type": "design_pattern",
+            "difficulty": "intermediate",
+            "question": "계층적 데이터(조직도)를 관계형 데이터베이스에 저장하는 패턴을 설명하고, 테이블 구조를 설계하세요.",
+            "correct_answer": "인접 리스트 모델 (Adjacency List):\nCREATE TABLE organization (\n    id INTEGER PRIMARY KEY,\n    name TEXT NOT NULL,\n    parent_id INTEGER,\n    level INTEGER,\n    path TEXT,\n    FOREIGN KEY (parent_id) REFERENCES organization(id)\n);\n\n- parent_id: 상위 노드 참조\n- level: 계층 레벨\n- path: 경로 정보 (/1/2/3 형태)",
+            "explanation": "계층적 데이터는 인접 리스트 모델로 parent_id를 통해 상위 노드를 참조하는 방식이 일반적입니다."
+        },
+        {
+            "id": 31,
+            "type": "multiple_choice",
+            "difficulty": "advanced",
+            "question": "데이터베이스 정규화에서 3차 정규화(3NF)의 조건은?",
+            "options": [
+                "원자값만 포함",
+                "부분 함수 종속 제거",
+                "이행 함수 종속 제거",
+                "다치 종속 제거"
+            ],
+            "correct_answer": 2,
+            "explanation": "3차 정규화는 이행 함수 종속(Transitive Functional Dependency)을 제거하여 모든 비주요 속성이 주키에만 종속되도록 합니다."
+        },
+        {
+            "id": 32,
+            "type": "performance",
+            "difficulty": "advanced",
+            "question": "대용량 데이터 처리 시 성능 최적화 전략을 3가지 이상 제시하세요.",
+            "correct_answer": "1. 인덱스 최적화: 쿼리 패턴에 맞는 복합 인덱스 생성\n2. 배치 처리: executemany()로 대량 삽입 최적화\n3. 연결 풀링: 연결 재사용으로 오버헤드 감소\n4. 페이징: LIMIT/OFFSET으로 결과 분할 처리\n5. 쿼리 최적화: 불필요한 컬럼 제외, 조건 최적화\n6. WAL 모드: 동시성 향상\n7. 캐싱: 자주 조회되는 데이터 메모리 캐시",
+            "explanation": "대용량 데이터 처리에는 다양한 최적화 기법을 조합하여 적용해야 합니다."
+        },
+        {
+            "id": 33,
+            "type": "debugging",
+            "difficulty": "advanced",
+            "question": "다음 SQLite 코드의 문제점을 찾고 수정 방법을 제시하세요:\n\nconn = sqlite3.connect('db.db')\ncursor = conn.cursor()\nuser_input = \"'; DROP TABLE users; --\"\ncursor.execute(f\"SELECT * FROM users WHERE name = '{user_input}'\")",
+            "correct_answer": "문제점:\n1. SQL 인젝션 취약점: 문자열 직접 삽입\n2. 리소스 누수: 연결이 닫히지 않음\n\n수정 방법:\nconn = sqlite3.connect('db.db')\ntry:\n    cursor = conn.cursor()\n    cursor.execute('SELECT * FROM users WHERE name = ?', (user_input,))\n    results = cursor.fetchall()\nfinally:\n    conn.close()",
+            "explanation": "매개변수화된 쿼리 사용과 적절한 리소스 관리가 필요합니다."
+        },
+        {
+            "id": 34,
+            "type": "true_false",
+            "difficulty": "advanced",
+            "question": "SQLite에서 VACUUM 명령어는 데이터베이스 파일 크기를 줄이고 성능을 향상시킵니다.",
+            "correct_answer": true,
+            "explanation": "VACUUM은 삭제된 데이터의 빈 공간을 정리하고 데이터를 재구성하여 파일 크기를 줄이고 성능을 향상시킵니다."
+        },
+        {
+            "id": 35,
+            "type": "multiple_choice",
+            "difficulty": "advanced",
+            "question": "NoSQL의 CAP 정리에서 'P'는 무엇을 의미하나요?",
+            "options": [
+                "Performance (성능)",
+                "Partition tolerance (분할 내성)",
+                "Persistence (지속성)",
+                "Privacy (프라이버시)"
+            ],
+            "correct_answer": 1,
+            "explanation": "CAP 정리는 Consistency(일관성), Availability(가용성), Partition tolerance(분할 내성) 중 최대 2개만 보장할 수 있다는 이론입니다."
+        },
+        {
+            "id": 36,
+            "type": "architecture",
+            "difficulty": "advanced",
+            "question": "마이크로서비스 아키텍처에서 데이터베이스 설계 전략을 설명하세요. Database per Service 패턴의 장단점을 포함하세요.",
+            "correct_answer": "Database per Service 패턴:\n\n장점:\n- 서비스 간 느슨한 결합\n- 독립적인 스케일링 가능\n- 기술 스택 자유도\n- 장애 격리 효과\n\n단점:\n- 분산 트랜잭션 복잡성\n- 데이터 일관성 관리 어려움\n- 크로스 서비스 조인 불가\n- 운영 복잡도 증가\n\n해결 방안:\n- Saga 패턴으로 분산 트랜잭션 관리\n- CQRS/Event Sourcing 활용\n- API 조합으로 데이터 통합",
+            "explanation": "마이크로서비스에서는 각 서비스가 독립적인 데이터베이스를 가지지만, 이로 인한 복잡성을 적절히 관리해야 합니다."
+        },
+        {
+            "id": 37,
+            "type": "multiple_choice",
+            "difficulty": "advanced",
+            "question": "ACID와 BASE 모델의 주요 차이점은?",
+            "options": [
+                "ACID는 가용성, BASE는 일관성 중시",
+                "ACID는 일관성, BASE는 가용성 중시",
+                "ACID는 분산, BASE는 중앙집중식",
+                "ACID는 NoSQL, BASE는 SQL 전용"
+            ],
+            "correct_answer": 1,
+            "explanation": "ACID는 강한 일관성을 보장하는 반면, BASE(Basically Available, Soft state, Eventual consistency)는 가용성을 우선시하고 최종 일관성을 추구합니다."
+        },
+        {
+            "id": 38,
+            "type": "coding",
+            "difficulty": "advanced",
+            "question": "SQLite에서 동시성을 고려한 안전한 카운터 증가 함수를 작성하세요. (원자성 보장)",
+            "correct_answer": "import sqlite3\nimport threading\nfrom contextlib import contextmanager\n\nclass AtomicCounter:\n    def __init__(self, db_path):\n        self.db_path = db_path\n        self.lock = threading.Lock()\n        self._init_table()\n    \n    def _init_table(self):\n        with sqlite3.connect(self.db_path) as conn:\n            conn.execute('''\n                CREATE TABLE IF NOT EXISTS counters (\n                    name TEXT PRIMARY KEY,\n                    value INTEGER DEFAULT 0\n                )\n            ''')\n    \n    def increment(self, counter_name, amount=1):\n        with self.lock:\n            with sqlite3.connect(self.db_path) as conn:\n                conn.execute('BEGIN IMMEDIATE')\n                conn.execute('''\n                    INSERT OR IGNORE INTO counters (name, value) \n                    VALUES (?, 0)\n                ''', (counter_name,))\n                \n                cursor = conn.execute('''\n                    UPDATE counters \n                    SET value = value + ? \n                    WHERE name = ?\n                ''', (amount, counter_name))\n                \n                cursor.execute('''\n                    SELECT value FROM counters WHERE name = ?\n                ''', (counter_name,))\n                \n                return cursor.fetchone()[0]",
+            "explanation": "스레드 락과 트랜잭션을 조합하여 동시성 환경에서 안전한 카운터 증가를 구현합니다."
+        },
+        {
+            "id": 39,
+            "type": "expert",
+            "difficulty": "expert",
+            "question": "대규모 시스템에서 데이터베이스 샤딩(Sharding) 전략을 설계하세요. 샤딩 키 선택, 리밸런싱, 크로스 샤드 쿼리 처리 방안을 포함하세요.",
+            "correct_answer": "샤딩 전략 설계:\n\n1. 샤딩 키 선택:\n- 균등 분산: 해시 기반 (user_id % shard_count)\n- 범위 기반: 지역별, 시간별 분할\n- 디렉토리 기반: 라우팅 테이블 활용\n\n2. 샤딩 방법:\n- 수평 샤딩: 행 기준 분할\n- 수직 샤딩: 테이블/기능 기준 분할\n- 하이브리드: 두 방법 조합\n\n3. 리밸런싱:\n- 일관성 해싱으로 최소 이동\n- 온라인 마이그레이션 도구\n- 백그라운드 데이터 이동\n\n4. 크로스 샤드 쿼리:\n- 애플리케이션 레벨 조인\n- 분산 쿼리 엔진 활용\n- 데이터 복제로 조인 회피\n- 집계용 별도 데이터 웨어하우스\n\n5. 트랜잭션 관리:\n- 2PC (Two-Phase Commit)\n- Saga 패턴\n- 로컬 트랜잭션 우선 설계",
+            "explanation": "샤딩은 확장성을 위한 강력한 기법이지만 복잡성과 일관성 문제를 신중히 고려해야 합니다."
+        },
+        {
+            "id": 40,
+            "type": "comprehensive",
+            "difficulty": "expert",
+            "question": "실시간 분석이 필요한 이커머스 플랫폼의 데이터 아키텍처를 설계하세요. OLTP, OLAP, 스트림 처리, 데이터 레이크를 모두 고려하세요.",
+            "correct_answer": "이커머스 데이터 아키텍처:\n\n1. OLTP 레이어 (운영 데이터):\n- 주문/결제: PostgreSQL (ACID 보장)\n- 상품 카탈로그: MongoDB (유연한 스키마)\n- 사용자 세션: Redis (고속 액세스)\n- 재고 관리: MySQL (일관성 중시)\n\n2. 스트림 처리:\n- Apache Kafka: 이벤트 스트리밍\n- Apache Spark Streaming: 실시간 ETL\n- 실시간 메트릭: 클릭, 구매, 검색 이벤트\n\n3. OLAP 레이어 (분석):\n- 데이터 웨어하우스: Snowflake/BigQuery\n- 큐브: 사전 집계된 메트릭\n- 실시간 대시보드: Elastic Stack\n\n4. 데이터 레이크:\n- Raw 데이터: S3/HDFS\n- 파케이 형식으로 저장\n- 머신러닝 피처 스토어\n\n5. 실시간 처리 파이프라인:\n- 람다 아키텍처: 배치 + 스트림\n- 카파 아키텍처: 스트림 중심\n- CDC (Change Data Capture)\n\n6. API 레이어:\n- GraphQL: 유연한 데이터 조회\n- REST API: 표준 인터페이스\n- 캐싱: Redis/Memcached",
+            "explanation": "실시간 요구사항과 확장성을 모두 만족하는 다층 아키텍처가 필요합니다."
+        },
+        {
+            "id": 41,
+            "type": "reflection",
+            "difficulty": "expert",
+            "question": "데이터베이스 기술의 미래 트렌드와 새로운 패러다임을 예측하고, 개발자가 준비해야 할 것들을 제시하세요.",
+            "correct_answer": "데이터베이스 미래 트렌드:\n\n1. 기술 트렌드:\n- 클라우드 네이티브 DB: 서버리스, auto-scaling\n- 멀티모델 DB: SQL + NoSQL 통합\n- 분산 SQL: NewSQL 데이터베이스 성장\n- AI/ML 통합: 자동 튜닝, 쿼리 최적화\n- 블록체인 연동: 탈중앙화 데이터베이스\n\n2. 새로운 패러다임:\n- 데이터 메시: 분산 데이터 아키텍처\n- 이벤트 주도 아키텍처: 실시간 데이터 처리\n- 데이터 패브릭: 통합 데이터 가상화\n- 엣지 컴퓨팅: 분산 데이터 처리\n\n3. 개발자 준비사항:\n- 클라우드 플랫폼 역량 (AWS, GCP, Azure)\n- 분산 시스템 이해\n- 스트림 처리 기술 (Kafka, Pulsar)\n- 컨테이너/쿠버네티스\n- 데이터 거버넌스와 프라이버시\n- AI/ML 기본 지식\n- 다양한 데이터베이스 경험\n\n4. 핵심 역량:\n- 데이터 모델링 기초 원리\n- 성능 최적화 원칙\n- 분산 아키텍처 설계\n- 데이터 보안과 컴플라이언스",
+            "explanation": "기술 변화에 대응하려면 기본 원리를 탄탄히 하고 새로운 기술에 대한 지속적인 학습이 필요합니다."
+        },
+        {
+            "id": 42,
+            "type": "integration",
+            "difficulty": "expert",
+            "question": "레거시 시스템에서 현대적 데이터 아키텍처로의 마이그레이션 전략을 수립하세요. 다운타임 최소화와 데이터 일관성 보장을 포함하세요.",
+            "correct_answer": "레거시 마이그레이션 전략:\n\n1. 점진적 마이그레이션 (Strangler Fig Pattern):\n- 기능별 단계적 이전\n- 새 시스템과 레거시 병행 운영\n- 데이터 동기화 도구 활용\n\n2. 데이터 일관성 보장:\n- CDC (Change Data Capture) 구현\n- 양방향 데이터 동기화\n- 일관성 검증 도구 개발\n- 롤백 계획 수립\n\n3. 다운타임 최소화:\n- Blue-Green 배포\n- 카나리 릴리스\n- 데이터베이스 리플리케이션\n- 읽기 전용 모드 활용\n\n4. 마이그레이션 단계:\nPhase 1: 읽기 전용 복제본 생성\nPhase 2: 쓰기 트래픽 점진적 이전\nPhase 3: 레거시 시스템 단계적 종료\nPhase 4: 최적화 및 정리\n\n5. 위험 관리:\n- 철저한 백업 계획\n- 롤백 시나리오 준비\n- 모니터링 및 알림 시스템\n- 성능 기준선 설정\n\n6. 팀 준비:\n- 교육 프로그램\n- 기술 문서화\n- 운영 절차 수립\n- 지원 체계 구축",
+            "explanation": "레거시 마이그레이션은 비즈니스 연속성을 보장하면서 점진적으로 진행해야 하는 복잡한 프로젝트입니다."
+        }
+    ]
+}

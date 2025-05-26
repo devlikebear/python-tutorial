@@ -1,0 +1,375 @@
+{
+    "quiz_info": {
+        "title": "Chapter 5: 상속과 다형성 (Inheritance and Polymorphism)",
+        "description": "상속, 다형성, 추상 클래스, 다중 상속과 MRO에 대한 이해를 확인하는 퀴즈입니다.",
+        "total_questions": 32,
+        "passing_score": 70,
+        "time_limit_minutes": 45
+    },
+    "questions": [
+        {
+            "id": 1,
+            "type": "multiple_choice",
+            "difficulty": "easy",
+            "question": "상속(Inheritance)에 대한 설명으로 올바른 것은?",
+            "options": [
+                "한 클래스가 다른 클래스의 속성과 메서드를 물려받는 것",
+                "여러 클래스를 하나로 합치는 것",
+                "클래스의 인스턴스를 생성하는 것",
+                "클래스 내부의 메서드를 호출하는 것"
+            ],
+            "correct": 0,
+            "explanation": "상속은 기존 클래스(부모 클래스)의 속성과 메서드를 새로운 클래스(자식 클래스)가 물려받아 사용하는 객체지향 프로그래밍의 핵심 개념입니다."
+        },
+        {
+            "id": 2,
+            "type": "multiple_choice",
+            "difficulty": "easy",
+            "question": "다음 중 올바른 상속 문법은?",
+            "options": [
+                "class Dog(Animal):",
+                "class Dog extends Animal:",
+                "class Dog inherits Animal:",
+                "class Dog -> Animal:"
+            ],
+            "correct": 0,
+            "explanation": "Python에서는 class ChildClass(ParentClass): 형태로 상속을 구현합니다."
+        },
+        {
+            "id": 3,
+            "type": "code_output",
+            "difficulty": "easy",
+            "question": "다음 코드의 출력 결과는?\n\nclass Animal:\n    def __init__(self, name):\n        self.name = name\n    def speak(self):\n        return f\"{self.name} makes a sound\"\n\nclass Dog(Animal):\n    def speak(self):\n        return f\"{self.name} barks\"\n\ndog = Dog(\"Rex\")\nprint(dog.speak())",
+            "options": [
+                "Rex makes a sound",
+                "Rex barks",
+                "Dog barks",
+                "오류 발생"
+            ],
+            "correct": 1,
+            "explanation": "Dog 클래스에서 speak() 메서드를 오버라이딩했으므로 자식 클래스의 구현이 호출됩니다."
+        },
+        {
+            "id": 4,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "super() 함수의 주요 목적은?",
+            "options": [
+                "자식 클래스를 생성하기 위해",
+                "부모 클래스의 메서드를 호출하기 위해",
+                "클래스의 인스턴스를 삭제하기 위해",
+                "클래스 변수를 설정하기 위해"
+            ],
+            "correct": 1,
+            "explanation": "super() 함수는 자식 클래스에서 부모 클래스의 메서드나 생성자를 호출할 때 사용합니다."
+        },
+        {
+            "id": 5,
+            "type": "code_completion",
+            "difficulty": "medium",
+            "question": "다음 코드를 완성하여 부모 클래스의 생성자를 올바르게 호출하세요.\n\nclass Vehicle:\n    def __init__(self, brand, model):\n        self.brand = brand\n        self.model = model\n\nclass Car(Vehicle):\n    def __init__(self, brand, model, doors):\n        _________(brand, model)\n        self.doors = doors",
+            "answer": "super().__init__",
+            "explanation": "super().__init__(brand, model)을 사용하여 부모 클래스 Vehicle의 생성자를 호출합니다."
+        },
+        {
+            "id": 6,
+            "type": "true_false",
+            "difficulty": "easy",
+            "question": "자식 클래스에서 부모 클래스의 메서드를 재정의하는 것을 메서드 오버라이딩이라고 한다.",
+            "correct": true,
+            "explanation": "메서드 오버라이딩은 자식 클래스에서 부모 클래스의 메서드를 재정의하여 다른 동작을 하도록 만드는 것입니다."
+        },
+        {
+            "id": 7,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "isinstance(dog, Animal)이 True를 반환하는 경우는?",
+            "options": [
+                "dog가 Animal 클래스의 인스턴스인 경우",
+                "dog가 Animal을 상속받은 클래스의 인스턴스인 경우",
+                "위 두 경우 모두",
+                "dog가 정확히 Animal 클래스의 인스턴스인 경우만"
+            ],
+            "correct": 2,
+            "explanation": "isinstance()는 객체가 해당 클래스의 인스턴스이거나 그 클래스를 상속받은 클래스의 인스턴스인 경우 True를 반환합니다."
+        },
+        {
+            "id": 8,
+            "type": "code_output",
+            "difficulty": "medium",
+            "question": "다음 코드의 출력 결과는?\n\nclass A:\n    def method(self):\n        return \"A\"\n\nclass B(A):\n    def method(self):\n        return super().method() + \"B\"\n\nclass C(B):\n    def method(self):\n        return super().method() + \"C\"\n\nobj = C()\nprint(obj.method())",
+            "options": [
+                "A",
+                "AB",
+                "ABC",
+                "C"
+            ],
+            "correct": 2,
+            "explanation": "C의 method()가 super().method() + \"C\"를 반환하고, B의 method()가 super().method() + \"B\"를 반환하므로 최종적으로 \"ABC\"가 출력됩니다."
+        },
+        {
+            "id": 9,
+            "type": "multiple_choice",
+            "difficulty": "easy",
+            "question": "다형성(Polymorphism)이란?",
+            "options": [
+                "하나의 클래스가 여러 부모를 가지는 것",
+                "같은 인터페이스로 다른 타입의 객체를 다루는 능력",
+                "클래스의 속성을 숨기는 것",
+                "클래스를 여러 번 인스턴스화하는 것"
+            ],
+            "correct": 1,
+            "explanation": "다형성은 같은 인터페이스나 메서드 호출로 서로 다른 타입의 객체들을 일관된 방식으로 다룰 수 있는 능력입니다."
+        },
+        {
+            "id": 10,
+            "type": "coding",
+            "difficulty": "medium",
+            "question": "다음 요구사항에 맞는 클래스들을 작성하세요:\n1. Shape 기본 클래스 (area 메서드)\n2. Rectangle 클래스 (Shape 상속, width, height 속성)\n3. Circle 클래스 (Shape 상속, radius 속성)\n각 클래스는 넓이를 올바르게 계산해야 합니다.",
+            "answer": "class Shape:\n    def area(self):\n        raise NotImplementedError\n\nclass Rectangle(Shape):\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        import math\n        return math.pi * self.radius ** 2",
+            "explanation": "Shape 기본 클래스에서 area 메서드를 정의하고, Rectangle과 Circle에서 각각 오버라이딩하여 구체적인 넓이 계산을 구현합니다."
+        },
+        {
+            "id": 11,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "추상 클래스(Abstract Class)를 만들기 위해 필요한 것은?",
+            "options": [
+                "abc.ABC를 상속받고 @abstractmethod 데코레이터 사용",
+                "abstract 키워드 사용",
+                "virtual 키워드 사용",
+                "interface 키워드 사용"
+            ],
+            "correct": 0,
+            "explanation": "Python에서는 abc.ABC를 상속받고 @abstractmethod 데코레이터를 사용하여 추상 클래스를 만듭니다."
+        },
+        {
+            "id": 12,
+            "type": "true_false",
+            "difficulty": "medium",
+            "question": "추상 클래스는 직접 인스턴스화할 수 없다.",
+            "correct": true,
+            "explanation": "추상 클래스는 추상 메서드를 하나 이상 포함하고 있어 직접 인스턴스를 생성할 수 없습니다. 반드시 상속받아 추상 메서드를 구현해야 합니다."
+        },
+        {
+            "id": 13,
+            "type": "code_output",
+            "difficulty": "hard",
+            "question": "다음 코드의 출력 결과는?\n\nfrom abc import ABC, abstractmethod\n\nclass Animal(ABC):\n    @abstractmethod\n    def sound(self):\n        pass\n\ntry:\n    animal = Animal()\nexcept Exception as e:\n    print(type(e).__name__)",
+            "options": [
+                "ValueError",
+                "TypeError",
+                "AttributeError",
+                "NotImplementedError"
+            ],
+            "correct": 1,
+            "explanation": "추상 클래스는 직접 인스턴스화할 수 없으므로 TypeError가 발생합니다."
+        },
+        {
+            "id": 14,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "다중 상속에서 메서드 해결 순서(MRO)를 확인하는 방법은?",
+            "options": [
+                "클래스명.__mro__",
+                "클래스명.mro()",
+                "클래스명.__bases__",
+                "위 모든 방법"
+            ],
+            "correct": 0,
+            "explanation": "클래스명.__mro__ 또는 클래스명.mro() 메서드를 사용하여 MRO를 확인할 수 있습니다."
+        },
+        {
+            "id": 15,
+            "type": "coding",
+            "difficulty": "hard",
+            "question": "다음 다중 상속 구조에서 MRO가 올바르게 작동하도록 클래스들을 구현하세요:\n- A: 기본 클래스\n- B: A 상속\n- C: A 상속\n- D: B와 C 다중 상속\n각 클래스는 method() 메서드를 가지고, super()를 올바르게 사용해야 합니다.",
+            "answer": "class A:\n    def method(self):\n        return \"A\"\n\nclass B(A):\n    def method(self):\n        return super().method() + \"B\"\n\nclass C(A):\n    def method(self):\n        return super().method() + \"C\"\n\nclass D(B, C):\n    def method(self):\n        return super().method() + \"D\"",
+            "explanation": "다이아몬드 상속 구조에서 super()를 사용하면 MRO에 따라 올바른 순서로 메서드가 호출됩니다."
+        },
+        {
+            "id": 16,
+            "type": "multiple_choice",
+            "difficulty": "hard",
+            "question": "다이아몬드 문제(Diamond Problem)란?",
+            "options": [
+                "클래스가 다이아몬드 모양으로 배치되는 것",
+                "다중 상속에서 공통 조상 클래스의 메서드가 여러 번 호출될 수 있는 문제",
+                "클래스 이름이 중복되는 문제",
+                "메서드 이름이 중복되는 문제"
+            ],
+            "correct": 1,
+            "explanation": "다이아몬드 문제는 다중 상속에서 공통 조상 클래스가 여러 경로로 상속될 때 발생하는 문제로, Python의 MRO가 이를 해결합니다."
+        },
+        {
+            "id": 17,
+            "type": "code_analysis",
+            "difficulty": "medium",
+            "question": "다음 코드에서 잘못된 부분을 찾으세요:\n\nclass Employee:\n    def __init__(self, name, salary):\n        self.name = name\n        self.salary = salary\n\nclass Manager(Employee):\n    def __init__(self, name, salary, team_size):\n        self.name = name\n        self.salary = salary\n        self.team_size = team_size",
+            "answer": "부모 클래스의 생성자를 호출하지 않았습니다. super().__init__(name, salary)를 사용해야 합니다.",
+            "explanation": "자식 클래스에서 부모 클래스의 생성자를 직접 호출하지 않고 속성을 중복으로 설정하고 있습니다. super().__init__()을 사용하는 것이 좋습니다."
+        },
+        {
+            "id": 18,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "다음 중 다형성의 장점이 아닌 것은?",
+            "options": [
+                "코드의 유연성 증가",
+                "확장성 향상",
+                "메모리 사용량 감소",
+                "유지보수성 향상"
+            ],
+            "correct": 2,
+            "explanation": "다형성은 코드의 유연성, 확장성, 유지보수성을 향상시키지만 메모리 사용량 감소와는 직접적인 관련이 없습니다."
+        },
+        {
+            "id": 19,
+            "type": "coding",
+            "difficulty": "hard",
+            "question": "다음 인터페이스를 구현하는 클래스들을 작성하세요:\n1. Drawable 인터페이스 (draw() 추상 메서드)\n2. Movable 인터페이스 (move(x, y) 추상 메서드)\n3. Shape 클래스 (Drawable과 Movable 다중 상속)\n4. Rectangle 클래스 (Shape 상속, 구체적 구현)",
+            "answer": "from abc import ABC, abstractmethod\n\nclass Drawable(ABC):\n    @abstractmethod\n    def draw(self):\n        pass\n\nclass Movable(ABC):\n    @abstractmethod\n    def move(self, x, y):\n        pass\n\nclass Shape(Drawable, Movable):\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\nclass Rectangle(Shape):\n    def __init__(self, x, y, width, height):\n        super().__init__(x, y)\n        self.width = width\n        self.height = height\n    \n    def draw(self):\n        return f\"Rectangle at ({self.x}, {self.y})\"\n    \n    def move(self, x, y):\n        self.x += x\n        self.y += y",
+            "explanation": "여러 인터페이스를 다중 상속받아 구현하는 패턴으로, 각 인터페이스의 추상 메서드를 모두 구현해야 합니다."
+        },
+        {
+            "id": 20,
+            "type": "code_output",
+            "difficulty": "hard",
+            "question": "다음 코드의 출력 결과는?\n\nclass A:\n    def __init__(self):\n        print(\"A\")\n\nclass B(A):\n    def __init__(self):\n        print(\"B start\")\n        super().__init__()\n        print(\"B end\")\n\nclass C(A):\n    def __init__(self):\n        print(\"C start\")\n        super().__init__()\n        print(\"C end\")\n\nclass D(B, C):\n    def __init__(self):\n        print(\"D start\")\n        super().__init__()\n        print(\"D end\")\n\nD()",
+            "options": [
+                "D start\\nB start\\nA\\nB end\\nD end",
+                "D start\\nB start\\nC start\\nA\\nC end\\nB end\\nD end",
+                "D start\\nA\\nD end",
+                "오류 발생"
+            ],
+            "correct": 1,
+            "explanation": "MRO에 따라 D -> B -> C -> A 순서로 __init__이 호출되며, super()를 통해 올바른 순서로 실행됩니다."
+        },
+        {
+            "id": 21,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "메서드 오버라이딩에서 부모 클래스의 기능을 확장하려면?",
+            "options": [
+                "부모 클래스 코드를 복사해서 수정",
+                "super()를 사용해서 부모 메서드 호출 후 추가 기능 구현",
+                "부모 클래스를 수정",
+                "새로운 메서드 이름 사용"
+            ],
+            "correct": 1,
+            "explanation": "super()를 사용하여 부모 클래스의 메서드를 호출한 후 추가 기능을 구현하는 것이 올바른 확장 방법입니다."
+        },
+        {
+            "id": 22,
+            "type": "true_false",
+            "difficulty": "medium",
+            "question": "Python에서는 다중 상속을 지원하지 않는다.",
+            "correct": false,
+            "explanation": "Python은 다중 상속을 지원하며, MRO(Method Resolution Order)를 통해 다이아몬드 문제를 해결합니다."
+        },
+        {
+            "id": 23,
+            "type": "coding",
+            "difficulty": "medium",
+            "question": "다음 결제 시스템을 구현하세요:\n1. PaymentProcessor 추상 클래스 (process_payment 추상 메서드)\n2. CreditCardProcessor 클래스 (PaymentProcessor 상속)\n3. BankTransferProcessor 클래스 (PaymentProcessor 상속)\n각각 다른 방식으로 결제를 처리해야 합니다.",
+            "answer": "from abc import ABC, abstractmethod\n\nclass PaymentProcessor(ABC):\n    @abstractmethod\n    def process_payment(self, amount):\n        pass\n\nclass CreditCardProcessor(PaymentProcessor):\n    def process_payment(self, amount):\n        return f\"신용카드로 {amount}원 결제 처리\"\n\nclass BankTransferProcessor(PaymentProcessor):\n    def process_payment(self, amount):\n        return f\"계좌이체로 {amount}원 결제 처리\"",
+            "explanation": "추상 클래스를 사용하여 공통 인터페이스를 정의하고, 각 구현 클래스에서 서로 다른 방식으로 결제를 처리합니다."
+        },
+        {
+            "id": 24,
+            "type": "multiple_choice",
+            "difficulty": "hard",
+            "question": "다음 중 올바른 MRO 순서는? (class D(B, C), class B(A), class C(A))",
+            "options": [
+                "D -> B -> A -> C",
+                "D -> B -> C -> A",
+                "D -> C -> B -> A",
+                "D -> A -> B -> C"
+            ],
+            "correct": 1,
+            "explanation": "C3 선형화 알고리즘에 따라 D -> B -> C -> A 순서로 MRO가 결정됩니다."
+        },
+        {
+            "id": 25,
+            "type": "code_analysis",
+            "difficulty": "hard",
+            "question": "다음 코드의 설계상 문제점을 분석하세요:\n\nclass Bird:\n    def fly(self):\n        return \"Flying\"\n\nclass Penguin(Bird):\n    def fly(self):\n        raise Exception(\"Penguins cannot fly\")",
+            "answer": "LSP(리스코프 치환 원칙) 위반입니다. 펭귄이 새를 상속받았지만 날 수 없어서 예외를 발생시킵니다. 설계를 변경해야 합니다.",
+            "explanation": "리스코프 치환 원칙에 따르면 자식 클래스는 부모 클래스를 완전히 대체할 수 있어야 하는데, 이 경우 예외가 발생하므로 원칙을 위반합니다."
+        },
+        {
+            "id": 26,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "컴포지션(Composition)과 상속(Inheritance)의 차이점은?",
+            "options": [
+                "컴포지션은 'has-a' 관계, 상속은 'is-a' 관계",
+                "컴포지션은 'is-a' 관계, 상속은 'has-a' 관계",
+                "둘 다 같은 관계",
+                "관계와 상관없음"
+            ],
+            "correct": 0,
+            "explanation": "컴포지션은 'has-a' 관계(포함 관계)를 나타내고, 상속은 'is-a' 관계(종속 관계)를 나타냅니다."
+        },
+        {
+            "id": 27,
+            "type": "coding",
+            "difficulty": "hard",
+            "question": "다음 요구사항에 맞는 동물 분류 시스템을 구현하세요:\n1. Animal 기본 클래스\n2. Flyable, Swimmable 믹스인 클래스들\n3. Duck 클래스 (Animal, Flyable, Swimmable 모두 상속)\n4. Fish 클래스 (Animal, Swimmable만 상속)\n각 능력별로 적절한 메서드를 구현하세요.",
+            "answer": "class Animal:\n    def __init__(self, name):\n        self.name = name\n    \n    def eat(self):\n        return f\"{self.name} is eating\"\n\nclass Flyable:\n    def fly(self):\n        return f\"{self.name} is flying\"\n\nclass Swimmable:\n    def swim(self):\n        return f\"{self.name} is swimming\"\n\nclass Duck(Animal, Flyable, Swimmable):\n    def __init__(self, name):\n        super().__init__(name)\n\nclass Fish(Animal, Swimmable):\n    def __init__(self, name):\n        super().__init__(name)",
+            "explanation": "믹스인 패턴을 사용하여 특정 능력을 가진 클래스들을 조합하여 다양한 동물 클래스를 만들 수 있습니다."
+        },
+        {
+            "id": 28,
+            "type": "multiple_choice",
+            "difficulty": "medium",
+            "question": "@property 데코레이터와 상속의 관계는?",
+            "options": [
+                "자식 클래스에서 부모의 프로퍼티를 오버라이딩할 수 있다",
+                "@property는 상속되지 않는다",
+                "@property는 다중 상속에서만 사용 가능하다",
+                "@property와 상속은 관련이 없다"
+            ],
+            "correct": 0,
+            "explanation": "@property로 정의된 프로퍼티도 일반 메서드처럼 자식 클래스에서 오버라이딩할 수 있습니다."
+        },
+        {
+            "id": 29,
+            "type": "code_output",
+            "difficulty": "hard",
+            "question": "다음 코드의 출력 결과는?\n\nclass Meta(type):\n    def __new__(cls, name, bases, attrs):\n        attrs['class_id'] = f\"{name}_ID\"\n        return super().__new__(cls, name, bases, attrs)\n\nclass Base(metaclass=Meta):\n    pass\n\nclass Child(Base):\n    pass\n\nprint(Child.class_id)",
+            "options": [
+                "Base_ID",
+                "Child_ID",
+                "Meta_ID",
+                "오류 발생"
+            ],
+            "correct": 1,
+            "explanation": "메타클래스는 클래스 생성 시점에 작동하며, Child 클래스 생성 시 이름이 'Child'이므로 'Child_ID'가 설정됩니다."
+        },
+        {
+            "id": 30,
+            "type": "comprehensive",
+            "difficulty": "expert",
+            "question": "완전한 도형 계층구조를 설계하고 구현하세요:\n1. Shape 추상 클래스 (area, perimeter, draw 추상 메서드)\n2. Polygon 추상 클래스 (Shape 상속, sides 속성)\n3. Rectangle, Triangle 클래스 (Polygon 상속)\n4. Circle 클래스 (Shape 직접 상속)\n5. 모든 도형을 저장하고 총 면적을 계산하는 ShapeCollection 클래스\n다형성을 활용하여 구현하세요.",
+            "answer": "from abc import ABC, abstractmethod\nimport math\n\nclass Shape(ABC):\n    @abstractmethod\n    def area(self):\n        pass\n    \n    @abstractmethod\n    def perimeter(self):\n        pass\n    \n    @abstractmethod\n    def draw(self):\n        pass\n\nclass Polygon(Shape):\n    def __init__(self, sides):\n        self.sides = sides\n\nclass Rectangle(Polygon):\n    def __init__(self, width, height):\n        super().__init__(4)\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n    \n    def perimeter(self):\n        return 2 * (self.width + self.height)\n    \n    def draw(self):\n        return f\"Rectangle {self.width}x{self.height}\"\n\nclass Triangle(Polygon):\n    def __init__(self, base, height, side1, side2):\n        super().__init__(3)\n        self.base = base\n        self.height = height\n        self.side1 = side1\n        self.side2 = side2\n    \n    def area(self):\n        return 0.5 * self.base * self.height\n    \n    def perimeter(self):\n        return self.base + self.side1 + self.side2\n    \n    def draw(self):\n        return f\"Triangle base={self.base}, height={self.height}\"\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return math.pi * self.radius ** 2\n    \n    def perimeter(self):\n        return 2 * math.pi * self.radius\n    \n    def draw(self):\n        return f\"Circle radius={self.radius}\"\n\nclass ShapeCollection:\n    def __init__(self):\n        self.shapes = []\n    \n    def add_shape(self, shape):\n        if isinstance(shape, Shape):\n            self.shapes.append(shape)\n    \n    def total_area(self):\n        return sum(shape.area() for shape in self.shapes)\n    \n    def draw_all(self):\n        return [shape.draw() for shape in self.shapes]",
+            "explanation": "추상 클래스를 통한 계층구조와 다형성을 활용하여 다양한 도형을 일관된 방식으로 처리할 수 있는 시스템을 구현했습니다."
+        },
+        {
+            "id": 31,
+            "type": "debugging",
+            "difficulty": "hard",
+            "question": "다음 코드의 오류를 찾아 수정하세요:\n\nclass Database:\n    def __init__(self, connection_string):\n        self.connection = connection_string\n    \n    def connect(self):\n        print(f\"Connected to {self.connection}\")\n\nclass MySQLDB(Database):\n    def __init__(self, host, port, database):\n        self.host = host\n        self.port = port\n        self.database = database\n    \n    def connect(self):\n        super().connect()\n        print(\"MySQL specific connection\")",
+            "answer": "MySQLDB의 __init__에서 부모 클래스 생성자를 호출하지 않았습니다. 수정:\n\nclass MySQLDB(Database):\n    def __init__(self, host, port, database):\n        connection_string = f\"mysql://{host}:{port}/{database}\"\n        super().__init__(connection_string)\n        self.host = host\n        self.port = port\n        self.database = database",
+            "explanation": "자식 클래스에서 부모 클래스의 생성자를 호출하지 않아 connection 속성이 설정되지 않는 문제가 있습니다."
+        },
+        {
+            "id": 32,
+            "type": "design_pattern",
+            "difficulty": "expert",
+            "question": "템플릿 메서드 패턴을 사용하여 다음을 구현하세요:\n1. DataProcessor 추상 클래스 (process 템플릿 메서드)\n2. 공통 처리 과정: load_data, validate_data, process_data, save_data\n3. CSVProcessor, JSONProcessor 구현 클래스\n각 프로세서는 데이터 형식에 맞게 load_data와 save_data를 구현해야 합니다.",
+            "answer": "from abc import ABC, abstractmethod\n\nclass DataProcessor(ABC):\n    def process(self, source, destination):\n        \"\"\"템플릿 메서드\"\"\"\n        data = self.load_data(source)\n        if self.validate_data(data):\n            processed_data = self.process_data(data)\n            self.save_data(processed_data, destination)\n            return True\n        return False\n    \n    @abstractmethod\n    def load_data(self, source):\n        pass\n    \n    def validate_data(self, data):\n        \"\"\"공통 검증 로직\"\"\"\n        return data is not None and len(data) > 0\n    \n    def process_data(self, data):\n        \"\"\"공통 처리 로직\"\"\"\n        return [item.upper() if isinstance(item, str) else item for item in data]\n    \n    @abstractmethod\n    def save_data(self, data, destination):\n        pass\n\nclass CSVProcessor(DataProcessor):\n    def load_data(self, source):\n        # CSV 파일 로드 로직\n        return [\"data1\", \"data2\", \"data3\"]\n    \n    def save_data(self, data, destination):\n        # CSV 파일 저장 로직\n        print(f\"Saving CSV data to {destination}: {data}\")\n\nclass JSONProcessor(DataProcessor):\n    def load_data(self, source):\n        # JSON 파일 로드 로직\n        return {\"items\": [\"data1\", \"data2\"]}\n    \n    def save_data(self, data, destination):\n        # JSON 파일 저장 로직\n        print(f\"Saving JSON data to {destination}: {data}\")",
+            "explanation": "템플릿 메서드 패턴을 사용하여 공통 처리 과정은 부모 클래스에서 정의하고, 형식별 특화 로직은 자식 클래스에서 구현합니다."
+        }
+    ]
+}

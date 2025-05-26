@@ -1,0 +1,179 @@
+site_name: Python Tutorial - 파이썬 완전정복
+site_description: 초급부터 고급까지 체계적인 파이썬 학습 가이드
+site_author: Python Tutorial Team
+site_url: https://python-tutorial-devlikebear.vercel.app
+
+# Repository
+repo_name: devlikebear/python-tutorial
+repo_url: https://github.com/devlikebear/python-tutorial
+edit_uri: edit/main/docs/
+
+# Theme Configuration
+theme:
+  name: material
+  language: ko
+  
+  # Color scheme
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    
+    # Dark mode  
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  # Features
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+
+  # Icons
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+
+# Plugins
+plugins:
+  - search:
+      lang: ko
+  - awesome-pages
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: datetime
+      locale: ko
+  - minify:
+      minify_html: true
+
+# Markdown Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      title: 목차
+  - tables
+  
+  # Code blocks
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+  # Content tabs
+  - pymdownx.tabbed:
+      alternate_style: true
+
+  # Task lists
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+  # Emojis and icons
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+  # Math
+  - pymdownx.arithmatex:
+      generic: true
+
+# Extra CSS and JS
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# Footer
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/devlikebear/python-tutorial
+      name: GitHub Repository
+  
+  generator: false
+
+# Copyright
+copyright: Copyright &copy; 2024 Python Tutorial Team
+
+# Navigation
+nav:
+  - 홈: index.md
+  - 커리큘럼: 
+    - curricula/index.md
+    - 초급 과정: curricula/beginner_curriculum.md
+    - 중급 과정: curricula/intermediate_curriculum.md  
+    - 고급 과정: curricula/advanced_curriculum.md
+  
+  - 초급 튜토리얼:
+    - tutorials/beginner/index.md
+    - "Chapter 1: 파이썬 소개": tutorials/beginner/chapter01_python_introduction.md
+    - "Chapter 2: 변수와 데이터타입": tutorials/beginner/chapter02_variables_and_datatypes.md
+    - "Chapter 3: 문자열 처리": tutorials/beginner/chapter03_string_handling.md
+    - "Chapter 4: 연산자와 표현식": tutorials/beginner/chapter04_operators_expressions.md
+    - "Chapter 5: 입출력": tutorials/beginner/chapter05_input_output.md
+    - "Chapter 6: 조건문": tutorials/beginner/chapter06_conditional_statements.md
+    - "Chapter 7: 반복문": tutorials/beginner/chapter07_loops.md
+    - "Chapter 8: 리스트와 튜플": tutorials/beginner/chapter08_lists_tuples.md
+    - "Chapter 9: 딕셔너리와 집합": tutorials/beginner/chapter09_dictionaries_sets.md
+    - "Chapter 10: 함수 기초": tutorials/beginner/chapter10_functions_basics.md
+    - "Chapter 11: 오류 처리와 디버깅": tutorials/beginner/chapter11_error_handling_debugging.md
+
+  - 중급 튜토리얼:
+    - tutorials/intermediate/index.md
+    - "Chapter 1: 고급 함수": tutorials/intermediate/chapter01_advanced_functions.md
+    - "Chapter 2: 파일 처리와 데이터 형식": tutorials/intermediate/chapter02_file_processing_data_formats.md
+    - "Chapter 3: 정규표현식": tutorials/intermediate/chapter03_regular_expressions.md
+    - "Chapter 4: 객체지향 프로그래밍 기초": tutorials/intermediate/chapter04_oop_basics.md
+    - "Chapter 5: 상속과 다형성": tutorials/intermediate/chapter05_inheritance_polymorphism.md
+    - "Chapter 6: 매직 메서드": tutorials/intermediate/chapter06_magic_methods.md
+    - "Chapter 7: 모듈과 패키지": tutorials/intermediate/chapter07_modules_packages.md
+    - "Chapter 8: 고급 예외 처리": tutorials/intermediate/chapter08_advanced_exception_handling.md
+    - "Chapter 9: 이터레이터와 제너레이터": tutorials/intermediate/chapter09_iterators_generators.md
+    - "Chapter 10: 멀티스레딩과 비동기": tutorials/intermediate/chapter10_multithreading_async.md
+    - "Chapter 11: 테스팅과 디버깅": tutorials/intermediate/chapter11_testing_debugging.md
+    - "Chapter 12: 데이터베이스 연동": tutorials/intermediate/chapter12_database_integration.md
+    - "Chapter 13: 웹 스크래핑과 API": tutorials/intermediate/chapter13_web_scraping_api.md
+    - "Chapter 14: GUI 프로그래밍 기초": tutorials/intermediate/chapter14_gui_programming_basics.md
+
+  - 고급 튜토리얼:
+    - tutorials/advanced/index.md
+    - "Chapter 1: 파이썬 내부구조와 메모리": tutorials/advanced/chapter01_python_internals_memory.md
+    - "Chapter 2: 메타클래스와 디스크립터": tutorials/advanced/chapter02_metaclasses_descriptors.md
+    - "Chapter 3: 고급 데코레이터와 컨텍스트 매니저": tutorials/advanced/chapter03_advanced_decorators_context_managers.md
+    - "Chapter 4: 고급 동시성과 병렬성": tutorials/advanced/chapter04_advanced_concurrency_parallelism.md
+    - "Chapter 5: 네트워킹과 소켓 프로그래밍": tutorials/advanced/chapter05_networking_socket_programming.md
+
+  - 퀴즈:
+    - quizzes/index.md 

@@ -1,0 +1,414 @@
+{
+    "quiz_info": {
+        "title": "Chapter 4: 객체지향 프로그래밍 기초",
+        "chapter": 4,
+        "level": "intermediate",
+        "total_questions": 32,
+        "estimated_time": "65분",
+        "passing_score": 24,
+        "description": "객체지향 프로그래밍의 기본 개념, 클래스와 객체, 속성과 메서드, 접근 제어, 실용적인 클래스 설계에 대한 종합 평가"
+    },
+    "learning_objectives": [
+        "객체지향 프로그래밍의 기본 개념 이해",
+        "클래스와 객체의 차이점 구분",
+        "속성과 메서드의 정의와 사용",
+        "생성자와 소멸자의 역할 이해",
+        "인스턴스 변수와 클래스 변수 구별",
+        "접근 제어와 프로퍼티 활용",
+        "실용적인 클래스 설계 능력"
+    ],
+    "questions": [
+        {
+            "id": 1,
+            "type": "multiple_choice",
+            "question": "객체지향 프로그래밍(OOP)의 주요 장점이 아닌 것은?",
+            "options": [
+                "캡슐화: 데이터와 기능을 하나로 묶음",
+                "재사용성: 클래스를 통해 여러 객체 생성 가능",
+                "유지보수성: 코드 구조가 명확하고 수정이 용이",
+                "실행 속도: 절차적 프로그래밍보다 항상 빠름"
+            ],
+            "correct_answer": 3,
+            "explanation": "OOP는 코드의 구조화와 재사용성에 장점이 있지만, 실행 속도는 절차적 프로그래밍보다 항상 빠르지는 않습니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 2,
+            "type": "multiple_choice",
+            "question": "클래스와 객체의 관계를 가장 잘 설명한 것은?",
+            "options": [
+                "클래스는 객체이고, 객체는 클래스이다",
+                "클래스는 설계도이고, 객체는 그 설계도로 만든 실체이다",
+                "클래스와 객체는 동일한 개념이다",
+                "클래스는 함수이고, 객체는 변수이다"
+            ],
+            "correct_answer": 1,
+            "explanation": "클래스는 객체를 만들기 위한 설계도(템플릿)이고, 객체는 그 클래스를 기반으로 생성된 실제 인스턴스입니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 3,
+            "type": "code_output",
+            "question": "다음 코드의 실행 결과는?\n\n```python\nclass Counter:\n    count = 0\n    \n    def __init__(self):\n        Counter.count += 1\n        self.instance_id = Counter.count\n\nc1 = Counter()\nc2 = Counter()\nprint(f\"{c1.instance_id}, {c2.instance_id}, {Counter.count}\")\n```",
+            "options": [
+                "1, 2, 2",
+                "0, 1, 2",
+                "1, 1, 1",
+                "2, 2, 2"
+            ],
+            "correct_answer": 0,
+            "explanation": "클래스 변수 count는 모든 인스턴스가 공유하며, 각 객체 생성 시마다 증가합니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 4,
+            "type": "multiple_choice",
+            "question": "Python에서 생성자 메서드의 이름은?",
+            "options": [
+                "__create__",
+                "__init__",
+                "__new__",
+                "__constructor__"
+            ],
+            "correct_answer": 1,
+            "explanation": "__init__은 Python에서 객체가 생성된 후 초기화를 담당하는 생성자 메서드입니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 5,
+            "type": "practical_coding",
+            "question": "간단한 Car 클래스를 작성하세요. brand, model, year 속성과 start_engine(), stop_engine() 메서드를 포함해야 합니다.",
+            "sample_answer": "```python\nclass Car:\n    def __init__(self, brand, model, year):\n        self.brand = brand\n        self.model = model\n        self.year = year\n        self.is_running = False\n    \n    def start_engine(self):\n        if not self.is_running:\n            self.is_running = True\n            return f\"{self.brand} {self.model} 엔진이 시동되었습니다.\"\n        else:\n            return \"이미 엔진이 시동되어 있습니다.\"\n    \n    def stop_engine(self):\n        if self.is_running:\n            self.is_running = False\n            return f\"{self.brand} {self.model} 엔진이 정지되었습니다.\"\n        else:\n            return \"엔진이 이미 정지되어 있습니다.\"\n    \n    def get_info(self):\n        status = \"운행중\" if self.is_running else \"정지\"\n        return f\"{self.year}년 {self.brand} {self.model} - 상태: {status}\"\n\n# 사용 예제\ncar = Car(\"현대\", \"소나타\", 2023)\nprint(car.get_info())\nprint(car.start_engine())\nprint(car.get_info())\n```",
+            "difficulty": "medium"
+        },
+        {
+            "id": 6,
+            "type": "multiple_choice",
+            "question": "인스턴스 변수와 클래스 변수의 차이점은?",
+            "options": [
+                "인스턴스 변수는 모든 객체가 공유하고, 클래스 변수는 각 객체마다 고유함",
+                "인스턴스 변수는 각 객체마다 고유하고, 클래스 변수는 모든 객체가 공유함",
+                "인스턴스 변수와 클래스 변수는 동일함",
+                "인스턴스 변수는 메서드 내에서만 사용 가능함"
+            ],
+            "correct_answer": 1,
+            "explanation": "인스턴스 변수는 각 객체마다 독립적으로 존재하고, 클래스 변수는 클래스에 속해 모든 인스턴스가 공유합니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 7,
+            "type": "code_analysis",
+            "question": "다음 코드에서 문제점을 찾으세요:\n\n```python\nclass BankAccount:\n    balance = 0\n    \n    def __init__(self, owner):\n        self.owner = owner\n    \n    def deposit(self, amount):\n        self.balance += amount\n```",
+            "options": [
+                "생성자에 문제가 있음",
+                "balance가 클래스 변수로 정의되어 모든 계좌가 잔액을 공유함",
+                "deposit 메서드의 문법 오류",
+                "문제없음"
+            ],
+            "correct_answer": 1,
+            "explanation": "balance가 클래스 변수로 정의되어 있어서 모든 BankAccount 인스턴스가 동일한 잔액을 공유하게 됩니다. 인스턴스 변수로 정의해야 합니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 8,
+            "type": "multiple_choice",
+            "question": "Python에서 private 속성을 나타내는 명명 규칙은?",
+            "options": [
+                "속성명 앞에 _ (언더스코어 1개)",
+                "속성명 앞에 __ (언더스코어 2개)",
+                "속성명 뒤에 _private",
+                "Python은 private 속성을 지원하지 않음"
+            ],
+            "correct_answer": 1,
+            "explanation": "Python에서는 속성명 앞에 __ (언더스코어 2개)를 붙이면 name mangling이 적용되어 외부에서 직접 접근하기 어려워집니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 9,
+            "type": "multiple_choice",
+            "question": "@classmethod 데코레이터의 역할은?",
+            "options": [
+                "메서드를 정적 메서드로 만듦",
+                "메서드를 클래스 메서드로 만들어 cls를 첫 번째 매개변수로 받음",
+                "메서드를 private으로 만듦",
+                "메서드를 추상 메서드로 만듦"
+            ],
+            "correct_answer": 1,
+            "explanation": "@classmethod 데코레이터는 메서드를 클래스 메서드로 만들어, 첫 번째 매개변수로 클래스 자체(cls)를 받습니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 10,
+            "type": "multiple_choice",
+            "question": "@staticmethod 데코레이터의 특징은?",
+            "options": [
+                "self를 첫 번째 매개변수로 받음",
+                "cls를 첫 번째 매개변수로 받음",
+                "self나 cls를 받지 않는 독립적인 함수",
+                "자동으로 인스턴스를 생성함"
+            ],
+            "correct_answer": 2,
+            "explanation": "@staticmethod는 클래스나 인스턴스와 독립적인 유틸리티 함수를 만들 때 사용하며, self나 cls를 받지 않습니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 11,
+            "type": "practical_coding",
+            "question": "@property를 사용하여 온도 변환 클래스를 작성하세요. 섭씨 온도를 저장하고 화씨 온도로 변환하는 프로퍼티를 포함해야 합니다.",
+            "sample_answer": "```python\nclass Temperature:\n    def __init__(self, celsius=0):\n        self._celsius = celsius\n    \n    @property\n    def celsius(self):\n        return self._celsius\n    \n    @celsius.setter\n    def celsius(self, value):\n        if value < -273.15:\n            raise ValueError(\"절대 영도보다 낮을 수 없습니다.\")\n        self._celsius = value\n    \n    @property\n    def fahrenheit(self):\n        return self._celsius * 9/5 + 32\n    \n    @fahrenheit.setter\n    def fahrenheit(self, value):\n        celsius_value = (value - 32) * 5/9\n        if celsius_value < -273.15:\n            raise ValueError(\"절대 영도보다 낮을 수 없습니다.\")\n        self._celsius = celsius_value\n    \n    def __str__(self):\n        return f\"{self._celsius:.1f}°C ({self.fahrenheit:.1f}°F)\"\n\n# 사용 예제\ntemp = Temperature(25)\nprint(temp)  # 25.0°C (77.0°F)\ntemp.fahrenheit = 100\nprint(temp)  # 37.8°C (100.0°F)\n```",
+            "difficulty": "hard"
+        },
+        {
+            "id": 12,
+            "type": "code_output",
+            "question": "다음 코드의 실행 결과는?\n\n```python\nclass Student:\n    school = \"Python High School\"\n    \n    def __init__(self, name):\n        self.name = name\n\ns1 = Student(\"Alice\")\ns2 = Student(\"Bob\")\nStudent.school = \"Advanced Python School\"\nprint(f\"{s1.school}, {s2.school}\")\n```",
+            "options": [
+                "Python High School, Python High School",
+                "Advanced Python School, Advanced Python School",
+                "Python High School, Advanced Python School",
+                "오류 발생"
+            ],
+            "correct_answer": 1,
+            "explanation": "클래스 변수 school을 변경하면 모든 인스턴스에서 변경된 값을 공유합니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 13,
+            "type": "multiple_choice",
+            "question": "소멸자 메서드 __del__의 호출 시점은?",
+            "options": [
+                "객체가 생성될 때",
+                "메서드가 호출될 때",
+                "객체가 메모리에서 제거될 때",
+                "프로그램이 시작될 때"
+            ],
+            "correct_answer": 2,
+            "explanation": "__del__ 메서드는 객체가 가비지 컬렉션에 의해 메모리에서 제거될 때 호출됩니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 14,
+            "type": "debugging",
+            "question": "다음 코드의 문제점을 찾고 수정하세요:\n\n```python\nclass Rectangle:\n    def __init__(self, width, height):\n        width = width\n        height = height\n    \n    def area(self):\n        return width * height\n```",
+            "sample_answer": "**문제점:**\n1. `__init__` 메서드에서 `self.width`와 `self.height`로 인스턴스 변수를 정의하지 않음\n2. `area` 메서드에서 정의되지 않은 변수 `width`, `height` 사용\n\n**수정된 코드:**\n```python\nclass Rectangle:\n    def __init__(self, width, height):\n        self.width = width   # self.width로 수정\n        self.height = height # self.height로 수정\n    \n    def area(self):\n        return self.width * self.height  # self.width, self.height로 수정\n    \n    def __str__(self):\n        return f\"Rectangle({self.width}×{self.height})\"\n\n# 테스트\nrect = Rectangle(10, 5)\nprint(f\"넓이: {rect.area()}\")  # 넓이: 50\nprint(rect)  # Rectangle(10×5)\n```",
+            "difficulty": "medium"
+        },
+        {
+            "id": 15,
+            "type": "multiple_choice",
+            "question": "다음 중 메서드 타입과 특징이 올바르게 매칭된 것은?",
+            "options": [
+                "인스턴스 메서드 - cls를 첫 번째 매개변수로 받음",
+                "클래스 메서드 - self를 첫 번째 매개변수로 받음",
+                "정적 메서드 - self나 cls를 받지 않음",
+                "생성자 메서드 - return 값이 필수임"
+            ],
+            "correct_answer": 2,
+            "explanation": "정적 메서드는 클래스나 인스턴스와 무관한 독립적인 함수로, self나 cls를 받지 않습니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 16,
+            "type": "comprehensive",
+            "question": "은행 계좌 시스템을 설계하세요. 계좌번호, 잔액, 입금/출금 기능과 잔액 부족 시 예외 처리를 포함해야 합니다.",
+            "sample_answer": "```python\nclass InsufficientFundsError(Exception):\n    \"\"\"잔액 부족 예외\"\"\"\n    pass\n\nclass BankAccount:\n    \"\"\"은행 계좌 클래스\"\"\"\n    \n    def __init__(self, account_number, owner_name, initial_balance=0):\n        self.account_number = account_number\n        self.owner_name = owner_name\n        self._balance = initial_balance  # protected 속성\n        self.transaction_history = []\n        \n        if initial_balance > 0:\n            self.transaction_history.append(f\"계좌 개설: +{initial_balance:,}원\")\n    \n    @property\n    def balance(self):\n        \"\"\"잔액 조회 (읽기 전용)\"\"\"\n        return self._balance\n    \n    def deposit(self, amount):\n        \"\"\"입금\"\"\"\n        if amount <= 0:\n            raise ValueError(\"입금액은 0원보다 커야 합니다.\")\n        \n        self._balance += amount\n        self.transaction_history.append(f\"입금: +{amount:,}원\")\n        return f\"{amount:,}원이 입금되었습니다. 현재 잔액: {self._balance:,}원\"\n    \n    def withdraw(self, amount):\n        \"\"\"출금\"\"\"\n        if amount <= 0:\n            raise ValueError(\"출금액은 0원보다 커야 합니다.\")\n        \n        if amount > self._balance:\n            raise InsufficientFundsError(\n                f\"잔액이 부족합니다. 현재 잔액: {self._balance:,}원, 출금 요청: {amount:,}원\"\n            )\n        \n        self._balance -= amount\n        self.transaction_history.append(f\"출금: -{amount:,}원\")\n        return f\"{amount:,}원이 출금되었습니다. 현재 잔액: {self._balance:,}원\"\n    \n    def get_transaction_history(self, limit=5):\n        \"\"\"거래 내역 조회\"\"\"\n        if not self.transaction_history:\n            return \"거래 내역이 없습니다.\"\n        \n        recent = self.transaction_history[-limit:]\n        return \"\\n\".join(f\"{i}. {transaction}\" for i, transaction in enumerate(recent, 1))\n    \n    def __str__(self):\n        return f\"계좌({self.account_number}) - {self.owner_name}: {self._balance:,}원\"\n\n# 사용 예제\ntry:\n    account = BankAccount(\"123-456-789\", \"홍길동\", 100000)\n    print(account)\n    \n    print(account.deposit(50000))\n    print(account.withdraw(30000))\n    print(account.withdraw(200000))  # InsufficientFundsError 발생\n    \nexcept InsufficientFundsError as e:\n    print(f\"오류: {e}\")\nexcept ValueError as e:\n    print(f\"입력 오류: {e}\")\nfinally:\n    print(f\"\\n거래 내역:\\n{account.get_transaction_history()}\")\n```",
+            "difficulty": "hard"
+        },
+        {
+            "id": 17,
+            "type": "multiple_choice",
+            "question": "Python에서 protected 속성을 나타내는 명명 규칙은?",
+            "options": [
+                "속성명 앞에 _ (언더스코어 1개)",
+                "속성명 앞에 __ (언더스코어 2개)",
+                "속성명 뒤에 _protected",
+                "Python은 protected 속성을 지원하지 않음"
+            ],
+            "correct_answer": 0,
+            "explanation": "Python에서는 속성명 앞에 _ (언더스코어 1개)를 붙여 protected 속성임을 표시합니다. 이는 관례적인 표기법입니다.",
+            "difficulty": "easy"
+        },
+        {
+            "id": 18,
+            "type": "code_analysis",
+            "question": "다음 코드에서 name mangling이 적용되는 속성은?",
+            "options": [
+                "name",
+                "_age",
+                "__id",
+                "모든 속성"
+            ],
+            "correct_answer": 2,
+            "explanation": "__id는 이중 언더스코어로 시작하므로 name mangling이 적용되어 _ClassName__id 형태로 변경됩니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 19,
+            "type": "practical_coding",
+            "question": "학생 성적을 관리하는 Student 클래스를 작성하세요. 이름, 과목별 점수를 저장하고 평균을 계산하는 기능을 포함해야 합니다.",
+            "sample_answer": "```python\nclass Student:\n    \"\"\"학생 성적 관리 클래스\"\"\"\n    \n    def __init__(self, name, student_id):\n        self.name = name\n        self.student_id = student_id\n        self.scores = {}  # 과목별 점수 저장\n    \n    def add_score(self, subject, score):\n        \"\"\"과목 점수 추가\"\"\"\n        if not 0 <= score <= 100:\n            raise ValueError(\"점수는 0-100 사이여야 합니다.\")\n        \n        self.scores[subject] = score\n        return f\"{subject} 점수 {score}점이 추가되었습니다.\"\n    \n    def get_score(self, subject):\n        \"\"\"특정 과목 점수 조회\"\"\"\n        return self.scores.get(subject, \"점수가 없습니다.\")\n    \n    @property\n    def average(self):\n        \"\"\"평균 점수 계산 (읽기 전용)\"\"\"\n        if not self.scores:\n            return 0\n        return sum(self.scores.values()) / len(self.scores)\n    \n    @property\n    def grade(self):\n        \"\"\"등급 계산 (읽기 전용)\"\"\"\n        avg = self.average\n        if avg >= 90:\n            return 'A'\n        elif avg >= 80:\n            return 'B'\n        elif avg >= 70:\n            return 'C'\n        elif avg >= 60:\n            return 'D'\n        else:\n            return 'F'\n    \n    def get_report(self):\n        \"\"\"성적표 출력\"\"\"\n        if not self.scores:\n            return f\"{self.name} 학생의 성적이 없습니다.\"\n        \n        report = f\"=== {self.name} 성적표 ===\"\n        report += f\"\\n학번: {self.student_id}\"\n        \n        for subject, score in self.scores.items():\n            report += f\"\\n{subject}: {score}점\"\n        \n        report += f\"\\n평균: {self.average:.1f}점\"\n        report += f\"\\n등급: {self.grade}\"\n        \n        return report\n    \n    def __str__(self):\n        return f\"Student({self.name}, 평균: {self.average:.1f}점, 등급: {self.grade})\"\n\n# 사용 예제\nstudent = Student(\"홍길동\", \"2024001\")\nprint(student.add_score(\"수학\", 85))\nprint(student.add_score(\"영어\", 92))\nprint(student.add_score(\"과학\", 78))\n\nprint(f\"\\n수학 점수: {student.get_score('수학')}\")\nprint(f\"평균 점수: {student.average:.1f}\")\nprint(f\"등급: {student.grade}\")\n\nprint(f\"\\n{student.get_report()}\")\n```",
+            "difficulty": "hard"
+        },
+        {
+            "id": 20,
+            "type": "multiple_choice",
+            "question": "프로퍼티(@property)의 주요 장점은?",
+            "options": [
+                "실행 속도가 빨라짐",
+                "메모리 사용량이 줄어듦",
+                "속성처럼 사용하면서 메서드의 기능(검증, 계산)을 제공",
+                "코드 길이가 짧아짐"
+            ],
+            "correct_answer": 2,
+            "explanation": "프로퍼티는 속성처럼 간단하게 사용하면서도 데이터 검증, 계산, 로깅 등의 메서드 기능을 투명하게 제공할 수 있습니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 21,
+            "type": "code_output",
+            "question": "다음 코드의 실행 결과는?\n\n```python\nclass MyClass:\n    def __init__(self):\n        self.public = \"public\"\n        self._protected = \"protected\"\n        self.__private = \"private\"\n\nobj = MyClass()\nprint(len([attr for attr in dir(obj) if not attr.startswith('__')]))\n```",
+            "options": [
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "correct_answer": 1,
+            "explanation": "dir(obj)에서 __로 시작하지 않는 속성은 public, _protected, 그리고 mangled된 _MyClass__private가 있어 총 3개입니다.",
+            "difficulty": "hard"
+        },
+        {
+            "id": 22,
+            "type": "design_pattern",
+            "question": "다음 중 팩토리 메서드 패턴의 예시로 적절한 것은?",
+            "options": [
+                "인스턴스 메서드로 객체 생성",
+                "클래스 메서드로 특별한 방식의 객체 생성",
+                "정적 메서드로 유틸리티 함수 제공",
+                "생성자에서 모든 초기화 수행"
+            ],
+            "correct_answer": 1,
+            "explanation": "팩토리 메서드는 주로 클래스 메서드(@classmethod)를 사용하여 특별한 방식으로 객체를 생성하는 패턴입니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 23,
+            "type": "error_handling",
+            "question": "다음 코드에서 발생할 수 있는 문제점과 개선 방안을 제시하세요:\n\n```python\nclass Circle:\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        return 3.14159 * self.radius ** 2\n```",
+            "sample_answer": "**문제점:**\n1. radius에 대한 유효성 검증이 없음 (음수, 0, 문자열 등)\n2. π 값이 하드코딩되어 있음\n3. 속성에 직접 접근 가능하여 잘못된 값 설정 가능\n\n**개선된 코드:**\n```python\nimport math\n\nclass Circle:\n    def __init__(self, radius):\n        self.radius = radius  # 프로퍼티를 통해 검증\n    \n    @property\n    def radius(self):\n        return self._radius\n    \n    @radius.setter\n    def radius(self, value):\n        if not isinstance(value, (int, float)):\n            raise TypeError(\"반지름은 숫자여야 합니다.\")\n        if value <= 0:\n            raise ValueError(\"반지름은 양수여야 합니다.\")\n        self._radius = float(value)\n    \n    @property\n    def area(self):\n        \"\"\"넓이 계산 (읽기 전용 프로퍼티)\"\"\"\n        return math.pi * self._radius ** 2\n    \n    @property\n    def circumference(self):\n        \"\"\"둘레 계산\"\"\"\n        return 2 * math.pi * self._radius\n    \n    def __str__(self):\n        return f\"Circle(radius={self._radius:.2f}, area={self.area:.2f})\"\n\n# 사용 예제\ntry:\n    circle = Circle(5)\n    print(circle)\n    print(f\"둘레: {circle.circumference:.2f}\")\n    \n    circle.radius = 10  # 프로퍼티를 통한 안전한 변경\n    print(circle)\n    \n    circle.radius = -5  # ValueError 발생\nexcept (TypeError, ValueError) as e:\n    print(f\"오류: {e}\")\n```",
+            "difficulty": "hard"
+        },
+        {
+            "id": 24,
+            "type": "multiple_choice",
+            "question": "클래스 설계 시 고려해야 할 원칙이 아닌 것은?",
+            "options": [
+                "단일 책임 원칙: 클래스는 하나의 책임만 가져야 함",
+                "캡슐화: 데이터와 메서드를 함께 묶어 관리",
+                "상속성: 모든 클래스는 반드시 다른 클래스를 상속해야 함",
+                "추상화: 복잡한 내부 구현을 숨기고 간단한 인터페이스 제공"
+            ],
+            "correct_answer": 2,
+            "explanation": "상속은 필요한 경우에만 사용하는 것이 좋으며, 모든 클래스가 반드시 상속을 사용할 필요는 없습니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 25,
+            "type": "real_world_application",
+            "question": "전자상거래 시스템의 상품(Product) 클래스를 설계하세요. 재고 관리, 할인 적용, 주문 가능 여부 확인 기능을 포함해야 합니다.",
+            "sample_answer": "```python\nfrom datetime import datetime, date\nfrom enum import Enum\n\nclass ProductStatus(Enum):\n    AVAILABLE = \"available\"\n    OUT_OF_STOCK = \"out_of_stock\"\n    DISCONTINUED = \"discontinued\"\n\nclass Product:\n    \"\"\"전자상거래 상품 클래스\"\"\"\n    \n    def __init__(self, product_id, name, price, initial_stock=0):\n        self.product_id = product_id\n        self.name = name\n        self._price = 0\n        self._stock = 0\n        self.price = price  # 프로퍼티를 통한 검증\n        self.stock = initial_stock\n        self.discount_rate = 0.0  # 할인율 (0.0 ~ 1.0)\n        self.created_at = datetime.now()\n        self.status = ProductStatus.AVAILABLE\n    \n    @property\n    def price(self):\n        return self._price\n    \n    @price.setter\n    def price(self, value):\n        if not isinstance(value, (int, float)):\n            raise TypeError(\"가격은 숫자여야 합니다.\")\n        if value < 0:\n            raise ValueError(\"가격은 0 이상이어야 합니다.\")\n        self._price = float(value)\n    \n    @property\n    def stock(self):\n        return self._stock\n    \n    @stock.setter\n    def stock(self, value):\n        if not isinstance(value, int):\n            raise TypeError(\"재고는 정수여야 합니다.\")\n        if value < 0:\n            raise ValueError(\"재고는 0 이상이어야 합니다.\")\n        \n        self._stock = value\n        # 재고에 따른 상태 자동 업데이트\n        if value == 0 and self.status == ProductStatus.AVAILABLE:\n            self.status = ProductStatus.OUT_OF_STOCK\n        elif value > 0 and self.status == ProductStatus.OUT_OF_STOCK:\n            self.status = ProductStatus.AVAILABLE\n    \n    @property\n    def discounted_price(self):\n        \"\"\"할인 적용된 가격 (읽기 전용)\"\"\"\n        return self._price * (1 - self.discount_rate)\n    \n    @property\n    def is_available(self):\n        \"\"\"주문 가능 여부 (읽기 전용)\"\"\"\n        return self.status == ProductStatus.AVAILABLE and self._stock > 0\n    \n    def apply_discount(self, discount_rate):\n        \"\"\"할인율 적용\"\"\"\n        if not 0 <= discount_rate <= 1:\n            raise ValueError(\"할인율은 0과 1 사이여야 합니다.\")\n        \n        self.discount_rate = discount_rate\n        return f\"{self.name}에 {discount_rate*100:.1f}% 할인이 적용되었습니다.\"\n    \n    def add_stock(self, quantity):\n        \"\"\"재고 추가\"\"\"\n        if quantity <= 0:\n            raise ValueError(\"추가할 수량은 양수여야 합니다.\")\n        \n        self.stock += quantity\n        return f\"{quantity}개 재고가 추가되었습니다. 현재 재고: {self._stock}개\"\n    \n    def reserve_stock(self, quantity):\n        \"\"\"재고 예약 (주문 시 사용)\"\"\"\n        if not self.is_available:\n            raise ValueError(f\"{self.name}은(는) 현재 주문할 수 없습니다.\")\n        \n        if quantity > self._stock:\n            raise ValueError(f\"재고가 부족합니다. 요청: {quantity}개, 재고: {self._stock}개\")\n        \n        self.stock -= quantity\n        return f\"{quantity}개가 예약되었습니다. 남은 재고: {self._stock}개\"\n    \n    def discontinue(self):\n        \"\"\"상품 단종\"\"\"\n        self.status = ProductStatus.DISCONTINUED\n        return f\"{self.name}이(가) 단종되었습니다.\"\n    \n    def get_product_info(self):\n        \"\"\"상품 정보 조회\"\"\"\n        return f\"\"\"\n=== 상품 정보 ===\nID: {self.product_id}\n이름: {self.name}\n정가: {self._price:,}원\n할인가: {self.discounted_price:,}원 ({self.discount_rate*100:.1f}% 할인)\n재고: {self._stock}개\n상태: {self.status.value}\n주문 가능: {\"예\" if self.is_available else \"아니오\"}\n등록일: {self.created_at.strftime('%Y-%m-%d')}\n        \"\"\".strip()\n    \n    def __str__(self):\n        return f\"Product({self.name}, {self.discounted_price:,.0f}원, 재고:{self._stock})\"\n    \n    def __repr__(self):\n        return f\"Product('{self.product_id}', '{self.name}', {self._price})\"\n\n# 사용 예제\ntry:\n    # 상품 생성\n    laptop = Product(\"LAPTOP001\", \"노트북\", 1500000, 10)\n    print(laptop.get_product_info())\n    \n    # 할인 적용\n    print(f\"\\n{laptop.apply_discount(0.15)}\")\n    print(f\"할인 후 가격: {laptop.discounted_price:,}원\")\n    \n    # 주문 처리\n    print(f\"\\n{laptop.reserve_stock(3)}\")\n    print(f\"주문 가능 여부: {laptop.is_available}\")\n    \n    # 재고 소진\n    print(f\"\\n{laptop.reserve_stock(7)}\")\n    print(f\"상품 상태: {laptop.status.value}\")\n    \n    # 재고 추가\n    print(f\"\\n{laptop.add_stock(5)}\")\n    print(f\"상품 상태: {laptop.status.value}\")\n    \nexcept (ValueError, TypeError) as e:\n    print(f\"오류: {e}\")\n```",
+            "difficulty": "expert"
+        },
+        {
+            "id": 26,
+            "type": "multiple_choice",
+            "question": "다음 중 __str__과 __repr__ 메서드의 차이점을 올바르게 설명한 것은?",
+            "options": [
+                "__str__은 개발자용, __repr__은 사용자용",
+                "__str__은 사용자용, __repr__은 개발자용",
+                "__str__과 __repr__은 동일한 기능",
+                "__str__은 정적 메서드, __repr__은 인스턴스 메서드"
+            ],
+            "correct_answer": 1,
+            "explanation": "__str__은 사용자가 읽기 쉬운 형태의 문자열을 반환하고, __repr__은 개발자가 객체를 명확히 식별할 수 있는 표현을 반환합니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 27,
+            "type": "performance",
+            "question": "대량의 객체를 생성할 때 성능을 고려한 클래스 설계 방법은?",
+            "options": [
+                "모든 속성을 클래스 변수로 선언",
+                "__slots__를 사용하여 메모리 사용량 최적화",
+                "생성자에서 모든 계산을 미리 수행",
+                "모든 메서드를 정적 메서드로 구현"
+            ],
+            "correct_answer": 1,
+            "explanation": "__slots__를 사용하면 동적 딕셔너리 대신 고정된 속성 저장소를 사용하여 메모리 사용량을 줄이고 속성 접근 속도를 향상시킬 수 있습니다.",
+            "difficulty": "hard"
+        },
+        {
+            "id": 28,
+            "type": "best_practices",
+            "question": "클래스 설계 시 권장되는 모범 사례가 아닌 것은?",
+            "options": [
+                "명확하고 의미 있는 클래스명 사용",
+                "단일 책임 원칙 준수",
+                "모든 속성을 public으로 선언하여 접근성 향상",
+                "docstring을 통한 클래스와 메서드 문서화"
+            ],
+            "correct_answer": 2,
+            "explanation": "모든 속성을 public으로 선언하는 것은 캡슐화 원칙에 위배됩니다. 필요에 따라 적절한 접근 제어를 사용해야 합니다.",
+            "difficulty": "medium"
+        },
+        {
+            "id": 29,
+            "type": "edge_cases",
+            "question": "다음 코드에서 발생할 수 있는 문제는?\n\n```python\nclass Counter:\n    def __init__(self):\n        self.count = 0\n    \n    def __del__(self):\n        print(f\"Counter 삭제: {self.count}\")\n```",
+            "options": [
+                "문법 오류",
+                "소멸자가 호출되지 않을 수 있음",
+                "count 변수 초기화 오류",
+                "문제없음"
+            ],
+            "correct_answer": 1,
+            "explanation": "Python의 가비지 컬렉션은 참조 순환 등의 이유로 __del__ 메서드가 호출되지 않을 수 있습니다. 중요한 리소스 정리는 with문이나 명시적 메서드를 사용하는 것이 좋습니다.",
+            "difficulty": "hard"
+        },
+        {
+            "id": 30,
+            "type": "comprehensive",
+            "question": "다음 요구사항을 만족하는 도서관리 시스템의 Book 클래스를 설계하세요:\n- ISBN, 제목, 저자, 가격 속성\n- 가격은 양수만 허용\n- 대출 상태 관리\n- 책 정보 출력 기능",
+            "sample_answer": "```python\nfrom datetime import datetime, timedelta\nfrom enum import Enum\n\nclass BookStatus(Enum):\n    AVAILABLE = \"대출 가능\"\n    BORROWED = \"대출 중\"\n    RESERVED = \"예약됨\"\n    MAINTENANCE = \"정비 중\"\n\nclass Book:\n    \"\"\"도서관 도서 관리 클래스\"\"\"\n    \n    # 클래스 변수\n    total_books = 0\n    loan_period_days = 14\n    \n    def __init__(self, isbn, title, author, price):\n        # 입력 검증\n        if not isbn or not isinstance(isbn, str):\n            raise ValueError(\"ISBN은 비어있지 않은 문자열이어야 합니다.\")\n        if not title or not isinstance(title, str):\n            raise ValueError(\"제목은 비어있지 않은 문자열이어야 합니다.\")\n        if not author or not isinstance(author, str):\n            raise ValueError(\"저자는 비어있지 않은 문자열이어야 합니다.\")\n        \n        self.isbn = isbn\n        self.title = title\n        self.author = author\n        self._price = 0\n        self.price = price  # 프로퍼티를 통한 검증\n        \n        # 대출 관리\n        self.status = BookStatus.AVAILABLE\n        self.borrowed_by = None\n        self.borrowed_date = None\n        self.due_date = None\n        self.borrowing_history = []\n        \n        # 메타데이터\n        self.created_at = datetime.now()\n        \n        # 클래스 변수 업데이트\n        Book.total_books += 1\n    \n    @property\n    def price(self):\n        return self._price\n    \n    @price.setter\n    def price(self, value):\n        if not isinstance(value, (int, float)):\n            raise TypeError(\"가격은 숫자여야 합니다.\")\n        if value <= 0:\n            raise ValueError(\"가격은 양수여야 합니다.\")\n        self._price = float(value)\n    \n    @property\n    def is_available(self):\n        \"\"\"대출 가능 여부\"\"\"\n        return self.status == BookStatus.AVAILABLE\n    \n    @property\n    def is_overdue(self):\n        \"\"\"연체 여부\"\"\"\n        if self.status == BookStatus.BORROWED and self.due_date:\n            return datetime.now() > self.due_date\n        return False\n    \n    @property\n    def days_until_due(self):\n        \"\"\"반납일까지 남은 일수\"\"\"\n        if self.status == BookStatus.BORROWED and self.due_date:\n            delta = self.due_date - datetime.now()\n            return delta.days\n        return None\n    \n    def borrow(self, borrower_name):\n        \"\"\"도서 대출\"\"\"\n        if not self.is_available:\n            raise ValueError(f\"'{self.title}'은(는) 현재 대출할 수 없습니다. (상태: {self.status.value})\")\n        \n        if not borrower_name or not isinstance(borrower_name, str):\n            raise ValueError(\"대출자 이름은 비어있지 않은 문자열이어야 합니다.\")\n        \n        # 대출 처리\n        self.status = BookStatus.BORROWED\n        self.borrowed_by = borrower_name\n        self.borrowed_date = datetime.now()\n        self.due_date = self.borrowed_date + timedelta(days=self.loan_period_days)\n        \n        # 대출 이력 기록\n        self.borrowing_history.append({\n            'borrower': borrower_name,\n            'borrowed_date': self.borrowed_date,\n            'due_date': self.due_date\n        })\n        \n        return f\"'{self.title}'이(가) {borrower_name}님께 대출되었습니다. 반납일: {self.due_date.strftime('%Y-%m-%d')}\"\n    \n    def return_book(self):\n        \"\"\"도서 반납\"\"\"\n        if self.status != BookStatus.BORROWED:\n            raise ValueError(f\"'{self.title}'은(는) 대출 중이 아닙니다.\")\n        \n        borrower = self.borrowed_by\n        overdue_days = max(0, (datetime.now() - self.due_date).days)\n        \n        # 반납 처리\n        self.status = BookStatus.AVAILABLE\n        self.borrowed_by = None\n        self.borrowed_date = None\n        self.due_date = None\n        \n        # 대출 이력 업데이트\n        if self.borrowing_history:\n            self.borrowing_history[-1]['returned_date'] = datetime.now()\n            self.borrowing_history[-1]['overdue_days'] = overdue_days\n        \n        if overdue_days > 0:\n            return f\"'{self.title}'이(가) 반납되었습니다. (연체: {overdue_days}일)\"\n        else:\n            return f\"'{self.title}'이(가) 반납되었습니다.\"\n    \n    def reserve(self, reserver_name):\n        \"\"\"도서 예약\"\"\"\n        if self.status == BookStatus.AVAILABLE:\n            raise ValueError(\"대출 가능한 도서는 예약할 수 없습니다.\")\n        \n        if self.status == BookStatus.RESERVED:\n            raise ValueError(\"이미 예약된 도서입니다.\")\n        \n        self.status = BookStatus.RESERVED\n        return f\"'{self.title}'이(가) {reserver_name}님께 예약되었습니다.\"\n    \n    def set_maintenance(self):\n        \"\"\"정비 상태로 변경\"\"\"\n        if self.status == BookStatus.BORROWED:\n            raise ValueError(\"대출 중인 도서는 정비 상태로 변경할 수 없습니다.\")\n        \n        self.status = BookStatus.MAINTENANCE\n        return f\"'{self.title}'이(가) 정비 상태로 변경되었습니다.\"\n    \n    def get_book_info(self):\n        \"\"\"도서 정보 출력\"\"\"\n        info = f\"\"\"\n=== 도서 정보 ===\nISBN: {self.isbn}\n제목: {self.title}\n저자: {self.author}\n가격: {self._price:,}원\n상태: {self.status.value}\n        \"\"\".strip()\n        \n        if self.status == BookStatus.BORROWED:\n            info += f\"\\n대출자: {self.borrowed_by}\"\n            info += f\"\\n대출일: {self.borrowed_date.strftime('%Y-%m-%d')}\"\n            info += f\"\\n반납일: {self.due_date.strftime('%Y-%m-%d')}\"\n            \n            if self.is_overdue:\n                overdue_days = (datetime.now() - self.due_date).days\n                info += f\"\\n⚠️ 연체: {overdue_days}일\"\n            else:\n                info += f\"\\n반납까지: {self.days_until_due}일\"\n        \n        return info\n    \n    def get_borrowing_history(self):\n        \"\"\"대출 이력 조회\"\"\"\n        if not self.borrowing_history:\n            return f\"'{self.title}'의 대출 이력이 없습니다.\"\n        \n        history = f\"=== '{self.title}' 대출 이력 ===\\n\"\n        for i, record in enumerate(self.borrowing_history, 1):\n            history += f\"{i}. 대출자: {record['borrower']}\\n\"\n            history += f\"   대출일: {record['borrowed_date'].strftime('%Y-%m-%d')}\\n\"\n            \n            if 'returned_date' in record:\n                history += f\"   반납일: {record['returned_date'].strftime('%Y-%m-%d')}\\n\"\n                if record.get('overdue_days', 0) > 0:\n                    history += f\"   연체: {record['overdue_days']}일\\n\"\n            else:\n                history += f\"   예정 반납일: {record['due_date'].strftime('%Y-%m-%d')}\\n\"\n            \n            history += \"\\n\"\n        \n        return history.strip()\n    \n    @classmethod\n    def get_total_books(cls):\n        \"\"\"전체 도서 수 조회\"\"\"\n        return f\"전체 등록된 도서 수: {cls.total_books}권\"\n    \n    @classmethod\n    def set_loan_period(cls, days):\n        \"\"\"대출 기간 설정\"\"\"\n        if not isinstance(days, int) or days <= 0:\n            raise ValueError(\"대출 기간은 양의 정수여야 합니다.\")\n        \n        cls.loan_period_days = days\n        return f\"대출 기간이 {days}일로 설정되었습니다.\"\n    \n    def __str__(self):\n        return f\"《{self.title}》 - {self.author} [{self.status.value}]\"\n    \n    def __repr__(self):\n        return f\"Book('{self.isbn}', '{self.title}', '{self.author}', {self._price})\"\n    \n    def __eq__(self, other):\n        if isinstance(other, Book):\n            return self.isbn == other.isbn\n        return False\n    \n    def __hash__(self):\n        return hash(self.isbn)\n\n# 사용 예제\ntry:\n    # 도서 생성\n    book1 = Book(\"978-89-123-4567\", \"파이썬 프로그래밍\", \"김파이\", 35000)\n    book2 = Book(\"978-89-123-4568\", \"자료구조와 알고리즘\", \"이알고\", 42000)\n    \n    print(Book.get_total_books())\n    print()\n    \n    # 도서 정보 출력\n    print(book1.get_book_info())\n    print()\n    \n    # 대출 처리\n    print(book1.borrow(\"홍길동\"))\n    print()\n    print(book1.get_book_info())\n    print()\n    \n    # 반납 처리 (테스트를 위해 과거 날짜로 설정)\n    book1.due_date = datetime.now() - timedelta(days=3)  # 3일 연체\n    print(book1.return_book())\n    print()\n    \n    # 대출 이력 조회\n    print(book1.get_borrowing_history())\n    \nexcept (ValueError, TypeError) as e:\n    print(f\"오류: {e}\")\n```",
+            "difficulty": "expert"
+        },
+        {
+            "id": 31,
+            "type": "optimization",
+            "question": "클래스의 메모리 사용량을 최적화하는 방법으로 옳은 것은?",
+            "options": [
+                "__slots__를 사용하여 동적 딕셔너리 생성 방지",
+                "모든 메서드를 클래스 메서드로 구현",
+                "생성자에서 모든 계산을 미리 수행",
+                "모든 메서드를 정적 메서드로 구현"
+            ],
+            "correct_answer": 0,
+            "explanation": "__slots__를 사용하면 인스턴스별 __dict__ 생성을 방지하여 메모리 사용량을 크게 줄일 수 있습니다.",
+            "difficulty": "hard"
+        },
+        {
+            "id": 32,
+            "type": "integration",
+            "question": "객체지향 프로그래밍의 핵심 개념들을 올바르게 매칭한 것은?",
+            "options": [
+                "캡슐화-데이터은닉, 상속-코드재사용, 다형성-동일인터페이스",
+                "캡슐화-코드재사용, 상속-데이터은닉, 다형성-성능최적화",
+                "캡슐화-성능최적화, 상속-동일인터페이스, 다형성-데이터은닉",
+                "캡슐화-동일인터페이스, 상속-성능최적화, 다형성-코드재사용"
+            ],
+            "correct_answer": 0,
+            "explanation": "캡슐화는 데이터와 메서드를 묶어 외부로부터 데이터를 보호하고, 상속은 코드 재사용을 통해 확장성을 제공하며, 다형성은 동일한 인터페이스로 다양한 객체를 다룰 수 있게 합니다.",
+            "difficulty": "medium"
+        }
+    ]
+}

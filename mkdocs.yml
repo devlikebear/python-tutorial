@@ -117,6 +117,11 @@ extra_javascript:
 
 # Footer
 extra:
+  # Google Analytics
+  analytics:
+    provider: google
+    property: G-CY7QZ291JB  # 실제 GA4 측정 ID로 교체하세요
+    
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/devlikebear/python-tutorial

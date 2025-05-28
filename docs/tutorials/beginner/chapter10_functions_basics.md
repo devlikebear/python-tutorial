@@ -1,482 +1,543 @@
-# Chapter 10: 함수 기초 (Functions Basics)
+# Chapter 10: 함수로 코드의 마법사 되기
 
-## 학습 목표
-이 챕터를 완료하면 다음을 할 수 있습니다:
-- 함수의 개념과 필요성 이해하기
-- 함수를 정의하고 호출하는 방법 익히기
-- 매개변수와 인수의 차이점과 활용법 이해하기
-- 반환값을 사용하는 다양한 방법 익히기
-- 지역변수와 전역변수의 스코프 이해하기
-- 다양한 매개변수 타입 활용하기 (기본값, 키워드, 가변 인수)
-- 람다 함수의 기본 개념과 활용법
-- 실무에서 활용 가능한 함수 작성하기
+## 📚 이 챕터에서 배울 내용
+- 함수의 진정한 힘과 코딩 생산성 혁신하기
+- 재사용 가능한 코드 블록으로 효율성 극대화하기
+- 매개변수와 반환값으로 유연한 프로그램 설계하기
+- 스코프와 네임스페이스의 비밀 마스터하기
+- 람다 함수로 간결하고 우아한 코드 작성하기
+- 실무에서 바로 쓸 수 있는 함수 라이브러리 구축하기
 
-## 1. 함수의 기본 개념
+---
 
-### 1.1 함수란?
+## 🎯 함수: 코딩의 게임 체인저
 
-함수는 **특정한 작업을 수행하는 코드 블록**입니다. 입력(매개변수)을 받아서 처리한 후 결과(반환값)를 돌려주는 **재사용 가능한 코드 단위**입니다.
+### 💡 함수 없는 세상 vs 함수가 있는 세상
+
+함수는 프로그래밍에서 **가장 중요한 개념** 중 하나입니다. 마치 현실에서 도구를 사용하는 것처럼, 함수는 코딩의 강력한 도구입니다!
 
 ```python
-# 함수를 사용하지 않는 경우 (코드 중복)
-# 세 학생의 평균 계산
-student1_scores = [85, 90, 78, 92]
-student1_average = sum(student1_scores) / len(student1_scores)
-print(f"학생1 평균: {student1_average:.1f}")
+print("=== 🌍 함수 없는 세상: 코드 지옥 ===")
 
-student2_scores = [76, 88, 84, 90]
-student2_average = sum(student2_scores) / len(student2_scores)
-print(f"학생2 평균: {student2_average:.1f}")
+# 😱 함수 없이 학생 성적 처리 (악몽의 시작)
+# 학생 1 성적 처리
+student1_korean = 85
+student1_english = 92
+student1_math = 78
+student1_science = 88
 
-student3_scores = [95, 87, 91, 89]
-student3_average = sum(student3_scores) / len(student3_scores)
-print(f"학생3 평균: {student3_average:.1f}")
+student1_total = student1_korean + student1_english + student1_math + student1_science
+student1_average = student1_total / 4
 
-print("-" * 30)
+if student1_average >= 90:
+    student1_grade = "A"
+elif student1_average >= 80:
+    student1_grade = "B"
+elif student1_average >= 70:
+    student1_grade = "C"
+else:
+    student1_grade = "D"
 
-# 함수를 사용하는 경우 (코드 재사용)
-def calculate_average(scores):
-    """점수 리스트의 평균을 계산하는 함수"""
-    return sum(scores) / len(scores)
+print(f"학생1: 총점 {student1_total}, 평균 {student1_average:.1f}, 등급 {student1_grade}")
 
-# 함수를 사용하여 같은 작업 수행
-students_scores = [
-    [85, 90, 78, 92],
-    [76, 88, 84, 90],
-    [95, 87, 91, 89]
+# 학생 2 성적 처리 (복사-붙여넣기 지옥)
+student2_korean = 76
+student2_english = 88
+student2_math = 84
+student2_science = 90
+
+student2_total = student2_korean + student2_english + student2_math + student2_science
+student2_average = student2_total / 4
+
+if student2_average >= 90:
+    student2_grade = "A"
+elif student2_average >= 80:
+    student2_grade = "B"
+elif student2_average >= 70:
+    student2_grade = "C"
+else:
+    student2_grade = "D"
+
+print(f"학생2: 총점 {student2_total}, 평균 {student2_average:.1f}, 등급 {student2_grade}")
+
+# 😭 이런 식으로 100명의 학생을 처리한다면...?
+
+print("\n=== ✨ 함수가 있는 세상: 코딩 천국 ===")
+
+def calculate_grade(korean, english, math, science):
+    """학생 성적을 처리하는 마법의 함수"""
+    total = korean + english + math + science
+    average = total / 4
+    
+    if average >= 90:
+        grade = "A"
+    elif average >= 80:
+        grade = "B"
+    elif average >= 70:
+        grade = "C"
+    else:
+        grade = "D"
+    
+    return total, average, grade
+
+def print_student_result(student_name, korean, english, math, science):
+    """학생 결과를 예쁘게 출력하는 함수"""
+    total, average, grade = calculate_grade(korean, english, math, science)
+    print(f"🎓 {student_name}: 총점 {total}, 평균 {average:.1f}, 등급 {grade}")
+
+# 🎉 이제 간단하게!
+students_data = [
+    ("김철수", 85, 92, 78, 88),
+    ("이영희", 76, 88, 84, 90),
+    ("박민수", 95, 87, 91, 89),
+    ("최지영", 82, 79, 86, 93),
+    ("정다은", 90, 94, 88, 92)
 ]
 
-for i, scores in enumerate(students_scores, 1):
-    average = calculate_average(scores)
-    print(f"학생{i} 평균: {average:.1f}")
+print("📊 전체 학생 성적 결과:")
+for student_data in students_data:
+    print_student_result(*student_data)
+
+# 🚀 추가 분석도 쉽게!
+all_averages = []
+for name, korean, english, math, science in students_data:
+    _, average, _ = calculate_grade(korean, english, math, science)
+    all_averages.append(average)
+
+class_average = sum(all_averages) / len(all_averages)
+print(f"\n📈 학급 평균: {class_average:.1f}점")
 ```
 
-### 1.2 함수의 장점
+> 🌟 **핵심 포인트**: 함수는 **코드 중복을 제거**하고 **가독성을 향상**시키며 **유지보수를 쉽게** 만드는 마법의 도구입니다!
+
+### 🏗️ 함수의 놀라운 장점들
+
+| 장점 | 설명 | 예시 |
+|------|------|------|
+| **재사용성** | 한 번 작성하면 여러 번 사용 | `calculate_tax()` 함수를 모든 상품에 적용 |
+| **가독성** | 코드의 의도가 명확해짐 | `is_valid_email()` - 이름만 봐도 기능 파악 |
+| **유지보수** | 수정이 필요할 때 한 곳만 변경 | 세율 변경 시 함수 하나만 수정 |
+| **모듈화** | 복잡한 문제를 작은 단위로 분해 | 게임을 여러 함수로 나누어 개발 |
+| **테스트** | 개별 기능을 독립적으로 테스트 | 각 함수별로 단위 테스트 가능 |
+
+### 🎨 실생활 속 함수들
 
 ```python
-# 1. 코드 재사용성
-def greet_user(name, language="ko"):
-    """사용자에게 인사하는 함수"""
-    if language == "ko":
-        return f"안녕하세요, {name}님!"
-    elif language == "en":
-        return f"Hello, {name}!"
+print("=== 🏠 일상 속 함수의 개념 ===")
+
+# 실생활의 함수들을 코드로 표현
+def make_coffee(coffee_type="아메리카노", sugar=0, milk=False):
+    """커피를 만드는 함수 (실생활 비유)"""
+    print(f"☕ {coffee_type} 제조 시작!")
+    
+    steps = ["원두 갈기", "물 끓이기", "커피 추출"]
+    
+    if sugar > 0:
+        steps.append(f"설탕 {sugar}스푼 추가")
+    
+    if milk:
+        steps.append("우유 추가")
+    
+    for i, step in enumerate(steps, 1):
+        print(f"   {i}. {step}")
+    
+    return f"맛있는 {coffee_type} 완성! ☕"
+
+def calculate_delivery_fee(distance, weight, is_express=False):
+    """배송비 계산 함수"""
+    base_fee = 3000
+    distance_fee = distance * 500
+    weight_fee = max(0, (weight - 1) * 1000)  # 1kg 초과분
+    
+    total_fee = base_fee + distance_fee + weight_fee
+    
+    if is_express:
+        total_fee *= 1.5
+        service_type = "특급"
     else:
-        return f"Hi, {name}!"
+        service_type = "일반"
+    
+    return {
+        "service_type": service_type,
+        "base_fee": base_fee,
+        "distance_fee": distance_fee,
+        "weight_fee": weight_fee,
+        "total_fee": int(total_fee)
+    }
 
-# 여러 번 재사용 가능
-print(greet_user("김철수"))
-print(greet_user("Alice", "en"))
-print(greet_user("田中", "jp"))
+def format_phone_number(number):
+    """전화번호를 예쁘게 포맷팅하는 함수"""
+    # 숫자만 추출
+    digits = ''.join(filter(str.isdigit, number))
+    
+    if len(digits) == 11 and digits.startswith('010'):
+        return f"{digits[:3]}-{digits[3:7]}-{digits[7:]}"
+    elif len(digits) == 10:
+        return f"{digits[:3]}-{digits[3:6]}-{digits[6:]}"
+    else:
+        return "올바르지 않은 전화번호"
 
-# 2. 코드 가독성과 유지보수성
-def is_prime(number):
-    """소수인지 판별하는 함수"""
-    if number < 2:
-        return False
-    for i in range(2, int(number ** 0.5) + 1):
-        if number % i == 0:
-            return False
-    return True
+# 실생활 함수들 테스트
+print("☕ 커피 주문 시스템:")
+result1 = make_coffee("카페라떼", sugar=1, milk=True)
+print(f"   결과: {result1}\n")
 
-def find_primes_in_range(start, end):
-    """범위 내 모든 소수를 찾는 함수"""
-    primes = []
-    for num in range(start, end + 1):
-        if is_prime(num):
-            primes.append(num)
-    return primes
+result2 = make_coffee("에스프레소")
+print(f"   결과: {result2}\n")
 
-# 함수 이름만으로도 기능을 이해할 수 있음
-primes_1_to_30 = find_primes_in_range(1, 30)
-print(f"1-30 사이의 소수: {primes_1_to_30}")
+print("🚚 배송비 계산 시스템:")
+delivery_info = calculate_delivery_fee(distance=5, weight=2.5, is_express=True)
+print(f"   서비스: {delivery_info['service_type']}")
+print(f"   기본료: {delivery_info['base_fee']:,}원")
+print(f"   거리비: {delivery_info['distance_fee']:,}원")
+print(f"   중량비: {delivery_info['weight_fee']:,}원")
+print(f"   총 배송비: {delivery_info['total_fee']:,}원\n")
 
-# 3. 모듈화와 추상화
-def format_currency(amount, currency="원"):
-    """금액을 통화 형식으로 포맷팅"""
-    return f"{amount:,}{currency}"
-
-def calculate_tax(amount, tax_rate=0.1):
-    """세금을 계산하는 함수"""
-    return amount * tax_rate
-
-def calculate_total_with_tax(amount, tax_rate=0.1):
-    """세금 포함 총액 계산"""
-    tax = calculate_tax(amount, tax_rate)
-    total = amount + tax
-    return amount, tax, total
-
-# 복잡한 계산도 간단한 함수 호출로 해결
-price, tax, total = calculate_total_with_tax(10000, 0.1)
-print(f"상품가격: {format_currency(price)}")
-print(f"세    금: {format_currency(tax)}")
-print(f"총  가격: {format_currency(total)}")
+print("📱 전화번호 포맷팅:")
+phone_numbers = ["01012345678", "010-1234-5678", "02-123-4567", "invalid"]
+for phone in phone_numbers:
+    formatted = format_phone_number(phone)
+    print(f"   {phone} → {formatted}")
 ```
 
-## 2. 함수 정의와 호출
+---
 
-### 2.1 기본 함수 정의
+## 🛠️ 함수 정의와 호출: 마법 주문 만들기
+
+### 🎯 기본 함수 문법: 첫 번째 마법 주문
 
 ```python
-# 기본 함수 정의 문법
-def function_name():
-    """함수 설명 (docstring)"""
-    # 함수 본문
-    pass
+print("=== 🎯 함수 정의의 기본 문법 ===")
 
-# 실제 예제
+# 가장 간단한 함수
 def say_hello():
-    """간단한 인사 함수"""
-    print("안녕하세요!")
-
-def print_separator():
-    """구분선을 출력하는 함수"""
-    print("=" * 40)
+    """인사하는 함수 - 매개변수 없음, 반환값 없음"""
+    print("안녕하세요! 👋")
 
 # 함수 호출
-say_hello()
-print_separator()
 say_hello()
 
 # 함수 정보 확인
 print(f"함수 이름: {say_hello.__name__}")
 print(f"함수 설명: {say_hello.__doc__}")
-```
 
-### 2.2 매개변수가 있는 함수
+print("\n" + "="*40)
 
-```python
-# 하나의 매개변수
-def greet(name):
-    """이름을 받아서 인사하는 함수"""
-    print(f"안녕하세요, {name}님!")
+# 조금 더 실용적인 함수들
+def print_banner(title):
+    """제목을 예쁜 배너로 출력하는 함수"""
+    border = "=" * (len(title) + 4)
+    print(border)
+    print(f"  {title}")
+    print(border)
 
-# 여러 개의 매개변수
-def introduce_person(name, age, city):
-    """개인 정보를 소개하는 함수"""
-    print(f"이름: {name}")
-    print(f"나이: {age}세")
-    print(f"거주지: {city}")
+def get_current_time():
+    """현재 시간을 문자열로 반환하는 함수"""
+    import datetime
+    now = datetime.datetime.now()
+    return now.strftime("%Y-%m-%d %H:%M:%S")
 
-# 함수 호출
-greet("김철수")
-print()
-introduce_person("이영희", 25, "서울")
-
-# 매개변수 순서 주의
-def calculate_rectangle_area(width, height):
-    """직사각형의 넓이를 계산하고 출력"""
-    area = width * height
-    print(f"가로 {width}cm, 세로 {height}cm")
-    print(f"넓이: {area}cm²")
-
-calculate_rectangle_area(10, 5)  # 순서 중요!
-calculate_rectangle_area(5, 10)  # 다른 결과
-```
-
-### 2.3 반환값이 있는 함수
-
-```python
-# 값을 반환하는 함수
-def add_numbers(a, b):
-    """두 수를 더한 결과를 반환"""
-    result = a + b
-    return result
-
-def multiply_numbers(a, b):
-    """두 수를 곱한 결과를 반환"""
-    return a * b  # 직접 반환도 가능
-
-# 반환값 사용
-sum_result = add_numbers(10, 20)
-product_result = multiply_numbers(5, 6)
-
-print(f"덧셈 결과: {sum_result}")
-print(f"곱셈 결과: {product_result}")
-
-# 반환값을 다른 함수의 인수로 사용
-final_result = add_numbers(sum_result, product_result)
-print(f"최종 결과: {final_result}")
-
-# 여러 값 반환
-def calculate_circle(radius):
-    """원의 둘레와 넓이를 계산"""
-    import math
-    circumference = 2 * math.pi * radius
-    area = math.pi * radius ** 2
-    return circumference, area  # 튜플로 반환
-
-# 여러 값 받기
-perimeter, area = calculate_circle(5)
-print(f"반지름 5인 원:")
-print(f"둘레: {perimeter:.2f}")
-print(f"넓이: {area:.2f}")
-
-# 조건부 반환
-def get_grade(score):
-    """점수에 따른 등급 반환"""
-    if score >= 90:
-        return "A"
-    elif score >= 80:
-        return "B"
-    elif score >= 70:
-        return "C"
-    elif score >= 60:
-        return "D"
-    else:
-        return "F"
-
-# 함수 결과를 바로 사용
-student_score = 85
-print(f"점수 {student_score}점: {get_grade(student_score)}등급")
-```
-
-## 3. 매개변수와 인수의 이해
-
-### 3.1 매개변수 vs 인수
-
-```python
-# 매개변수(Parameter): 함수 정의에서 사용하는 변수
-def create_profile(name, age):  # name, age는 매개변수
+def create_user_profile(name, age, city="서울"):
     """사용자 프로필을 생성하는 함수"""
-    profile = f"이름: {name}, 나이: {age}세"
+    profile = {
+        "name": name,
+        "age": age,
+        "city": city,
+        "created_at": get_current_time(),
+        "id": f"user_{name.lower()}_{age}"
+    }
     return profile
 
-# 인수(Argument): 함수 호출 시 전달하는 실제 값
-user_profile = create_profile("김철수", 25)  # "김철수", 25는 인수
-print(user_profile)
+# 함수들 활용 예제
+print_banner("함수 활용 예제")
 
-# 다양한 인수 전달 방법
-def display_info(title, content, separator="="):
-    """정보를 포맷팅해서 출력"""
-    print(separator * len(title))
-    print(title)
-    print(separator * len(title))
-    print(content)
-    print()
+current_time = get_current_time()
+print(f"현재 시간: {current_time}")
 
-# 위치 인수 (positional arguments)
-display_info("공지사항", "내일 회의가 있습니다.")
+user1 = create_user_profile("김개발", 28, "부산")
+user2 = create_user_profile("이코딩", 25)  # 기본값 사용
 
-# 키워드 인수 (keyword arguments)
-display_info(title="알림", content="점심시간이 변경되었습니다.", separator="-")
-display_info(content="새로운 프로젝트 시작", title="프로젝트", separator="*")
+print(f"\n👤 사용자 1: {user1}")
+print(f"👤 사용자 2: {user2}")
 ```
 
-### 3.2 기본값 매개변수
+### 🎪 매개변수의 다양한 얼굴들
 
 ```python
-# 기본값이 있는 매개변수
-def create_email(username, domain="gmail.com", is_business=False):
-    """이메일 주소를 생성하는 함수"""
-    if is_business:
-        domain = "company.com"
+print("=== 🎪 매개변수 마스터 클래스 ===")
+
+# 1. 위치 매개변수 (Positional Parameters)
+def introduce_person(name, age, job):
+    """위치 매개변수 - 순서가 중요!"""
+    return f"안녕하세요! 저는 {name}이고, {age}세이며, {job}을 하고 있습니다."
+
+print("1️⃣ 위치 매개변수:")
+intro1 = introduce_person("김철수", 30, "개발자")
+print(f"   {intro1}")
+
+# 순서 바뀌면 이상해짐
+intro2 = introduce_person("개발자", "김철수", 30)  # 잘못된 순서
+print(f"   {intro2} ← 순서 중요!")
+
+# 2. 키워드 매개변수 (Keyword Parameters)
+print(f"\n2️⃣ 키워드 매개변수:")
+intro3 = introduce_person(job="디자이너", name="이영희", age=25)  # 순서 무관
+print(f"   {intro3}")
+
+# 3. 기본값 매개변수 (Default Parameters)
+def order_coffee(coffee_type, size="medium", hot=True, extra_shot=0):
+    """기본값이 있는 매개변수들"""
+    temperature = "뜨거운" if hot else "차가운"
+    shot_info = f" (+{extra_shot}샷)" if extra_shot > 0 else ""
     
-    email = f"{username}@{domain}"
-    return email
+    return f"{temperature} {coffee_type} ({size} 사이즈){shot_info}"
 
-# 다양한 호출 방법
-print(create_email("john"))  # 기본값 사용
-print(create_email("mary", "naver.com"))  # domain만 변경
-print(create_email("bob", is_business=True))  # is_business만 변경
-print(create_email("alice", "yahoo.com", True))  # 모든 값 지정
+print(f"\n3️⃣ 기본값 매개변수:")
+order1 = order_coffee("아메리카노")  # 기본값 사용
+order2 = order_coffee("라떼", size="large", extra_shot=1)
+order3 = order_coffee("프라푸치노", hot=False, size="small")
 
-# 기본값 매개변수 주의사항
-def add_item_to_list(item, target_list=None):
-    """리스트에 아이템을 추가 (올바른 방법)"""
-    if target_list is None:
-        target_list = []  # 매번 새로운 리스트 생성
+print(f"   주문1: {order1}")
+print(f"   주문2: {order2}")
+print(f"   주문3: {order3}")
+
+# 4. 가변 위치 매개변수 (*args)
+def calculate_sum(*numbers):
+    """개수가 정해지지 않은 숫자들의 합계"""
+    total = sum(numbers)
+    count = len(numbers)
+    return f"{count}개 숫자의 합: {total}"
+
+print(f"\n4️⃣ 가변 위치 매개변수 (*args):")
+sum1 = calculate_sum(1, 2, 3)
+sum2 = calculate_sum(10, 20, 30, 40, 50)
+sum3 = calculate_sum(100)
+
+print(f"   {sum1}")
+print(f"   {sum2}")
+print(f"   {sum3}")
+
+# 5. 가변 키워드 매개변수 (**kwargs)
+def create_product(**product_info):
+    """제품 정보를 받아서 딕셔너리로 정리"""
+    product = {
+        "id": f"PROD_{len(product_info)}",
+        "created_at": get_current_time()
+    }
+    product.update(product_info)
+    return product
+
+print(f"\n5️⃣ 가변 키워드 매개변수 (**kwargs):")
+product1 = create_product(name="노트북", price=1200000, brand="TechCorp")
+product2 = create_product(name="마우스", price=30000, color="black", wireless=True)
+
+print(f"   제품1: {product1}")
+print(f"   제품2: {product2}")
+
+# 6. 모든 매개변수 타입 조합
+def ultimate_function(required_param, default_param="기본값", *args, **kwargs):
+    """모든 매개변수 타입을 조합한 궁극의 함수"""
+    result = {
+        "required": required_param,
+        "default": default_param,
+        "args": args,
+        "kwargs": kwargs
+    }
+    return result
+
+print(f"\n6️⃣ 궁극의 함수 (모든 매개변수 타입 조합):")
+ultimate_result = ultimate_function(
+    "필수값", 
+    "변경된 기본값", 
+    1, 2, 3,  # *args
+    name="김개발", age=30, city="서울"  # **kwargs
+)
+
+print(f"   결과: {ultimate_result}")
+```
+
+### 🎁 반환값: 함수의 선물
+
+```python
+print("=== 🎁 반환값 마스터 클래스 ===")
+
+# 1. 단일 값 반환
+def calculate_circle_area(radius):
+    """원의 넓이를 계산하여 반환"""
+    import math
+    area = math.pi * radius ** 2
+    return area
+
+# 2. 여러 값 반환 (튜플)
+def analyze_text(text):
+    """텍스트를 분석하여 여러 정보를 반환"""
+    word_count = len(text.split())
+    char_count = len(text)
+    char_count_no_space = len(text.replace(" ", ""))
     
-    target_list.append(item)
-    return target_list
+    return word_count, char_count, char_count_no_space
 
-# 잘못된 예시 (실제로는 사용하지 말 것)
-def add_item_wrong(item, target_list=[]):
-    """잘못된 기본값 사용 예시"""
-    target_list.append(item)
-    return target_list
-
-# 올바른 방법 테스트
-list1 = add_item_to_list("사과")
-list2 = add_item_to_list("바나나")
-print(f"독립적인 리스트1: {list1}")
-print(f"독립적인 리스트2: {list2}")
-
-# 가변 기본값을 안전하게 사용하는 패턴
-def create_student_record(name, subjects=None, grades=None):
-    """학생 기록을 생성하는 함수"""
-    if subjects is None:
-        subjects = ["수학", "영어", "과학"]
-    if grades is None:
-        grades = [0, 0, 0]
+# 3. 딕셔너리 반환
+def get_weather_info(city):
+    """날씨 정보를 딕셔너리로 반환 (시뮬레이션)"""
+    import random
+    
+    weather_conditions = ["맑음", "흐림", "비", "눈", "안개"]
     
     return {
-        "name": name,
-        "subjects": subjects.copy(),  # 복사본 사용
-        "grades": grades.copy()
+        "city": city,
+        "temperature": random.randint(-10, 35),
+        "condition": random.choice(weather_conditions),
+        "humidity": random.randint(30, 90),
+        "timestamp": get_current_time()
     }
 
-student1 = create_student_record("김철수")
-student2 = create_student_record("이영희", ["국어", "수학"])
-print(f"학생1: {student1}")
-print(f"학생2: {student2}")
+# 4. 조건부 반환
+def validate_password(password):
+    """비밀번호 유효성 검사 - 조건에 따라 다른 값 반환"""
+    if len(password) < 8:
+        return False, "비밀번호는 8자 이상이어야 합니다."
+    
+    if not any(c.isupper() for c in password):
+        return False, "대문자가 포함되어야 합니다."
+    
+    if not any(c.islower() for c in password):
+        return False, "소문자가 포함되어야 합니다."
+    
+    if not any(c.isdigit() for c in password):
+        return False, "숫자가 포함되어야 합니다."
+    
+    return True, "안전한 비밀번호입니다!"
+
+# 5. 함수를 반환하는 함수 (고급)
+def create_multiplier(factor):
+    """특정 수를 곱하는 함수를 생성하는 함수"""
+    def multiplier(number):
+        return number * factor
+    return multiplier
+
+# 반환값 활용 예제
+print("🔍 반환값 활용 예제:")
+
+# 단일 값 반환
+area = calculate_circle_area(5)
+print(f"반지름 5인 원의 넓이: {area:.2f}")
+
+# 여러 값 반환 (언패킹)
+sample_text = "Python은 정말 재미있는 프로그래밍 언어입니다!"
+words, chars, chars_no_space = analyze_text(sample_text)
+print(f"텍스트 분석: {words}단어, {chars}문자, {chars_no_space}문자(공백제외)")
+
+# 딕셔너리 반환
+weather = get_weather_info("서울")
+print(f"날씨 정보: {weather['city']} {weather['temperature']}°C, {weather['condition']}")
+
+# 조건부 반환
+passwords = ["weak", "StrongPass123", "noUPPER123", "NOLOWER123"]
+print(f"\n🔐 비밀번호 검증:")
+for pwd in passwords:
+    is_valid, message = validate_password(pwd)
+    status = "✅" if is_valid else "❌"
+    print(f"   {status} '{pwd}': {message}")
+
+# 함수를 반환하는 함수
+print(f"\n🔢 동적 함수 생성:")
+double = create_multiplier(2)
+triple = create_multiplier(3)
+
+print(f"   double(5) = {double(5)}")
+print(f"   triple(4) = {triple(4)}")
 ```
 
-### 3.3 가변 인수 (*args, **kwargs)
+---
+
+## 🌍 스코프와 네임스페이스: 변수의 영역
+
+### 💡 스코프의 개념: 변수의 생활 영역
 
 ```python
-# *args: 가변 위치 인수
-def calculate_sum(*numbers):
-    """여러 개의 숫자를 모두 더하는 함수"""
-    print(f"받은 인수들: {numbers}")  # 튜플로 저장됨
-    total = sum(numbers)
-    return total
+print("=== 🌍 스코프(Scope) 이해하기 ===")
 
-# 다양한 개수의 인수 전달
-print(f"합계: {calculate_sum(1, 2, 3)}")
-print(f"합계: {calculate_sum(10, 20, 30, 40, 50)}")
-print(f"합계: {calculate_sum(100)}")
-
-# **kwargs: 가변 키워드 인수
-def create_person(**person_info):
-    """인적사항을 딕셔너리로 생성하는 함수"""
-    print(f"받은 정보: {person_info}")  # 딕셔너리로 저장됨
-    
-    # 필수 정보 확인
-    if "name" not in person_info:
-        return "이름은 필수 정보입니다."
-    
-    return person_info
-
-# 다양한 키워드 인수 전달
-person1 = create_person(name="김철수", age=25, city="서울")
-person2 = create_person(name="이영희", age=30, job="개발자", hobby="독서")
-print(f"인물1: {person1}")
-print(f"인물2: {person2}")
-
-# *args와 **kwargs 함께 사용
-def process_data(operation, *args, **kwargs):
-    """데이터를 처리하는 범용 함수"""
-    print(f"작업: {operation}")
-    print(f"위치 인수: {args}")
-    print(f"키워드 인수: {kwargs}")
-    
-    if operation == "add":
-        return sum(args)
-    elif operation == "multiply":
-        result = 1
-        for num in args:
-            result *= num
-        return result
-    elif operation == "format":
-        name = kwargs.get("name", "Unknown")
-        age = kwargs.get("age", 0)
-        return f"{name} ({age}세)"
-
-# 함수 사용 예제
-print(f"덧셈 결과: {process_data('add', 1, 2, 3, 4, 5)}")
-print(f"곱셈 결과: {process_data('multiply', 2, 3, 4)}")
-print(f"포맷 결과: {process_data('format', name='김철수', age=25)}")
-
-# 리스트나 딕셔너리를 언패킹하여 전달
-numbers_list = [10, 20, 30, 40]
-person_dict = {"name": "박민수", "age": 28, "city": "부산"}
-
-print(f"리스트 언패킹: {calculate_sum(*numbers_list)}")
-print(f"딕셔너리 언패킹: {create_person(**person_dict)}")
-```
-
-## 4. 변수의 스코프 (Scope)
-
-### 4.1 지역변수와 전역변수
-
-```python
-# 전역변수
-global_message = "전역 메시지입니다"
+# 전역 변수 (Global Variable)
+global_message = "전역에서 접근 가능한 메시지"
 global_counter = 0
 
 def demonstrate_scope():
-    """스코프 테스트 함수"""
-    # 지역변수
-    local_message = "지역 메시지입니다"
-    local_counter = 10
+    """스코프를 설명하는 함수"""
+    # 지역 변수 (Local Variable)
+    local_message = "함수 내부에서만 접근 가능한 메시지"
     
-    print(f"함수 내부:")
-    print(f"  지역 메시지: {local_message}")
-    print(f"  지역 카운터: {local_counter}")
-    print(f"  전역 메시지: {global_message}")  # 전역변수 접근 가능
-    print(f"  전역 카운터: {global_counter}")
+    print(f"함수 내부에서:")
+    print(f"  전역 변수: {global_message}")
+    print(f"  지역 변수: {local_message}")
 
-# 함수 호출
+def modify_global_wrong():
+    """전역 변수 수정 시도 (잘못된 방법)"""
+    global_counter = 100  # 새로운 지역 변수 생성!
+    print(f"함수 내부 counter: {global_counter}")
+
+def modify_global_correct():
+    """전역 변수 수정 (올바른 방법)"""
+    global global_counter
+    global_counter = 200  # 실제 전역 변수 수정
+    print(f"global 키워드 사용 후 counter: {global_counter}")
+
+# 스코프 테스트
+print("🔍 스코프 테스트:")
 demonstrate_scope()
 
-print(f"\n함수 외부:")
-print(f"  전역 메시지: {global_message}")
-print(f"  전역 카운터: {global_counter}")
+print(f"\n전역 counter 초기값: {global_counter}")
+modify_global_wrong()
+print(f"잘못된 수정 후 전역 counter: {global_counter}")  # 변경되지 않음!
 
-# print(local_message)  # 오류! 지역변수는 함수 외부에서 접근 불가
+modify_global_correct()
+print(f"올바른 수정 후 전역 counter: {global_counter}")  # 변경됨!
 
-# 변수 이름이 같을 때
-user_name = "전역 사용자"
-
-def greet_user():
-    user_name = "지역 사용자"  # 지역변수가 전역변수를 가림
-    print(f"안녕하세요, {user_name}님!")
-
-greet_user()
-print(f"전역 변수: {user_name}")  # 전역변수는 변경되지 않음
+# 지역 변수는 함수 외부에서 접근 불가
+try:
+    print(local_message)  # 오류 발생!
+except NameError as e:
+    print(f"❌ 오류: {e}")
 ```
 
-### 4.2 global과 nonlocal 키워드
+### 🏠 중첩 함수와 nonlocal
 
 ```python
-# global 키워드 사용
-account_balance = 1000  # 전역변수
+print("=== 🏠 중첩 함수와 nonlocal ===")
 
-def deposit(amount):
-    """입금 함수"""
-    global account_balance  # 전역변수 수정 선언
-    account_balance += amount
-    print(f"{amount}원 입금. 잔액: {account_balance}원")
+def outer_function(x):
+    """외부 함수"""
+    outer_variable = f"외부 함수의 변수: {x}"
+    
+    def inner_function(y):
+        """내부 함수 - 외부 함수의 변수에 접근 가능"""
+        inner_variable = f"내부 함수의 변수: {y}"
+        
+        print(f"  내부 함수에서:")
+        print(f"    {outer_variable}")  # 외부 함수 변수 접근
+        print(f"    {inner_variable}")
+        
+        return x + y
+    
+    result = inner_function(10)
+    print(f"  외부 함수에서: 결과 = {result}")
+    return result
 
-def withdraw(amount):
-    """출금 함수"""
-    global account_balance
-    if account_balance >= amount:
-        account_balance -= amount
-        print(f"{amount}원 출금. 잔액: {account_balance}원")
-    else:
-        print("잔액이 부족합니다.")
-
-def check_balance():
-    """잔액 확인 함수 (global 없이도 읽기 가능)"""
-    print(f"현재 잔액: {account_balance}원")
-
-# 계좌 거래 테스트
-check_balance()
-deposit(500)
-withdraw(300)
-check_balance()
-
-# nonlocal 키워드 (중첩 함수)
 def create_counter():
-    """카운터 생성기 함수"""
-    count = 0  # 외부 함수의 지역변수
+    """카운터 함수를 생성하는 함수 (클로저 예제)"""
+    count = 0
     
     def increment():
-        """카운터 증가 함수"""
         nonlocal count  # 외부 함수의 변수 수정
         count += 1
         return count
     
     def decrement():
-        """카운터 감소 함수"""
         nonlocal count
         count -= 1
         return count
     
     def get_count():
-        """현재 카운터 값 반환"""
         return count
     
     # 함수들을 딕셔너리로 반환
@@ -486,416 +547,344 @@ def create_counter():
         "get_count": get_count
     }
 
-# 카운터 사용
-counter = create_counter()
-print(f"초기값: {counter['get_count']()}")
-print(f"증가 후: {counter['increment']()}")
-print(f"증가 후: {counter['increment']()}")
-print(f"감소 후: {counter['decrement']()}")
-print(f"현재값: {counter['get_count']()}")
-
-# 각 카운터는 독립적
-counter1 = create_counter()
-counter2 = create_counter()
-
-counter1['increment']()
-counter1['increment']()
-counter2['increment']()
-
-print(f"카운터1: {counter1['get_count']()}")
-print(f"카운터2: {counter2['get_count']()}")
-```
-
-## 5. 람다 함수 (Lambda Functions)
-
-### 5.1 람다 함수 기본
-
-```python
-# 일반 함수 vs 람다 함수
-def square(x):
-    """제곱을 계산하는 일반 함수"""
-    return x ** 2
-
-# 같은 기능의 람다 함수
-square_lambda = lambda x: x ** 2
-
-# 두 함수 모두 같은 결과
-print(f"일반 함수: {square(5)}")
-print(f"람다 함수: {square_lambda(5)}")
-
-# 여러 매개변수를 가진 람다 함수
-add = lambda x, y: x + y
-multiply = lambda x, y, z: x * y * z
-greet = lambda name: f"안녕하세요, {name}님!"
-
-print(f"덧셈: {add(10, 20)}")
-print(f"곱셈: {multiply(2, 3, 4)}")
-print(f"인사: {greet('김철수')}")
-
-# 조건부 람다 함수
-max_value = lambda a, b: a if a > b else b
-is_even = lambda n: n % 2 == 0
-absolute = lambda x: x if x >= 0 else -x
-
-print(f"최댓값: {max_value(15, 23)}")
-print(f"짝수 여부: {is_even(10)}")
-print(f"절댓값: {absolute(-7)}")
-```
-
-### 5.2 람다 함수의 활용
-
-```python
-# 정렬에서 람다 함수 활용
-students = [
-    {"name": "김철수", "age": 20, "grade": 85},
-    {"name": "이영희", "age": 22, "grade": 92},
-    {"name": "박민수", "age": 19, "grade": 78},
-    {"name": "최지영", "age": 21, "grade": 95}
-]
-
-# 나이순 정렬
-students_by_age = sorted(students, key=lambda student: student["age"])
-print("나이순 정렬:")
-for student in students_by_age:
-    print(f"  {student['name']} ({student['age']}세)")
-
-# 성적순 정렬 (내림차순)
-students_by_grade = sorted(students, key=lambda student: student["grade"], reverse=True)
-print("\n성적순 정렬:")
-for student in students_by_grade:
-    print(f"  {student['name']} ({student['grade']}점)")
-
-# 필터링에서 람다 함수 활용
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-# 짝수만 필터링
-even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
-print(f"\n짝수들: {even_numbers}")
-
-# 5보다 큰 수들
-greater_than_5 = list(filter(lambda x: x > 5, numbers))
-print(f"5보다 큰 수들: {greater_than_5}")
-
-# 성적이 90점 이상인 학생들
-top_students = list(filter(lambda student: student["grade"] >= 90, students))
-print(f"\n우수 학생들:")
-for student in top_students:
-    print(f"  {student['name']} ({student['grade']}점)")
-
-# map 함수와 람다 함수
-# 모든 수를 제곱
-squared_numbers = list(map(lambda x: x ** 2, numbers))
-print(f"\n제곱수들: {squared_numbers}")
-
-# 학생 이름들만 추출
-student_names = list(map(lambda student: student["name"], students))
-print(f"학생 이름들: {student_names}")
-
-# 복잡한 변환
-formatted_students = list(map(
-    lambda s: f"{s['name']} ({s['age']}세, {s['grade']}점)", 
-    students
-))
-print("\n포맷된 학생 정보:")
-for info in formatted_students:
-    print(f"  {info}")
-```
-
-## 6. 실용적인 함수 예제들
-
-### 6.1 계산기 함수들
-
-```python
-class SimpleCalculator:
-    """간단한 계산기 함수들의 모음"""
+def bank_account(initial_balance):
+    """은행 계좌 시뮬레이션 (실용적인 클로저 예제)"""
+    balance = initial_balance
+    transaction_history = []
     
-    @staticmethod
-    def add(a, b):
-        """덧셈"""
-        return a + b
+    def deposit(amount):
+        nonlocal balance
+        if amount > 0:
+            balance += amount
+            transaction_history.append(f"입금: +{amount:,}원")
+            return f"입금 완료! 현재 잔액: {balance:,}원"
+        return "입금액은 0보다 커야 합니다."
     
-    @staticmethod
-    def subtract(a, b):
-        """뺄셈"""
-        return a - b
+    def withdraw(amount):
+        nonlocal balance
+        if amount > balance:
+            return f"잔액 부족! 현재 잔액: {balance:,}원"
+        if amount > 0:
+            balance -= amount
+            transaction_history.append(f"출금: -{amount:,}원")
+            return f"출금 완료! 현재 잔액: {balance:,}원"
+        return "출금액은 0보다 커야 합니다."
     
-    @staticmethod
-    def multiply(a, b):
-        """곱셈"""
-        return a * b
+    def get_balance():
+        return f"현재 잔액: {balance:,}원"
     
-    @staticmethod
-    def divide(a, b):
-        """나눗셈 (0으로 나누기 방지)"""
-        if b == 0:
-            return "0으로 나눌 수 없습니다."
-        return a / b
-    
-    @staticmethod
-    def power(base, exponent):
-        """거듭제곱"""
-        return base ** exponent
-    
-    @staticmethod
-    def sqrt(number):
-        """제곱근"""
-        if number < 0:
-            return "음수의 제곱근은 계산할 수 없습니다."
-        return number ** 0.5
-
-# 계산기 함수 딕셔너리
-operations = {
-    "+": SimpleCalculator.add,
-    "-": SimpleCalculator.subtract,
-    "*": SimpleCalculator.multiply,
-    "/": SimpleCalculator.divide,
-    "**": SimpleCalculator.power
-}
-
-def calculate(a, operator, b):
-    """계산 실행 함수"""
-    if operator in operations:
-        result = operations[operator](a, b)
-        return f"{a} {operator} {b} = {result}"
-    else:
-        return "지원하지 않는 연산자입니다."
-
-# 계산기 테스트
-print(calculate(10, "+", 5))
-print(calculate(10, "-", 3))
-print(calculate(4, "*", 7))
-print(calculate(15, "/", 3))
-print(calculate(2, "**", 8))
-print(calculate(9, "/", 0))  # 오류 처리 테스트
-
-# 제곱근 테스트
-print(f"√16 = {SimpleCalculator.sqrt(16)}")
-print(f"√-4 = {SimpleCalculator.sqrt(-4)}")
-```
-
-### 6.2 문자열 처리 함수들
-
-```python
-def clean_text(text):
-    """텍스트를 정리하는 함수"""
-    # 앞뒤 공백 제거 후 소문자로 변환
-    cleaned = text.strip().lower()
-    return cleaned
-
-def count_words(text):
-    """텍스트의 단어 개수를 세는 함수"""
-    words = text.split()
-    return len(words)
-
-def count_characters(text, include_spaces=False):
-    """문자 개수를 세는 함수"""
-    if include_spaces:
-        return len(text)
-    else:
-        return len(text.replace(" ", ""))
-
-def is_palindrome(text):
-    """회문인지 확인하는 함수"""
-    cleaned = clean_text(text).replace(" ", "")
-    return cleaned == cleaned[::-1]
-
-def capitalize_words(text):
-    """각 단어의 첫 글자를 대문자로 만드는 함수"""
-    return " ".join(word.capitalize() for word in text.split())
-
-def extract_numbers(text):
-    """텍스트에서 숫자만 추출하는 함수"""
-    numbers = []
-    current_number = ""
-    
-    for char in text:
-        if char.isdigit() or char == ".":
-            current_number += char
-        else:
-            if current_number:
-                try:
-                    # 정수인지 실수인지 판단하여 변환
-                    if "." in current_number:
-                        numbers.append(float(current_number))
-                    else:
-                        numbers.append(int(current_number))
-                except ValueError:
-                    pass  # 변환 실패시 무시
-                current_number = ""
-    
-    # 마지막 숫자 처리
-    if current_number:
-        try:
-            if "." in current_number:
-                numbers.append(float(current_number))
-            else:
-                numbers.append(int(current_number))
-        except ValueError:
-            pass
-    
-    return numbers
-
-# 문자열 처리 함수들 테스트
-test_text = "  Hello World! This is a Test Message 123.45 and 678  "
-
-print("=== 문자열 처리 함수 테스트 ===")
-print(f"원본 텍스트: '{test_text}'")
-print(f"정리된 텍스트: '{clean_text(test_text)}'")
-print(f"단어 개수: {count_words(test_text)}")
-print(f"문자 개수 (공백 포함): {count_characters(test_text, True)}")
-print(f"문자 개수 (공백 제외): {count_characters(test_text, False)}")
-print(f"첫 글자 대문자: '{capitalize_words(test_text)}'")
-print(f"추출된 숫자들: {extract_numbers(test_text)}")
-
-# 회문 테스트
-palindrome_tests = ["level", "A man a plan a canal Panama", "hello", "race car"]
-print(f"\n회문 테스트:")
-for test in palindrome_tests:
-    result = is_palindrome(test)
-    print(f"  '{test}' -> {result}")
-```
-
-### 6.3 데이터 분석 함수들
-
-```python
-def calculate_statistics(numbers):
-    """숫자 리스트의 기본 통계를 계산하는 함수"""
-    if not numbers:
-        return None
-    
-    total = sum(numbers)
-    count = len(numbers)
-    mean = total / count
-    
-    # 중앙값 계산
-    sorted_numbers = sorted(numbers)
-    n = len(sorted_numbers)
-    if n % 2 == 0:
-        median = (sorted_numbers[n//2 - 1] + sorted_numbers[n//2]) / 2
-    else:
-        median = sorted_numbers[n//2]
-    
-    # 최빈값 계산 (간단한 방법)
-    frequency = {}
-    for num in numbers:
-        frequency[num] = frequency.get(num, 0) + 1
-    
-    max_freq = max(frequency.values())
-    mode = [num for num, freq in frequency.items() if freq == max_freq]
+    def get_history():
+        return transaction_history.copy()
     
     return {
-        "count": count,
-        "sum": total,
-        "mean": mean,
-        "median": median,
-        "mode": mode,
-        "min": min(numbers),
-        "max": max(numbers),
-        "range": max(numbers) - min(numbers)
+        "deposit": deposit,
+        "withdraw": withdraw,
+        "balance": get_balance,
+        "history": get_history
     }
 
-def find_outliers(numbers, threshold=2):
-    """평균에서 벗어난 값들을 찾는 함수 (간단한 방법)"""
-    if len(numbers) < 2:
-        return []
-    
-    mean = sum(numbers) / len(numbers)
-    
-    # 표준편차 계산
-    variance = sum((x - mean) ** 2 for x in numbers) / len(numbers)
-    std_dev = variance ** 0.5
-    
-    outliers = []
-    for num in numbers:
-        if abs(num - mean) > threshold * std_dev:
-            outliers.append(num)
-    
-    return outliers
+# 중첩 함수 테스트
+print("🔍 중첩 함수 테스트:")
+outer_function(5)
 
-def group_by_range(numbers, range_size=10):
-    """숫자들을 범위별로 그룹화하는 함수"""
-    if not numbers:
-        return {}
-    
-    min_val = min(numbers)
-    max_val = max(numbers)
-    
-    groups = {}
-    
-    for num in numbers:
-        # 어느 그룹에 속하는지 계산
-        group_index = int((num - min_val) // range_size)
-        group_start = min_val + (group_index * range_size)
-        group_end = group_start + range_size - 1
-        
-        group_key = f"{group_start}-{group_end}"
-        
-        if group_key not in groups:
-            groups[group_key] = []
-        groups[group_key].append(num)
-    
-    return groups
+print(f"\n🔢 카운터 함수 테스트:")
+counter = create_counter()
+print(f"초기값: {counter['get_count']()}")
+print(f"증가: {counter['increment']()}")
+print(f"증가: {counter['increment']()}")
+print(f"감소: {counter['decrement']()}")
+print(f"현재값: {counter['get_count']()}")
 
-# 데이터 분석 함수들 테스트
-sample_data = [85, 92, 78, 95, 88, 76, 94, 82, 90, 87, 91, 89, 15, 98]  # 15는 이상값
-
-print("=== 데이터 분석 함수 테스트 ===")
-print(f"샘플 데이터: {sample_data}")
-
-# 기본 통계
-stats = calculate_statistics(sample_data)
-if stats:
-    print(f"\n기본 통계:")
-    print(f"  개수: {stats['count']}")
-    print(f"  합계: {stats['sum']}")
-    print(f"  평균: {stats['mean']:.2f}")
-    print(f"  중앙값: {stats['median']:.2f}")
-    print(f"  최빈값: {stats['mode']}")
-    print(f"  최솟값: {stats['min']}")
-    print(f"  최댓값: {stats['max']}")
-    print(f"  범위: {stats['range']}")
-
-# 이상값 찾기
-outliers = find_outliers(sample_data)
-print(f"\n이상값들: {outliers}")
-
-# 범위별 그룹화
-groups = group_by_range(sample_data, 10)
-print(f"\n범위별 그룹화 (10단위):")
-for range_key, values in sorted(groups.items()):
-    print(f"  {range_key}: {values} ({len(values)}개)")
+print(f"\n🏦 은행 계좌 시뮬레이션:")
+account = bank_account(100000)
+print(f"계좌 개설: {account['balance']()}")
+print(f"입금: {account['deposit'](50000)}")
+print(f"출금: {account['withdraw'](30000)}")
+print(f"출금 시도: {account['withdraw'](200000)}")  # 잔액 부족
+print(f"거래 내역: {account['history']()}")
 ```
 
-## 7. 연습 문제
+### 🎯 스코프 규칙: LEGB 원칙
 
-### 연습 1: 온도 변환기
-섭씨, 화씨, 켈빈 온도를 서로 변환하는 함수들을 작성하세요.
+```python
+print("=== 🎯 LEGB 원칙 (Local → Enclosing → Global → Built-in) ===")
 
-### 연습 2: 비밀번호 검증기
-비밀번호가 안전한지 검사하는 함수를 작성하세요. (길이, 대소문자, 숫자, 특수문자 포함 여부)
+# Built-in: Python 내장 함수/변수
+print(f"Built-in 함수 예: {len('hello')}, {max([1,2,3])}")
 
-### 연습 3: 피보나치 수열 생성기
-n번째까지의 피보나치 수열을 생성하는 함수를 작성하세요.
+# Global: 전역 변수
+global_var = "전역 변수"
 
-### 연습 4: 텍스트 암호화기
-간단한 시저 암호를 구현하는 함수들을 작성하세요. (암호화/복호화)
+def outer():
+    # Enclosing: 외부 함수의 지역 변수
+    enclosing_var = "외부 함수 변수"
+    
+    def inner():
+        # Local: 현재 함수의 지역 변수
+        local_var = "지역 변수"
+        
+        print("LEGB 순서로 변수 찾기:")
+        print(f"  Local: {local_var}")
+        print(f"  Enclosing: {enclosing_var}")
+        print(f"  Global: {global_var}")
+        print(f"  Built-in: {len}")  # len은 내장 함수
+    
+    inner()
 
-## 정리
+# 변수 이름이 같을 때의 우선순위
+name = "전역의 name"
 
-이 챕터에서 학습한 내용:
+def test_priority():
+    name = "함수의 name"  # 지역 변수가 전역 변수를 가림
+    print(f"함수 내부에서 name: {name}")
 
-1. **함수의 기본 개념**: 코드 재사용성과 가독성을 크게 향상시킵니다
-2. **함수 정의와 호출**: def 키워드, 매개변수, 반환값
-3. **매개변수 종류**: 위치 인수, 키워드 인수, 기본값, 가변 인수
-4. **변수 스코프**: 지역변수, 전역변수, global, nonlocal
-5. **람다 함수**: 간단한 함수 표현, 고차 함수와의 활용
-6. **실용적 예제**: 계산기, 문자열 처리, 데이터 분석 함수들
+print("🔍 LEGB 원칙 테스트:")
+outer()
 
-다음 챕터에서는 에러 처리와 디버깅을 학습하여 더욱 안정적인 프로그램을 작성하는 방법을 배워보겠습니다.
+print(f"\n우선순위 테스트:")
+print(f"전역에서 name: {name}")
+test_priority()
+print(f"함수 호출 후 전역 name: {name}")  # 전역 변수는 변경되지 않음
+```
 
-### 핵심 포인트
-- 함수는 코드의 재사용성과 가독성을 크게 향상시킵니다
-- 매개변수와 반환값을 적절히 활용하여 유연한 함수를 설계하세요
-- 변수의 스코프를 이해하고 적절한 범위에서 변수를 사용하세요
-- 람다 함수는 간단한 함수가 필요할 때 유용합니다
-- 함수명과 매개변수명을 명확하게 지어 코드의 의도를 분명히 하세요 
+---
+
+## ⚡ 람다 함수: 한 줄의 마법
+
+### 💫 람다 함수의 기본 개념
+
+```python
+print("=== ⚡ 람다 함수: 간결함의 미학 ===")
+
+# 일반 함수 vs 람다 함수 비교
+def square_normal(x):
+    """일반 함수로 제곱 계산"""
+    return x ** 2
+
+square_lambda = lambda x: x ** 2  # 람다 함수로 제곱 계산
+
+print("🔍 일반 함수 vs 람다 함수:")
+print(f"일반 함수: square_normal(5) = {square_normal(5)}")
+print(f"람다 함수: square_lambda(5) = {square_lambda(5)}")
+
+# 다양한 람다 함수 예제
+add = lambda x, y: x + y
+multiply = lambda x, y, z: x * y * z
+is_even = lambda n: n % 2 == 0
+get_full_name = lambda first, last: f"{first} {last}"
+
+print(f"\n📝 다양한 람다 함수 예제:")
+print(f"덧셈: add(3, 7) = {add(3, 7)}")
+print(f"곱셈: multiply(2, 3, 4) = {multiply(2, 3, 4)}")
+print(f"짝수 판별: is_even(8) = {is_even(8)}")
+print(f"이름 조합: get_full_name('김', '철수') = {get_full_name('김', '철수')}")
+```
+
+### 🎪 고차 함수와 람다의 환상적인 조합
+
+```python
+print("=== 🎪 고차 함수와 람다의 마법 조합 ===")
+
+# 1. map() - 모든 요소에 함수 적용
+numbers = [1, 2, 3, 4, 5]
+
+# 일반적인 방법
+squares_normal = []
+for num in numbers:
+    squares_normal.append(num ** 2)
+
+# map + 람다로 간결하게
+squares_lambda = list(map(lambda x: x ** 2, numbers))
+
+print(f"원본 리스트: {numbers}")
+print(f"제곱 (일반): {squares_normal}")
+print(f"제곱 (람다): {squares_lambda}")
+
+# 실용적인 map 예제들
+names = ["kim", "lee", "park", "choi"]
+temperatures_f = [32, 68, 86, 104]  # 화씨 온도
+
+capitalized_names = list(map(lambda name: name.capitalize(), names))
+temperatures_c = list(map(lambda f: (f - 32) * 5/9, temperatures_f))
+
+print(f"\n이름 대문자화: {names} → {capitalized_names}")
+print(f"화씨→섭씨 변환: {temperatures_f} → {[f'{t:.1f}°C' for t in temperatures_c]}")
+
+# 2. filter() - 조건에 맞는 요소만 선택
+ages = [15, 22, 8, 30, 17, 45, 12, 35]
+
+# 성인만 필터링
+adults = list(filter(lambda age: age >= 18, ages))
+minors = list(filter(lambda age: age < 18, ages))
+
+print(f"\n나이 리스트: {ages}")
+print(f"성인 (18세 이상): {adults}")
+print(f"미성년자 (18세 미만): {minors}")
+
+# 실용적인 filter 예제
+products = [
+    {"name": "노트북", "price": 1200000, "category": "전자제품"},
+    {"name": "마우스", "price": 30000, "category": "전자제품"},
+    {"name": "책", "price": 15000, "category": "도서"},
+    {"name": "키보드", "price": 80000, "category": "전자제품"},
+    {"name": "의자", "price": 200000, "category": "가구"}
+]
+
+# 50만원 이상 고가 제품
+expensive_products = list(filter(lambda p: p["price"] >= 500000, products))
+electronics = list(filter(lambda p: p["category"] == "전자제품", products))
+
+print(f"\n💰 고가 제품 (50만원 이상):")
+for product in expensive_products:
+    print(f"   {product['name']}: {product['price']:,}원")
+
+print(f"\n📱 전자제품:")
+for product in electronics:
+    print(f"   {product['name']}: {product['price']:,}원")
+
+# 3. sorted() - 정렬에 람다 활용
+students = [
+    {"name": "김철수", "score": 85},
+    {"name": "이영희", "score": 92},
+    {"name": "박민수", "score": 78},
+    {"name": "최지영", "score": 96}
+]
+
+# 점수순 정렬
+students_by_score = sorted(students, key=lambda s: s["score"], reverse=True)
+students_by_name = sorted(students, key=lambda s: s["name"])
+
+print(f"\n🏆 성적순 정렬:")
+for i, student in enumerate(students_by_score, 1):
+    print(f"   {i}등: {student['name']} ({student['score']}점)")
+
+print(f"\n📝 이름순 정렬:")
+for student in students_by_name:
+    print(f"   {student['name']}: {student['score']}점")
+
+# 4. reduce() - 누적 계산 (functools 모듈 필요)
+from functools import reduce
+
+numbers = [1, 2, 3, 4, 5]
+
+# 모든 수의 곱
+product = reduce(lambda x, y: x * y, numbers)
+# 최댓값 찾기
+maximum = reduce(lambda x, y: x if x > y else y, numbers)
+
+print(f"\n🔢 reduce 활용:")
+print(f"리스트: {numbers}")
+print(f"모든 수의 곱: {product}")
+print(f"최댓값: {maximum}")
+
+# 실용적인 reduce 예제 - 장바구니 총액
+cart_items = [
+    {"name": "사과", "price": 3000, "quantity": 2},
+    {"name": "바나나", "price": 2000, "quantity": 3},
+    {"name": "오렌지", "price": 4000, "quantity": 1}
+]
+
+total_amount = reduce(
+    lambda total, item: total + (item["price"] * item["quantity"]),
+    cart_items,
+    0  # 초기값
+)
+
+print(f"\n🛒 장바구니 총액 계산:")
+for item in cart_items:
+    subtotal = item["price"] * item["quantity"]
+    print(f"   {item['name']}: {item['price']:,}원 × {item['quantity']}개 = {subtotal:,}원")
+print(f"   총액: {total_amount:,}원")
+```
+
+### 🎨 람다 함수의 고급 활용
+
+```python
+print("=== 🎨 람다 함수 고급 활용 ===")
+
+# 1. 조건부 람다 (삼항 연산자)
+grade_calculator = lambda score: "A" if score >= 90 else "B" if score >= 80 else "C" if score >= 70 else "D"
+
+scores = [95, 87, 76, 92, 68]
+grades = list(map(grade_calculator, scores))
+
+print(f"점수와 등급:")
+for score, grade in zip(scores, grades):
+    print(f"   {score}점 → {grade}등급")
+
+# 2. 람다로 함수 팩토리 만들기
+def create_operation(operation):
+    """연산 함수를 생성하는 팩토리"""
+    operations = {
+        "add": lambda x, y: x + y,
+        "subtract": lambda x, y: x - y,
+        "multiply": lambda x, y: x * y,
+        "divide": lambda x, y: x / y if y != 0 else "0으로 나눌 수 없음"
+    }
+    return operations.get(operation, lambda x, y: "지원하지 않는 연산")
+
+# 동적으로 연산 함수 생성
+add_func = create_operation("add")
+multiply_func = create_operation("multiply")
+
+print(f"\n🔧 동적 함수 생성:")
+print(f"덧셈: {add_func(10, 5)}")
+print(f"곱셈: {multiply_func(10, 5)}")
+
+# 3. 복잡한 데이터 처리 파이프라인
+sales_data = [
+    {"product": "노트북", "price": 1200000, "quantity": 2, "discount": 0.1},
+    {"product": "마우스", "price": 30000, "quantity": 5, "discount": 0.05},
+    {"product": "키보드", "price": 80000, "quantity": 3, "discount": 0.15},
+    {"product": "모니터", "price": 300000, "quantity": 1, "discount": 0.2}
+]
+
+# 파이프라인: 할인 적용 → 총액 계산 → 고액 주문만 필터링 → 정렬
+processed_data = sorted(
+    filter(
+        lambda item: item["total"] >= 200000,  # 20만원 이상만
+        map(
+            lambda item: {
+                **item,  # 기존 데이터 유지
+                "discounted_price": item["price"] * (1 - item["discount"]),
+                "total": item["price"] * (1 - item["discount"]) * item["quantity"]
+            },
+            sales_data
+        )
+    ),
+    key=lambda item: item["total"],
+    reverse=True
+)
+
+print(f"\n💼 매출 데이터 처리 파이프라인:")
+print(f"조건: 할인 적용 후 총액 20만원 이상, 총액 내림차순")
+for item in processed_data:
+    print(f"   {item['product']}: "
+          f"원가 {item['price']:,}원 → "
+          f"할인가 {item['discounted_price']:,.0f}원 × {item['quantity']}개 = "
+          f"총 {item['total']:,.0f}원")
+
+# 4. 이벤트 핸들러 시뮬레이션
+event_handlers = {
+    "click": lambda element: f"'{element}' 클릭됨!",
+    "hover": lambda element: f"'{element}'에 마우스 올림",
+    "focus": lambda element: f"'{element}'에 포커스",
+    "blur": lambda element: f"'{element}'에서 포커스 해제"
+}
+
+def simulate_events():
+    """이벤트 시뮬레이션"""
+    events = [
+        ("click", "로그인 버튼"),
+        ("hover", "메뉴 아이템"),
+        ("focus", "이메일 입력창"),
+        ("blur", "이메일 입력창")
+    ]
+    
+    for event_type, element in events:
+        handler = event_handlers.get(event_type, lambda e: f"알 수 없는 이벤트: {e}")
+        result = handler(element)
+        print(f"   {result}")
+
+print(f"\n🖱️ 이벤트 핸들러 시뮬레이션:")
+simulate_events()

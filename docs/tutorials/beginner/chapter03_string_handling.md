@@ -1,22 +1,23 @@
-# Chapter 3: 문자열 다루기
+# Chapter 3: 문자열 완전 정복하기
 
-## 학습 목표
-이 챕터를 완료하면 다음을 할 수 있습니다:
-- 문자열 인덱싱과 슬라이싱을 사용하여 문자열의 일부를 추출한다
-- 다양한 문자열 메서드를 활용하여 문자열을 조작한다
-- 문자열 포맷팅을 통해 동적인 텍스트를 생성한다
-- 이스케이프 문자와 raw 문자열을 올바르게 사용한다
-- 문자열 검증 메서드로 문자열의 특성을 확인한다
+## 📚 이 챕터에서 배울 내용
+- 문자열 인덱싱과 슬라이싱으로 원하는 부분 추출하기
+- 강력한 문자열 메서드들을 활용한 텍스트 조작
+- 다양한 문자열 포맷팅 기법 마스터하기
+- 이스케이프 문자와 특수 문자 다루기
+- 실무에서 자주 사용하는 문자열 처리 패턴 익히기
 
-## 1. 문자열 인덱싱 (String Indexing)
+---
 
-### 1.1 인덱스 개념
-문자열의 각 문자는 **위치 번호(인덱스)**를 가집니다. Python에서는 0부터 시작합니다.
+## 🔍 문자열 인덱싱: 문자 하나하나 접근하기
+
+### 💡 인덱스의 개념
+문자열의 각 문자는 **고유한 위치 번호(인덱스)**를 가집니다. Python에서는 0부터 시작하며, 음수 인덱스로 뒤에서부터 접근할 수도 있습니다.
 
 ```python
 text = "Python"
-#       012345  (양수 인덱스)
-#      -654321  (음수 인덱스)
+#       012345  (양수 인덱스: 앞에서부터)
+#      -654321  (음수 인덱스: 뒤에서부터)
 
 # 양수 인덱스로 접근
 print(text[0])    # P (첫 번째 문자)
@@ -29,704 +30,607 @@ print(text[-2])   # o (뒤에서 두 번째)
 print(text[-6])   # P (첫 번째 문자)
 ```
 
-### 1.2 문자열 길이와 인덱스
+> 💡 **팁**: 음수 인덱스는 마지막 문자에 쉽게 접근할 때 매우 유용합니다!
+
+### 🔢 문자열 길이와 안전한 인덱스 접근
+
 ```python
 message = "안녕하세요"
-print(len(message))      # 5 (문자열 길이)
+print(f"문자열 길이: {len(message)}")      # 5
 
 # 유효한 인덱스 범위: 0 ~ len(message)-1
-print(message[0])        # 안
-print(message[4])        # 요
-# print(message[5])      # 오류! IndexError
+print(f"첫 번째 문자: {message[0]}")        # 안
+print(f"마지막 문자: {message[4]}")         # 요
 
-# 마지막 문자 안전하게 접근
-last_char = message[len(message) - 1]  # 요
-last_char = message[-1]                # 더 간단한 방법
-print(last_char)
+# 인덱스 오류 방지하기
+try:
+    print(message[10])  # IndexError 발생!
+except IndexError:
+    print("인덱스가 범위를 벗어났습니다!")
+
+# 마지막 문자 안전하게 접근하는 방법들
+last_char = message[len(message) - 1]  # 전통적인 방법
+last_char = message[-1]                # Python다운 방법 (권장)
+print(f"마지막 문자: {last_char}")
 ```
 
-### 1.3 문자열 순회
+### 🔄 문자열 순회하기
+
 ```python
 word = "Hello"
 
-# 인덱스를 사용한 순회
+print("=== 방법 1: 인덱스를 사용한 순회 ===")
 for i in range(len(word)):
     print(f"인덱스 {i}: {word[i]}")
 
-# 직접 문자 순회 (더 pythonic)
+print("\n=== 방법 2: 직접 문자 순회 (권장) ===")
 for char in word:
-    print(char)
+    print(f"문자: {char}")
 
-# 인덱스와 문자를 함께 순회
+print("\n=== 방법 3: 인덱스와 문자를 함께 순회 ===")
 for i, char in enumerate(word):
     print(f"인덱스 {i}: {char}")
 ```
 
-## 2. 문자열 슬라이싱 (String Slicing)
+---
 
-### 2.1 기본 슬라이싱 문법
+## ✂️ 문자열 슬라이싱: 원하는 부분만 잘라내기
+
+### 🎯 기본 슬라이싱 문법
 슬라이싱은 `문자열[시작:끝:간격]` 형식으로 문자열의 일부분을 추출합니다.
 
 ```python
 text = "Python Programming"
 #       0123456789012345678
 
-# 기본 슬라이싱
-print(text[0:6])     # Python (0부터 5까지)
-print(text[7:18])    # Programming (7부터 17까지)
-print(text[7:])      # Programming (7부터 끝까지)
-print(text[:6])      # Python (처음부터 5까지)
-print(text[:])       # Python Programming (전체)
+print("=== 기본 슬라이싱 ===")
+print(f"text[0:6] = '{text[0:6]}'")     # Python (0부터 5까지)
+print(f"text[7:18] = '{text[7:18]}'")   # Programming (7부터 17까지)
+print(f"text[7:] = '{text[7:]}'")       # Programming (7부터 끝까지)
+print(f"text[:6] = '{text[:6]}'")       # Python (처음부터 5까지)
+print(f"text[:] = '{text[:]}'")         # Python Programming (전체)
 
-# 음수 인덱스 사용
-print(text[-11:])    # Programming (뒤에서 11번째부터 끝까지)
-print(text[:-12])    # Python (처음부터 뒤에서 12번째 전까지)
+print("\n=== 음수 인덱스 활용 ===")
+print(f"text[-11:] = '{text[-11:]}'")   # Programming (뒤에서 11번째부터)
+print(f"text[:-12] = '{text[:-12]}'")   # Python (뒤에서 12번째 전까지)
 ```
 
-### 2.2 간격(Step)을 이용한 슬라이싱
+### 🚀 간격(Step)을 이용한 고급 슬라이싱
+
 ```python
 numbers = "0123456789"
 
-# 간격 지정
-print(numbers[::2])     # 02468 (2칸씩 건너뛰기)
-print(numbers[1::2])    # 13579 (1부터 2칸씩)
-print(numbers[::3])     # 0369 (3칸씩 건너뛰기)
+print("=== 간격 지정 슬라이싱 ===")
+print(f"numbers[::2] = '{numbers[::2]}'")     # 02468 (2칸씩 건너뛰기)
+print(f"numbers[1::2] = '{numbers[1::2]}'")   # 13579 (1부터 2칸씩)
+print(f"numbers[::3] = '{numbers[::3]}'")     # 0369 (3칸씩 건너뛰기)
 
-# 역순 출력
-print(numbers[::-1])    # 9876543210 (전체를 역순으로)
-print(numbers[5:1:-1])  # 5432 (5부터 2까지 역순으로)
-
-# 실용적인 예제
-email = "user@example.com"
-username = email[:email.index('@')]     # user
-domain = email[email.index('@')+1:]     # example.com
-print(f"사용자명: {username}, 도메인: {domain}")
+print("\n=== 역순 출력 ===")
+print(f"numbers[::-1] = '{numbers[::-1]}'")   # 9876543210 (전체 역순)
+print(f"numbers[5:1:-1] = '{numbers[5:1:-1]}'") # 5432 (5부터 2까지 역순)
 ```
 
-### 2.3 슬라이싱 활용 예제
+### 🌟 실용적인 슬라이싱 예제
+
 ```python
-# 문자열 뒤집기
+# 이메일 주소 분석하기
+email = "user@example.com"
+at_index = email.index('@')
+username = email[:at_index]           # user
+domain = email[at_index + 1:]         # example.com
+print(f"사용자명: {username}, 도메인: {domain}")
+
+# 파일 경로에서 확장자 추출하기
+filename = "document.pdf"
+dot_index = filename.rfind('.')       # 마지막 점의 위치
+if dot_index != -1:
+    extension = filename[dot_index + 1:]
+    print(f"파일 확장자: {extension}")
+
+# 문자열 뒤집기 (팰린드롬 검사에 유용)
 def reverse_string(s):
     return s[::-1]
 
-# 팰린드롬 검사
-def is_palindrome(s):
-    s = s.lower().replace(" ", "")  # 소문자로 변환, 공백 제거
-    return s == s[::-1]
+def is_palindrome(word):
+    word = word.lower().replace(" ", "")  # 소문자 변환, 공백 제거
+    return word == word[::-1]
 
-# 파일 확장자 추출
-def get_file_extension(filename):
-    dot_index = filename.rfind('.')  # 마지막 점의 위치
-    if dot_index != -1:
-        return filename[dot_index+1:]
-    return ""
-
-# 테스트
-print(reverse_string("Hello"))           # olleH
-print(is_palindrome("A man a plan a canal Panama"))  # True
-print(get_file_extension("document.pdf"))            # pdf
+print(f"'Hello' 뒤집기: {reverse_string('Hello')}")
+print(f"'level'은 팰린드롬? {is_palindrome('level')}")
+print(f"'A man a plan a canal Panama'는 팰린드롬? {is_palindrome('A man a plan a canal Panama')}")
 ```
 
-## 3. 문자열 메서드 (String Methods)
+---
 
-### 3.1 대소문자 변환 메서드
+## 🛠️ 강력한 문자열 메서드들
+
+### 🔤 대소문자 변환 메서드
+
 ```python
-text = "Hello World"
+text = "Hello World Python"
 
-# 대소문자 변환
-print(text.upper())         # HELLO WORLD
-print(text.lower())         # hello world
-print(text.capitalize())    # Hello world (첫 글자만 대문자)
-print(text.title())         # Hello World (각 단어 첫 글자 대문자)
-print(text.swapcase())      # hELLO wORLD (대소문자 반전)
+print("=== 대소문자 변환 ===")
+print(f"원본: {text}")
+print(f"upper(): {text.upper()}")         # HELLO WORLD PYTHON
+print(f"lower(): {text.lower()}")         # hello world python
+print(f"capitalize(): {text.capitalize()}")  # Hello world python
+print(f"title(): {text.title()}")         # Hello World Python
+print(f"swapcase(): {text.swapcase()}")   # hELLO wORLD pYTHON
 
-# 케이스 확인
-print(text.isupper())       # False
-print(text.islower())       # False
-print(text.istitle())       # True
+print("\n=== 대소문자 상태 확인 ===")
+print(f"isupper(): {text.isupper()}")     # False
+print(f"islower(): {text.islower()}")     # False
+print(f"istitle(): {text.istitle()}")     # True
 ```
 
-### 3.2 공백 처리 메서드
+#### 🌟 실생활 활용 예시
+```python
+# 사용자 이름 정규화
+def normalize_name(name):
+    return name.strip().title()
+
+# 비밀번호 강도 검사
+def check_password_case(password):
+    has_upper = any(c.isupper() for c in password)
+    has_lower = any(c.islower() for c in password)
+    return has_upper and has_lower
+
+print(f"정규화된 이름: {normalize_name('  john DOE  ')}")
+print(f"비밀번호 대소문자 포함: {check_password_case('MyPassword123')}")
+```
+
+### 🧹 공백 처리 메서드
+
 ```python
 text = "   Hello World   "
 
-# 공백 제거
-print(f"'{text.strip()}'")      # 'Hello World' (양쪽 공백 제거)
-print(f"'{text.lstrip()}'")     # 'Hello World   ' (왼쪽 공백 제거)
-print(f"'{text.rstrip()}'")     # '   Hello World' (오른쪽 공백 제거)
+print("=== 공백 제거 ===")
+print(f"원본: '{text}'")
+print(f"strip(): '{text.strip()}'")      # 양쪽 공백 제거
+print(f"lstrip(): '{text.lstrip()}'")    # 왼쪽 공백 제거
+print(f"rstrip(): '{text.rstrip()}'")    # 오른쪽 공백 제거
 
 # 특정 문자 제거
 data = "...Hello World..."
-print(data.strip('.'))          # Hello World
+print(f"\n특정 문자 제거: '{data.strip('.')}'")  # Hello World
 
-# 문자열 정렬
-print(text.strip().center(20, '*'))  # ****Hello World****
-print(text.strip().ljust(20, '-'))   # Hello World--------
-print(text.strip().rjust(20, '-'))   # --------Hello World
+print("\n=== 문자열 정렬 ===")
+clean_text = text.strip()
+print(f"center(20, '*'): '{clean_text.center(20, '*')}'")  # ****Hello World****
+print(f"ljust(20, '-'): '{clean_text.ljust(20, '-')}'")    # Hello World--------
+print(f"rjust(20, '-'): '{clean_text.rjust(20, '-')}'")    # --------Hello World
 ```
 
-### 3.3 검색과 확인 메서드
+### 🔍 검색과 확인 메서드
+
 ```python
-sentence = "Python is easy to learn"
+sentence = "Python is easy to learn and Python is powerful"
 
-# 검색 메서드
-print(sentence.find('is'))          # 7 (첫 번째 위치)
-print(sentence.find('Java'))        # -1 (없으면 -1 반환)
-print(sentence.index('is'))         # 7 (첫 번째 위치)
-# print(sentence.index('Java'))     # 오류! ValueError
+print("=== 문자열 검색 ===")
+print(f"find('is'): {sentence.find('is')}")          # 7 (첫 번째 위치)
+print(f"find('Java'): {sentence.find('Java')}")      # -1 (없으면 -1)
+print(f"rfind('Python'): {sentence.rfind('Python')}")  # 27 (마지막 위치)
+print(f"count('is'): {sentence.count('is')}")        # 2 (개수)
 
-print(sentence.rfind('e'))          # 18 (뒤에서부터 검색)
-print(sentence.count('a'))          # 3 (개수 세기)
+print("\n=== 시작/끝 확인 ===")
+print(f"startswith('Python'): {sentence.startswith('Python')}")  # True
+print(f"endswith('powerful'): {sentence.endswith('powerful')}")   # True
+print(f"startswith('Java'): {sentence.startswith('Java')}")       # False
 
-# 시작/끝 확인
-print(sentence.startswith('Python'))  # True
-print(sentence.endswith('learn'))     # True
-print(sentence.startswith('Java'))    # False
-
-# 포함 확인 ('in' 연산자)
-print('Python' in sentence)          # True
-print('Java' in sentence)            # False
+print("\n=== 포함 확인 ===")
+print(f"'easy' in sentence: {'easy' in sentence}")               # True
+print(f"'difficult' in sentence: {'difficult' in sentence}")     # False
 ```
 
-### 3.4 분할과 결합 메서드
+### ✂️ 분할과 결합 메서드
+
 ```python
 # split() - 문자열을 리스트로 분할
+print("=== 문자열 분할 ===")
 sentence = "Python,Java,JavaScript,C++"
 languages = sentence.split(',')
-print(languages)  # ['Python', 'Java', 'JavaScript', 'C++']
+print(f"쉼표로 분할: {languages}")
 
-text = "Hello World Python"
-words = text.split()  # 공백으로 분할 (기본값)
-print(words)  # ['Hello', 'World', 'Python']
+text = "Hello    World    Python"
+words = text.split()  # 공백으로 분할 (연속 공백도 처리)
+print(f"공백으로 분할: {words}")
 
 # 분할 개수 제한
-data = "apple-banana-cherry-date"
-fruits = data.split('-', 2)  # 최대 2번 분할
-print(fruits)  # ['apple', 'banana', 'cherry-date']
+email = "user@mail.example.com"
+parts = email.split('@', 1)  # 최대 1번만 분할
+print(f"이메일 분할: {parts}")
 
 # join() - 리스트를 문자열로 결합
-words = ['Python', 'is', 'awesome']
-sentence = ' '.join(words)
-print(sentence)  # Python is awesome
+print("\n=== 문자열 결합 ===")
+fruits = ['apple', 'banana', 'cherry']
+print(f"쉼표로 결합: {', '.join(fruits)}")
+print(f"하이픈으로 결합: {'-'.join(fruits)}")
+print(f"공백으로 결합: {' '.join(fruits)}")
 
-numbers = ['1', '2', '3', '4', '5']
-csv_data = ','.join(numbers)
-print(csv_data)  # 1,2,3,4,5
-
-# 실용적인 예제: 경로 결합
+# 실용적인 예제: 경로 만들기
 path_parts = ['home', 'user', 'documents', 'file.txt']
 file_path = '/'.join(path_parts)
-print(file_path)  # home/user/documents/file.txt
+print(f"파일 경로: /{file_path}")
 ```
 
-### 3.5 치환 메서드
+### 🔄 치환과 변환 메서드
+
 ```python
-text = "Hello World Hello Python"
+text = "Hello World, Hello Python"
 
-# replace() - 문자열 치환
-new_text = text.replace('Hello', 'Hi')
-print(new_text)  # Hi World Hi Python
+print("=== 문자열 치환 ===")
+print(f"replace('Hello', 'Hi'): {text.replace('Hello', 'Hi')}")
+print(f"replace('Hello', 'Hi', 1): {text.replace('Hello', 'Hi', 1)}")  # 1번만
 
-# 치환 횟수 제한
-new_text = text.replace('Hello', 'Hi', 1)  # 첫 번째 것만 치환
-print(new_text)  # Hi World Hello Python
+# 여러 문자 번역
+translation_table = str.maketrans('aeiou', '12345')
+translated = text.translate(translation_table)
+print(f"모음 번역: {translated}")
 
-# 여러 번 치환하기
-message = "I love cats and cats love me"
-message = message.replace('cats', 'dogs')
-print(message)  # I love dogs and dogs love me
+print("\n=== 문자열 검증 ===")
+test_strings = ['123', 'abc', 'ABC', '123abc', 'Hello World', '   ']
 
-# 복잡한 치환 예제
-def clean_phone_number(phone):
-    # 전화번호에서 불필요한 문자 제거
-    phone = phone.replace('-', '')
-    phone = phone.replace(' ', '')
-    phone = phone.replace('(', '')
-    phone = phone.replace(')', '')
-    return phone
-
-phone = "(010) 1234-5678"
-clean_phone = clean_phone_number(phone)
-print(clean_phone)  # 01012345678
+for s in test_strings:
+    print(f"'{s}' -> isdigit: {s.isdigit()}, isalpha: {s.isalpha()}, "
+          f"isalnum: {s.isalnum()}, isspace: {s.isspace()}")
 ```
 
-## 4. 문자열 포맷팅 (String Formatting)
+---
 
-### 4.1 f-string (권장 방법)
+## 🎨 문자열 포맷팅: 동적 텍스트 만들기
+
+### 🚀 f-string (권장 방법)
+
 ```python
 name = "김민수"
 age = 25
 height = 175.5
+is_student = True
 
-# 기본 f-string
-print(f"이름: {name}, 나이: {age}세")
+print("=== f-string 기본 사용법 ===")
+print(f"안녕하세요, {name}님!")
+print(f"나이: {age}세, 키: {height}cm")
+print(f"학생 여부: {is_student}")
 
-# 수식 계산
-print(f"태어난 해: {2024 - age}년")
+print("\n=== f-string 고급 기능 ===")
+# 표현식 사용
+print(f"내년 나이: {age + 1}세")
+print(f"키(미터): {height / 100:.2f}m")
 
-# 포맷 지정
-print(f"키: {height:.1f}cm")      # 소수점 1자리
-print(f"나이: {age:02d}세")       # 2자리 수, 앞에 0 채우기
+# 조건문 사용
+print(f"상태: {'학생' if is_student else '일반인'}")
 
-# 정렬
-print(f"|{name:>10}|")           # 오른쪽 정렬 (10자리)
-print(f"|{name:<10}|")           # 왼쪽 정렬 (10자리)
-print(f"|{name:^10}|")           # 가운데 정렬 (10자리)
-
-# 천 단위 구분자
-price = 1234567
-print(f"가격: {price:,}원")       # 가격: 1,234,567원
+# 함수 호출
+print(f"이름 길이: {len(name)}글자")
+print(f"대문자 이름: {name.upper()}")
 ```
 
-### 4.2 format() 메서드
+### 📊 숫자 포맷팅
+
 ```python
-# 기본 사용법
-template = "이름: {}, 나이: {}세"
-print(template.format("이영희", 30))
+pi = 3.14159265359
+big_number = 1234567890
+percentage = 0.85
 
-# 인덱스 지정
-template = "이름: {0}, 나이: {1}세, 다시 이름: {0}"
-print(template.format("이영희", 30))
+print("=== 숫자 포맷팅 ===")
+print(f"π (소수점 2자리): {pi:.2f}")
+print(f"π (소수점 4자리): {pi:.4f}")
+print(f"큰 수 (천 단위 구분): {big_number:,}")
+print(f"퍼센트: {percentage:.1%}")
 
-# 키워드 인수
-template = "이름: {name}, 나이: {age}세"
-print(template.format(name="이영희", age=30))
-
-# 포맷 지정
-print("원주율: {:.3f}".format(3.14159))  # 소수점 3자리
-print("백분율: {:.1%}".format(0.85))     # 퍼센트 형식
+# 진법 변환
+number = 255
+print(f"\n=== 진법 변환 ===")
+print(f"10진법: {number}")
+print(f"2진법: {number:b}")
+print(f"8진법: {number:o}")
+print(f"16진법: {number:x}")
+print(f"16진법(대문자): {number:X}")
 ```
 
-### 4.3 % 포맷팅 (레거시)
-```python
-# 기본 사용법 (권장하지 않음, 호환성을 위해 알아두기)
-name = "김철수"
-age = 28
-print("이름: %s, 나이: %d세" % (name, age))
+### 📐 정렬과 패딩
 
-# 포맷 지정
-pi = 3.14159
-print("원주율: %.2f" % pi)  # 소수점 2자리
-```
-
-### 4.4 고급 포맷팅 예제
 ```python
-# 테이블 형태 출력
-students = [
-    ("김민수", 25, 85.5),
-    ("이영희", 23, 92.0),
-    ("박철수", 26, 78.5)
+items = [
+    ("사과", 1500),
+    ("바나나", 2000),
+    ("체리", 5000)
 ]
 
-print("이름      나이  점수")
+print("=== 테이블 형태로 출력 ===")
+print(f"{'상품명':<10} {'가격':>8}")
 print("-" * 20)
-for name, age, score in students:
-    print(f"{name:<8} {age:>3} {score:>5.1f}")
+for item, price in items:
+    print(f"{item:<10} {price:>8,}원")
 
-# 진행률 표시
-def show_progress(current, total):
-    percentage = current / total
-    bar_length = 20
-    filled = int(bar_length * percentage)
-    bar = '█' * filled + '░' * (bar_length - filled)
-    return f"[{bar}] {percentage:.1%} ({current}/{total})"
-
-print(show_progress(7, 10))  # [██████████████░░░░░░] 70.0% (7/10)
-
-# 로그 포맷
-import datetime
-
-def log_message(level, message):
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    return f"[{timestamp}] {level:<5} {message}"
-
-print(log_message("INFO", "프로그램이 시작되었습니다"))
-print(log_message("ERROR", "파일을 찾을 수 없습니다"))
+print("\n=== 다양한 정렬 방법 ===")
+text = "Python"
+print(f"왼쪽 정렬: '{text:<15}'")
+print(f"오른쪽 정렬: '{text:>15}'")
+print(f"가운데 정렬: '{text:^15}'")
+print(f"0으로 패딩: '{text:0>15}'")
+print(f"*로 패딩: '{text:*^15}'")
 ```
 
-## 5. 이스케이프 문자와 Raw 문자열
-
-### 5.1 이스케이프 문자
-```python
-# 기본 이스케이프 문자
-print("첫 번째 줄\n두 번째 줄")        # \n: 줄바꿈
-print("이름:\t김민수")                 # \t: 탭
-print("그는 \"안녕\"이라고 말했다")      # \": 따옴표
-print("파일 경로: C:\\Users\\kim")      # \\: 백슬래시
-
-# 기타 이스케이프 문자
-print("벨 소리: \a")                   # \a: 경고음
-print("백스페이스: Hello\b!")          # \b: 백스페이스
-print("캐리지 리턴: Hello\rHi")        # \r: 커서를 줄 시작으로
-print("세로 탭: Line1\vLine2")         # \v: 수직 탭
-
-# 유니코드 문자
-print("하트: \u2665")                  # ♥
-print("스마일: \u263A")                # ☺
-print("한글: \uD55C\uAE00")           # 한글
-```
-
-### 5.2 Raw 문자열
-Raw 문자열은 이스케이프 문자를 무시하고 문자 그대로 처리합니다.
+### 🕒 날짜와 시간 포맷팅
 
 ```python
-# 일반 문자열 vs Raw 문자열
-normal_string = "C:\new\text.txt"
-raw_string = r"C:\new\text.txt"
+from datetime import datetime
 
-print("일반:", normal_string)  # C:
-print("Raw:", raw_string)     # C:\new\text.txt
+now = datetime.now()
 
-# 정규표현식에서 유용
-import re
-
-# 일반 문자열 (복잡함)
-pattern1 = "\\d+\\.\\d+"  # 숫자.숫자 패턴
-# Raw 문자열 (간단함)
-pattern2 = r"\d+\.\d+"    # 같은 의미
-
-text = "가격은 123.45원입니다"
-match = re.search(pattern2, text)
-if match:
-    print(f"찾은 숫자: {match.group()}")  # 123.45
-
-# 파일 경로 처리
-file_path = r"C:\Users\Documents\data.txt"
-print(f"파일 경로: {file_path}")
+print("=== 날짜/시간 포맷팅 ===")
+print(f"현재 시간: {now}")
+print(f"날짜만: {now:%Y-%m-%d}")
+print(f"시간만: {now:%H:%M:%S}")
+print(f"한국식: {now:%Y년 %m월 %d일}")
+print(f"요일 포함: {now:%Y-%m-%d (%A)}")
 ```
-
-### 5.3 삼중 따옴표 문자열
-```python
-# 여러 줄 문자열
-multi_line = """첫 번째 줄
-두 번째 줄
-    들여쓰기가 있는 줄
-마지막 줄"""
-
-print(multi_line)
-
-# 문서화 문자열 (docstring)
-def calculate_area(radius):
-    """
-    원의 넓이를 계산합니다.
-    
-    Args:
-        radius (float): 원의 반지름
-        
-    Returns:
-        float: 원의 넓이
-    """
-    return 3.14159 * radius ** 2
-
-# HTML/SQL 등 긴 텍스트
-html_template = """
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{title}</title>
-</head>
-<body>
-    <h1>{heading}</h1>
-    <p>{content}</p>
-</body>
-</html>
-"""
-
-webpage = html_template.format(
-    title="내 웹페이지",
-    heading="환영합니다",
-    content="Python 문자열 학습 중입니다."
-)
-```
-
-## 6. 문자열 검증 메서드
-
-### 6.1 문자 타입 확인
-```python
-# 숫자 확인
-print("123".isdigit())      # True  (모든 문자가 숫자)
-print("12.3".isdigit())     # False (소수점 포함)
-print("-123".isdigit())     # False (음수 기호 포함)
-
-print("123".isdecimal())    # True  (십진수)
-print("½".isdecimal())      # False (분수)
-
-print("123".isnumeric())    # True  (숫자형)
-print("½".isnumeric())      # True  (분수도 숫자형)
-print("Ⅴ".isnumeric())      # True  (로마 숫자)
-
-# 알파벳 확인
-print("Hello".isalpha())    # True  (모든 문자가 알파벳)
-print("Hello123".isalpha()) # False (숫자 포함)
-print("안녕".isalpha())     # True  (한글도 알파벳으로 인식)
-
-# 알파벳과 숫자 조합 확인
-print("Hello123".isalnum()) # True  (알파벳 + 숫자)
-print("Hello 123".isalnum()) # False (공백 포함)
-```
-
-### 6.2 공백 및 특수 문자 확인
-```python
-# 공백 확인
-print(" ".isspace())        # True  (공백)
-print("\t\n".isspace())     # True  (탭, 개행)
-print("".isspace())         # False (빈 문자열)
-
-# 출력 가능한 문자 확인
-print("Hello".isprintable()) # True
-print("Hello\n".isprintable()) # False (개행 문자 포함)
-
-# 식별자 확인 (변수명으로 사용 가능한지)
-print("variable_name".isidentifier())  # True
-print("2nd_variable".isidentifier())   # False (숫자로 시작)
-print("class".isidentifier())          # True (하지만 예약어)
-```
-
-### 6.3 실용적인 검증 함수들
-```python
-def validate_email(email):
-    """간단한 이메일 검증"""
-    if '@' not in email:
-        return False
-    parts = email.split('@')
-    if len(parts) != 2:
-        return False
-    username, domain = parts
-    if not username or not domain:
-        return False
-    if '.' not in domain:
-        return False
-    return True
-
-def validate_phone_korean(phone):
-    """한국 전화번호 검증 (010-XXXX-XXXX 형식)"""
-    # 하이픈 제거 후 검증
-    clean_phone = phone.replace('-', '')
-    if len(clean_phone) != 11:
-        return False
-    if not clean_phone.isdigit():
-        return False
-    if not clean_phone.startswith('010'):
-        return False
-    return True
-
-def validate_password(password):
-    """비밀번호 강도 검증"""
-    if len(password) < 8:
-        return False, "비밀번호는 최소 8자 이상이어야 합니다"
-    
-    has_upper = any(c.isupper() for c in password)
-    has_lower = any(c.islower() for c in password)
-    has_digit = any(c.isdigit() for c in password)
-    has_special = any(not c.isalnum() for c in password)
-    
-    if not (has_upper and has_lower and has_digit and has_special):
-        return False, "대문자, 소문자, 숫자, 특수문자를 모두 포함해야 합니다"
-    
-    return True, "안전한 비밀번호입니다"
-
-# 테스트
-print(validate_email("user@example.com"))    # True
-print(validate_phone_korean("010-1234-5678")) # True
-print(validate_password("MyPass123!"))        # (True, '안전한 비밀번호입니다')
-```
-
-## 7. 실습 예제
-
-### 7.1 문자열 분석기
-```python
-def analyze_text(text):
-    """텍스트를 분석하여 다양한 통계를 제공"""
-    # 기본 통계
-    char_count = len(text)
-    word_count = len(text.split())
-    line_count = text.count('\n') + 1
-    
-    # 문자 타입별 개수
-    letters = sum(1 for c in text if c.isalpha())
-    digits = sum(1 for c in text if c.isdigit())
-    spaces = sum(1 for c in text if c.isspace())
-    special = char_count - letters - digits - spaces
-    
-    # 가장 자주 사용된 단어
-    words = text.lower().split()
-    word_freq = {}
-    for word in words:
-        # 구두점 제거
-        clean_word = ''.join(c for c in word if c.isalnum())
-        if clean_word:
-            word_freq[clean_word] = word_freq.get(clean_word, 0) + 1
-    
-    most_common = max(word_freq.items(), key=lambda x: x[1]) if word_freq else ("", 0)
-    
-    # 결과 출력
-    print("=== 텍스트 분석 결과 ===")
-    print(f"전체 문자 수: {char_count}")
-    print(f"단어 수: {word_count}")
-    print(f"줄 수: {line_count}")
-    print(f"알파벳: {letters}, 숫자: {digits}, 공백: {spaces}, 특수문자: {special}")
-    print(f"가장 자주 사용된 단어: '{most_common[0]}' ({most_common[1]}회)")
-
-# 테스트
-sample_text = """
-Python은 배우기 쉽고 강력한 프로그래밍 언어입니다.
-Python을 사용하면 웹 개발, 데이터 분석, AI 등 다양한 분야에서 활용할 수 있습니다.
-Python Python Python!
-"""
-
-analyze_text(sample_text)
-```
-
-### 7.2 간단한 텍스트 에디터 기능
-```python
-class SimpleTextEditor:
-    def __init__(self):
-        self.content = ""
-    
-    def add_text(self, text):
-        """텍스트 추가"""
-        self.content += text
-    
-    def find_and_replace(self, find_text, replace_text):
-        """찾기 및 바꾸기"""
-        count = self.content.count(find_text)
-        self.content = self.content.replace(find_text, replace_text)
-        return count
-    
-    def word_count(self):
-        """단어 개수 세기"""
-        return len(self.content.split())
-    
-    def get_lines(self):
-        """줄별로 분리"""
-        return self.content.split('\n')
-    
-    def format_text(self, style):
-        """텍스트 포맷팅"""
-        if style == "upper":
-            self.content = self.content.upper()
-        elif style == "lower":
-            self.content = self.content.lower()
-        elif style == "title":
-            self.content = self.content.title()
-    
-    def remove_extra_spaces(self):
-        """여분의 공백 제거"""
-        lines = []
-        for line in self.content.split('\n'):
-            # 각 줄의 양쪽 공백 제거 후, 연속된 공백을 하나로
-            clean_line = ' '.join(line.split())
-            lines.append(clean_line)
-        self.content = '\n'.join(lines)
-    
-    def get_statistics(self):
-        """통계 정보"""
-        return {
-            'characters': len(self.content),
-            'words': len(self.content.split()),
-            'lines': len(self.content.split('\n')),
-            'paragraphs': len([p for p in self.content.split('\n\n') if p.strip()])
-        }
-    
-    def display(self):
-        """내용 출력"""
-        print("=== 문서 내용 ===")
-        print(self.content)
-        print("\n=== 통계 ===")
-        stats = self.get_statistics()
-        for key, value in stats.items():
-            print(f"{key}: {value}")
-
-# 테스트
-editor = SimpleTextEditor()
-editor.add_text("Python은   정말  좋은   언어입니다.\n")
-editor.add_text("python을   배우면   많은  것을   할   수   있어요!")
-
-print("원본:")
-editor.display()
-
-editor.remove_extra_spaces()
-print("\n공백 정리 후:")
-editor.display()
-
-replaced_count = editor.find_and_replace("python", "Python")
-print(f"\n'python'을 'Python'으로 {replaced_count}개 교체했습니다.")
-editor.display()
-```
-
-## 8. 실습 과제
-
-### 과제 1: 단어 게임
-사용자가 입력한 문장에서 특정 조건을 만족하는 단어들을 찾는 프로그램을 작성하세요.
-
-**요구사항:**
-- 사용자로부터 문장 입력받기
-- 5글자 이상인 단어 찾기
-- 모음(a,e,i,o,u)으로 시작하는 단어 찾기
-- 대문자로 시작하는 단어 찾기
-- 각 조건별 결과를 출력
-
-### 과제 2: 이름 포맷터
-다양한 형식으로 입력된 이름을 표준 형식으로 변환하는 프로그램을 작성하세요.
-
-**요구사항:**
-- 입력 예시: "kim, min su", "KIM MIN SU", "kim_min_su" 등
-- 출력 형식: "Kim Min Su" (각 단어의 첫 글자만 대문자)
-- 불필요한 공백, 언더스코어, 쉼표 제거
-- 연속된 공백을 하나로 통합
-
-### 과제 3: 간단한 암호화
-시저 암호(Caesar Cipher)를 구현하는 프로그램을 작성하세요.
-
-**요구사항:**
-- 알파벳만 암호화 (대소문자 구분)
-- 숫자, 공백, 특수문자는 그대로 유지
-- 암호화와 복호화 기능 모두 구현
-- 사용자가 이동할 문자 수(shift) 지정 가능
-
-**예시:**
-- 입력: "Hello World!", shift: 3
-- 출력: "Khoor Zruog!"
-
-## 9. 다음 챕터 미리보기
-
-Chapter 4에서는 다음 내용을 학습합니다:
-- **산술 연산자**: +, -, *, /, //, %, **
-- **비교 연산자**: ==, !=, <, >, <=, >=
-- **논리 연산자**: and, or, not
-- **할당 연산자**: +=, -=, *=, /= 등
-- **연산자 우선순위**와 **결합성**
-- **비트 연산자** 기초
-
-## 10. 핵심 정리
-
-✅ **문자열 인덱싱과 슬라이싱**
-- 인덱싱: `문자열[인덱스]` (0부터 시작, 음수 가능)
-- 슬라이싱: `문자열[시작:끝:간격]`
-- 역순: `문자열[::-1]`
-
-✅ **주요 문자열 메서드**
-- 대소문자: `upper()`, `lower()`, `title()`, `capitalize()`
-- 공백 처리: `strip()`, `lstrip()`, `rstrip()`
-- 검색: `find()`, `index()`, `count()`, `startswith()`, `endswith()`
-- 분할/결합: `split()`, `join()`
-- 치환: `replace()`
-
-✅ **문자열 포맷팅**
-- f-string: `f"Hello {name}"` (권장)
-- format(): `"Hello {}".format(name)`
-- % 포맷: `"Hello %s" % name` (레거시)
-
-✅ **이스케이프와 Raw 문자열**
-- 이스케이프: `\n`, `\t`, `\"`, `\\`
-- Raw 문자열: `r"C:\new\text.txt"`
-- 삼중 따옴표: 여러 줄 문자열
-
-✅ **문자열 검증**
-- 타입 확인: `isdigit()`, `isalpha()`, `isalnum()`
-- 공백 확인: `isspace()`
-- 식별자 확인: `isidentifier()`
 
 ---
 
-**🎉 축하합니다!** Chapter 3을 완료했습니다. 이제 문자열을 자유자재로 다룰 수 있는 능력을 갖추었습니다. Chapter 4에서는 다양한 연산자들을 학습하여 더 복잡한 계산과 논리를 구현해보겠습니다. 
+## 🎯 실습: 텍스트 분석 프로그램
+
+### 📝 실습 과제
+사용자가 입력한 텍스트를 분석하여 다양한 통계 정보를 제공하는 프로그램을 만들어보세요.
+
+```python
+# Text Analysis Program
+def analyze_text(text):
+    """텍스트를 분석하여 다양한 통계를 반환합니다."""
+    
+    # 기본 통계
+    char_count = len(text)
+    char_count_no_space = len(text.replace(' ', ''))
+    word_count = len(text.split())
+    line_count = text.count('\n') + 1
+    
+    # 문자 종류별 개수
+    upper_count = sum(1 for c in text if c.isupper())
+    lower_count = sum(1 for c in text if c.islower())
+    digit_count = sum(1 for c in text if c.isdigit())
+    space_count = text.count(' ')
+    
+    # 가장 긴/짧은 단어
+    words = text.split()
+    if words:
+        longest_word = max(words, key=len)
+        shortest_word = min(words, key=len)
+    else:
+        longest_word = shortest_word = ""
+    
+    # 단어 빈도 (간단 버전)
+    word_freq = {}
+    for word in words:
+        word_lower = word.lower().strip('.,!?')
+        word_freq[word_lower] = word_freq.get(word_lower, 0) + 1
+    
+    return {
+        'char_count': char_count,
+        'char_count_no_space': char_count_no_space,
+        'word_count': word_count,
+        'line_count': line_count,
+        'upper_count': upper_count,
+        'lower_count': lower_count,
+        'digit_count': digit_count,
+        'space_count': space_count,
+        'longest_word': longest_word,
+        'shortest_word': shortest_word,
+        'word_freq': word_freq
+    }
+
+def display_analysis(stats):
+    """분석 결과를 예쁘게 출력합니다."""
+    print("=" * 50)
+    print("           📊 텍스트 분석 결과")
+    print("=" * 50)
+    
+    print(f"📝 전체 문자 수: {stats['char_count']:,}개")
+    print(f"📝 공백 제외 문자 수: {stats['char_count_no_space']:,}개")
+    print(f"📖 단어 수: {stats['word_count']:,}개")
+    print(f"📄 줄 수: {stats['line_count']:,}개")
+    
+    print(f"\n🔤 문자 종류별 통계:")
+    print(f"   대문자: {stats['upper_count']:,}개")
+    print(f"   소문자: {stats['lower_count']:,}개")
+    print(f"   숫자: {stats['digit_count']:,}개")
+    print(f"   공백: {stats['space_count']:,}개")
+    
+    if stats['longest_word']:
+        print(f"\n📏 단어 길이:")
+        print(f"   가장 긴 단어: '{stats['longest_word']}' ({len(stats['longest_word'])}글자)")
+        print(f"   가장 짧은 단어: '{stats['shortest_word']}' ({len(stats['shortest_word'])}글자)")
+    
+    # 상위 5개 빈도 단어
+    if stats['word_freq']:
+        print(f"\n🔥 자주 사용된 단어 (상위 5개):")
+        sorted_words = sorted(stats['word_freq'].items(), key=lambda x: x[1], reverse=True)
+        for i, (word, count) in enumerate(sorted_words[:5], 1):
+            print(f"   {i}. '{word}': {count}번")
+
+# 메인 프로그램
+def main():
+    print("=" * 50)
+    print("           📊 텍스트 분석기")
+    print("=" * 50)
+    print("분석할 텍스트를 입력하세요 (빈 줄 입력 시 종료):")
+    
+    lines = []
+    while True:
+        line = input()
+        if line.strip() == "":
+            break
+        lines.append(line)
+    
+    if lines:
+        text = '\n'.join(lines)
+        stats = analyze_text(text)
+        display_analysis(stats)
+    else:
+        print("입력된 텍스트가 없습니다.")
+
+# 프로그램 실행
+if __name__ == "__main__":
+    main()
+```
+
+### 🎮 실행 예시
+```
+==================================================
+           📊 텍스트 분석기
+==================================================
+분석할 텍스트를 입력하세요 (빈 줄 입력 시 종료):
+Python is a powerful programming language.
+It is easy to learn and fun to use.
+Many developers love Python!
+
+==================================================
+           📊 텍스트 분석 결과
+==================================================
+📝 전체 문자 수: 98개
+📝 공백 제외 문자 수: 82개
+📖 단어 수: 16개
+📄 줄 수: 3개
+
+🔤 문자 종류별 통계:
+   대문자: 4개
+   소문자: 78개
+   숫자: 0개
+   공백: 16개
+
+📏 단어 길이:
+   가장 긴 단어: 'programming' (11글자)
+   가장 짧은 단어: 'a' (1글자)
+
+🔥 자주 사용된 단어 (상위 5개):
+   1. 'python': 2번
+   2. 'is': 2번
+   3. 'to': 2번
+   4. 'and': 1번
+   5. 'it': 1번
+```
+
+---
+
+## 🎯 도전 과제
+
+### 🌟 기본 과제: 단어 게임
+```python
+def word_game():
+    """끝말잇기 게임의 기본 검증 로직"""
+    words = []
+    
+    print("=== 끝말잇기 게임 ===")
+    print("단어를 입력하세요 ('quit' 입력 시 종료)")
+    
+    while True:
+        word = input("단어: ").strip().lower()
+        
+        if word == 'quit':
+            break
+            
+        if not word.isalpha():
+            print("❌ 알파벳만 입력해주세요!")
+            continue
+            
+        if word in words:
+            print("❌ 이미 사용된 단어입니다!")
+            continue
+            
+        if words and words[-1][-1] != word[0]:
+            print(f"❌ '{words[-1]}'의 마지막 글자 '{words[-1][-1]}'로 시작해야 합니다!")
+            continue
+            
+        words.append(word)
+        print(f"✅ 좋습니다! 현재 단어: {' → '.join(words)}")
+    
+    print(f"게임 종료! 총 {len(words)}개의 단어를 사용했습니다.")
+
+# word_game()  # 주석 해제하여 실행
+```
+
+### 🚀 심화 과제: 텍스트 암호화
+```python
+def caesar_cipher(text, shift):
+    """시저 암호로 텍스트를 암호화/복호화합니다."""
+    result = ""
+    
+    for char in text:
+        if char.isalpha():
+            # 대문자/소문자 구분
+            start = ord('A') if char.isupper() else ord('a')
+            # 시프트 적용
+            shifted = (ord(char) - start + shift) % 26
+            result += chr(start + shifted)
+        else:
+            result += char
+    
+    return result
+
+def text_encoder():
+    """텍스트 인코딩/디코딩 프로그램"""
+    print("=== 텍스트 암호화 프로그램 ===")
+    
+    while True:
+        print("\n1. 암호화")
+        print("2. 복호화")
+        print("3. 종료")
+        
+        choice = input("선택: ").strip()
+        
+        if choice == '3':
+            break
+        elif choice in ['1', '2']:
+            text = input("텍스트 입력: ")
+            shift = int(input("시프트 값 (1-25): "))
+            
+            if choice == '2':
+                shift = -shift  # 복호화는 음수 시프트
+            
+            result = caesar_cipher(text, shift)
+            print(f"결과: {result}")
+        else:
+            print("잘못된 선택입니다.")
+
+# text_encoder()  # 주석 해제하여 실행
+```
+
+---
+
+## 📝 이번 챕터 요약
+
+✅ **배운 내용**
+- 문자열 인덱싱과 슬라이싱으로 원하는 부분 추출
+- 다양한 문자열 메서드를 활용한 텍스트 조작
+- f-string을 이용한 강력한 문자열 포맷팅
+- 실무에서 자주 사용하는 문자열 처리 패턴
+
+✅ **핵심 개념**
+- **인덱싱**: `text[0]`, `text[-1]`
+- **슬라이싱**: `text[start:end:step]`
+- **메서드**: `split()`, `join()`, `replace()`, `strip()`
+- **포맷팅**: `f"{변수:포맷}"`
+
+✅ **실무 팁**
+- 음수 인덱스로 뒤에서부터 접근하기
+- f-string 사용하여 가독성 높은 코드 작성하기
+- 문자열 메서드 체이닝으로 효율적인 처리하기
+
+🎯 **다음 챕터 예고**
+다음 챕터에서는 리스트와 튜플을 배워보겠습니다. 여러 개의 데이터를 효율적으로 관리하고 조작하는 방법을 마스터해보세요!
+
+---
+
+## ❓ 자주 묻는 질문 (FAQ)
+
+**Q: 문자열은 변경할 수 없다고 하는데, replace()는 어떻게 작동하나요?**
+A: Python의 문자열은 불변(immutable)입니다. `replace()`는 원본을 수정하지 않고 새로운 문자열을 반환합니다.
+
+**Q: 슬라이싱에서 인덱스가 범위를 벗어나면 어떻게 되나요?**
+A: 슬라이싱은 인덱스가 범위를 벗어나도 오류가 발생하지 않습니다. 자동으로 유효한 범위로 조정됩니다.
+
+**Q: f-string과 format() 메서드 중 어떤 것을 사용해야 하나요?**
+A: Python 3.6 이상에서는 f-string을 권장합니다. 더 빠르고 읽기 쉽습니다.
+
+**Q: 문자열에서 특정 패턴을 찾으려면 어떻게 해야 하나요?**
+A: 간단한 패턴은 `in`, `find()`, `startswith()` 등을 사용하고, 복잡한 패턴은 정규표현식(re 모듈)을 사용합니다. 
